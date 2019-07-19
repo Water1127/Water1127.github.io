@@ -110,7 +110,7 @@
 <meta property="og:site_name" content="Water">
 <meta property="og:description" content="概念 XML（ Extensible Markup Language），即 可扩展标记语言，标准通用标记语言的子集，是一种用于标记电子文件使其具有结构性的标记语言。 可扩展语言的精华在于其”Extensible”，即 在XML中的标签都是自定义的。  功能存储数据 配置文件 在网络中传输  xml与html的区别 HTML 标签预定义； 语法松散； 功能为展示数据。   XML 标签自定义； 语法">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-10T13:03:14.820Z">
+<meta property="og:updated_time" content="2019-07-19T08:44:41.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XML">
 <meta name="twitter:description" content="概念 XML（ Extensible Markup Language），即 可扩展标记语言，标准通用标记语言的子集，是一种用于标记电子文件使其具有结构性的标记语言。 可扩展语言的精华在于其”Extensible”，即 在XML中的标签都是自定义的。  功能存储数据 配置文件 在网络中传输  xml与html的区别 HTML 标签预定义； 语法松散； 功能为展示数据。   XML 标签自定义； 语法">
@@ -376,13 +376,23 @@
                 
               
 
-              <time title="创建时间：2019-07-10 20:40:07 / 修改时间：21:03:14" itemprop="dateCreated datePublished" datetime="2019-07-10T20:40:07+08:00">2019-07-10</time>
+              <time title="创建时间：2019-07-10 20:40:07" itemprop="dateCreated datePublished" datetime="2019-07-10T20:40:07+08:00">2019-07-10</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-19 16:44:41" itemprop="dateModified" datetime="2019-07-19T16:44:41+08:00">2019-07-19</time>
+              </span>
             
           
 
@@ -475,7 +485,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="基本语法："><a href="#基本语法：" class="headerlink" title="基本语法："></a>基本语法：</h2><ol>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><ol>
 <li>后缀名 .xml</li>
 <li>文档声明 必须在第一行</li>
 <li>根标签 有且仅有一个</li>
@@ -483,10 +493,10 @@
 <li>标签 必须正确关闭</li>
 <li>标签名称 区分大小写</li>
 </ol>
-<h2 id="快速入门："><a href="#快速入门：" class="headerlink" title="快速入门："></a>快速入门：</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version='1.0' ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">users</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">user</span> <span class="attr">id</span>=<span class="string">'1'</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>zhangsan<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">age</span>&gt;</span>23<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">gender</span>&gt;</span>male<span class="tag">&lt;/<span class="name">gender</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">user</span> <span class="attr">id</span>=<span class="string">'2'</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>lisi<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">age</span>&gt;</span>24<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">gender</span>&gt;</span>female<span class="tag">&lt;/<span class="name">gender</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">users</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version='1.0' ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">users</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">user</span> <span class="attr">id</span>=<span class="string">'1'</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>zhangsan<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">age</span>&gt;</span>23<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">gender</span>&gt;</span>male<span class="tag">&lt;/<span class="name">gender</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">user</span> <span class="attr">id</span>=<span class="string">'2'</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>lisi<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">age</span>&gt;</span>24<span class="tag">&lt;/<span class="name">age</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">gender</span>&gt;</span>female<span class="tag">&lt;/<span class="name">gender</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">users</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h1><h2 id="文档声明"><a href="#文档声明" class="headerlink" title="文档声明"></a>文档声明</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><p><strong>&lt;?xml 属性列表 ?&gt;</strong></p>
-<h3 id="属性列表："><a href="#属性列表：" class="headerlink" title="属性列表："></a>属性列表：</h3><ul>
+<h3 id="属性列表"><a href="#属性列表" class="headerlink" title="属性列表"></a>属性列表</h3><ul>
 <li>version：版本号（必须的属性）<ul>
 <li>一般值：1.0</li>
 </ul>
@@ -596,7 +606,7 @@
 <li>获取对应的标签Element对象</li>
 <li>获取数据</li>
 </ol>
-<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 1.导入jar包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.根据xml文件，获取Document对象</span></span><br><span class="line">	<span class="comment">// * 获取 DTD约束的student.xml文件路径</span></span><br><span class="line">	<span class="comment">// * 解析 xml文档，获取DOM树（Document对象）,抛出异常</span></span><br><span class="line">		<span class="comment">/* 通过本类的字节码文件，找到类加载器；再通过类加载器，找到文件路径；最后得到文件路径的字符串形式 */</span></span><br><span class="line">        String path = A_Jsoup.class.getClassLoader().getResource(<span class="string">"DTD/student.xml"</span>).getPath();</span><br><span class="line">        Document ducument = Jsoup.parse(<span class="keyword">new</span> File(path),<span class="string">"utf-8"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.获取Element元素对象 name</span></span><br><span class="line">	Elements names = ducument.getElementsByTag(<span class="string">"name"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出所有name元素</span></span><br><span class="line">    System.out.println(names);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出第一个name元素</span></span><br><span class="line">    Element name1 = names.get(<span class="number">0</span>);</span><br><span class="line">    String nameStr1 = name1.text();</span><br><span class="line">    System.out.println(nameStr1);</span><br></pre></td></tr></table></figure>
+<h3 id="快速入门-1"><a href="#快速入门-1" class="headerlink" title="快速入门"></a>快速入门</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 1.导入jar包</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.根据xml文件，获取Document对象</span></span><br><span class="line">	<span class="comment">// * 获取 DTD约束的student.xml文件路径</span></span><br><span class="line">	<span class="comment">// * 解析 xml文档，获取DOM树（Document对象）,抛出异常</span></span><br><span class="line">		<span class="comment">/* 通过本类的字节码文件，找到类加载器；再通过类加载器，找到文件路径；最后得到文件路径的字符串形式 */</span></span><br><span class="line">        String path = A_Jsoup.class.getClassLoader().getResource(<span class="string">"DTD/student.xml"</span>).getPath();</span><br><span class="line">        Document ducument = Jsoup.parse(<span class="keyword">new</span> File(path),<span class="string">"utf-8"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.获取Element元素对象 name</span></span><br><span class="line">	Elements names = ducument.getElementsByTag(<span class="string">"name"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出所有name元素</span></span><br><span class="line">    System.out.println(names);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出第一个name元素</span></span><br><span class="line">    Element name1 = names.get(<span class="number">0</span>);</span><br><span class="line">    String nameStr1 = name1.text();</span><br><span class="line">    System.out.println(nameStr1);</span><br></pre></td></tr></table></figure>
 
 <h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="Jsoup工具类"><a href="#Jsoup工具类" class="headerlink" title="Jsoup工具类"></a>Jsoup工具类</h3><ul>
 <li>获取Document对象    <ul>
@@ -776,6 +786,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/07/11/tomcat/" rel="prev" title="Tomcat">
+                Tomcat <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -845,7 +859,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -897,7 +911,27 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -920,7 +954,7 @@
                   
                     
                   
-                  <a href="https://github.com/yourname" title="GitHub &rarr; https://github.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/Water1127" title="GitHub &rarr; https://github.com/Water1127" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -931,18 +965,7 @@
                   
                     
                   
-                  <a href="mailto:yourname@gmail.com" title="E-Mail &rarr; mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://weibo.com/yourname" title="Weibo &rarr; https://weibo.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  <a href="mailto:1219042242@qq.com" title="E-Mail &rarr; mailto:1219042242@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
@@ -998,7 +1021,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#功能"><span class="nav-number">2.</span> <span class="nav-text">功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储数据"><span class="nav-number">2.1.</span> <span class="nav-text">存储数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xml与html的区别"><span class="nav-number">2.2.</span> <span class="nav-text">xml与html的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">3.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本语法："><span class="nav-number">3.1.</span> <span class="nav-text">基本语法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速入门："><span class="nav-number">3.2.</span> <span class="nav-text">快速入门：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组成部分"><span class="nav-number">4.</span> <span class="nav-text">组成部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文档声明"><span class="nav-number">4.1.</span> <span class="nav-text">文档声明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#格式"><span class="nav-number">4.1.1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性列表："><span class="nav-number">4.1.2.</span> <span class="nav-text">属性列表：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令（结合css）"><span class="nav-number">4.2.</span> <span class="nav-text">指令（结合css）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签（自定义）"><span class="nav-number">4.3.</span> <span class="nav-text">标签（自定义）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">4.4.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本"><span class="nav-number">4.5.</span> <span class="nav-text">文本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#约束"><span class="nav-number">5.</span> <span class="nav-text">约束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DTD约束技术"><span class="nav-number">5.1.</span> <span class="nav-text">DTD约束技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外部dtd引入"><span class="nav-number">5.1.1.</span> <span class="nav-text">外部dtd引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部dtd-引入"><span class="nav-number">5.1.2.</span> <span class="nav-text">内部dtd 引入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Schema约束技术"><span class="nav-number">5.2.</span> <span class="nav-text">Schema约束技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入实例"><span class="nav-number">5.2.1.</span> <span class="nav-text">引入实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">6.</span> <span class="nav-text">解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作xml文档"><span class="nav-number">6.1.</span> <span class="nav-text">操作xml文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析xml文档"><span class="nav-number">6.2.</span> <span class="nav-text">解析xml文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM"><span class="nav-number">6.2.1.</span> <span class="nav-text">DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAX"><span class="nav-number">6.2.2.</span> <span class="nav-text">SAX</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xml常见的解析器"><span class="nav-number">6.3.</span> <span class="nav-text">xml常见的解析器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jsoup"><span class="nav-number">6.4.</span> <span class="nav-text">Jsoup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">6.4.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速入门"><span class="nav-number">6.4.2.</span> <span class="nav-text">快速入门</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">6.5.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jsoup工具类"><span class="nav-number">6.5.1.</span> <span class="nav-text">Jsoup工具类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Document文档对象"><span class="nav-number">6.5.2.</span> <span class="nav-text">Document文档对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements集合"><span class="nav-number">6.5.3.</span> <span class="nav-text">Elements集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Element：元素对象"><span class="nav-number">6.5.4.</span> <span class="nav-text">Element：元素对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node：节点对象"><span class="nav-number">6.5.5.</span> <span class="nav-text">Node：节点对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">6.6.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快捷查询方式："><span class="nav-number">6.6.1.</span> <span class="nav-text">快捷查询方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#selector"><span class="nav-number">6.6.1.1.</span> <span class="nav-text">selector</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XPath"><span class="nav-number">6.6.1.2.</span> <span class="nav-text">XPath</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#功能"><span class="nav-number">2.</span> <span class="nav-text">功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储数据"><span class="nav-number">2.1.</span> <span class="nav-text">存储数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xml与html的区别"><span class="nav-number">2.2.</span> <span class="nav-text">xml与html的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">3.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本语法"><span class="nav-number">3.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速入门"><span class="nav-number">3.2.</span> <span class="nav-text">快速入门</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组成部分"><span class="nav-number">4.</span> <span class="nav-text">组成部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文档声明"><span class="nav-number">4.1.</span> <span class="nav-text">文档声明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#格式"><span class="nav-number">4.1.1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性列表"><span class="nav-number">4.1.2.</span> <span class="nav-text">属性列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令（结合css）"><span class="nav-number">4.2.</span> <span class="nav-text">指令（结合css）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签（自定义）"><span class="nav-number">4.3.</span> <span class="nav-text">标签（自定义）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性"><span class="nav-number">4.4.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本"><span class="nav-number">4.5.</span> <span class="nav-text">文本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#约束"><span class="nav-number">5.</span> <span class="nav-text">约束</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DTD约束技术"><span class="nav-number">5.1.</span> <span class="nav-text">DTD约束技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外部dtd引入"><span class="nav-number">5.1.1.</span> <span class="nav-text">外部dtd引入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部dtd-引入"><span class="nav-number">5.1.2.</span> <span class="nav-text">内部dtd 引入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Schema约束技术"><span class="nav-number">5.2.</span> <span class="nav-text">Schema约束技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引入实例"><span class="nav-number">5.2.1.</span> <span class="nav-text">引入实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解析"><span class="nav-number">6.</span> <span class="nav-text">解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作xml文档"><span class="nav-number">6.1.</span> <span class="nav-text">操作xml文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析xml文档"><span class="nav-number">6.2.</span> <span class="nav-text">解析xml文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM"><span class="nav-number">6.2.1.</span> <span class="nav-text">DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAX"><span class="nav-number">6.2.2.</span> <span class="nav-text">SAX</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xml常见的解析器"><span class="nav-number">6.3.</span> <span class="nav-text">xml常见的解析器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jsoup"><span class="nav-number">6.4.</span> <span class="nav-text">Jsoup</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">6.4.1.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速入门-1"><span class="nav-number">6.4.2.</span> <span class="nav-text">快速入门</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">6.5.</span> <span class="nav-text">对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jsoup工具类"><span class="nav-number">6.5.1.</span> <span class="nav-text">Jsoup工具类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Document文档对象"><span class="nav-number">6.5.2.</span> <span class="nav-text">Document文档对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Elements集合"><span class="nav-number">6.5.3.</span> <span class="nav-text">Elements集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Element：元素对象"><span class="nav-number">6.5.4.</span> <span class="nav-text">Element：元素对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node：节点对象"><span class="nav-number">6.5.5.</span> <span class="nav-text">Node：节点对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">6.6.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快捷查询方式："><span class="nav-number">6.6.1.</span> <span class="nav-text">快捷查询方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#selector"><span class="nav-number">6.6.1.1.</span> <span class="nav-text">selector</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XPath"><span class="nav-number">6.6.1.2.</span> <span class="nav-text">XPath</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1038,7 +1061,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">49k</span>
   
 
   
@@ -1047,7 +1070,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">44 分钟</span>
   
 </div>
 
@@ -1101,12 +1124,6 @@
 
 
 
-
-  
-    
-    
-  
-  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
 
