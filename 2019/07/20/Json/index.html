@@ -102,18 +102,18 @@
   daovoice('update');
   </script>
 
-  <meta name="description" content="概念 JSON（JavaScript Object Notation）JavaScript对象表示法 var p = {“name”:”cat”,”age”:23,”gender”:”male”};   JSON现在多用于存储和交换文本信息的语法，进行数据的传输。 JSON 比 XML 更小、更快，更易解析。  语法基本规则 数据在名称/值对中，JSON是由键值对构成的。 键用引号(单双都行)引起">
-<meta name="keywords" content="JSON">
+  <meta name="description" content="概念 JSON：JavaScript 对象表示法（JavaScript Object Notation） JSON现在多用于存储和交换文本信息的语法，进行数据的传输。 JSON 比 XML 更小、更快，更易解析。 注意：JSON 虽然使用 JavaScript 语法来描述数据对象，但是 JSON 仍然独立于语言和平台。1234567&amp;#123;    &quot;employees&quot;: [    &amp;#123">
+<meta name="keywords" content="JavaScript,JSON">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JSON">
 <meta property="og:url" content="https://Water1127.github.io/2019/07/20/Json/index.html">
 <meta property="og:site_name" content="Water">
-<meta property="og:description" content="概念 JSON（JavaScript Object Notation）JavaScript对象表示法 var p = {“name”:”cat”,”age”:23,”gender”:”male”};   JSON现在多用于存储和交换文本信息的语法，进行数据的传输。 JSON 比 XML 更小、更快，更易解析。  语法基本规则 数据在名称/值对中，JSON是由键值对构成的。 键用引号(单双都行)引起">
+<meta property="og:description" content="概念 JSON：JavaScript 对象表示法（JavaScript Object Notation） JSON现在多用于存储和交换文本信息的语法，进行数据的传输。 JSON 比 XML 更小、更快，更易解析。 注意：JSON 虽然使用 JavaScript 语法来描述数据对象，但是 JSON 仍然独立于语言和平台。1234567&amp;#123;    &quot;employees&quot;: [    &amp;#123">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-20T13:15:45.531Z">
+<meta property="og:updated_time" content="2019-07-22T08:03:20.925Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSON">
-<meta name="twitter:description" content="概念 JSON（JavaScript Object Notation）JavaScript对象表示法 var p = {“name”:”cat”,”age”:23,”gender”:”male”};   JSON现在多用于存储和交换文本信息的语法，进行数据的传输。 JSON 比 XML 更小、更快，更易解析。  语法基本规则 数据在名称/值对中，JSON是由键值对构成的。 键用引号(单双都行)引起">
+<meta name="twitter:description" content="概念 JSON：JavaScript 对象表示法（JavaScript Object Notation） JSON现在多用于存储和交换文本信息的语法，进行数据的传输。 JSON 比 XML 更小、更快，更易解析。 注意：JSON 虽然使用 JavaScript 语法来描述数据对象，但是 JSON 仍然独立于语言和平台。1234567&amp;#123;    &quot;employees&quot;: [    &amp;#123">
 
 
 
@@ -376,13 +376,23 @@
                 
               
 
-              <time title="创建时间：2019-07-20 21:15:02 / 修改时间：21:15:45" itemprop="dateCreated datePublished" datetime="2019-07-20T21:15:02+08:00">2019-07-20</time>
+              <time title="创建时间：2019-07-20 21:15:02" itemprop="dateCreated datePublished" datetime="2019-07-20T21:15:02+08:00">2019-07-20</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-22 16:03:20" itemprop="dateModified" datetime="2019-07-22T16:03:20+08:00">2019-07-22</time>
+              </span>
             
           
 
@@ -422,7 +432,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">2.8k</span>
+              <span title="本文字数">3.4k</span>
             </span>
           
 
@@ -454,39 +464,69 @@
 
       
         <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>JSON（JavaScript Object Notation）JavaScript对象表示法<ul>
-<li>var p = {“name”:”cat”,”age”:23,”gender”:”male”};</li>
-</ul>
-</li>
+<li>JSON：JavaScript 对象表示法（JavaScript Object Notation）</li>
 <li>JSON现在多用于存储和交换文本信息的语法，进行数据的传输。</li>
 <li>JSON 比 XML 更小、更快，更易解析。</li>
+<li>注意：JSON 虽然使用 JavaScript 语法来描述数据对象，但是 JSON 仍然独立于语言和平台。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"employees"</span>: [</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"Bill"</span> , <span class="string">"lastName"</span>:<span class="string">"Gates"</span> &#125;,</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"George"</span> , <span class="string">"lastName"</span>:<span class="string">"Bush"</span> &#125;,</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"Thomas"</span> , <span class="string">"lastName"</span>:<span class="string">"Carter"</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="基本规则"><a href="#基本规则" class="headerlink" title="基本规则"></a>基本规则</h2><ul>
-<li>数据在名称/值对中，JSON是由键值对构成的。</li>
-<li>键用引号(单双都行)引起来，也可以不使用引号。<ul>
-<li>取值类型：<ol>
+<h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1><h2 id="类似-XML"><a href="#类似-XML" class="headerlink" title="类似 XML"></a>类似 XML</h2><ul>
+<li>JSON 是纯文本</li>
+<li>JSON 具有“自我描述性”（人类可读）</li>
+<li>JSON 具有层级结构（值中存在值）</li>
+<li>JSON 可通过 JavaScript 进行解析</li>
+<li>JSON 数据可使用 AJAX 进行传输<h2 id="相比-XML-的不同之处"><a href="#相比-XML-的不同之处" class="headerlink" title="相比 XML 的不同之处"></a>相比 XML 的不同之处</h2></li>
+<li>没有结束标签</li>
+<li>更短</li>
+<li>读写的速度更快</li>
+<li>能够使用内建的 JavaScript eval() 方法进行解析</li>
+<li>使用数组</li>
+<li>不使用保留字<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></li>
+<li>对于 AJAX 应用程序来说，JSON 比 XML 更快更易使用：<ul>
+<li>使用 XML<ul>
+<li>读取 XML 文档</li>
+<li>使用 XML DOM 来循环遍历文档</li>
+<li>读取值并存储在变量中</li>
+</ul>
+</li>
+<li>使用 JSON<ul>
+<li>读取 JSON 字符串</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><ul>
+<li>JSON 语法是 JavaScript 语法的子集。<h2 id="语法规则"><a href="#语法规则" class="headerlink" title="语法规则"></a>语法规则</h2></li>
+<li>JSON 语法是 JavaScript 对象表示法语法的子集。</li>
+<li>数据在名称/值对中</li>
+<li>数据由逗号分隔</li>
+<li>花括号保存对象</li>
+<li>方括号保存数组<h2 id="名称-值对"><a href="#名称-值对" class="headerlink" title="名称/值对"></a>名称/值对</h2>JSON 数据的书写格式是：名称/值对。<br>名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"firstName"</span> : <span class="string">"John"</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="值"><a href="#值" class="headerlink" title="值"></a>值</h2><ol>
 <li>数字（整数或浮点数）</li>
 <li>字符串（在双引号中）</li>
 <li>逻辑值（true 或 false）</li>
 <li>数组（在方括号中）    {“persons”:[{},{}]}</li>
-<li>对象（在花括号中） {“address”:{“province”：”陕西”….}}</li>
-<li>null</li>
+<li>对象（在花括号中）   { “firstName”:”John” , “lastName”:”Doe” }</li>
+<li>null<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2></li>
 </ol>
-</li>
+<ul>
+<li>JSON 文件的文件类型是 “.json”</li>
+<li>JSON 文本的 MIME 类型是 “application/json”</li>
 </ul>
-</li>
-<li>数据由逗号分隔：多个键值对由逗号分隔</li>
-<li>花括号保存对象：使用{}定义JSON格式</li>
-<li>方括号保存数组：可以包含数组[]<h2 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h2></li>
-</ul>
-<ol>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h2><ol>
 <li>json对象.键名</li>
 <li>json对象[“键名”]</li>
 <li>数组对象[索引]</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/* 基本格式 */</span></span><br><span class="line"> <span class="keyword">var</span> person = &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;</span><br><span class="line"> <span class="keyword">var</span> name11 = person.name;</span><br><span class="line"> <span class="keyword">var</span> name12 = person[<span class="string">"name"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 嵌套格式 */</span></span><br><span class="line"> <span class="comment">//   JSON &#123; JSON,JASON &#125;</span></span><br><span class="line"> <span class="keyword">var</span> persons = &#123;</span><br><span class="line">     <span class="string">"personCat"</span>: &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">     <span class="string">"personDog"</span>:&#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">     <span class="string">"personRat"</span>:&#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;&#125;</span><br><span class="line"> <span class="keyword">var</span> personCat = persons.personCat;</span><br><span class="line"> <span class="keyword">var</span> name2 = persons.personCat.name;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//   Array [JSON,JASON]</span></span><br><span class="line"> <span class="keyword">var</span> array = [</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;]</span><br><span class="line"> <span class="keyword">var</span> name3 = array[<span class="number">0</span>].name;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//   JSON &#123; Array[JSON,JASON], Array[JSON,JASON] &#125;</span></span><br><span class="line"> <span class="keyword">var</span> persons = &#123;</span><br><span class="line">     <span class="string">"person1"</span>:[</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;,],</span><br><span class="line">     <span class="string">"person2"</span>:[</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;,]</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">var</span> name4 = persons.person1[<span class="number">0</span>].name;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/* 基本格式 */</span></span><br><span class="line"> <span class="keyword">var</span> person = &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;</span><br><span class="line"> <span class="keyword">var</span> name11 = person.name;</span><br><span class="line"> <span class="keyword">var</span> name12 = person[<span class="string">"name"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 嵌套格式 */</span></span><br><span class="line"> <span class="comment">//   JSON &#123; JSON,JASON &#125;</span></span><br><span class="line"> <span class="keyword">var</span> persons = &#123;</span><br><span class="line">     <span class="string">"personCat"</span>: &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">     <span class="string">"personDog"</span>:&#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">     <span class="string">"personRat"</span>:&#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;&#125;</span><br><span class="line"> <span class="keyword">var</span> personCat = persons.personCat;</span><br><span class="line"> <span class="keyword">var</span> name2 = persons.personCat.name;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//   Array [JSON,JASON]</span></span><br><span class="line"> <span class="keyword">var</span> array = [</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;]</span><br><span class="line"> <span class="keyword">var</span> name3 = array[<span class="number">0</span>].name;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//   JSON &#123; Array[JSON,JASON], Array[JSON,JASON] &#125;</span></span><br><span class="line"> <span class="keyword">var</span> persons = &#123;</span><br><span class="line">     <span class="string">"person1"</span>:[</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;,],</span><br><span class="line">     <span class="string">"person2"</span>:[</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;,]</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">var</span> name4 = persons.person1[<span class="number">0</span>].name;</span><br></pre></td></tr></table></figure>
 
-<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 基本格式 */</span></span><br><span class="line">  <span class="keyword">var</span> person = &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key in person) &#123;</span><br><span class="line">      <span class="comment">// * key默认为字符串</span></span><br><span class="line">      alert(key);</span><br><span class="line">      alert(person.key); <span class="comment">// * person."name"; 无法获取</span></span><br><span class="line">      alert(person[key]); <span class="comment">// * person["name"]; 无法获取</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 嵌套格式 */</span></span><br><span class="line">  <span class="keyword">var</span> array = [</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;]</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i =<span class="number">0</span>;i&lt;array.length;i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> p = array[i];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> key in p) &#123;</span><br><span class="line">          alert(key);</span><br><span class="line">          alert(p[key]);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 基本格式 */</span></span><br><span class="line">  <span class="keyword">var</span> person = &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> person) &#123;</span><br><span class="line">      <span class="comment">// * key默认为字符串</span></span><br><span class="line">      alert(key);</span><br><span class="line">      alert(person.key); <span class="comment">// * person."name"; 无法获取</span></span><br><span class="line">      alert(person[key]); <span class="comment">// * person["name"]; 无法获取</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 嵌套格式 */</span></span><br><span class="line">  <span class="keyword">var</span> array = [</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;]</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i =<span class="number">0</span>;i&lt;array.length;i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> p = array[i];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> p) &#123;</span><br><span class="line">          alert(key);</span><br><span class="line">          alert(p[key]);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h1><ul>
 <li>转换<ul>
@@ -604,6 +644,8 @@
         
         <div class="post-tags">
           
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
             <a href="/tags/JSON/" rel="tag"># JSON</a>
           
         </div>
@@ -626,6 +668,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/21/redis/" rel="prev" title="Redis">
+                Redis <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -770,7 +816,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -856,7 +912,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">2.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本规则"><span class="nav-number">2.1.</span> <span class="nav-text">基本规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取数据"><span class="nav-number">2.2.</span> <span class="nav-text">获取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历"><span class="nav-number">2.3.</span> <span class="nav-text">遍历</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转换"><span class="nav-number">3.</span> <span class="nav-text">转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON转为Java对象"><span class="nav-number">3.1.</span> <span class="nav-text">JSON转为Java对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java对象转换JSON"><span class="nav-number">3.2.</span> <span class="nav-text">Java对象转换JSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解"><span class="nav-number">3.3.</span> <span class="nav-text">注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂java对象转换"><span class="nav-number">3.4.</span> <span class="nav-text">复杂java对象转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式问题"><span class="nav-number">3.5.</span> <span class="nav-text">格式问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区别"><span class="nav-number">2.</span> <span class="nav-text">区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类似-XML"><span class="nav-number">2.1.</span> <span class="nav-text">类似 XML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相比-XML-的不同之处"><span class="nav-number">2.2.</span> <span class="nav-text">相比 XML 的不同之处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#语法"><span class="nav-number">3.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法规则"><span class="nav-number">3.1.</span> <span class="nav-text">语法规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名称-值对"><span class="nav-number">3.2.</span> <span class="nav-text">名称/值对</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值"><span class="nav-number">3.3.</span> <span class="nav-text">值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件"><span class="nav-number">3.4.</span> <span class="nav-text">文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取数据"><span class="nav-number">4.1.</span> <span class="nav-text">获取数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历"><span class="nav-number">4.2.</span> <span class="nav-text">遍历</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转换"><span class="nav-number">5.</span> <span class="nav-text">转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON转为Java对象"><span class="nav-number">5.1.</span> <span class="nav-text">JSON转为Java对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java对象转换JSON"><span class="nav-number">5.2.</span> <span class="nav-text">Java对象转换JSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注解"><span class="nav-number">5.3.</span> <span class="nav-text">注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复杂java对象转换"><span class="nav-number">5.4.</span> <span class="nav-text">复杂java对象转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式问题"><span class="nav-number">5.5.</span> <span class="nav-text">格式问题</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -896,7 +952,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">58k</span>
+    <span title="站点总字数">73k</span>
   
 
   
@@ -905,7 +961,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">53 分钟</span>
+    <span title="站点阅读时长">1:06</span>
   
 </div>
 

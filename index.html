@@ -329,7 +329,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/20/Json/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/21/redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="w.">
@@ -349,7 +349,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/20/Json/" class="post-title-link" itemprop="url">JSON</a>
+                <a href="/2019/07/21/redis/" class="post-title-link" itemprop="url">Redis</a>
               
             
           </h1>
@@ -374,7 +374,7 @@
                 
               
 
-              <time title="创建时间：2019-07-20 21:15:02 / 修改时间：21:15:45" itemprop="dateCreated datePublished" datetime="2019-07-20T21:15:02+08:00">2019-07-20</time>
+              <time title="创建时间：2019-07-21 15:21:46 / 修改时间：15:21:35" itemprop="dateCreated datePublished" datetime="2019-07-21T15:21:46+08:00">2019-07-21</time>
             </span>
           
 
@@ -420,7 +420,408 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">2.8k</span>
+              <span title="本文字数">8.5k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">8 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h1><ul>
+<li>NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。</li>
+<li>随着互联网web- 0网站的兴起，传统的关系数据库在应付web- 0网站，特别是超大规模和高并发的SNS类型的web- 0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。NoSQL数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，尤其是大数据应用难题。<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2></li>
+<li>成本：nosql数据库简单易部署，基本都是开源软件，不需要像使用oracle那样花费大量成本购买使用，相比关系型数据库价格便宜。</li>
+<li>查询速度：nosql数据库将数据存储于缓存之中，关系型数据库将数据存储在硬盘中，自然查询速度远不及nosql数据库。</li>
+<li>存储数据的格式：nosql的存储格式是key,value形式、文档形式、图片形式等等，所以可以存储基础类型以及对象或者是集合等各种格式，而数据库则只支持基础类型。</li>
+<li>扩展性：关系型数据库有类似join这样的多表查询机制的限制导致扩展很艰难。<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>维护的工具和资料有限，因为nosql是属于新的技术，不能和关系型数据库10几年的技术同日而语。</li>
+</ul>
+</li>
+<li>不提供对sql的支持，如果不支持sql这样的工业标准，将产生一定用户的学习和使用成本。</li>
+<li>不提供关系型数据库对事务的处理。</li>
+</ul>
+<h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><h3 id="非关系型数据库优势"><a href="#非关系型数据库优势" class="headerlink" title="非关系型数据库优势"></a>非关系型数据库优势</h3><ul>
+<li>性能NOSQL是基于键值对的，可以想象成表中的主键和值的对应关系，而且不需要经过SQL层的解析，所以性能非常高。</li>
+<li>可扩展性同样也是因为基于键值对，数据之间没有耦合性，所以非常容易水平扩展。</li>
+</ul>
+<h3 id="关系型数据库的优势"><a href="#关系型数据库的优势" class="headerlink" title="关系型数据库的优势"></a>关系型数据库的优势</h3><ul>
+<li>复杂查询可以用SQL语句方便的在一个表以及多个表之间做非常复杂的数据查询。</li>
+<li>事务支持使得对于安全性能很高的数据访问要求得以实现。对于这两类数据库，对方的优势就是自己的弱势，反之亦然。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>关系型数据库与NoSQL数据库并非对立而是互补的关系，即通常情况下使用关系型数据库，在适合使用NoSQL的时候使用NoSQL数据库，<br>让NoSQL数据库对关系型数据库的不足进行弥补。<br>一般会将数据存储在关系型数据库中，在nosql数据库中备份存储关系型数据库的数据</p>
+<h1 id="主流的NOSQL产品"><a href="#主流的NOSQL产品" class="headerlink" title="主流的NOSQL产品"></a>主流的NOSQL产品</h1><h2 id="键值-Key-Value-存储数据库"><a href="#键值-Key-Value-存储数据库" class="headerlink" title="键值(Key-Value)存储数据库"></a>键值(Key-Value)存储数据库</h2><p>相关产品： Tokyo Cabinet/Tyrant、Redis、Voldemort、Berkeley DB<br>典型应用： 内容缓存，主要用于处理大量数据的高访问负载。<br>数据模型： 一系列键值对<br>优势： 快速查询<br>劣势： 存储的数据缺少结构化</p>
+<p>##　列存储数据库<br>相关产品：Cassandra, HBase, Riak<br>典型应用：分布式的文件系统<br>数据模型：以列簇式存储，将同一列数据存在一起<br>优势：查找速度快，可扩展性强，更容易进行分布式扩展<br>劣势：功能相对局限</p>
+<h2 id="文档型数据库"><a href="#文档型数据库" class="headerlink" title="文档型数据库"></a>文档型数据库</h2><p>相关产品：CouchDB、MongoDB<br>典型应用：Web应用（与Key-Value类似，Value是结构化的）<br>数据模型： 一系列键值对<br>优势：数据结构要求不严格<br>劣势： 查询性能不高，而且缺乏统一的查询语法</p>
+<p>##　图形(Graph)数据库<br>相关数据库：Neo4J、InfoGrid、Infinite Graph<br>典型应用：社交网络<br>数据模型：图结构<br>优势：利用图结构相关算法。<br>劣势：需要对整个图做计算才能得出结果，不容易做分布式的集群方案。</p>
+<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><p>##　概念</p>
+<ul>
+<li>Redis是一款高性能的NOSQL系列的非关系型数据库</li>
+<li>Redis是用C语言开发的一个开源的高性能键值对（key-value）数据库，官方提供测试数据，50个并发执行100000个请求,读的速度是110000次/s,写的速度是81000次/s 。</li>
+<li>Redis通过提供多种键值数据类型来适应不同场景下的存储需求，目前为止Redis支持的键值数据类型如下：<ul>
+<li>字符串类型 string</li>
+<li>哈希类型 hash</li>
+<li>列表类型 list</li>
+<li>集合类型 set</li>
+<li>有序集合类型 sortedset<h2 id="redis的应用场景"><a href="#redis的应用场景" class="headerlink" title="redis的应用场景"></a>redis的应用场景</h2></li>
+</ul>
+</li>
+<li>缓存（数据查询、短连接、新闻内容、商品内容等等）</li>
+<li>聊天室的在线好友列表</li>
+<li>任务队列。（秒杀、抢购、12306等等）</li>
+<li>应用排行榜</li>
+<li>网站访问统计</li>
+<li>数据过期处理（可以精确到毫秒</li>
+<li>分布式集群架构中的session分离<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2></li>
+<li>中文网：<a href="http://www.redis.net.cn/" target="_blank" rel="noopener">http://www.redis.net.cn/</a><ul>
+<li>解压直接可以使用：<ul>
+<li>redis.windows.conf：配置文件</li>
+<li>redis-cli.exe：redis的客户端</li>
+<li>redis-server.exe：redis服务器端<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Redis存储：key，value格式的数据<ul>
+<li>key的数据类型：字符串</li>
+<li>value的数据结构：<ul>
+<li>字符串类型 string</li>
+<li>哈希类型 hash （map格式）  </li>
+<li>列表类型 list      （ Linkedlist格式，允许重复）</li>
+<li>集合类型 set      （HashSet格式，不允许重复）</li>
+<li>有序集合类型 sortedset    （不允许重复，且有序）<h2 id="命令操作"><a href="#命令操作" class="headerlink" title="命令操作"></a>命令操作</h2><h3 id="字符串类型-string"><a href="#字符串类型-string" class="headerlink" title="字符串类型 string"></a>字符串类型 string</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>存储： <strong>set key value</strong></li>
+<li>获取： <strong>get key</strong></li>
+<li>删除： <strong>del key</strong></li>
+</ul>
+<h3 id="哈希类型-hash"><a href="#哈希类型-hash" class="headerlink" title="哈希类型 hash"></a>哈希类型 hash</h3><ul>
+<li>存储： <strong>hset key field value</strong></li>
+<li>获取指定的field对应的值：<strong>hget key field:</strong> </li>
+<li>获取所有的field和value：<strong>hgetall key</strong></li>
+<li>删除： <strong>hdel key field</strong></li>
+</ul>
+<h3 id="列表类型-list"><a href="#列表类型-list" class="headerlink" title="列表类型 list"></a>列表类型 list</h3><ul>
+<li>将元素加入列表左边： <strong>lpush key value</strong></li>
+<li>将元素加入列表右边：<strong>rpush key value</strong></li>
+<li>范围获取：<strong>lrange key start end</strong> <ul>
+<li>获取所有元素：lrange key 0 -1</li>
+</ul>
+</li>
+<li>删除列表最左边的元素，并将元素返回：<strong>lpop key</strong></li>
+<li>删除列表最右边的元素，并将元素返回：<strong>rpop key</strong></li>
+</ul>
+<h3 id="集合类型-set"><a href="#集合类型-set" class="headerlink" title="集合类型 set"></a>集合类型 set</h3><ul>
+<li>set 集合 （ 不允许重复）<ul>
+<li>存储：<strong>sadd key value</strong></li>
+<li>获取set集合中所有元素：<strong>smembers key</strong></li>
+<li>删除set集合中的某个元素：<strong>srem key value</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="有序集合类型-sortedset"><a href="#有序集合类型-sortedset" class="headerlink" title="有序集合类型 sortedset"></a>有序集合类型 sortedset</h3><ul>
+<li>sortedset集合 <ul>
+<li>不允许重复元素，且元素有顺序。</li>
+<li>每个元素都会关联一个double类型的分数。</li>
+<li>redis正是通过分数来为集合中的成员进行从小到大的排序。</li>
+</ul>
+</li>
+<li>存储：<strong>zadd key score value</strong></li>
+<li>获取：<strong>zrange key start end [withscores]</strong></li>
+<li>删除：<strong>zrem key value</strong></li>
+</ul>
+<h3 id="通用命令"><a href="#通用命令" class="headerlink" title="通用命令"></a>通用命令</h3><ul>
+<li>查询所有的键：keys *</li>
+<li>获取键对应的value的类型：<strong>type key</strong></li>
+<li>删除指定的key value：<strong>del key</strong></li>
+</ul>
+<h2 id="持久化机制"><a href="#持久化机制" class="headerlink" title="持久化机制"></a>持久化机制</h2><ul>
+<li>Redis持久化<ul>
+<li>Redis是一个内存数据库，当redis服务器重启，或者电脑重启，数据丢失时，我们可以将redis内存中的数据持久化，将其保存到硬盘的文件中。<h3 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h3></li>
+</ul>
+</li>
+<li>默认持久化机制</li>
+<li>在一定的间隔时间中，检测key的变化情况，然后持久化数据。<ul>
+<li>修改 redis.windwos.conf 文件<ul>
+<li><strong>save 900 1</strong>：after 900 sec (15 min) if at least 1 key changed</li>
+<li><strong>save 300 10</strong>：after 300 sec (5 min) if at least 10 keys changed</li>
+<li><strong>save 60 10000</strong>：after 60 sec if at least 10000 keys changed</li>
+</ul>
+</li>
+<li>使用命令行，重新启动redis服务器，并指定配置文件名称<ul>
+<li><strong>redis-server.exe   redis.windows.conf</strong>    </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h3><ul>
+<li>日志记录机制</li>
+<li>记录每一条命令的操作。每一次命令操作后，持久化数据。</li>
+<li>编辑 redis.windwos.conf 文件<ul>
+<li>开启AOF<ul>
+<li>appendonly no（关闭AOF）</li>
+<li>ppendonly yes （开启AOF）</li>
+</ul>
+</li>
+<li>取值<ul>
+<li>appendfsync always ： 每一次操作都进行持久化</li>
+<li>appendfsync everysec ： 每隔一秒进行一次持久化（默认）</li>
+<li>appendfsync no： 不进行持久化</li>
+</ul>
+</li>
+<li>使用命令行，重新启动redis服务器，并指定配置文件名称<ul>
+<li><strong>redis-server.exe   redis.windows.conf</strong>    </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Jedis（Java客户端）"><a href="#Jedis（Java客户端）" class="headerlink" title="Jedis（Java客户端）"></a>Jedis（Java客户端）</h1><ul>
+<li>Jedis:是一款java操作redis数据库的工具.<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2></li>
+<li>下载jedis的jar包</li>
+<li>使用<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取连接</span></span><br><span class="line">    Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">"localhost"</span>,<span class="number">6379</span>);</span><br><span class="line"><span class="comment">// 操作</span></span><br><span class="line">    jedis.set(<span class="string">"username"</span>,<span class="string">"zhangsan"</span>);</span><br><span class="line"><span class="comment">// 关闭连接</span></span><br><span class="line">    jedis.close();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="命令操作-1"><a href="#命令操作-1" class="headerlink" title="命令操作"></a>命令操作</h2><h3 id="字符串类型-string-1"><a href="#字符串类型-string-1" class="headerlink" title="字符串类型 string"></a>字符串类型 string</h3><ul>
+<li>set</li>
+<li>get<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span><span class="comment">/* 操作字符串String */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 获取连接</span></span><br><span class="line">    Jedis jedis = <span class="keyword">new</span> Jedis(); <span class="comment">//空参构造，默认("localhost",6379)</span></span><br><span class="line">    <span class="comment">// 存储</span></span><br><span class="line">    jedis.set(<span class="string">"cat"</span>,<span class="string">"001"</span>);</span><br><span class="line">    <span class="comment">// 获取</span></span><br><span class="line">    String cat = jedis.get(<span class="string">"cat"</span>);</span><br><span class="line">    System.out.println(cat);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 存储有时限的数据</span></span><br><span class="line">    jedis.setex(<span class="string">"dog"</span>,<span class="number">10</span>,<span class="string">"002"</span>); <span class="comment">// 时间单位：秒</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关闭连接</span></span><br><span class="line">    jedis.close();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="哈希类型-hash-（-map格式-）"><a href="#哈希类型-hash-（-map格式-）" class="headerlink" title="哈希类型 hash （ map格式 ）"></a>哈希类型 hash （ map格式 ）</h3><ul>
+<li>hset</li>
+<li>hget</li>
+<li>hgetAll<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span> <span class="comment">/* 操作Hash */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test03</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 获取连接</span></span><br><span class="line">    Jedis jedis = <span class="keyword">new</span> Jedis();</span><br><span class="line">    <span class="comment">// 存储</span></span><br><span class="line">    jedis.hset(<span class="string">"map"</span>,<span class="string">"cat"</span>,<span class="string">"111"</span>);</span><br><span class="line">    jedis.hset(<span class="string">"map"</span>,<span class="string">"dog"</span>,<span class="string">"222"</span>);</span><br><span class="line">    jedis.hset(<span class="string">"map"</span>,<span class="string">"rat"</span>,<span class="string">"333"</span>);</span><br><span class="line">    <span class="comment">// 获取</span></span><br><span class="line">    String cat = jedis.hget(<span class="string">"map"</span>, <span class="string">"cat"</span>);</span><br><span class="line">    System.out.println(cat);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取hash中的map中的所有数据</span></span><br><span class="line">    Map&lt;String, String&gt; map = jedis.hgetAll(<span class="string">"map"</span>);</span><br><span class="line">    <span class="comment">// 输出</span></span><br><span class="line">    Set&lt;String&gt; keySet = map.keySet();</span><br><span class="line">    <span class="keyword">for</span> (String s : keySet) &#123;</span><br><span class="line">        String value = map.get(s);</span><br><span class="line">        System.out.println(s+<span class="string">":"</span>+value);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 关闭连接</span></span><br><span class="line">    jedis.close();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="列表类型-list-（-LinkedList格式，允许重复）"><a href="#列表类型-list-（-LinkedList格式，允许重复）" class="headerlink" title="列表类型 list （ LinkedList格式，允许重复）"></a>列表类型 list （ LinkedList格式，允许重复）</h3><ul>
+<li>lpush / rpush</li>
+<li>lpop / rpop</li>
+<li>lrange start end <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span> <span class="comment">/* 操作List(允许重复) */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test04</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 获取连接</span></span><br><span class="line">    Jedis jedis = <span class="keyword">new</span> Jedis();</span><br><span class="line">    <span class="comment">// 存储</span></span><br><span class="line">    jedis.lpush(<span class="string">"list"</span>,<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>);</span><br><span class="line">    jedis.rpush(<span class="string">"list"</span>,<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>);</span><br><span class="line">    <span class="comment">// 打印</span></span><br><span class="line">    List&lt;String&gt; list = jedis.lrange(<span class="string">"list"</span>, <span class="number">0</span>, -<span class="number">1</span>);</span><br><span class="line">    System.out.println(list);</span><br><span class="line">    <span class="comment">// 弹出</span></span><br><span class="line">    String element1 = jedis.lpop(<span class="string">"list"</span>);</span><br><span class="line">    String element2 = jedis.lpop(<span class="string">"list"</span>);</span><br><span class="line">    <span class="comment">// 打印</span></span><br><span class="line">    System.out.println(element1);</span><br><span class="line">    System.out.println(element2);</span><br><span class="line">    List&lt;String&gt; list2 = jedis.lrange(<span class="string">"list"</span>, <span class="number">0</span>, -<span class="number">1</span>);</span><br><span class="line">    System.out.println(list2);</span><br><span class="line">    <span class="comment">// 关闭连接</span></span><br><span class="line">    jedis.close();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="集合类型-set-（HashSet格式，-不允许重复）"><a href="#集合类型-set-（HashSet格式，-不允许重复）" class="headerlink" title="集合类型 set  （HashSet格式， 不允许重复）"></a>集合类型 set  （HashSet格式， 不允许重复）</h3><ul>
+<li>sadd</li>
+<li>smembers<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span> <span class="comment">/* 操作Set(不允许重复) */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test05</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 获取连接</span></span><br><span class="line">    Jedis jedis = <span class="keyword">new</span> Jedis();</span><br><span class="line">    <span class="comment">// 存储</span></span><br><span class="line">    jedis.sadd(<span class="string">"set"</span>,<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"D"</span>);</span><br><span class="line">    <span class="comment">// 获取</span></span><br><span class="line">    Set&lt;String&gt; set = jedis.smembers(<span class="string">"set"</span>);</span><br><span class="line">    <span class="comment">// 打印</span></span><br><span class="line">    System.out.println(set);</span><br><span class="line">    <span class="comment">// 关闭连接</span></span><br><span class="line">    jedis.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="有序集合类型-sortedset-1"><a href="#有序集合类型-sortedset-1" class="headerlink" title="有序集合类型 sortedset"></a>有序集合类型 sortedset</h3><ul>
+<li>zadd</li>
+<li>zrange<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span> <span class="comment">/* 操作SortedSet(不允许重复，有序) */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test06</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 获取连接</span></span><br><span class="line">    Jedis jedis = <span class="keyword">new</span> Jedis();</span><br><span class="line">    <span class="comment">// 存储</span></span><br><span class="line">    jedis.zadd(<span class="string">"sortedSet"</span>,<span class="number">1</span>,<span class="string">"cat"</span>);</span><br><span class="line">    jedis.zadd(<span class="string">"sortedSet"</span>,<span class="number">2</span>,<span class="string">"dog"</span>);</span><br><span class="line">    jedis.zadd(<span class="string">"sortedSet"</span>,<span class="number">3</span>,<span class="string">"rat"</span>);</span><br><span class="line">    <span class="comment">// 获取</span></span><br><span class="line">    Set&lt;String&gt; sortedSet = jedis.zrange(<span class="string">"sortedSet"</span>, <span class="number">0</span>, -<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// 打印</span></span><br><span class="line">    System.out.println(sortedSet);</span><br><span class="line">    <span class="comment">// 关闭连接</span></span><br><span class="line">    jedis.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="JedisPool（jedis连接池）"><a href="#JedisPool（jedis连接池）" class="headerlink" title="JedisPool（jedis连接池）"></a>JedisPool（jedis连接池）</h1><ul>
+<li>快速入门<ul>
+<li>创建JedisPool连接池对象</li>
+<li>调用方法 getResource()方法获取Jedis连接<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建连接池配置对象</span></span><br><span class="line">    JedisPoolConfig jedisPoolConfig = <span class="keyword">new</span> JedisPoolConfig();</span><br><span class="line">    <span class="comment">// 设置配置</span></span><br><span class="line">    jedisPoolConfig.setMaxTotal(<span class="number">50</span>);</span><br><span class="line">    jedisPoolConfig.setMaxIdle(<span class="number">10</span>);</span><br><span class="line">    <span class="comment">// 创建连接池对象，并传入连接池配置对象</span></span><br><span class="line">    JedisPool jedisPool = <span class="keyword">new</span> JedisPool(jedisPoolConfig, <span class="string">"localhost"</span>, <span class="number">6379</span>);</span><br><span class="line">    <span class="comment">// 获取连接</span></span><br><span class="line">    Jedis resource = jedisPool.getResource();</span><br><span class="line">    <span class="comment">// 使用</span></span><br><span class="line">    resource.set(<span class="string">"name"</span>, <span class="string">"cat"</span>);</span><br><span class="line">    String s = resource.get(<span class="string">"name"</span>);</span><br><span class="line">    System.out.println(s);</span><br><span class="line">    <span class="comment">// 关闭，归还到连接池中</span></span><br><span class="line">    resource.close();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="JedisPoolUtil工具类"><a href="#JedisPoolUtil工具类" class="headerlink" title="JedisPoolUtil工具类"></a>JedisPoolUtil工具类</h2><blockquote>
+<p>设置 JedisPoolUtil工具类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JedisPoolUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 连接池对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> JedisPool jedisPool;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// 读取配置文件</span></span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        <span class="comment">// 创建properties对象</span></span><br><span class="line">        InputStream resourceAsStream = JedisPoolUtil.class.getClassLoader().getResourceAsStream(<span class="string">"jedis.properties"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 加载文佳</span></span><br><span class="line">            properties.load(resourceAsStream);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 创建连接池配置文件对象</span></span><br><span class="line">        JedisPoolConfig config = <span class="keyword">new</span> JedisPoolConfig();</span><br><span class="line">        <span class="comment">// 设置</span></span><br><span class="line">        config.setMaxTotal(Integer.parseInt(properties.getProperty(<span class="string">"maxTotal"</span>)));</span><br><span class="line">        config.setMaxIdle(Integer.parseInt(properties.getProperty(<span class="string">"maxIdle"</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始化连接池对象</span></span><br><span class="line">        jedisPool = <span class="keyword">new</span> JedisPool(config,properties.getProperty(<span class="string">"host"</span>),Integer.parseInt(properties.getProperty(<span class="string">"port"</span>)));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Jedis <span class="title">getJedis</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> jedisPool.getResource();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>设置之后的操作，简化了很多</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JedisPoolUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 连接池对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> JedisPool jedisPool;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="comment">// 读取配置文件</span></span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        <span class="comment">// 创建properties对象</span></span><br><span class="line">        InputStream resourceAsStream = JedisPoolUtil.class.getClassLoader().getResourceAsStream(<span class="string">"jedis.properties"</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 加载文佳</span></span><br><span class="line">            properties.load(resourceAsStream);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 创建连接池配置文件对象</span></span><br><span class="line">        JedisPoolConfig config = <span class="keyword">new</span> JedisPoolConfig();</span><br><span class="line">        <span class="comment">// 设置</span></span><br><span class="line">        config.setMaxTotal(Integer.parseInt(properties.getProperty(<span class="string">"maxTotal"</span>)));</span><br><span class="line">        config.setMaxIdle(Integer.parseInt(properties.getProperty(<span class="string">"maxIdle"</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始化连接池对象</span></span><br><span class="line">        jedisPool = <span class="keyword">new</span> JedisPool(config,properties.getProperty(<span class="string">"host"</span>),Integer.parseInt(properties.getProperty(<span class="string">"port"</span>)));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Jedis <span class="title">getJedis</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> jedisPool.getResource();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/20/Json/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="w.">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/20/Json/" class="post-title-link" itemprop="url">JSON</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-20 21:15:02" itemprop="dateCreated datePublished" datetime="2019-07-20T21:15:02+08:00">2019-07-20</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-22 16:03:20" itemprop="dateModified" datetime="2019-07-22T16:03:20+08:00">2019-07-22</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">3.4k</span>
             </span>
           
 
@@ -454,39 +855,69 @@
         
           
             <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>JSON（JavaScript Object Notation）JavaScript对象表示法<ul>
-<li>var p = {“name”:”cat”,”age”:23,”gender”:”male”};</li>
-</ul>
-</li>
+<li>JSON：JavaScript 对象表示法（JavaScript Object Notation）</li>
 <li>JSON现在多用于存储和交换文本信息的语法，进行数据的传输。</li>
 <li>JSON 比 XML 更小、更快，更易解析。</li>
+<li>注意：JSON 虽然使用 JavaScript 语法来描述数据对象，但是 JSON 仍然独立于语言和平台。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"employees"</span>: [</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"Bill"</span> , <span class="string">"lastName"</span>:<span class="string">"Gates"</span> &#125;,</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"George"</span> , <span class="string">"lastName"</span>:<span class="string">"Bush"</span> &#125;,</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"Thomas"</span> , <span class="string">"lastName"</span>:<span class="string">"Carter"</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
-<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><h2 id="基本规则"><a href="#基本规则" class="headerlink" title="基本规则"></a>基本规则</h2><ul>
-<li>数据在名称/值对中，JSON是由键值对构成的。</li>
-<li>键用引号(单双都行)引起来，也可以不使用引号。<ul>
-<li>取值类型：<ol>
+<h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1><h2 id="类似-XML"><a href="#类似-XML" class="headerlink" title="类似 XML"></a>类似 XML</h2><ul>
+<li>JSON 是纯文本</li>
+<li>JSON 具有“自我描述性”（人类可读）</li>
+<li>JSON 具有层级结构（值中存在值）</li>
+<li>JSON 可通过 JavaScript 进行解析</li>
+<li>JSON 数据可使用 AJAX 进行传输<h2 id="相比-XML-的不同之处"><a href="#相比-XML-的不同之处" class="headerlink" title="相比 XML 的不同之处"></a>相比 XML 的不同之处</h2></li>
+<li>没有结束标签</li>
+<li>更短</li>
+<li>读写的速度更快</li>
+<li>能够使用内建的 JavaScript eval() 方法进行解析</li>
+<li>使用数组</li>
+<li>不使用保留字<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2></li>
+<li>对于 AJAX 应用程序来说，JSON 比 XML 更快更易使用：<ul>
+<li>使用 XML<ul>
+<li>读取 XML 文档</li>
+<li>使用 XML DOM 来循环遍历文档</li>
+<li>读取值并存储在变量中</li>
+</ul>
+</li>
+<li>使用 JSON<ul>
+<li>读取 JSON 字符串</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h1><ul>
+<li>JSON 语法是 JavaScript 语法的子集。<h2 id="语法规则"><a href="#语法规则" class="headerlink" title="语法规则"></a>语法规则</h2></li>
+<li>JSON 语法是 JavaScript 对象表示法语法的子集。</li>
+<li>数据在名称/值对中</li>
+<li>数据由逗号分隔</li>
+<li>花括号保存对象</li>
+<li>方括号保存数组<h2 id="名称-值对"><a href="#名称-值对" class="headerlink" title="名称/值对"></a>名称/值对</h2>JSON 数据的书写格式是：名称/值对。<br>名称/值对包括字段名称（在双引号中），后面写一个冒号，然后是值：<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"firstName"</span> : <span class="string">"John"</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="值"><a href="#值" class="headerlink" title="值"></a>值</h2><ol>
 <li>数字（整数或浮点数）</li>
 <li>字符串（在双引号中）</li>
 <li>逻辑值（true 或 false）</li>
 <li>数组（在方括号中）    {“persons”:[{},{}]}</li>
-<li>对象（在花括号中） {“address”:{“province”：”陕西”….}}</li>
-<li>null</li>
+<li>对象（在花括号中）   { “firstName”:”John” , “lastName”:”Doe” }</li>
+<li>null<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2></li>
 </ol>
-</li>
+<ul>
+<li>JSON 文件的文件类型是 “.json”</li>
+<li>JSON 文本的 MIME 类型是 “application/json”</li>
 </ul>
-</li>
-<li>数据由逗号分隔：多个键值对由逗号分隔</li>
-<li>花括号保存对象：使用{}定义JSON格式</li>
-<li>方括号保存数组：可以包含数组[]<h2 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h2></li>
-</ul>
-<ol>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h2><ol>
 <li>json对象.键名</li>
 <li>json对象[“键名”]</li>
 <li>数组对象[索引]</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/* 基本格式 */</span></span><br><span class="line"> <span class="keyword">var</span> person = &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;</span><br><span class="line"> <span class="keyword">var</span> name11 = person.name;</span><br><span class="line"> <span class="keyword">var</span> name12 = person[<span class="string">"name"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 嵌套格式 */</span></span><br><span class="line"> <span class="comment">//   JSON &#123; JSON,JASON &#125;</span></span><br><span class="line"> <span class="keyword">var</span> persons = &#123;</span><br><span class="line">     <span class="string">"personCat"</span>: &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">     <span class="string">"personDog"</span>:&#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">     <span class="string">"personRat"</span>:&#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;&#125;</span><br><span class="line"> <span class="keyword">var</span> personCat = persons.personCat;</span><br><span class="line"> <span class="keyword">var</span> name2 = persons.personCat.name;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//   Array [JSON,JASON]</span></span><br><span class="line"> <span class="keyword">var</span> array = [</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;]</span><br><span class="line"> <span class="keyword">var</span> name3 = array[<span class="number">0</span>].name;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//   JSON &#123; Array[JSON,JASON], Array[JSON,JASON] &#125;</span></span><br><span class="line"> <span class="keyword">var</span> persons = &#123;</span><br><span class="line">     <span class="string">"person1"</span>:[</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;,],</span><br><span class="line">     <span class="string">"person2"</span>:[</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;,]</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">var</span> name4 = persons.person1[<span class="number">0</span>].name;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/* 基本格式 */</span></span><br><span class="line"> <span class="keyword">var</span> person = &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;</span><br><span class="line"> <span class="keyword">var</span> name11 = person.name;</span><br><span class="line"> <span class="keyword">var</span> name12 = person[<span class="string">"name"</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 嵌套格式 */</span></span><br><span class="line"> <span class="comment">//   JSON &#123; JSON,JASON &#125;</span></span><br><span class="line"> <span class="keyword">var</span> persons = &#123;</span><br><span class="line">     <span class="string">"personCat"</span>: &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">     <span class="string">"personDog"</span>:&#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">     <span class="string">"personRat"</span>:&#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;&#125;</span><br><span class="line"> <span class="keyword">var</span> personCat = persons.personCat;</span><br><span class="line"> <span class="keyword">var</span> name2 = persons.personCat.name;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//   Array [JSON,JASON]</span></span><br><span class="line"> <span class="keyword">var</span> array = [</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">     &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;]</span><br><span class="line"> <span class="keyword">var</span> name3 = array[<span class="number">0</span>].name;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//   JSON &#123; Array[JSON,JASON], Array[JSON,JASON] &#125;</span></span><br><span class="line"> <span class="keyword">var</span> persons = &#123;</span><br><span class="line">     <span class="string">"person1"</span>:[</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;,],</span><br><span class="line">     <span class="string">"person2"</span>:[</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">         &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;,]</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">var</span> name4 = persons.person1[<span class="number">0</span>].name;</span><br></pre></td></tr></table></figure>
 
-<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 基本格式 */</span></span><br><span class="line">  <span class="keyword">var</span> person = &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key in person) &#123;</span><br><span class="line">      <span class="comment">// * key默认为字符串</span></span><br><span class="line">      alert(key);</span><br><span class="line">      alert(person.key); <span class="comment">// * person."name"; 无法获取</span></span><br><span class="line">      alert(person[key]); <span class="comment">// * person["name"]; 无法获取</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 嵌套格式 */</span></span><br><span class="line">  <span class="keyword">var</span> array = [</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;]</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i =<span class="number">0</span>;i&lt;array.length;i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> p = array[i];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> key in p) &#123;</span><br><span class="line">          alert(key);</span><br><span class="line">          alert(p[key]);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 基本格式 */</span></span><br><span class="line">  <span class="keyword">var</span> person = &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> person) &#123;</span><br><span class="line">      <span class="comment">// * key默认为字符串</span></span><br><span class="line">      alert(key);</span><br><span class="line">      alert(person.key); <span class="comment">// * person."name"; 无法获取</span></span><br><span class="line">      alert(person[key]); <span class="comment">// * person["name"]; 无法获取</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 嵌套格式 */</span></span><br><span class="line">  <span class="keyword">var</span> array = [</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"cat"</span>,<span class="string">"age"</span>:<span class="number">11</span>&#125;,</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"dog"</span>,<span class="string">"age"</span>:<span class="number">12</span>&#125;,</span><br><span class="line">      &#123;<span class="string">"name"</span>:<span class="string">"rat"</span>,<span class="string">"age"</span>:<span class="number">13</span>&#125;]</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i =<span class="number">0</span>;i&lt;array.length;i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> p = array[i];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> p) &#123;</span><br><span class="line">          alert(key);</span><br><span class="line">          alert(p[key]);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h1><ul>
 <li>转换<ul>
@@ -646,13 +1077,23 @@
                 
               
 
-              <time title="创建时间：2019-07-20 17:18:33 / 修改时间：21:15:17" itemprop="dateCreated datePublished" datetime="2019-07-20T17:18:33+08:00">2019-07-20</time>
+              <time title="创建时间：2019-07-20 17:18:33" itemprop="dateCreated datePublished" datetime="2019-07-20T17:18:33+08:00">2019-07-20</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-22 15:46:17" itemprop="dateModified" datetime="2019-07-22T15:46:17+08:00">2019-07-22</time>
+              </span>
             
           
 
@@ -692,7 +1133,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">2.2k</span>
+              <span title="本文字数">2.4k</span>
             </span>
           
 
@@ -725,15 +1166,17 @@
       
         
           
-            <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>Ajax（ASynchronous JavaScript And XML）异步的JavaScript 和 XML</li>
+            <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
+<li>AJAX 是与服务器交换数据的艺术，它在不重载全部页面的情况下，实现了对部分网页的更新。</li>
+<li>AJAX = 异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。</li>
 <li>Ajax 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。<ul>
 <li>通过在后台与服务器进行少量数据交换，Ajax 可以使网页实现异步更新。</li>
 <li>这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
 <li>传统的网页（不使用 Ajax）如果需要更新内容，必须重载整个网页页面。</li>
 </ul>
 </li>
-<li>异步和同步<ul>
+</ul>
+<h2 id="异步和同步"><a href="#异步和同步" class="headerlink" title="异步和同步"></a>异步和同步</h2><ul>
 <li>同步<ul>
 <li>客户端和服务器端相互通信的基础上，客户端必须等待服务器端的响应。</li>
 <li>在等待的期间客户端不能做其他操作。</li>
@@ -745,15 +1188,20 @@
 </ul>
 </li>
 </ul>
+<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><h2 id="JS实现方式（了解）"><a href="#JS实现方式（了解）" class="headerlink" title="JS实现方式（了解）"></a>JS实现方式（了解）</h2><ul>
+<li>如果没有 jQuery，AJAX 编程还是有些难度的。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 发送异步请求 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.创建对象</span></span><br><span class="line">    <span class="keyword">var</span> xmlhttp;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line">        <span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">        xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">        xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">// 2.建立连接</span></span><br><span class="line"><span class="comment">//  * 请求方式：GET/POST</span></span><br><span class="line"><span class="comment">//  * 请求的URL</span></span><br><span class="line"><span class="comment">//  * 同步或异步请求：true（异步）、false（同步）</span></span><br><span class="line">	xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"/ajaxServlet?fname=Henry&amp;lname=Ford"</span>,<span class="literal">true</span>);</span><br><span class="line"><span class="comment">// 3.发送请求</span></span><br><span class="line">	xmlhttp.send();</span><br><span class="line">    <span class="comment">//  POST方式</span></span><br><span class="line">    <span class="comment">// xmlhttp.open("POST","/ajaxServlet",true);</span></span><br><span class="line">    <span class="comment">// xmlhttp.send("fname=Henry&amp;lname=Ford");</span></span><br><span class="line"><span class="comment">// 4.接受并处理来自服务器的相应结果</span></span><br><span class="line"><span class="comment">//  判断服务器是否成功响应</span></span><br><span class="line">	xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">// readyState：就绪状态</span></span><br><span class="line">    <span class="comment">// status：响应状态码</span></span><br><span class="line">    <span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// responseText：响应结果</span></span><br><span class="line">        <span class="keyword">var</span> responseText = xmlhttp.responseText;</span><br><span class="line">        alert(responseText);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><h2 id="JS实现方式（了解）"><a href="#JS实现方式（了解）" class="headerlink" title="JS实现方式（了解）"></a>JS实现方式（了解）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 发送异步请求 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.创建对象</span></span><br><span class="line">    <span class="keyword">var</span> xmlhttp;</span><br><span class="line">    <span class="keyword">if</span> (window.XMLHttpRequest)&#123;</span><br><span class="line">        <span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></span><br><span class="line">        xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">// IE6, IE5 浏览器执行代码</span></span><br><span class="line">        xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">// 2.建立连接</span></span><br><span class="line"><span class="comment">//  * 请求方式：GET/POST</span></span><br><span class="line"><span class="comment">//  * 请求的URL</span></span><br><span class="line"><span class="comment">//  * 同步或异步请求：true（异步）、false（同步）</span></span><br><span class="line">	xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"/ajaxServlet?fname=Henry&amp;lname=Ford"</span>,<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">// 3.发送请求</span></span><br><span class="line">	xmlhttp.send();</span><br><span class="line">    <span class="comment">//  POST方式</span></span><br><span class="line">    <span class="comment">// xmlhttp.open("POST","/ajaxServlet",true);</span></span><br><span class="line">    <span class="comment">// xmlhttp.send("fname=Henry&amp;lname=Ford");</span></span><br><span class="line"><span class="comment">// 4.接受并处理来自服务器的相应结果</span></span><br><span class="line"><span class="comment">//  判断服务器是否成功响应</span></span><br><span class="line">	xmlhttp.onreadystatechange=function()&#123;</span><br><span class="line">    <span class="comment">// readyState：就绪状态</span></span><br><span class="line">    <span class="comment">// status：响应状态码</span></span><br><span class="line">    <span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// responseText：响应结果</span></span><br><span class="line">        <span class="keyword">var</span> responseText = xmlhttp.responseText;</span><br><span class="line">        alert(responseText);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JQeury实现方式"><a href="#JQeury实现方式" class="headerlink" title="JQeury实现方式"></a>JQeury实现方式</h2><ul>
+<li>通过 jQuery AJAX 方法，能够使用 HTTP Get 和 HTTP Post 从远程服务器上请求文本、HTML、XML 或 JSON </li>
+<li>同时能够把这些外部数据直接载入网页的被选元素中。<h2 id="ajax"><a href="#ajax" class="headerlink" title="$.ajax()"></a>$.ajax()</h2></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">   <span class="comment">// url：请求路径</span></span><br><span class="line">   url:<span class="string">"/ajaxServlet"</span>,</span><br><span class="line">   <span class="comment">// type：请求方式</span></span><br><span class="line">   type:<span class="string">"POST"</span>,</span><br><span class="line">   <span class="comment">// data：请求参数</span></span><br><span class="line">   <span class="comment">// data:"fname=Henry&amp;lname=Ford",</span></span><br><span class="line">   data:&#123;<span class="string">"fname"</span>:<span class="string">"Henry"</span>,<span class="string">"lname"</span>:<span class="string">"Ford"</span>&#125;, <span class="comment">// Json方式</span></span><br><span class="line"><span class="comment">// success：响应成功后的回调函数</span></span><br><span class="line">           success:<span class="function"><span class="keyword">function</span> (<span class="params">responseData</span>) </span>&#123;</span><br><span class="line">               alert(responseData);</span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">// error：响应错误后的回调函数</span></span><br><span class="line">error:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">               alert(<span class="string">"出错了!"</span>);</span><br><span class="line">           &#125;,</span><br><span class="line">           <span class="comment">// dateType：设置接受到的响应数据的格式</span></span><br><span class="line">           dataType:<span class="string">"text"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<h2 id="JQeury实现方式"><a href="#JQeury实现方式" class="headerlink" title="JQeury实现方式"></a>JQeury实现方式</h2><h2 id="ajax"><a href="#ajax" class="headerlink" title="$.ajax()"></a>$.ajax()</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">   <span class="comment">// url：请求路径</span></span><br><span class="line">   url:<span class="string">"/ajaxServlet"</span>,</span><br><span class="line">   <span class="comment">// type：请求方式</span></span><br><span class="line">   type:<span class="string">"POST"</span>,</span><br><span class="line">   <span class="comment">// data：请求参数</span></span><br><span class="line">   <span class="comment">// data:"fname=Henry&amp;lname=Ford",</span></span><br><span class="line">   data:&#123;<span class="string">"fname"</span>:<span class="string">"Henry"</span>,<span class="string">"lname"</span>:<span class="string">"Ford"</span>&#125;, <span class="comment">// Json方式</span></span><br><span class="line"><span class="comment">// success：响应成功后的回调函数</span></span><br><span class="line">           success:function (responseData) &#123;</span><br><span class="line">               alert(responseData);</span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">// error：响应错误后的回调函数</span></span><br><span class="line">error:function () &#123;</span><br><span class="line">               alert(<span class="string">"出错了!"</span>);</span><br><span class="line">           &#125;,</span><br><span class="line">           <span class="comment">// dateType：设置接受到的响应数据的格式</span></span><br><span class="line">           dataType:<span class="string">"text"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="get"><a href="#get" class="headerlink" title="$.get()"></a>$.get()</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> $.<span class="keyword">get</span>(</span><br><span class="line">    // url：请求路径</span><br><span class="line">    "/ajaxServlet",</span><br><span class="line">    // data：请求参数</span><br><span class="line">    &#123;<span class="string">"fname"</span>:<span class="string">"Henry"</span>,<span class="string">"lname"</span>:<span class="string">"Ford"</span>&#125;,</span><br><span class="line">    <span class="comment">// success：响应成功后的回调函数</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">data,status</span>)</span>&#123;</span><br><span class="line">    	alert(<span class="string">"数据: "</span> + data + <span class="string">"\n状态: "</span> + status);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// dateType：设置接受到的响应数据的格式</span></span><br><span class="line">    <span class="string">"text"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="get"><a href="#get" class="headerlink" title="$.get()"></a>$.get()</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> $.get(</span><br><span class="line">    <span class="comment">// url：请求路径</span></span><br><span class="line">    <span class="string">"/ajaxServlet"</span>,</span><br><span class="line">    <span class="comment">// data：请求参数</span></span><br><span class="line">    &#123;<span class="string">"fname"</span>:<span class="string">"Henry"</span>,<span class="string">"lname"</span>:<span class="string">"Ford"</span>&#125;,</span><br><span class="line">    <span class="comment">// success：响应成功后的回调函数</span></span><br><span class="line">    function(data,status)&#123;</span><br><span class="line">    	alert(<span class="string">"数据: "</span> + data + <span class="string">"\n状态: "</span> + status);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// dateType：设置接受到的响应数据的格式</span></span><br><span class="line">    <span class="string">"text"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="post"><a href="#post" class="headerlink" title="$.post()"></a>$.post()</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.post(</span><br><span class="line">    <span class="comment">// url：请求路径</span></span><br><span class="line">    <span class="string">"/ajaxServlet"</span>,</span><br><span class="line">    <span class="comment">// data：请求参数</span></span><br><span class="line">    &#123;<span class="string">"fname"</span>:<span class="string">"Henry"</span>,<span class="string">"lname"</span>:<span class="string">"Ford"</span>&#125;,</span><br><span class="line">    <span class="comment">// success：响应成功后的回调函数</span></span><br><span class="line">    function(data,status)&#123;</span><br><span class="line">    	alert(<span class="string">"数据: "</span> + data + <span class="string">"\n状态: "</span> + status);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// dateType：设置接受到的响应数据的格式</span></span><br><span class="line">    <span class="string">"text"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="post"><a href="#post" class="headerlink" title="$.post()"></a>$.post()</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$.post(</span><br><span class="line">    <span class="comment">// url：请求路径</span></span><br><span class="line">    <span class="string">"/ajaxServlet"</span>,</span><br><span class="line">    <span class="comment">// data：请求参数</span></span><br><span class="line">    &#123;<span class="string">"fname"</span>:<span class="string">"Henry"</span>,<span class="string">"lname"</span>:<span class="string">"Ford"</span>&#125;,</span><br><span class="line">    <span class="comment">// success：响应成功后的回调函数</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">data,status</span>)</span>&#123;</span><br><span class="line">    	alert(<span class="string">"数据: "</span> + data + <span class="string">"\n状态: "</span> + status);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// dateType：设置接受到的响应数据的格式</span></span><br><span class="line">    <span class="string">"text"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
           
@@ -811,7 +1259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/20/JQuery高级笔记/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/19/jQuery/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="w.">
@@ -831,276 +1279,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/20/JQuery高级笔记/" class="post-title-link" itemprop="url">Jquery高级</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-20 00:24:05 / 修改时间：00:24:51" itemprop="dateCreated datePublished" datetime="2019-07-20T00:24:05+08:00">2019-07-20</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">1.4k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">1 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><h2 id="三种方式显示和隐藏元素"><a href="#三种方式显示和隐藏元素" class="headerlink" title="三种方式显示和隐藏元素"></a>三种方式显示和隐藏元素</h2><h3 id="默认显示和隐藏方式"><a href="#默认显示和隐藏方式" class="headerlink" title="默认显示和隐藏方式"></a>默认显示和隐藏方式</h3><ul>
-<li><strong>show( [speed， [easing]， [fn] ] )</strong><ul>
-<li>speed：动画的速度。<ul>
-<li>“slow”，”normal”， “fast”</li>
-<li>或表示动画时长的毫秒数值(如：1000)</li>
-</ul>
-</li>
-<li>easing：用来指定切换效果。<ul>
-<li>swing：动画执行时效果是先慢，中间快，最后又慢。</li>
-<li>linear：动画执行时速度是匀速。</li>
-</ul>
-</li>
-<li>fn：在动画完成时执行的函数，每个元素执行一次。</li>
-</ul>
-</li>
-<li><strong>hide([speed,[easing],[fn]])</strong></li>
-<li><strong>toggle([speed],[easing],[fn])</strong></li>
-</ul>
-<h3 id="滑动显示和隐藏方式"><a href="#滑动显示和隐藏方式" class="headerlink" title="滑动显示和隐藏方式"></a>滑动显示和隐藏方式</h3><ol>
-<li><strong>slideDown([speed],[easing],[fn])</strong></li>
-<li><strong>slideUp([speed,[easing],[fn]])</strong></li>
-<li><strong>slideToggle([speed],[easing],[fn])</strong><h3 id="淡入淡出显示和隐藏方式"><a href="#淡入淡出显示和隐藏方式" class="headerlink" title="淡入淡出显示和隐藏方式"></a>淡入淡出显示和隐藏方式</h3></li>
-<li><strong>fadeIn([speed],[easing],[fn])</strong></li>
-<li><strong>fadeOut([speed],[easing],[fn])</strong></li>
-<li><strong>fadeToggle([speed,[easing],[fn]])</strong></li>
-</ol>
-<h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><h3 id="JS的遍历方式"><a href="#JS的遍历方式" class="headerlink" title="JS的遍历方式"></a>JS的遍历方式</h3><ul>
-<li>for (初始化值;循环结束条件;步长)<h3 id="Jquery的遍历方式"><a href="#Jquery的遍历方式" class="headerlink" title="Jquery的遍历方式"></a>Jquery的遍历方式</h3></li>
-<li><strong>Jquery对象.each(callback)</strong><ul>
-<li>jquery对象.each(function(index,element){});<ul>
-<li>index:就是元素在集合中的索引</li>
-<li>element：就是集合中的每一个元素对象</li>
-<li>this：集合中的每一个元素对象</li>
-<li>callback：回调函数返回值<ul>
-<li>true：如果当前function返回为false，则结束循环(break)。</li>
-<li>false：如果当前function返回为true，则结束本次循环，继续下次循环(continue)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>$.each(object, [callback])</strong></li>
-<li><strong>for..of</strong><ul>
-<li>for(元素对象 of 容器对象)<ul>
-<li>Jqueryuery 3.0 之后</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><ol>
-<li><strong>Jquery标准的绑定方式</strong><ul>
-<li><strong>jq对象.事件方法(回调函数)</strong><ul>
-<li>注：如果调用事件方法，不传递回调函数，则会触发浏览器默认行为。</li>
-<li>表单对象.submit();//让表单提交</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>on绑定事件/off解除绑定</strong><ul>
-<li><strong>jq对象.on(“事件名称”,回调函数)</strong></li>
-<li><strong>jq对象.off(“事件名称”)</strong><ul>
-<li>如果off方法不传递任何参数，则将组件上的所有事件全部解绑</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>toggle事件切换</strong><ul>
-<li><strong>jq对象.toggle(fn1,fn2…)</strong><ul>
-<li>当单击jq对象对应的组件后，会执行fn1.第二次点击会执行fn2…..</li>
-<li>注意：1.9版本 .toggle() 方法删除,jQuery Migrate（迁移）插件可以恢复此功能。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../js/jquery-migrate-1.0.0.js"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><ul>
-<li><strong>$.fn.extend(object)</strong> <ul>
-<li>增强通过Jquery获取的对象的功能  $(“#id”)</li>
-</ul>
-</li>
-<li><strong>$.extend(object)</strong><ul>
-<li>增强JQeury对象自身的功能  $/jQuery</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/19/JQuery基础笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="w.">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/19/JQuery基础笔记/" class="post-title-link" itemprop="url">Jquery基础</a>
+                <a href="/2019/07/19/jQuery/" class="post-title-link" itemprop="url">jQuery</a>
               
             
           </h1>
@@ -1140,7 +1319,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-20 00:25:37" itemprop="dateModified" datetime="2019-07-20T00:25:37+08:00">2019-07-20</time>
+                <time title="修改时间：2019-07-22 15:36:14" itemprop="dateModified" datetime="2019-07-22T15:36:14+08:00">2019-07-22</time>
               </span>
             
           
@@ -1181,7 +1360,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">3.1k</span>
+              <span title="本文字数">9.7k</span>
             </span>
           
 
@@ -1193,7 +1372,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">3 分钟</span>
+              <span title="阅读时长">9 分钟</span>
             </span>
           
 
@@ -1214,38 +1393,43 @@
       
         
           
-            <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>jQuery是一个快速、简洁的JavaScript框架，是继Prototype之后又一个优秀的JavaScript代码库（或JavaScript框架）。jQuery设计的宗旨    是“write Less，Do More”，即倡导写更少的代码，做更多的事情。它封装JavaScript常用的功能代码，提供一种简便的JavaScript设计模式，优    化HTML文档操作、事件处理、动画设计和Ajax交互。</li>
-<li>JavaScript框架：本质上就是一些js文件，封装了js的原生代码而已</li>
+            <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>jQuery是一个快速、简洁的JavaScript框架，是继Prototype之后又一个优秀的JavaScript代码库（或JavaScript框架）。</li>
+<li>jQuery设计的宗旨是“write Less，Do More”，即倡导写更少的代码，做更多的事情。</li>
+<li>jQuery封装了JavaScript常用的功能代码，提供一种简便的JavaScript设计模式，优化HTML文档操作、事件处理、动画设计和Ajax交互。</li>
+<li>jQuery本质上就是一些js文件，封装了js的原生代码而已。</li>
+<li>jQuery 语法是为 HTML 元素的选取编制的，可以对元素执行某些操作。</li>
 </ul>
-<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
 <li>下载JQuery<ul>
-<li>目前jQuery有三个大版本：<ul>
+<li>目前jQuery有三个大版本<ul>
 <li>1.x<ul>
 <li>兼容ie678,使用最为广泛的，官方只做BUG维护，</li>
-<li>功能不再新增。因此一般项目来说，使用1.x版本就可以了，</li>
+<li>功能不再新增。因此一般项目来说，使用1.x版本就可以了。</li>
 </ul>
 </li>
 <li>2.x<ul>
 <li>不兼容ie678，很少有人使用，官方只做BUG维护，</li>
-<li>功能不再新增。如果不考虑兼容低版本的浏览器可以使用2.x，</li>
+<li>功能不再新增。如果不考虑兼容低版本的浏览器可以使用2.x。</li>
 </ul>
 </li>
 <li>3.x<ul>
-<li>不兼容ie678，只支持最新的浏览器。除非特殊要求，</li>
-<li>一般不会使用3.x版本的，很多老的jQuery插件不支持这个版本。</li>
+<li>不兼容ie678，只支持最新的浏览器。</li>
+<li>除非特殊要求，一般不会使用3.x版本的，因为很多老的jQuery插件不支持这个版本。</li>
 <li>目前该版本是官方主要更新维护的版本。</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>jquery.js 与 jquery.min.js区别<ul>
-<li>jquery.js（开发版本）<ul>
-<li>给程序员看的，有良好的缩进和注释。体积大一些。</li>
+<li>每个大版本包括两个小版本<ul>
+<li>jquery.js<ul>
+<li>Development version（开发版本） - 用于测试和开发。</li>
+<li>给程序员看的，有良好的缩进和注释，体积大一些，程序加载较慢。</li>
 </ul>
 </li>
-<li>jquery.min.js（生产版本）<ul>
-<li>程序中使用，没有缩进。体积小一些。程序加载更快。</li>
+<li>jquery.min.js<ul>
+<li>Production version（生产版本）- 用于实际的网站中，已被精简和压缩。</li>
+<li>在程序中使用，没有缩进，体积小一些，程序加载更快。</li>
 </ul>
 </li>
 </ul>
@@ -1253,9 +1437,30 @@
 </ul>
 </li>
 <li>导入JQuery的js文件</li>
-<li>引入Jquery资源</li>
+<li>引入Jquery资源<ul>
+<li>请注意，&lt;script&gt; 标签应该位于页面的 &lt;head&gt; 部分。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
 </ol>
-<h1 id="JQuery对象和JS对象区别与转换"><a href="#JQuery对象和JS对象区别与转换" class="headerlink" title="JQuery对象和JS对象区别与转换"></a>JQuery对象和JS对象区别与转换</h1><ol>
+<h2 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h2><ul>
+<li><strong>$(selector).action()</strong><ul>
+<li>美元符号定义 jQuery</li>
+<li>选择符（selector）“查询”和“查找” HTML 元素</li>
+<li>jQuery 的 action() 执行对元素的操作<h2 id="文档就绪函数"><a href="#文档就绪函数" class="headerlink" title="文档就绪函数"></a>文档就绪函数</h2></li>
+</ul>
+</li>
+<li>这是为了防止文档在完全加载（就绪）之前运行 jQuery 代码。</li>
+<li>如果在文档没有完全加载之前就运行函数，操作可能失败。<ul>
+<li>试图隐藏一个不存在的元素</li>
+<li>获得未完全加载的图像的大小 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 完全体 */</span></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 简化版 */</span></span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h1><ol>
 <li>JQuery对象在操作时，更加方便。</li>
 <li>JQuery对象和js对象方法不通用</li>
 <li>两者相互转换<ul>
@@ -1271,140 +1476,437 @@
 </ul>
 </li>
 </ol>
-<h1 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h1><h2 id="基本操作学习"><a href="#基本操作学习" class="headerlink" title="基本操作学习"></a>基本操作学习</h2><ul>
-<li><p>事件绑定</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#b1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	alert(<span class="string">"abc"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>入口函数</p>
-<ul>
-<li><strong>window.onload</strong>： 只能定义一次；定义多次，后面会将前面覆盖。</li>
-<li><strong>$function</strong>： 可以定义多次。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>window.onload  和 $(function) 区别</p>
-<ul>
-<li>window.onload 只能定义一次,如果定义多次，后边的会将前边的覆盖掉<ul>
-<li>$(function)可以定义多次的。</li>
+<h1 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h1><ul>
+<li>jQuery选择器允许您对元素组或单个元素进行操作。<ul>
+<li>jQuery 元素选择器和属性选择器允许您通过标签名、属性名或内容对 HTML 元素进行选择。</li>
+<li>jQuery选择器允许您对 HTML 元素组或单个元素进行操作。</li>
+<li>在 HTML DOM 术语中：jQuery选择器允许您对 DOM 元素组或单个 DOM 节点进行操作。</li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p>样式控制：css方法</p>
-<ul>
-<li>$(“#div1”).css(“background-color”,”red”);</li>
-<li>$(“#div1”).css(“backgroundColor”,”pink”);</li>
+<h2 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h2><table>
+<thead>
+<tr>
+<th align="center">选择器</th>
+<th>实例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">*</td>
+<td>$(“*”)</td>
+<td>所有元素</td>
+</tr>
+<tr>
+<td align="center">this</td>
+<td>$(this)</td>
+<td>当前 HTML 元素</td>
+</tr>
+<tr>
+<td align="center">#id</td>
+<td>$(“#lastname”)</td>
+<td>id=”lastname” 的元素</td>
+</tr>
+<tr>
+<td align="center">.class</td>
+<td>$(“.intro”)</td>
+<td>所有 class=”intro” 的元素</td>
+</tr>
+<tr>
+<td align="center">.class.class</td>
+<td>$(“.intro.demo”)</td>
+<td>所有 class=”intro” 且 class=”demo” 的元素</td>
+</tr>
+<tr>
+<td align="center">element</td>
+<td>$(“p”)</td>
+<td>所有 &lt;p&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">element.class</td>
+<td>$(“p.intro”)</td>
+<td>所有 class=”intro” 的 &lt;p&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">element#id</td>
+<td>$(“p#demo”)</td>
+<td>所有 id=”demo” 的 &lt;p&gt; 元素。</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">s1,s2,s3</td>
+<td>$(“th,td,.intro”)</td>
+<td>所有带有匹配选择的元素</td>
+</tr>
+</tbody></table>
+<h2 id="层级选择器"><a href="#层级选择器" class="headerlink" title="层级选择器"></a>层级选择器</h2><table>
+<thead>
+<tr>
+<th align="center">选择器</th>
+<th>实例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">super sub</td>
+<td>$(“table tr”)</td>
+<td>选择 &lt;table&gt;元素内部的所有 &lt;tr&gt;元素（不仅是子元素）</td>
+</tr>
+<tr>
+<td align="center">super &gt; sub</td>
+<td>$(“table &gt; tr”)</td>
+<td>选择 &lt;table&gt;元素内部的所有 &lt;tr&gt;子元素</td>
+</tr>
+<tr>
+<td align="center">## 属性选择器</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">- jQuery 使用 XPath 表达式来选择带有给定属性的元素。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">选择器</td>
+<td>实例</td>
+<td>描述</td>
+</tr>
+<tr>
+<td align="center">:—:</td>
+<td>—–</td>
+<td>—–</td>
+</tr>
+<tr>
+<td align="center">[atribute]</td>
+<td>$(“[href]”)</td>
+<td>所有带有 href 属性的元素</td>
+</tr>
+<tr>
+<td align="center">[[<em>attribute</em> = <em>value</em>]]</td>
+<td>$(“[href=’#’]”)</td>
+<td>所有 href 属性的值等于 “#” 的元素</td>
+</tr>
+<tr>
+<td align="center">[[<em>attribute</em> != <em>value</em>]]</td>
+<td>$(“[href!=’#’]”)</td>
+<td>所有 href 属性的值不等于 “#” 的元素</td>
+</tr>
+<tr>
+<td align="center">[[<em>attribute *$= *value</em>]]</td>
+<td>$(“[href$=’.jpg’]”)</td>
+<td>所有 href 属性的值包含以 “.jpg” 结尾的元素</td>
+</tr>
+</tbody></table>
+<h2 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h2><table>
+<thead>
+<tr>
+<th align="center">选择器</th>
+<th>实例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">[:first]</td>
+<td>$(“p:first”)</td>
+<td>第一个 &lt;p&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:last]</td>
+<td>$(“p:last”)</td>
+<td>最后一个 &lt;p&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:even]</td>
+<td>$(“tr:even”)</td>
+<td>所有偶数 &lt;tr&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:odd]</td>
+<td>$(“tr:odd”)</td>
+<td>所有奇数 &lt;tr&gt; 元素</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">[:eq(<em>index</em>)]</td>
+<td>$(“ul li:eq(3)”)</td>
+<td>列表中的第四个元素（index 从 0 开始）</td>
+</tr>
+<tr>
+<td align="center">[:gt(<em>no</em>)]</td>
+<td>$(“ul li:gt(3)”)</td>
+<td>列出 index 大于 3 的元素</td>
+</tr>
+<tr>
+<td align="center">[:lt(<em>no</em>)]</td>
+<td>$(“ul li:lt(3)”)</td>
+<td>列出 index 小于 3 的元素</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">[:empty]</td>
+<td>$(“:empty”)</td>
+<td>无子（元素）节点的所有元素</td>
+</tr>
+<tr>
+<td align="center">:not(<em>selector</em>)</td>
+<td>$(“input:not(:empty)”)</td>
+<td>所有不为空的 input 元素</td>
+</tr>
+<tr>
+<td align="center">[:header]</td>
+<td>$(“:header”)</td>
+<td>所有标题元素 &lt;h1&gt; - &lt;h6&gt;</td>
+</tr>
+<tr>
+<td align="center">[:contains(<em>text</em>)]</td>
+<td>$(“:contains(‘W3School’)”)</td>
+<td>包含指定字符串的所有元素</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">:hidden</td>
+<td>$(“p:hidden”)</td>
+<td>所有隐藏的 &lt;p&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:visible]</td>
+<td>$(“table:visible”)</td>
+<td>所有可见的表格</td>
+</tr>
+</tbody></table>
+<h2 id="表单过滤选择器"><a href="#表单过滤选择器" class="headerlink" title="表单过滤选择器"></a>表单过滤选择器</h2><table>
+<thead>
+<tr>
+<th align="center">选择器</th>
+<th>实例</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">[:input]</td>
+<td>$(“:input”)</td>
+<td>所有 &lt;input&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:text]</td>
+<td>$(“:text”)</td>
+<td>所有 type=”text” 的 &lt;input&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:password]</td>
+<td>$(“:password”)</td>
+<td>所有 type=”password” 的 &lt;input&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:radio]</td>
+<td>$(“:radio”)</td>
+<td>所有 type=”radio” 的 &lt;input&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:checkbox]</td>
+<td>$(“:checkbox”)</td>
+<td>所有 type=”checkbox” 的 &lt;input&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:submit]</td>
+<td>$(“:submit”)</td>
+<td>所有 type=”submit” 的 &lt;input&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:reset]</td>
+<td>$(“:reset”)</td>
+<td>所有 type=”reset” 的 &lt;input&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:button]</td>
+<td>$(“:button”)</td>
+<td>所有 type=”button” 的 &lt;input&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:image]</td>
+<td>$(“:image”)</td>
+<td>所有 type=”image” 的 &lt;input&gt; 元素</td>
+</tr>
+<tr>
+<td align="center">[:file]</td>
+<td>$(“:file”)</td>
+<td>所有 type=”file” 的 &lt;input&gt; 元素</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td align="center">[:enabled]</td>
+<td>$(“:enabled”)</td>
+<td>所有激活的 input 元素</td>
+</tr>
+<tr>
+<td align="center">[:disabled]</td>
+<td>$(“:disabled”)</td>
+<td>所有禁用的 input 元素</td>
+</tr>
+<tr>
+<td align="center">[:selected]</td>
+<td>$(“:selected”)</td>
+<td>所有被选取的 input 元素</td>
+</tr>
+<tr>
+<td align="center">[:checked]</td>
+<td>$(“:checked”)</td>
+<td>所有被选中的 input 元素</td>
+</tr>
+</tbody></table>
+<h1 id="事件函数"><a href="#事件函数" class="headerlink" title="事件函数"></a>事件函数</h1><ul>
+<li>jQuery 事件处理方法是 jQuery 中的核心函数。<ul>
+<li>事件处理程序指的是当 HTML 中发生某些事件时所调用的方法。</li>
+<li>术语由事件“触发”（或“激发”）经常会被使用。</li>
 </ul>
 </li>
+<li>如果你的网站包含许多页面，为了让 jQuery 函数易于维护，需要将  jQuery 函数放到独立的 .js 文件中。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 引入Jquery资源 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 引入独立的js文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"my_jquery_functions.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
-<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><h3 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h3><ol>
-<li>标签选择器（元素选择器）<ul>
-<li>语法： <strong>$(“html标签名”)</strong> 获得所有匹配标签名称的元素</li>
+<h2 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h2><table>
+<thead>
+<tr>
+<th>事件</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>click</td>
+<td align="center">当单击元素时</td>
+</tr>
+<tr>
+<td>dbclick</td>
+<td align="center">当双击元素时</td>
+</tr>
+<tr>
+<td>mouseenter</td>
+<td align="center">当鼠标指针穿过（进入）被选元素时</td>
+</tr>
+<tr>
+<td>mouseleave</td>
+<td align="center">当鼠标指针离开被选元素时</td>
+</tr>
+<tr>
+<td>hover</td>
+<td align="center">当鼠标指针悬停在被选元素上时</td>
+</tr>
+<tr>
+<td>## 键盘事件</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>事件</td>
+<td align="center">描述</td>
+</tr>
+<tr>
+<td>—–</td>
+<td align="center">:—:</td>
+</tr>
+<tr>
+<td>keydown</td>
+<td align="center">键按下的过程</td>
+</tr>
+<tr>
+<td>keypress</td>
+<td align="center">键被按下</td>
+</tr>
+<tr>
+<td>keyup</td>
+<td align="center">键被松开</td>
+</tr>
+<tr>
+<td>## 表单事件</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>事件</td>
+<td align="center">描述</td>
+</tr>
+<tr>
+<td>—–</td>
+<td align="center">:—:</td>
+</tr>
+<tr>
+<td>submit</td>
+<td align="center">当提交表单时</td>
+</tr>
+<tr>
+<td>change</td>
+<td align="center">当元素的值改变时发生 change 事件<br>（仅适用于表单字段）</td>
+</tr>
+<tr>
+<td>focus</td>
+<td align="center">当元素获得焦点时<br>（当通过鼠标点击选中元素或通过 tab 键定位到元素时）</td>
+</tr>
+<tr>
+<td>blur</td>
+<td align="center">当元素失去焦点时</td>
+</tr>
+<tr>
+<td>## 窗口事件</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td>事件</td>
+<td align="center">描述</td>
+</tr>
+<tr>
+<td>—–</td>
+<td align="center">:—:</td>
+</tr>
+<tr>
+<td>resize</td>
+<td align="center">当调整浏览器窗口大小时</td>
+</tr>
+<tr>
+<td>scroll</td>
+<td align="center">当用户滚动指定的元素时</td>
+</tr>
+</tbody></table>
+<h1 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h1><ul>
+<li>jQuery 中非常重要的部分，就是操作 DOM 的能力。</li>
+<li>jQuery 提供一系列与 DOM 相关的方法，这使访问和操作元素和属性变得很容易。<ul>
+<li>提示：DOM = Document Object Model（文档对象模型）<h2 id="内容操作方法"><a href="#内容操作方法" class="headerlink" title="内容操作方法"></a>内容操作方法</h2></li>
 </ul>
 </li>
-<li>id选择器 <ul>
-<li>语法： <strong>$(“#id的属性值”)</strong> 获得与指定id属性值匹配的元素</li>
+<li><strong>html()</strong><ul>
+<li>获取/设置元素的标签体内容（包括 HTML 标记）</li>
 </ul>
 </li>
-<li>类选择器<ul>
-<li>语法： <strong>$(“.class的属性值”)</strong> 获得与指定的class属性值匹配的元素</li>
-</ul>
-</li>
-<li>并集选择器：<ul>
-<li>语法： <strong>$(“选择器1,选择器2….”)</strong> 获取多个选择器选中的所有元素<h3 id="层级选择器"><a href="#层级选择器" class="headerlink" title="层级选择器"></a>层级选择器</h3></li>
-</ul>
-</li>
-<li>后代选择器<ul>
-<li>语法： <strong>$(“A B “)</strong> 选择A元素内部的所有B元素        </li>
-</ul>
-</li>
-<li>子选择器<ul>
-<li>语法： <strong>$(“A &gt; B”)</strong> 选择A元素内部的所有B子元素<h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3></li>
-</ul>
-</li>
-<li>属性名称选择器 <ul>
-<li>语法： <strong>$(“A[属性名]”)</strong> 包含指定属性的选择器</li>
-</ul>
-</li>
-<li>属性选择器<ul>
-<li>语法： <strong>$(“A[属性名=’值’]”)</strong> 包含指定属性等于指定值的选择器</li>
-</ul>
-</li>
-<li>复合属性选择器<ul>
-<li>语法： <strong>$(“A[属性名=’值’][]…”)</strong> 包含多个属性条件的选择器<h3 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h3></li>
-</ul>
-</li>
-<li>首元素选择器 <ul>
-<li>语法： <strong>first</strong> 获得选择的元素中的第一个元素</li>
-</ul>
-</li>
-<li>尾元素选择器 <ul>
-<li>语法： <strong>last</strong> 获得选择的元素中的最后一个元素</li>
-</ul>
-</li>
-<li>非元素选择器<ul>
-<li>语法：<strong>not(selector)</strong> 不包括指定内容的元素</li>
-</ul>
-</li>
-<li>偶数选择器<ul>
-<li>语法： <strong>even</strong> 偶数，从 0 开始计数</li>
-</ul>
-</li>
-<li>奇数选择器<ul>
-<li>语法： <strong>odd</strong> 奇数，从 0 开始计数</li>
-</ul>
-</li>
-<li>等于索引选择器<ul>
-<li>语法： <strong>eq(index)</strong> 指定索引元素</li>
-</ul>
-</li>
-<li>大于索引选择器 <ul>
-<li>语法： <strong>gt(index)</strong> 大于指定索引元素</li>
-</ul>
-</li>
-<li>小于索引选择器 <ul>
-<li>语法： <strong>lt(index)</strong> 小于指定索引元素</li>
-</ul>
-</li>
-<li>标题选择器<ul>
-<li>语法： <strong>header</strong> 获得标题（h1~h6）元素，固定写法<h3 id="表单过滤选择器"><a href="#表单过滤选择器" class="headerlink" title="表单过滤选择器"></a>表单过滤选择器</h3></li>
-</ul>
-</li>
-<li>可用元素选择器 <ul>
-<li>语法： <strong>enabled</strong> 获得可用元素</li>
-</ul>
-</li>
-<li>不可用元素选择器 <ul>
-<li>语法： <strong>disabled</strong> 获得不可用元素</li>
-</ul>
-</li>
-<li>选中选择器 <ul>
-<li>语法： <strong>checked</strong> 获得单选/复选框选中的元素</li>
-</ul>
-</li>
-<li>选中选择器 <ul>
-<li>语法： <strong>selected</strong> 获得下拉框选中的元素</li>
-</ul>
-</li>
-</ol>
-<h2 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h2><h3 id="内容操作"><a href="#内容操作" class="headerlink" title="内容操作"></a>内容操作</h3><ul>
-<li><p><strong>html()</strong></p>
-<ul>
-<li>获取/设置元素的标签体内容</li>
-<li>&lt;a&gt;&lt;font&gt;内容&lt;/font&gt;&lt;/a&gt;     –》    &lt;font&gt;内容&lt;/font&gt;</li>
-</ul>
-</li>
-<li><p><strong>text()</strong></p>
-<ul>
+<li><strong>text()</strong><ul>
 <li>获取/设置元素的标签体纯文本内容</li>
-<li>&lt;a&gt;&lt;font&gt;内容&lt;/font&gt;&lt;/a&gt;     –》    内容</li>
 </ul>
 </li>
-<li><p><strong>val()</strong></p>
-<ul>
-<li>获取/设置元素的value属性值<h3 id="属性操作"><a href="#属性操作" class="headerlink" title="属性操作"></a>属性操作</h3></li>
+<li><strong>val()</strong><ul>
+<li>获取/设置元素的value属性值<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#btn1"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#test1"</span>).text(<span class="string">"Hello world!"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">"#btn2"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#test2"</span>).html(<span class="string">"&lt;b&gt;Hello world!&lt;/b&gt;"</span>);</span><br><span class="line">&#125;);</span><br><span class="line">$(<span class="string">"#btn3"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#test3"</span>).val(<span class="string">"Dolly Duck"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
 </li>
+</ul>
+<h2 id="属性操作方法"><a href="#属性操作方法" class="headerlink" title="属性操作方法"></a>属性操作方法</h2><ul>
 <li><p>通用属性操作</p>
 <ul>
 <li><strong>attr()</strong><ul>
@@ -1422,7 +1924,8 @@
 </ul>
 </li>
 <li><strong>removeProp()</strong><ul>
-<li>删除属性</li>
+<li>删除属性<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#w3s"</span>).attr(<span class="string">"href"</span>,<span class="string">"http://www.w3school.com.cn/jquery"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 </ul>
@@ -1453,13 +1956,16 @@
 </li>
 <li><p><strong>css()</strong></p>
 <ul>
-<li>设置/添加属性值<h3 id="CRUD操作"><a href="#CRUD操作" class="headerlink" title="CRUD操作"></a>CRUD操作</h3></li>
+<li>设置/添加属性值</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><strong>append()</strong></p>
-<ul>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"h1,h2,p"</span>).addClass(<span class="string">"blue"</span>);</span><br><span class="line">  $(<span class="string">"div"</span>).addClass(<span class="string">"important"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"h1,h2,p"</span>).removeClass(<span class="string">"blue"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"h1,h2,p"</span>).toggleClass(<span class="string">"blue"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"p"</span>).css(<span class="string">"background-color"</span>,<span class="string">"yellow"</span>);</span><br><span class="line">$(<span class="string">"p"</span>).css(&#123;<span class="string">"background-color"</span>:<span class="string">"yellow"</span>,<span class="string">"font-size"</span>:<span class="string">"200%"</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="文档操作方法"><a href="#文档操作方法" class="headerlink" title="文档操作方法"></a>文档操作方法</h2><ul>
+<li><strong>append()</strong><ul>
 <li>父元素将子元素追加到末尾<ul>
 <li>A.append(B)</li>
 <li>将B添加到A元素内部，并且在末尾。</li>
@@ -1467,8 +1973,7 @@
 </li>
 </ul>
 </li>
-<li><p><strong>prepend()</strong></p>
-<ul>
+<li><strong>prepend()</strong><ul>
 <li>父元素将子元素追加到开头<ul>
 <li>A.prepend(B)</li>
 <li>将B添加到A元素内部，并且在开头。</li>
@@ -1476,8 +1981,7 @@
 </li>
 </ul>
 </li>
-<li><p><strong>appendTo()</strong></p>
-<ul>
+<li><strong>appendTo()</strong><ul>
 <li>子元素将父元素追加到末尾<ul>
 <li>A.appendTo(B)</li>
 <li>将A添加到B内部，并且在末尾。</li>
@@ -1485,8 +1989,7 @@
 </li>
 </ul>
 </li>
-<li><p><strong>prependTo()</strong></p>
-<ul>
+<li><strong>prependTo()</strong><ul>
 <li>子元素将父元素追加到开头<ul>
 <li>A.prependTo(B)</li>
 <li>将A添加到B内部，并且在开头。</li>
@@ -1494,8 +1997,7 @@
 </li>
 </ul>
 </li>
-<li><p><strong>after()</strong></p>
-<ul>
+<li><strong>after()</strong><ul>
 <li>添加元素2到元素1后边<ul>
 <li>A.after(B)</li>
 <li>将B添加到A后边（兄弟关系）</li>
@@ -1503,8 +2005,7 @@
 </li>
 </ul>
 </li>
-<li><p><strong>before()</strong></p>
-<ul>
+<li><strong>before()</strong><ul>
 <li>添加元素2到元素1前边<ul>
 <li>A.before(B)</li>
 <li>将B添加到A前边（兄弟关系）</li>
@@ -1512,8 +2013,7 @@
 </li>
 </ul>
 </li>
-<li><p><strong>insertAfter()</strong></p>
-<ul>
+<li><strong>insertAfter()</strong><ul>
 <li>添加元素1到元素2后边<ul>
 <li>A.insertAfter(B)</li>
 <li>将A添加到B后边（兄弟关系）</li>
@@ -1521,8 +2021,7 @@
 </li>
 </ul>
 </li>
-<li><p><strong>insertBefore()</strong></p>
-<ul>
+<li><strong>insertBefore()</strong><ul>
 <li>添加元素1到元素2前边<ul>
 <li>A.insertBefore(B)</li>
 <li>将A添加到B前边（兄弟关系）</li>
@@ -1530,8 +2029,7 @@
 </li>
 </ul>
 </li>
-<li><p><strong>remove()</strong></p>
-<ul>
+<li><strong>remove()</strong><ul>
 <li>移除元素<ul>
 <li>A.remove()</li>
 <li>将A删除掉</li>
@@ -1539,13 +2037,114 @@
 </li>
 </ul>
 </li>
-<li><p><strong>empty()</strong></p>
-<ul>
+<li><strong>empty()</strong><ul>
 <li>清空元素的所有后代元素。<ul>
 <li>A.empty()</li>
-<li>将对象的后代元素全部清空，但是保留当前A以及其属性节点</li>
+<li>将对象的后代元素全部清空，但是保留当前A以及其属性节点<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"p"</span>).append(<span class="string">"Some appended text."</span>);</span><br><span class="line">$(<span class="string">"p"</span>).prepend(<span class="string">"Some prepended text."</span>);</span><br><span class="line">$(<span class="string">"img"</span>).after(<span class="string">"Some text after"</span>);</span><br><span class="line">$(<span class="string">"img"</span>).before(<span class="string">"Some text before"</span>);</span><br><span class="line">$(<span class="string">"#div1"</span>).remove();</span><br><span class="line"><span class="comment">// jQuery remove() 方法也可接受一个参数，允许您对被删元素进行过滤。</span></span><br><span class="line">$(<span class="string">"p"</span>).remove(<span class="string">".italic"</span>);</span><br><span class="line">$(<span class="string">"#div1"</span>).empty();</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><h2 id="显示-隐藏"><a href="#显示-隐藏" class="headerlink" title="显示/隐藏"></a>显示/隐藏</h2><ul>
+<li>通过 jQuery，您可以使用 hide() 和 show() 方法来隐藏和显示 HTML 元素：<ul>
+<li><strong>show( speed，callback  )</strong></li>
+<li><strong>hide( speed，callback )</strong></li>
+</ul>
+</li>
+<li>通过 jQuery，您可以使用 toggle() 方法来切换 hide() 和 show() 方法。<ul>
+<li><strong>toggle(speed,callback)</strong></li>
+</ul>
+</li>
+<li>speed：参数规定隐藏/显示的速度，可以取以下值：”slow”、”fast” 或毫秒。</li>
+<li>callback：参数是隐藏或显示完成后所执行的函数名称。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#hide"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"p"</span>).hide();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"#show"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"p"</span>).show();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"p"</span>).toggle();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="淡入-淡出"><a href="#淡入-淡出" class="headerlink" title="淡入/淡出"></a>淡入/淡出</h2><ul>
+<li>通过 jQuery，您可以实现元素的淡入淡出效果。<ul>
+<li>fadeIn()  用于淡入已隐藏的元素。</li>
+<li>fadeOut()  用于淡出可见元素。</li>
+<li>fadeToggle()  在淡入淡出之间切换。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#div1"</span>).fadeIn();</span><br><span class="line">  $(<span class="string">"#div2"</span>).fadeIn(<span class="string">"slow"</span>);</span><br><span class="line">  $(<span class="string">"#div3"</span>).fadeIn(<span class="number">3000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#div1"</span>).fadeOut();</span><br><span class="line">  $(<span class="string">"#div2"</span>).fadeOut(<span class="string">"slow"</span>);</span><br><span class="line">  $(<span class="string">"#div3"</span>).fadeOut(<span class="number">3000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"button"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#div1"</span>).fadeToggle();</span><br><span class="line">  $(<span class="string">"#div2"</span>).fadeToggle(<span class="string">"slow"</span>);</span><br><span class="line">  $(<span class="string">"#div3"</span>).fadeToggle(<span class="number">3000</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="滑动"><a href="#滑动" class="headerlink" title="滑动"></a>滑动</h2><ul>
+<li>通过 jQuery，您可以在元素上创建滑动效果。<ul>
+<li>slideDown()  用于向下滑动元素。</li>
+<li>slideUp()  用于向上滑动元素。</li>
+<li>slideToggle()  在向下滑动向上滑动之间切换。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#flip"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#panel"</span>).slideDown();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"#flip"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#panel"</span>).slideUp();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$(<span class="string">"#flip"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  $(<span class="string">"#panel"</span>).slideToggle();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h1><h2 id="JS的遍历方式"><a href="#JS的遍历方式" class="headerlink" title="JS的遍历方式"></a>JS的遍历方式</h2><ul>
+<li>for (初始化值;循环结束条件;步长)<h2 id="Jquery的遍历方式"><a href="#Jquery的遍历方式" class="headerlink" title="Jquery的遍历方式"></a>Jquery的遍历方式</h2></li>
+<li><strong>Jquery对象.each(callback)</strong><ul>
+<li>jquery对象.each(function(index,element){});<ul>
+<li>index:就是元素在集合中的索引</li>
+<li>element：就是集合中的每一个元素对象</li>
+<li>this：集合中的每一个元素对象</li>
+<li>callback：回调函数返回值<ul>
+<li>true：如果当前function返回为false，则结束循环(break)。</li>
+<li>false：如果当前function返回为true，则结束本次循环，继续下次循环(continue)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>$.each(object, [callback])</strong></li>
+<li><strong>for..of</strong><ul>
+<li>for(元素对象 of 容器对象)<ul>
+<li>Jqueryuery 3.0 之后<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/* for循环 */</span></span><br><span class="line"><span class="keyword">var</span> citys = $(<span class="string">"#city li"</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; citys.length; i++) &#123;</span><br><span class="line">    <span class="comment">//获取内容</span></span><br><span class="line">    alert(i+<span class="string">":"</span>+citys[i].innerHTML);</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">"上海"</span> == citys[i].innerHTML)&#123;</span><br><span class="line">        <span class="comment">//break; 结束循环</span></span><br><span class="line">        <span class="comment">//continue; //结束本次循环，继续下次循环</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* Jquery对象.each(callback) */</span></span><br><span class="line"><span class="keyword">var</span> citys = $(<span class="string">"#city li"</span>);</span><br><span class="line">citys.each(<span class="function"><span class="keyword">function</span> (<span class="params">index,element</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 1.获取li对象 第一种方式 this</span></span><br><span class="line">    alert(<span class="keyword">this</span>.innerHTML);<span class="comment">//JS对象调用</span></span><br><span class="line">    alert($(<span class="keyword">this</span>).html());<span class="comment">//Jquery对象调用</span></span><br><span class="line">    <span class="comment">// 2.获取li对象 第二种方式 在回调函数中定义参数 index（索引） element（元素对象）</span></span><br><span class="line">    alert(index+<span class="string">":"</span>+element.innerHTML);</span><br><span class="line">    alert(index+<span class="string">":"</span>+$(element).html());</span><br><span class="line">    <span class="comment">//判断如果是上海，则结束循环</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="string">"上海"</span> == $(element).html())&#123;</span><br><span class="line">            <span class="comment">//返回false，结束循环(break)。</span></span><br><span class="line">            <span class="comment">//返回true，结束本次循环，继续下次循环(continue)</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*  $.each(object, [callback]) */</span></span><br><span class="line">$.each(citys,<span class="function"><span class="keyword">function</span> (<span class="params">index,element</span>) </span>&#123;</span><br><span class="line">	alert($(<span class="keyword">this</span>).html());</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* for ... of  (jquery 3.0 版本之后提供的方式) */</span></span><br><span class="line"><span class="keyword">for</span>(li <span class="keyword">of</span> citys)&#123;</span><br><span class="line">	alert($(li).html());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><ol>
+<li><strong>Jquery标准的绑定方式</strong><ul>
+<li><strong>jq对象.事件方法(回调函数)</strong><ul>
+<li>注：如果调用事件方法，不传递回调函数，则会触发浏览器默认行为。</li>
+<li>表单对象.submit();//让表单提交</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>on绑定事件/off解除绑定</strong><ul>
+<li><strong>jq对象.on(“事件名称”,回调函数)</strong></li>
+<li><strong>jq对象.off(“事件名称”)</strong><ul>
+<li>如果off方法不传递任何参数，则将组件上的所有事件全部解绑</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>toggle事件切换</strong><ul>
+<li><strong>jq对象.toggle(fn1,fn2…)</strong><ul>
+<li>当单击jq对象对应的组件后，会执行fn1.第二次点击会执行fn2…..</li>
+<li>注意：1.9版本 .toggle() 方法删除,jQuery Migrate（迁移）插件可以恢复此功能。<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"../js/jquery-migrate-1.0.0.js"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h1><ul>
+<li><strong>$.fn.extend(object)</strong> <ul>
+<li>增强通过Jquery获取的对象的功能  $(“#id”)</li>
+</ul>
+</li>
+<li><strong>$.extend(object)</strong><ul>
+<li>增强JQeury对象自身的功能  $/jQuery</li>
 </ul>
 </li>
 </ul>
@@ -3749,7 +4348,17 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -3858,7 +4467,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">58k</span>
+    <span title="站点总字数">73k</span>
   
 
   
@@ -3867,7 +4476,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">53 分钟</span>
+    <span title="站点阅读时长">1:06</span>
   
 </div>
 
