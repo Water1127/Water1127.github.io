@@ -102,24 +102,18 @@
   daovoice('update');
   </script>
 
-  <meta name="description" content="概念 HTTP协议 Hyper Text Transfer Protocol 超文本传输协议   传输协议 传输协议定义了客户端和服务器端通信时，发送数据的格式。   特点 基于TCP/IP的高级协议 默认端口号：80 基于请求/响应模型  ：一次请求对应一次响应 无状态的：每次请求之间相互独立，不能交互数据   历史版本 HTTP 1.0：每一次请求响应都会建立新的连接，浪费时间，消耗资源。 H">
-<meta name="keywords" content="Servlet,HTTP">
+  <meta name="description" content="函数表达式的定位 本文相关的概念：函数，函数表达式，返回值。 函数：函数名为Fun的函数。函数表达式：Fun() 和 fun。返回值：即函数Fun的返回值。  首先，需要明确的概念是：函数表达式的定位。不同的定位决定了不同的功能，以下是我列出来的函数表达式及其定位。我会在详细表述表达式时，附上便于理解的代码。    函数表达式 定位    function() 调用函数、返回返回值   funct">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTTP">
-<meta property="og:url" content="https://Water1127.github.io/2019/07/11/HTTP/index.html">
+<meta property="og:title" content="关于JS中的函数是否加括号的问题">
+<meta property="og:url" content="https://Water1127.github.io/2019/07/22/JS函数表达式/index.html">
 <meta property="og:site_name" content="Water">
-<meta property="og:description" content="概念 HTTP协议 Hyper Text Transfer Protocol 超文本传输协议   传输协议 传输协议定义了客户端和服务器端通信时，发送数据的格式。   特点 基于TCP/IP的高级协议 默认端口号：80 基于请求/响应模型  ：一次请求对应一次响应 无状态的：每次请求之间相互独立，不能交互数据   历史版本 HTTP 1.0：每一次请求响应都会建立新的连接，浪费时间，消耗资源。 H">
+<meta property="og:description" content="函数表达式的定位 本文相关的概念：函数，函数表达式，返回值。 函数：函数名为Fun的函数。函数表达式：Fun() 和 fun。返回值：即函数Fun的返回值。  首先，需要明确的概念是：函数表达式的定位。不同的定位决定了不同的功能，以下是我列出来的函数表达式及其定位。我会在详细表述表达式时，附上便于理解的代码。    函数表达式 定位    function() 调用函数、返回返回值   funct">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://water1127.github.io/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic01.png">
-<meta property="og:image" content="https://water1127.github.io/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic01.png">
-<meta property="og:image" content="https://water1127.github.io/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic03.png">
-<meta property="og:image" content="https://water1127.github.io/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic04.png">
-<meta property="og:image" content="https://water1127.github.io/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic05.png">
-<meta property="og:updated_time" content="2019-07-19T08:35:59.145Z">
+<meta property="og:updated_time" content="2019-07-25T12:24:08.576Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTTP">
-<meta name="twitter:description" content="概念 HTTP协议 Hyper Text Transfer Protocol 超文本传输协议   传输协议 传输协议定义了客户端和服务器端通信时，发送数据的格式。   特点 基于TCP/IP的高级协议 默认端口号：80 基于请求/响应模型  ：一次请求对应一次响应 无状态的：每次请求之间相互独立，不能交互数据   历史版本 HTTP 1.0：每一次请求响应都会建立新的连接，浪费时间，消耗资源。 H">
-<meta name="twitter:image" content="https://water1127.github.io/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic01.png">
+<meta name="twitter:title" content="关于JS中的函数是否加括号的问题">
+<meta name="twitter:description" content="函数表达式的定位 本文相关的概念：函数，函数表达式，返回值。 函数：函数名为Fun的函数。函数表达式：Fun() 和 fun。返回值：即函数Fun的返回值。  首先，需要明确的概念是：函数表达式的定位。不同的定位决定了不同的功能，以下是我列出来的函数表达式及其定位。我会在详细表述表达式时，附上便于理解的代码。    函数表达式 定位    function() 调用函数、返回返回值   funct">
 
 
 
@@ -127,7 +121,7 @@
 
   
   
-  <link rel="canonical" href="https://Water1127.github.io/2019/07/11/HTTP/">
+  <link rel="canonical" href="https://Water1127.github.io/2019/07/22/JS函数表达式/">
 
 
 
@@ -137,7 +131,7 @@
   };
 </script>
 
-  <title>HTTP | Water</title>
+  <title>关于JS中的函数是否加括号的问题 | Water</title>
   
 
 
@@ -339,7 +333,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/11/HTTP/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/22/JS函数表达式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="w.">
@@ -356,7 +350,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HTTP
+          <h1 class="post-title" itemprop="name headline">关于JS中的函数是否加括号的问题
 
               
             
@@ -382,7 +376,7 @@
                 
               
 
-              <time title="创建时间：2019-07-11 18:50:37" itemprop="dateCreated datePublished" datetime="2019-07-11T18:50:37+08:00">2019-07-11</time>
+              <time title="创建时间：2019-07-22 21:15:02" itemprop="dateCreated datePublished" datetime="2019-07-22T21:15:02+08:00">2019-07-22</time>
             </span>
           
 
@@ -397,7 +391,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-19 16:35:59" itemprop="dateModified" datetime="2019-07-19T16:35:59+08:00">2019-07-19</time>
+                <time title="修改时间：2019-07-25 20:24:08" itemprop="dateModified" datetime="2019-07-25T20:24:08+08:00">2019-07-25</time>
               </span>
             
           
@@ -438,7 +432,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1.3k</span>
+              <span title="本文字数">1.1k</span>
             </span>
           
 
@@ -469,129 +463,33 @@
       
 
       
-        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>HTTP协议<ul>
-<li>Hyper Text Transfer Protocol 超文本传输协议</li>
-</ul>
-</li>
-<li>传输协议<ul>
-<li>传输协议定义了客户端和服务器端通信时，发送数据的格式。</li>
-</ul>
-</li>
-<li>特点<ol>
-<li>基于TCP/IP的高级协议</li>
-<li>默认端口号：80</li>
-<li>基于请求/响应模型  ：一次请求对应一次响应</li>
-<li>无状态的：每次请求之间相互独立，不能交互数据</li>
-</ol>
-</li>
-<li>历史版本<ul>
-<li>HTTP 1.0：每一次请求响应都会建立新的连接，浪费时间，消耗资源。</li>
-<li>HTTP 1.1：复用连接。</li>
-<li>请求消息数据格式</li>
-</ul>
-</li>
-</ul>
-<h1 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h1><ul>
-<li>请求消息数据格式</li>
-<li>响应消息数据格式</li>
-</ul>
-<h2 id="请求消息数据格式"><a href="#请求消息数据格式" class="headerlink" title="请求消息数据格式"></a>请求消息数据格式</h2><h3 id="请求方式"><a href="#请求方式" class="headerlink" title="请求方式"></a>请求方式</h3><ul>
-<li>HTTP协议有7中请求方式，常用的有2种<ul>
-<li>GET：<ol>
-<li>请求参数在请求行中，在url后。</li>
-<li>请求的url长度有限制的</li>
-<li>不太安全</li>
-</ol>
-</li>
-<li>POST：<ol>
-<li>请求参数在请求体中</li>
-<li>请求的url长度没有限制的</li>
-<li>相对安全</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h3><ul>
-<li>Request method ：请求方式</li>
-<li>Request URI ：请求端的URI地址</li>
-<li>Http version ：HTTP协议的版本</li>
-</ul>
-<blockquote>
-<p>GET方式<br><img src="/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic01.png" alt></p>
+        <h1 id="函数表达式的定位"><a href="#函数表达式的定位" class="headerlink" title="函数表达式的定位"></a>函数表达式的定位</h1><blockquote>
+<p>本文相关的概念：函数，函数表达式，返回值。</p>
+<p>函数：函数名为Fun的函数。<br>函数表达式：Fun() 和 fun。<br>返回值：即函数Fun的返回值。</p>
 </blockquote>
-<blockquote>
-<p>POST方式<br><img src="/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic01.png" alt>2</p>
-</blockquote>
-<h3 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h3><ul>
-<li>Accept：指浏览器或其他客户可以接爱的MIME文件格式。</li>
-<li>Accept-Encoding：指出浏览器可以接受的编码方式。</li>
-<li>Accept-Langeuage：指出浏览器可以接受的语言种类，如en或en-us，指英语。</li>
-<li>connection：用来告诉服务器是否可以维持固定的HTTP连接。</li>
-<li>Cookie：浏览器用这个属性向服务器发送Cookie。</li>
-<li>Host：对应网址URL中的Web名称和端口号。</li>
-<li>User-Agent：客户浏览器名称。<ul>
-<li>兼容性问题</li>
-</ul>
-</li>
-<li>Referer：表明产生请求的网页URL。<ul>
-<li>防盗链</li>
-<li>统计工作</li>
-</ul>
-</li>
-<li>Content-Type：用来表名request的内容类型。</li>
-<li>Accept-Charset：指出浏览器可以接受的字符编码。英文浏览器的默认值是ISO-8859-1。</li>
-</ul>
-<blockquote>
-<p>GET方式<br><img src="/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic03.png" alt></p>
-</blockquote>
-<blockquote>
-<p>POST方式<br><img src="/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic04.png" alt></p>
-</blockquote>
-<h3 id="请求空行"><a href="#请求空行" class="headerlink" title="请求空行"></a>请求空行</h3><ul>
-<li>空行，用于分割请求头和请求体。<h3 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h3></li>
-<li>封装POST请求消息的请求参数的</li>
-</ul>
-<blockquote>
-<p>GET方式</p>
-</blockquote>
-<blockquote>
-<p>POST方式<br><img src="/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic05.png" alt></p>
-</blockquote>
-<h2 id="响应消息数据格式"><a href="#响应消息数据格式" class="headerlink" title="响应消息数据格式"></a>响应消息数据格式</h2><h3 id="响应行"><a href="#响应行" class="headerlink" title="响应行"></a>响应行</h3><ul>
-<li>协议/版本</li>
-<li>响应状态码：服务器告诉客户端浏览器本次请求和响应的一个状态。<ul>
-<li><strong>1xx 指示信息</strong>：表示请求已接收，但没有完成，需要继续处理。</li>
-<li><strong>2xx 成功</strong>：表示请求已被成功接收、理解、接受。</li>
-<li><strong>3xx 重定向</strong>：要完成请求必须进行更进一步的操作。<ul>
-<li>302：重定向</li>
-<li>304：访问缓存</li>
-</ul>
-</li>
-<li><strong>4xx 客户端错误</strong>：请求有语法错误或请求无法实现。<ul>
-<li>404：请求路径没有对应的资源</li>
-<li>405：请求方式没有对应的doXxx方法</li>
-</ul>
-</li>
-<li><strong>5xx 服务器端错误</strong>：服务器未能实现合法的请求。</li>
-</ul>
-</li>
-</ul>
-<h3 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h3><ul>
-<li>Content-Type：响应体数据格式以及编码格式<ul>
-<li>text/html;charset=UTF-8 </li>
-</ul>
-</li>
-<li>Content-disposition：打开响应体数据的格式<ul>
-<li>in-line：在当前页面内打开（默认值）</li>
-<li>attachment;filename=xxx：以附件形式打开响应体。文件下载</li>
-</ul>
-</li>
-</ul>
-<h3 id="响应空行"><a href="#响应空行" class="headerlink" title="响应空行"></a>响应空行</h3><h3 id="响应体"><a href="#响应体" class="headerlink" title="响应体"></a>响应体</h3><ul>
-<li>传输的数据</li>
-</ul>
+<p>首先，需要明确的概念是：函数表达式的定位。<br>不同的定位决定了不同的功能，以下是我列出来的函数表达式及其定位。<br>我会在详细表述表达式时，附上便于理解的代码。</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数表达式</th>
+<th align="center">定位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>function()</strong></td>
+<td align="center">调用函数、返回返回值</td>
+</tr>
+<tr>
+<td align="center"><strong>function</strong></td>
+<td align="center">函数的副本</td>
+</tr>
+</tbody></table>
+<h2 id="函数表达式-function"><a href="#函数表达式-function" class="headerlink" title="函数表达式 function()"></a>函数表达式 function()</h2><p>当按钮被点击，函数表达式Fun() 作为参数首先被执行。<br>于是，第一步，函数Fun被调用，函数Fun执行 方法alert(111)，弹出“111”；<br>第二步，函数fun 返回 返回值222。<br>接着，按钮的点击事件执行 alert方法，并接收到了返回值222，弹出“222”。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="comment">// 获取按钮对象</span></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>);</span></span><br><span class="line"><span class="javascript">	<span class="comment">// 方法</span></span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">Fun</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line">		alert(111);</span><br><span class="line"><span class="javascript">    	<span class="keyword">return</span> <span class="number">222</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="comment">// 点击按钮 弹出函数表达式</span></span></span><br><span class="line"><span class="javascript">    btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line">    	alert(fun());</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="函数表达式-function-1"><a href="#函数表达式-function-1" class="headerlink" title="函数表达式 function"></a>函数表达式 function</h2><p>我们在前面说到 函数表达式Fun 的定位是 函数Fun 的一个副本。<br>为了印证这个观点，其余代码不变，将函数表达式Fun() 换成 函数表达式Fun。<br>我得到的结果是，弹出：   “ function Fun() { alert(1); return 222; } “</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="comment">// 获取按钮对象</span></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>);</span></span><br><span class="line"><span class="javascript">	<span class="comment">// 方法</span></span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">Fun</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line">		alert(111);</span><br><span class="line"><span class="javascript">    	<span class="keyword">return</span> <span class="number">222</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="comment">// 点击按钮 弹出函数表达式</span></span></span><br><span class="line"><span class="javascript">    btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line">    	alert(fun;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -651,9 +549,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/Servlet/" rel="tag"># Servlet</a>
-          
-            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
         </div>
       
@@ -666,8 +562,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/11/tomcat/" rel="next" title="Tomcat">
-                <i class="fa fa-chevron-left"></i> Tomcat
+              <a href="/2019/07/21/redis/" rel="next" title="Redis">
+                <i class="fa fa-chevron-left"></i> Redis
               </a>
             
           </div>
@@ -676,8 +572,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/12/servlet/" rel="prev" title="Servlet">
-                Servlet <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/24/MySQL/" rel="prev" title="MySQL">
+                MySQL <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -923,7 +819,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据格式"><span class="nav-number">2.</span> <span class="nav-text">数据格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#请求消息数据格式"><span class="nav-number">2.1.</span> <span class="nav-text">请求消息数据格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求方式"><span class="nav-number">2.1.1.</span> <span class="nav-text">请求方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求行"><span class="nav-number">2.1.2.</span> <span class="nav-text">请求行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求头"><span class="nav-number">2.1.3.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求空行"><span class="nav-number">2.1.4.</span> <span class="nav-text">请求空行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求体"><span class="nav-number">2.1.5.</span> <span class="nav-text">请求体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应消息数据格式"><span class="nav-number">2.2.</span> <span class="nav-text">响应消息数据格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#响应行"><span class="nav-number">2.2.1.</span> <span class="nav-text">响应行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应头"><span class="nav-number">2.2.2.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应空行"><span class="nav-number">2.2.3.</span> <span class="nav-text">响应空行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应体"><span class="nav-number">2.2.4.</span> <span class="nav-text">响应体</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数表达式的定位"><span class="nav-number">1.</span> <span class="nav-text">函数表达式的定位</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数表达式-function"><span class="nav-number">1.1.</span> <span class="nav-text">函数表达式 function()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数表达式-function-1"><span class="nav-number">1.2.</span> <span class="nav-text">函数表达式 function</span></a></li></ol></li></ol></div>
             
 
           </div>

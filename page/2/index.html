@@ -329,6 +329,712 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/12/servlet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="w.">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/12/servlet/" class="post-title-link" itemprop="url">Servlet</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-12 14:52:31" itemprop="dateCreated datePublished" datetime="2019-07-12T14:52:31+08:00">2019-07-12</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-19 16:45:37" itemprop="dateModified" datetime="2019-07-19T16:45:37+08:00">2019-07-19</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">5.2k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">5 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li><strong>server applet：运行在服务器端的小程序</strong></li>
+<li>为了更好的理解servlet，我们先从B/S模式来示例<ul>
+<li>用户输入账号密码，请求登录<ul>
+<li>我们需要判断 用户A输入的账号和密码是否正确。</li>
+<li>此处需要运用 Java逻辑来判断。</li>
+<li>也就是，我们需要通过Java代码来确定。</li>
+<li>具体就是，通过Java类来实现。</li>
+</ul>
+</li>
+<li>创建 Java类，判断账号密码<ul>
+<li>但是，并非所有的Java类都可以在服务器端运行，想要在服务器端运行就必须依赖于服务器端。</li>
+<li>换句话说，想要在服务器端运行就要遵循服务器端的”规则“。</li>
+<li>而具体来说，在Java中的规则，即是接口。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Servlet就是一个接口<ul>
+<li>Servlet接口中定义了能被浏览器访问到的，且能被tomcat服务器识别到的Java类的规则。</li>
+<li>自定义一个类，实现Servlet接口，复写Servlet接口方法。</li>
+</ul>
+</li>
+</ul>
+<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><ol>
+<li>创建JavaEE项目</li>
+<li>定义一个实现了Servlet接口的类</li>
+<li>实现Servlet接口中的抽象方法</li>
+<li>重写抽象方法，输出文字</li>
+<li>配置web.xml文件，设置虚拟路径</li>
+<li>启动tomcat服务器</li>
+<li>项目的访问路径 （虚拟目录）：<em>localhost:8080/web/demo</em></li>
+<li>文字输出在服务器端</li>
+<li>刷新一次页面，输出一次文字</li>
+</ol>
+<blockquote>
+<p>java文件</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A_ServletDemo</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">null</span>;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 提供服务的方法 */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello Servlet!!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">null</span>;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在web/WEB-INF目录下，配置web.xml</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置Servlet --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- name --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 全类名 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>Servlet.A_ServletDemo<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--配置Servlet映射--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- name --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 虚拟路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/demo<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="执行原理"><a href="#执行原理" class="headerlink" title="执行原理"></a>执行原理</h1><h2 id="客户端对服务器发出请求"><a href="#客户端对服务器发出请求" class="headerlink" title="客户端对服务器发出请求"></a>客户端对服务器发出请求</h2><ol>
+<li>用户通过浏览器对服务器发出请求（ *<em>http: //localhost:8080/web/demo *</em> ）</li>
+<li>Tomcat服务器接受请求，并开始解析URL路径<ul>
+<li>web.xml文件<ul>
+<li>首先，Tomcat服务器通过虚拟路径找到相对应的&lt;url-pattern&gt;标签。</li>
+<li>其次，Tomcat服务器通过&lt;url-pattern&gt;标签，获取&lt;servlet-name&gt;标签，以及&lt;servlet-class&gt;标签。</li>
+<li>最后，Tomcat服务器通过&lt;servlet-class&gt;标签，获取到Java文件的全类名。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Tomcat服务器将java文件加载进内存（<u>classObj = Class.forName(全类名);</u> ）</li>
+<li>Tomcat服务器创建Servlet对象（ <u>classObj.instance();</u> ）</li>
+<li>Tomcat服务器创建request对象和response对象。<ul>
+<li>request对象中封装 请求消息数据</li>
+<li>response对象中封装 响应消息数据</li>
+</ul>
+</li>
+<li>Tomcat服务器调用service方法，并传入request对象和response对象。<ul>
+<li>我们通过request对象获取请求消息数据</li>
+<li>并通过response对象设置响应消息数据</li>
+</ul>
+</li>
+<li>Tomcat服务器在给浏览器做出响应之前，会从response对象中拿出设置好的响应消息数据。 <h2 id="不同的请求方式"><a href="#不同的请求方式" class="headerlink" title="不同的请求方式"></a>不同的请求方式</h2><h3 id="GET方式"><a href="#GET方式" class="headerlink" title="GET方式"></a>GET方式</h3></li>
+</ol>
+<ul>
+<li>如果我们要通过GET方式来对Tomcat服务器发送请求，那么我们可以直接访问Tomcat服务器中的GET实现类。<ul>
+<li>比如，我创建了一个HTTPServlet实现类，但是里面只重写了doGET方法。此时可打开Tomcat服务器，直接通过浏览器访问GET实现类，继而完成在Tomcat服务器中的操作。<h3 id="POST方式"><a href="#POST方式" class="headerlink" title="POST方式"></a>POST方式</h3></li>
+</ul>
+</li>
+<li>如果我们要通过POST方式来对Tomcat客户端发送请求，那么我们就不可以直接访问Tomcat客户端中的POST实现类。<ul>
+<li>比如，创建一个HTTPServlet实现类，但是里面只重写了doPOST方法，此时打开Tomcat客户端，但是无法直接通过浏览器访问POST实现类。</li>
+<li>不过，可以通过使用POST方法传递的表单来实现。定义一个这样的POST表单，打开Tomcat客户端，访问POST表单，继而完成在Tomcat服务器中的操作。</li>
+</ul>
+</li>
+</ul>
+<h1 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h1><ol>
+<li><strong>service  提供服务的方法</strong><ul>
+<li>只要servlet服务器被访问，service方法就会执行。</li>
+</ul>
+</li>
+<li>*<em>init  初始化的方法 *</em><ul>
+<li>无论servlet服务器被访问多少次，init方法只会执行一次。</li>
+</ul>
+</li>
+<li>*<em>destroy  销毁的方法 *</em><ul>
+<li>当servlet服务器被正常关闭时，destroy方法会执行一次。</li>
+</ul>
+</li>
+<li>*<em>getServletConfig    获取配置对象的方法 *</em></li>
+<li>*<em>getServletInfo    获取servlet信息的方法 *</em><blockquote>
+<p>java文件</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 初始化方法 */</span></span><br><span class="line">      <span class="comment">// 只会执行一次</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"===init()执行了"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 获取配置对象方法 */</span></span><br><span class="line">      <span class="comment">//ServletConfig：配置对象</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 提供服务的方法 */</span></span><br><span class="line">      <span class="comment">// servlet被访问一次，就执行一次</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"===service()执行了"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 获取servlet信息方法*/</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 销毁方法 */</span></span><br><span class="line">      <span class="comment">// servlet正常关闭时，执行一次。</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"===destroy&#123;&#125;执行了"</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><h2 id="被创建"><a href="#被创建" class="headerlink" title="被创建"></a>被创建</h2><ul>
+<li>servlet被创建时会执行init方法，且只执行一次。</li>
+</ul>
+<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><ul>
+<li>默认情况下，在servlet服务器第一次被访问时，Servlet被创建。<ul>
+<li>web.xml文件中，可以配置执行Servlet的创建时机。</li>
+<li>在&lt;servlet&gt;标签下配置 <ol>
+<li>第一次被访问时<ul>
+<li>创建&lt;load-on-startup&gt;标签，值为负数</li>
+</ul>
+</li>
+<li>在服务器启动时<ul>
+<li>创建&lt;load-on-startup&gt;标签，值为0或正整数</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="安全问题"><a href="#安全问题" class="headerlink" title="安全问题"></a>安全问题</h3><ul>
+<li>Servlet的init方法，只执行一次，说明一个Servlet在内存中只存在一个对象，Servlet是单例的。<ul>
+<li>所以多个用户同时访问时，可能存在线程安全问题。</li>
+<li>解决：尽量不要在Servlet中定义成员变量。即使定义了成员变量，也不要对其修改值。</li>
+</ul>
+</li>
+</ul>
+<h2 id="提供服务"><a href="#提供服务" class="headerlink" title="提供服务"></a>提供服务</h2><ul>
+<li>每次访问Servlet服务器时，Service方法都会被调用一次。</li>
+</ul>
+<h2 id="被销毁"><a href="#被销毁" class="headerlink" title="被销毁"></a>被销毁</h2><ul>
+<li>Servlet服务器被销毁时执行一次。<ul>
+<li>只有服务器正常关闭时，才会执行destroy方法。</li>
+<li>destroy方法在Servlet被销毁之前执行，一般用于释放资源</li>
+</ul>
+</li>
+</ul>
+<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><ul>
+<li>上述情况下，我们发现一个问题，即每次新建文件都需要在web.xml文件中添加虚拟路径。</li>
+<li>为了解决这个问题，官方在Servlet3.0版本支持了注解配置，从而代替web.xml文件了。<ul>
+<li>在web.xml文件，除了需要指定虚拟目录以外，还需要指定文件目录。</li>
+<li>而对于注解来说，@WebServlet已经定义在文件中了，所以只需要指定虚拟目录即可。</li>
+</ul>
+</li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>创建JavaEE项目</li>
+<li>定义一个实现了Servlet接口的类</li>
+<li>实现Servlet接口中的抽象方法</li>
+<li>重写抽象方法，输出文字</li>
+<li>在类上使用@WebServlet注解，进行配置<ul>
+<li><strong>@WebServlet(urlPatterns = “/demo3”)</strong></li>
+<li>*<em>@WebServlet(“/demo3”) *</em><ul>
+<li>此处填写的源代码应是”value=’’demo3” “，</li>
+<li>如果注解后只写一个属性的话，value可以不写。    </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>启动tomcat服务器</li>
+<li>项目的访问路径 （虚拟目录）：<em>localhost:8080/web/demo3</em></li>
+<li>文字输出在服务器端</li>
+<li>刷新一次页面，输出一次文字</li>
+</ol>
+<h1 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h1><ul>
+<li><strong>Servlet 接口</strong> <ul>
+<li><strong>GenericServlet  抽象类</strong> （继承）<ul>
+<li><strong>HttpServlet  抽象类</strong>（继承）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="GenericServlet-抽象类"><a href="#GenericServlet-抽象类" class="headerlink" title="GenericServlet  抽象类"></a>GenericServlet  抽象类</h2><ul>
+<li>GenericServlet抽象类 将Servlet接口中其他的抽象方法默认空实现，只将service()方法作为抽象方法。</li>
+<li>上述情况下，我们仍可以发现一个问题，即创建的实现了servlet接口的Java类中，有许多我们不需要重写的抽象方法。但是大部分情况下我只用需要实现service方法，那我们为什么不能不实现其他方法呢？</li>
+<li>为了解决这个问题，我们可以通过GenericServlet抽象类来完成。<ul>
+<li>Java类不再是 实现servlet接口</li>
+<li>Java类如今是 继承GenericServelet抽象类</li>
+</ul>
+</li>
+</ul>
+<h2 id="HttpServlet-抽象类"><a href="#HttpServlet-抽象类" class="headerlink" title="HttpServlet 抽象类"></a>HttpServlet 抽象类</h2><ul>
+<li>HttpServlet抽象类在其父类GenericServlet  抽象类的功能上更进一步。为了可以获取正确的数据，HttpServlet抽象类对请求的方法（get、post）自动进行了判断。<ul>
+<li>Java类继承 HttpServlet抽象类</li>
+<li>复写doGet/doPost方法</li>
+</ul>
+</li>
+</ul>
+<h1 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h1><ul>
+<li>urlpartten：Servlet访问路径<ul>
+<li>一个Servlet可以定义多个访问路径 ： @WebServlet({“/d4”,”/dd4”,”/ddd4”})</li>
+</ul>
+</li>
+<li>路径定义规则：<ul>
+<li>目录结构：/xxx</li>
+<li>多层目录结构：/xxx/xxx</li>
+<li>文件名：*.do</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/11/HTTP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="w.">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/11/HTTP/" class="post-title-link" itemprop="url">HTTP</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-11 18:50:37" itemprop="dateCreated datePublished" datetime="2019-07-11T18:50:37+08:00">2019-07-11</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-19 16:35:59" itemprop="dateModified" datetime="2019-07-19T16:35:59+08:00">2019-07-19</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">1.3k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">1 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>HTTP协议<ul>
+<li>Hyper Text Transfer Protocol 超文本传输协议</li>
+</ul>
+</li>
+<li>传输协议<ul>
+<li>传输协议定义了客户端和服务器端通信时，发送数据的格式。</li>
+</ul>
+</li>
+<li>特点<ol>
+<li>基于TCP/IP的高级协议</li>
+<li>默认端口号：80</li>
+<li>基于请求/响应模型  ：一次请求对应一次响应</li>
+<li>无状态的：每次请求之间相互独立，不能交互数据</li>
+</ol>
+</li>
+<li>历史版本<ul>
+<li>HTTP 1.0：每一次请求响应都会建立新的连接，浪费时间，消耗资源。</li>
+<li>HTTP 1.1：复用连接。</li>
+<li>请求消息数据格式</li>
+</ul>
+</li>
+</ul>
+<h1 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h1><ul>
+<li>请求消息数据格式</li>
+<li>响应消息数据格式</li>
+</ul>
+<h2 id="请求消息数据格式"><a href="#请求消息数据格式" class="headerlink" title="请求消息数据格式"></a>请求消息数据格式</h2><h3 id="请求方式"><a href="#请求方式" class="headerlink" title="请求方式"></a>请求方式</h3><ul>
+<li>HTTP协议有7中请求方式，常用的有2种<ul>
+<li>GET：<ol>
+<li>请求参数在请求行中，在url后。</li>
+<li>请求的url长度有限制的</li>
+<li>不太安全</li>
+</ol>
+</li>
+<li>POST：<ol>
+<li>请求参数在请求体中</li>
+<li>请求的url长度没有限制的</li>
+<li>相对安全</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h3><ul>
+<li>Request method ：请求方式</li>
+<li>Request URI ：请求端的URI地址</li>
+<li>Http version ：HTTP协议的版本</li>
+</ul>
+<blockquote>
+<p>GET方式<br><img src="/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic01.png" alt></p>
+</blockquote>
+<blockquote>
+<p>POST方式<br><img src="/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic01.png" alt>2</p>
+</blockquote>
+<h3 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h3><ul>
+<li>Accept：指浏览器或其他客户可以接爱的MIME文件格式。</li>
+<li>Accept-Encoding：指出浏览器可以接受的编码方式。</li>
+<li>Accept-Langeuage：指出浏览器可以接受的语言种类，如en或en-us，指英语。</li>
+<li>connection：用来告诉服务器是否可以维持固定的HTTP连接。</li>
+<li>Cookie：浏览器用这个属性向服务器发送Cookie。</li>
+<li>Host：对应网址URL中的Web名称和端口号。</li>
+<li>User-Agent：客户浏览器名称。<ul>
+<li>兼容性问题</li>
+</ul>
+</li>
+<li>Referer：表明产生请求的网页URL。<ul>
+<li>防盗链</li>
+<li>统计工作</li>
+</ul>
+</li>
+<li>Content-Type：用来表名request的内容类型。</li>
+<li>Accept-Charset：指出浏览器可以接受的字符编码。英文浏览器的默认值是ISO-8859-1。</li>
+</ul>
+<blockquote>
+<p>GET方式<br><img src="/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic03.png" alt></p>
+</blockquote>
+<blockquote>
+<p>POST方式<br><img src="/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic04.png" alt></p>
+</blockquote>
+<h3 id="请求空行"><a href="#请求空行" class="headerlink" title="请求空行"></a>请求空行</h3><ul>
+<li>空行，用于分割请求头和请求体。<h3 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h3></li>
+<li>封装POST请求消息的请求参数的</li>
+</ul>
+<blockquote>
+<p>GET方式</p>
+</blockquote>
+<blockquote>
+<p>POST方式<br><img src="/2019/07/11/HTTP/C:%5CUsers%5Cwater%5CBlog%5Cmyblog%5Csource_posts%5CHTTP%5Cpic05.png" alt></p>
+</blockquote>
+<h2 id="响应消息数据格式"><a href="#响应消息数据格式" class="headerlink" title="响应消息数据格式"></a>响应消息数据格式</h2><h3 id="响应行"><a href="#响应行" class="headerlink" title="响应行"></a>响应行</h3><ul>
+<li>协议/版本</li>
+<li>响应状态码：服务器告诉客户端浏览器本次请求和响应的一个状态。<ul>
+<li><strong>1xx 指示信息</strong>：表示请求已接收，但没有完成，需要继续处理。</li>
+<li><strong>2xx 成功</strong>：表示请求已被成功接收、理解、接受。</li>
+<li><strong>3xx 重定向</strong>：要完成请求必须进行更进一步的操作。<ul>
+<li>302：重定向</li>
+<li>304：访问缓存</li>
+</ul>
+</li>
+<li><strong>4xx 客户端错误</strong>：请求有语法错误或请求无法实现。<ul>
+<li>404：请求路径没有对应的资源</li>
+<li>405：请求方式没有对应的doXxx方法</li>
+</ul>
+</li>
+<li><strong>5xx 服务器端错误</strong>：服务器未能实现合法的请求。</li>
+</ul>
+</li>
+</ul>
+<h3 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h3><ul>
+<li>Content-Type：响应体数据格式以及编码格式<ul>
+<li>text/html;charset=UTF-8 </li>
+</ul>
+</li>
+<li>Content-disposition：打开响应体数据的格式<ul>
+<li>in-line：在当前页面内打开（默认值）</li>
+<li>attachment;filename=xxx：以附件形式打开响应体。文件下载</li>
+</ul>
+</li>
+</ul>
+<h3 id="响应空行"><a href="#响应空行" class="headerlink" title="响应空行"></a>响应空行</h3><h3 id="响应体"><a href="#响应体" class="headerlink" title="响应体"></a>响应体</h3><ul>
+<li>传输的数据</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/11/tomcat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1946,7 +2652,7 @@ redirectPort=&quot;8443&quot; /&gt;</code></pre></li>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2030,7 +2736,11 @@ redirectPort=&quot;8443&quot; /&gt;</code></pre></li>
                     
                       
                     
-                    <span class="site-state-item-count">24</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2139,7 +2849,7 @@ redirectPort=&quot;8443&quot; /&gt;</code></pre></li>
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">73k</span>
+    <span title="站点总字数">81k</span>
   
 
   
@@ -2148,7 +2858,7 @@ redirectPort=&quot;8443&quot; /&gt;</code></pre></li>
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:06</span>
+    <span title="站点阅读时长">1:14</span>
   
 </div>
 

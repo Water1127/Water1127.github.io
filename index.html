@@ -329,6 +329,567 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/24/MySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="w.">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/24/MySQL/" class="post-title-link" itemprop="url">MySQL</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-24 02:25:41" itemprop="dateCreated datePublished" datetime="2019-07-24T02:25:41+08:00">2019-07-24</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-25 20:25:49" itemprop="dateModified" datetime="2019-07-25T20:25:49+08:00">2019-07-25</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">6.3k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">6 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><ul>
+<li>数据库（Database）是按照数据结构来组织、存储和管理数据的仓库。</li>
+<li>每个数据库都有一个或多个不同的 API 用于创建，访问，管理，搜索和复制所保存的数据。</li>
+<li>我们也可以将数据存储在文件中，但是在文件中读写数据速度相对较慢。</li>
+<li>所以，现在我们使用关系型数据库管理系统（RDBMS）来存储和管理的大数据量。所谓的关系型数据库，是建立在关系模型基础上的数据库，借助于集合代数等数学概念和方法来处理数据库中的数据。</li>
+<li>RDBMS 即关系数据库管理系统(Relational Database Management System)的特点：<ol>
+<li>数据以表格的形式出现</li>
+<li>每行为各种记录名称</li>
+<li>每列为记录名称所对应的数据域</li>
+<li>许多的行和列组成一张表单</li>
+<li>若干的表单组成database<h2 id="RDBMS-术语"><a href="#RDBMS-术语" class="headerlink" title="RDBMS 术语"></a>RDBMS 术语</h2></li>
+</ol>
+</li>
+<li>数据库：数据库是一些关联表的集合。</li>
+<li>数据表：表是数据的矩阵。在一个数据库中的表看起来像一个简单的电子表格。</li>
+<li>列：一列(数据元素) 包含了相同类型的数据, 例如邮政编码的数据。</li>
+<li>行：一行（=元组，或记录）是一组相关的数据，例如一条用户订阅的数据。</li>
+<li>冗余：存储两倍数据，冗余降低了性能，但提高了数据的安全性。</li>
+<li>主键：主键是唯一的。一个数据表中只能包含一个主键。你可以使用主键来查询数据。</li>
+<li>外键：外键用于关联两个表。</li>
+<li>复合键：复合键（组合键）将多个列作为一个索引键，一般用于复合索引。</li>
+<li>索引：使用索引可快速访问数据库表中的特定信息。索引是对数据库表中一列或多列的值进行排序的一种结构。类似于书籍的目录。<h2 id="MySQL数据库"><a href="#MySQL数据库" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h2></li>
+<li>MySQL 是一个关系型数据库管理系统，由瑞典 MySQL AB 公司开发，目前属于 Oracle 公司。</li>
+<li>MySQL 是一种关联数据库管理系统，关联数据库将数据保存在不同的表中，而不是将- 所有数据放在一个大仓库内，这样就增加了速度并提高了灵活性。</li>
+<li>MySQL 是开源的，所以你不需要支付额外的费用。</li>
+<li>MySQL 支持大型的数据库。可以处理拥有上千万条记录的大型数据库。</li>
+<li>MySQL 使用标准的 SQL 数据语言形式。</li>
+<li>MySQL 可以运行于多个系统上，并且支持多种语言。这些编程语言包括 C、C++、Python、Java、Perl、PHP、Eiffel、Ruby 和 Tcl 等。</li>
+<li>MySQL 对PHP有很好的支持，PHP 是目前最流行的 Web 开发语言。</li>
+<li>MySQL 支持大型数据库，支持 5000 万条记录的数据仓库，32 位系统表文件最大可支持 4GB，64 位系统支持最大的表文件为8TB。</li>
+<li>MySQL 是可以定制的，采用了 GPL 协议，你可以修改源码来开发自己的 MySQL 系统。<h1 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h1><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2></li>
+<li>打开刚刚解压的文件夹 C:\web\mysql-8.0.11 ，在该文件夹下创建 my.ini 配置文件，编辑 my.ini 配置以下基本信息：<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[client]</span></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br><span class="line"> </span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="comment"># 设置3306端口</span></span><br><span class="line"><span class="attr">port</span> = <span class="number">3306</span></span><br><span class="line"><span class="comment"># 设置mysql的安装目录</span></span><br><span class="line"><span class="attr">basedir</span>=C:\\web\\mysql-<span class="number">8.0</span>.<span class="number">11</span></span><br><span class="line"><span class="comment"># 设置 mysql数据库的数据的存放目录，MySQL 8+ 不需要以下配置，系统自己生成即可，否则有可能报错</span></span><br><span class="line"><span class="comment"># datadir=C:\\web\\sqldata</span></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">20</span></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为8比特编码的latin1字符集</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><blockquote>
+<p>启动MySQL</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net start mysql</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>登录 MySQ<br>    -h : 指定客户端所要登录的 MySQL 主机名, 登录本机(localhost 或 127.0.0.1)该参数可以省略;<br>    -u : 登录的用户名;<br>    -p : 告诉服务器将会使用一个密码来登录, 如果所要登录的用户名密码为空, 可以忽略此选项。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h 主机名 -u 用户名 -p 密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>登录本机MySQL</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u 用户名 -p 密码</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>关闭MySQL</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net stop mysql</span><br></pre></td></tr></table></figure>
+
+<h2 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h2><ul>
+<li>USE $table</li>
+<li>SHOW DATABASES</li>
+<li>SHOW TABLES</li>
+<li>SHOW COLUMNS FROM $table</li>
+</ul>
+<blockquote>
+<p><strong>USE $database</strong><br>    选择要操作的Mysql数据库，使用该命令后所有Mysql命令都只针对该数据库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Database changed</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>SHOW DATABASES</strong><br>     列出 MySQL 数据库管理系统的数据库列表。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; +--------------------+</span><br><span class="line">&gt; | Database           |</span><br><span class="line">&gt; +--------------------+</span><br><span class="line">&gt; | information_schema |</span><br><span class="line">&gt; | mysql              |</span><br><span class="line">&gt; | performance_schema |</span><br><span class="line">&gt; | test               |</span><br><span class="line">&gt; +--------------------+</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>SHOW TABLES</strong><br>     显示指定数据库的所有表，使用该命令前需要使用 use 命令来选择要操作的数据库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; +------------------+</span><br><span class="line">&gt; | Tables_in_runoob |</span><br><span class="line">&gt; +------------------+</span><br><span class="line">&gt; | employee_tbl     |</span><br><span class="line">&gt; | runoob_tbl       |</span><br><span class="line">&gt; | tcount_tbl       |</span><br><span class="line">&gt; +------------------+</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p><strong>SHOW COLUMNS FROM $database</strong><br>    显示数据表的属性，属性类型，主键信息 ，是否为 NULL，默认值等其他信息。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+-----------------+--------------+------+-----+---------+-------+</span><br><span class="line">| Field           | Type         | Null | Key | Default | Extra |</span><br><span class="line">+-----------------+--------------+------+-----+---------+-------+</span><br><span class="line">| runoob_id       | int(11)      | NO   | PRI | NULL    |       |</span><br><span class="line">| runoob_title    | varchar(255) | YES  |     | NULL    |       |</span><br><span class="line">| runoob_author   | varchar(255) | YES  |     | NULL    |       |</span><br><span class="line">| submission_date | date         | YES  |     | NULL    |       |</span><br><span class="line">+-----------------+--------------+------+-----+---------+-------+</span><br></pre></td></tr></table></figure>
+
+<h1 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h1><ul>
+<li>SQL （Structured Query Language ）   结构化查询语言<ul>
+<li>特点<ul>
+<li>以分号结尾；</li>
+<li>不区分大小写。</li>
+</ul>
+</li>
+<li>分类<ul>
+<li>DDL（Data Definition Language ） ：定义数据库、表。</li>
+<li>DML（Data Manipulation Language） ：对数据库中表的数据进行增删改。</li>
+<li>DQL （Data Query Language）：查询数据库中表的数据。</li>
+<li>DCL（Data Control Language） ：定义数据库的访问权限和安全级别，及创建用户。</li>
+</ul>
+</li>
+<li>注释<ul>
+<li>单行注释：“– ”(空格必须加）</li>
+<li>单行注释：“#”（空格可加可不加）</li>
+<li>多行注释：“/* */”</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h1><blockquote>
+<p>Data Definition Language    数据定义语言</p>
+</blockquote>
+<h2 id="操作数据库"><a href="#操作数据库" class="headerlink" title="操作数据库"></a>操作数据库</h2><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 使用数据库</span><br><span class="line">USE $database;</span><br><span class="line"></span><br><span class="line"># 查询当前正在使用的数据库名称</span><br><span class="line">SELECT DATABASE();</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 创建数据库</span><br><span class="line">CREATE DATABASE $database;</span><br><span class="line"></span><br><span class="line"># 创建数据库，并判断是否存在</span><br><span class="line">CREATE DATABASE IF NOT EXISTS $database;</span><br><span class="line"></span><br><span class="line"># 创建数据库，并设置字符集</span><br><span class="line">CREATE DATABASE $database CHARACTER SET utf-8;</span><br><span class="line"></span><br><span class="line"># 创建数据库，判断是否存在，并设置字符集</span><br><span class="line">CREATE DATABASE IF NOT EXISTS $database CHARACTER SET utf-8;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 查询所有数据库名称</span><br><span class="line">SHOW DATABASES;</span><br><span class="line"></span><br><span class="line"># 查询数据库的创建语句</span><br><span class="line">SHOW CREATE DATABASE $database;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 修改数据库的字符集</span><br><span class="line">ALTER DATABASE $database CHARACTER SET gbk;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 删除数据库</span><br><span class="line">DROP DATABASE $database;</span><br><span class="line"></span><br><span class="line"># 删除数据库，判断是否存在</span><br><span class="line">DROP DATABASE IF EXISTS $database;</span><br></pre></td></tr></table></figure>
+
+<h2 id="操作表、列"><a href="#操作表、列" class="headerlink" title="操作表、列"></a>操作表、列</h2><h3 id="创建-1"><a href="#创建-1" class="headerlink" title="创建"></a>创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 创建表</span><br><span class="line">CREATE TABLE $table(</span><br><span class="line">	$columnA $type,</span><br><span class="line">	$columnB $tyep</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"># 创建副本</span><br><span class="line">CREATE TABLE $tableB LIKE $tableA</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询-1"><a href="#查询-1" class="headerlink" title="查询"></a>查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 查询某个数据库中的所有表</span><br><span class="line">SHOW TABLES;</span><br><span class="line"></span><br><span class="line"># 查询表结构</span><br><span class="line">DESC $table;</span><br><span class="line"></span><br><span class="line"># 查询表的创建语句</span><br><span class="line">SHOW CREATE TABLE $table;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改-1"><a href="#修改-1" class="headerlink" title="修改"></a>修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 修改表名</span><br><span class="line">ALTER TABLE $tableOld RENAME TO $tableNew</span><br><span class="line"></span><br><span class="line"># 修改表的字符集</span><br><span class="line">ALTER TABLE $table CHARACTER SET utf-8;</span><br><span class="line"></span><br><span class="line"># 修改列</span><br><span class="line">ALTER TABLE $table CHANGE $columnOld $columnNew $typeNew;</span><br><span class="line"></span><br><span class="line"># 修改类型</span><br><span class="line">ALTER TABLE $table MODIFY $column $tyepNew;</span><br><span class="line"></span><br><span class="line"># 添加列</span><br><span class="line">ALTER TABLE $table ADD $column $type;</span><br><span class="line"></span><br><span class="line"># 删除列</span><br><span class="line">ALTER TABLE $table DROP $column;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除-1"><a href="#删除-1" class="headerlink" title="删除"></a>删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 删除表</span><br><span class="line">DROP TABLE $table;</span><br><span class="line"></span><br><span class="line"># 删除表，判断是否存在</span><br><span class="line">DROP TABLE IF EXISTS $table;</span><br></pre></td></tr></table></figure>
+
+<h1 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h1><blockquote>
+<p> Data Manipulation Language    数据操作语言</p>
+</blockquote>
+<h2 id="操作记录、值"><a href="#操作记录、值" class="headerlink" title="操作记录、值"></a>操作记录、值</h2><h3 id="创建-2"><a href="#创建-2" class="headerlink" title="创建"></a>创建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 给记录中的所有字段，添加值</span><br><span class="line">INSERT INTO $table VALUES($valueA,$valueB....)</span><br><span class="line"></span><br><span class="line"># 给记录中指定的字段，添加值</span><br><span class="line">INSERT INTO $table($columnA) VALUES($valueA)</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除-2"><a href="#删除-2" class="headerlink" title="删除"></a>删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 删除所有记录</span><br><span class="line">DELETE * FROM $table;</span><br><span class="line"></span><br><span class="line"># 删除指定记录</span><br><span class="line">DELETE FROM $table WHERE $column = $value;</span><br><span class="line"></span><br><span class="line"># 删除所有记录，并创建一个空副本</span><br><span class="line">TRUNCATE TABLE $table;</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改-2"><a href="#修改-2" class="headerlink" title="修改"></a>修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 给记录中所有的字段，修改值</span><br><span class="line">UPDATE $table SET $columnA = $valueA;</span><br><span class="line"></span><br><span class="line"># 给记录中指定的字段，修改值</span><br><span class="line">UPDATE $table SET $columnA = $valueA WHERE $colmnB = $valueB;</span><br></pre></td></tr></table></figure>
+
+<h1 id="DQL"><a href="#DQL" class="headerlink" title="DQL"></a>DQL</h1><blockquote>
+<p>Data Query Language    数据查询语言</p>
+</blockquote>
+<h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"># 查询表中的所有列</span><br><span class="line">SELECT * FROM $table;</span><br><span class="line"></span><br><span class="line"># 查询表中指定的列</span><br><span class="line">SELECT $column FROM $table;</span><br><span class="line"></span><br><span class="line"># 查询表中指定的列，并去掉重复的字段</span><br><span class="line">SELECT DISTINCT $column FROM $table;</span><br><span class="line"></span><br><span class="line"># 查询表中指定的列，并计算</span><br><span class="line">SELECT </span><br><span class="line">    $columnA,</span><br><span class="line">    $columnB,</span><br><span class="line">    $columnA + $columnB </span><br><span class="line">FROM </span><br><span class="line">	$table;</span><br><span class="line"></span><br><span class="line"># 查询表中指定的列，并计算，且排除为null的情况</span><br><span class="line">SELECT </span><br><span class="line">	$columnA,</span><br><span class="line">	$columnB,</span><br><span class="line">	IFNULL($columnA,0) + IFNULL($columnB,0) </span><br><span class="line">FROM </span><br><span class="line">	$table;</span><br><span class="line"></span><br><span class="line"># 查询表中指定的列，计算，排除为null的情况，给计算结果起名</span><br><span class="line"># AS可省略</span><br><span class="line">SELECT </span><br><span class="line">	$columnA AS $nameA,</span><br><span class="line">	$columnB AS $nameB,</span><br><span class="line">	IFNULL($columnA,0)+IFNULL($columnB,0)  AS $nameC</span><br><span class="line">FROM </span><br><span class="line">	$table;</span><br></pre></td></tr></table></figure>
+
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 大于、大于等于、等于、不等于、不等于</span><br><span class="line">WHERE $column &gt; $value;</span><br><span class="line">WHERE $column &gt;= $value;</span><br><span class="line">WHERE $column = $value;</span><br><span class="line">WHERE $column != $value;</span><br><span class="line">WHERE $column &lt;&gt; $value;</span><br><span class="line"></span><br><span class="line"># 范围</span><br><span class="line">WHERE $column&gt;=10 &amp;&amp; $column&lt;=100;</span><br><span class="line">WHERE $column&gt;=10 AND $column&lt;=100;</span><br><span class="line">WHERE $column BETWEEN 10 AND 1000;</span><br><span class="line"></span><br><span class="line"># 个例</span><br><span class="line">WHERE $column=10 OR $column=20;</span><br><span class="line">WHERE $column IN (10,20,30,40);</span><br><span class="line"></span><br><span class="line">#查询NULL</span><br><span class="line">WHERE $column IS NULL;</span><br><span class="line">WHERE $column IS NOT NULL;</span><br></pre></td></tr></table></figure>
+
+<h2 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># “_” 单个任意字符</span><br><span class="line">WHERE $column = &apos;C_t&apos;;</span><br><span class="line"></span><br><span class="line"># “%” 多个任意字符</span><br><span class="line">WHERE $column = &apos;super%&apos;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 按照指定列的顺序，升序排序</span><br><span class="line">ORDER BY $column ASC;</span><br><span class="line"></span><br><span class="line"># 按照指定列的顺序，降序排序</span><br><span class="line">ORDER BY $column DESC;</span><br></pre></td></tr></table></figure>
+
+<h2 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h2><ul>
+<li>聚合函数排除了NULL值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 计算指定列的 字段个数</span><br><span class="line">SELECT COUNT($column) FROM $table;</span><br><span class="line"></span><br><span class="line"># 计算指定列的 字段个数，且不排除NULL值</span><br><span class="line">SELECT COUNT( IFNULL($column,0) ) FROM $table;</span><br><span class="line"></span><br><span class="line"># 计算指定列的 最大值</span><br><span class="line">SELECT MAX($column) FROM $table;</span><br><span class="line"></span><br><span class="line"># 计算指定列的 最小值</span><br><span class="line">SELECT MIN($column) FROM $table;</span><br><span class="line"></span><br><span class="line"># 计算指定列的和</span><br><span class="line">SELECT SUM($column) FROM $table;</span><br><span class="line"></span><br><span class="line"># 计算指定列的平均值</span><br><span class="line">SELECT AVG($column) FROM $table;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="分组查询"><a href="#分组查询" class="headerlink" title="分组查询"></a>分组查询</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><h1 id="DCL"><a href="#DCL" class="headerlink" title="DCL"></a>DCL</h1><blockquote>
+<p>Data Control Language    数据控制语言</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h1>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/22/JS函数表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="w.">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/22/JS函数表达式/" class="post-title-link" itemprop="url">关于JS中的函数是否加括号的问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-22 21:15:02" itemprop="dateCreated datePublished" datetime="2019-07-22T21:15:02+08:00">2019-07-22</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-25 20:24:08" itemprop="dateModified" datetime="2019-07-25T20:24:08+08:00">2019-07-25</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">1.1k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">1 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="函数表达式的定位"><a href="#函数表达式的定位" class="headerlink" title="函数表达式的定位"></a>函数表达式的定位</h1><blockquote>
+<p>本文相关的概念：函数，函数表达式，返回值。</p>
+<p>函数：函数名为Fun的函数。<br>函数表达式：Fun() 和 fun。<br>返回值：即函数Fun的返回值。</p>
+</blockquote>
+<p>首先，需要明确的概念是：函数表达式的定位。<br>不同的定位决定了不同的功能，以下是我列出来的函数表达式及其定位。<br>我会在详细表述表达式时，附上便于理解的代码。</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数表达式</th>
+<th align="center">定位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>function()</strong></td>
+<td align="center">调用函数、返回返回值</td>
+</tr>
+<tr>
+<td align="center"><strong>function</strong></td>
+<td align="center">函数的副本</td>
+</tr>
+</tbody></table>
+<h2 id="函数表达式-function"><a href="#函数表达式-function" class="headerlink" title="函数表达式 function()"></a>函数表达式 function()</h2><p>当按钮被点击，函数表达式Fun() 作为参数首先被执行。<br>于是，第一步，函数Fun被调用，函数Fun执行 方法alert(111)，弹出“111”；<br>第二步，函数fun 返回 返回值222。<br>接着，按钮的点击事件执行 alert方法，并接收到了返回值222，弹出“222”。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="comment">// 获取按钮对象</span></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>);</span></span><br><span class="line"><span class="javascript">	<span class="comment">// 方法</span></span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">Fun</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line">		alert(111);</span><br><span class="line"><span class="javascript">    	<span class="keyword">return</span> <span class="number">222</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="comment">// 点击按钮 弹出函数表达式</span></span></span><br><span class="line"><span class="javascript">    btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line">    	alert(fun());</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="函数表达式-function-1"><a href="#函数表达式-function-1" class="headerlink" title="函数表达式 function"></a>函数表达式 function</h2><p>我们在前面说到 函数表达式Fun 的定位是 函数Fun 的一个副本。<br>为了印证这个观点，其余代码不变，将函数表达式Fun() 换成 函数表达式Fun。<br>我得到的结果是，弹出：   “ function Fun() { alert(1); return 222; } “</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="comment">// 获取按钮对象</span></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>);</span></span><br><span class="line"><span class="javascript">	<span class="comment">// 方法</span></span></span><br><span class="line"><span class="javascript">	<span class="function"><span class="keyword">function</span> <span class="title">Fun</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line">		alert(111);</span><br><span class="line"><span class="javascript">    	<span class="keyword">return</span> <span class="number">222</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="javascript">    <span class="comment">// 点击按钮 弹出函数表达式</span></span></span><br><span class="line"><span class="javascript">    btn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line">    	alert(fun;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/21/redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3658,574 +4219,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/12/servlet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="w.">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/12/servlet/" class="post-title-link" itemprop="url">Servlet</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-12 14:52:31" itemprop="dateCreated datePublished" datetime="2019-07-12T14:52:31+08:00">2019-07-12</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-19 16:45:37" itemprop="dateModified" datetime="2019-07-19T16:45:37+08:00">2019-07-19</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">5.2k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">5 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li><strong>server applet：运行在服务器端的小程序</strong></li>
-<li>为了更好的理解servlet，我们先从B/S模式来示例<ul>
-<li>用户输入账号密码，请求登录<ul>
-<li>我们需要判断 用户A输入的账号和密码是否正确。</li>
-<li>此处需要运用 Java逻辑来判断。</li>
-<li>也就是，我们需要通过Java代码来确定。</li>
-<li>具体就是，通过Java类来实现。</li>
-</ul>
-</li>
-<li>创建 Java类，判断账号密码<ul>
-<li>但是，并非所有的Java类都可以在服务器端运行，想要在服务器端运行就必须依赖于服务器端。</li>
-<li>换句话说，想要在服务器端运行就要遵循服务器端的”规则“。</li>
-<li>而具体来说，在Java中的规则，即是接口。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Servlet就是一个接口<ul>
-<li>Servlet接口中定义了能被浏览器访问到的，且能被tomcat服务器识别到的Java类的规则。</li>
-<li>自定义一个类，实现Servlet接口，复写Servlet接口方法。</li>
-</ul>
-</li>
-</ul>
-<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><ol>
-<li>创建JavaEE项目</li>
-<li>定义一个实现了Servlet接口的类</li>
-<li>实现Servlet接口中的抽象方法</li>
-<li>重写抽象方法，输出文字</li>
-<li>配置web.xml文件，设置虚拟路径</li>
-<li>启动tomcat服务器</li>
-<li>项目的访问路径 （虚拟目录）：<em>localhost:8080/web/demo</em></li>
-<li>文字输出在服务器端</li>
-<li>刷新一次页面，输出一次文字</li>
-</ol>
-<blockquote>
-<p>java文件</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A_ServletDemo</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">null</span>;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 提供服务的方法 */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello Servlet!!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> <span class="keyword">null</span>;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>在web/WEB-INF目录下，配置web.xml</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置Servlet --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- name --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 全类名 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>Servlet.A_ServletDemo<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--配置Servlet映射--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- name --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 虚拟路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/demo<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="执行原理"><a href="#执行原理" class="headerlink" title="执行原理"></a>执行原理</h1><h2 id="客户端对服务器发出请求"><a href="#客户端对服务器发出请求" class="headerlink" title="客户端对服务器发出请求"></a>客户端对服务器发出请求</h2><ol>
-<li>用户通过浏览器对服务器发出请求（ *<em>http: //localhost:8080/web/demo *</em> ）</li>
-<li>Tomcat服务器接受请求，并开始解析URL路径<ul>
-<li>web.xml文件<ul>
-<li>首先，Tomcat服务器通过虚拟路径找到相对应的&lt;url-pattern&gt;标签。</li>
-<li>其次，Tomcat服务器通过&lt;url-pattern&gt;标签，获取&lt;servlet-name&gt;标签，以及&lt;servlet-class&gt;标签。</li>
-<li>最后，Tomcat服务器通过&lt;servlet-class&gt;标签，获取到Java文件的全类名。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Tomcat服务器将java文件加载进内存（<u>classObj = Class.forName(全类名);</u> ）</li>
-<li>Tomcat服务器创建Servlet对象（ <u>classObj.instance();</u> ）</li>
-<li>Tomcat服务器创建request对象和response对象。<ul>
-<li>request对象中封装 请求消息数据</li>
-<li>response对象中封装 响应消息数据</li>
-</ul>
-</li>
-<li>Tomcat服务器调用service方法，并传入request对象和response对象。<ul>
-<li>我们通过request对象获取请求消息数据</li>
-<li>并通过response对象设置响应消息数据</li>
-</ul>
-</li>
-<li>Tomcat服务器在给浏览器做出响应之前，会从response对象中拿出设置好的响应消息数据。 <h2 id="不同的请求方式"><a href="#不同的请求方式" class="headerlink" title="不同的请求方式"></a>不同的请求方式</h2><h3 id="GET方式"><a href="#GET方式" class="headerlink" title="GET方式"></a>GET方式</h3></li>
-</ol>
-<ul>
-<li>如果我们要通过GET方式来对Tomcat服务器发送请求，那么我们可以直接访问Tomcat服务器中的GET实现类。<ul>
-<li>比如，我创建了一个HTTPServlet实现类，但是里面只重写了doGET方法。此时可打开Tomcat服务器，直接通过浏览器访问GET实现类，继而完成在Tomcat服务器中的操作。<h3 id="POST方式"><a href="#POST方式" class="headerlink" title="POST方式"></a>POST方式</h3></li>
-</ul>
-</li>
-<li>如果我们要通过POST方式来对Tomcat客户端发送请求，那么我们就不可以直接访问Tomcat客户端中的POST实现类。<ul>
-<li>比如，创建一个HTTPServlet实现类，但是里面只重写了doPOST方法，此时打开Tomcat客户端，但是无法直接通过浏览器访问POST实现类。</li>
-<li>不过，可以通过使用POST方法传递的表单来实现。定义一个这样的POST表单，打开Tomcat客户端，访问POST表单，继而完成在Tomcat服务器中的操作。</li>
-</ul>
-</li>
-</ul>
-<h1 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h1><ol>
-<li><strong>service  提供服务的方法</strong><ul>
-<li>只要servlet服务器被访问，service方法就会执行。</li>
-</ul>
-</li>
-<li>*<em>init  初始化的方法 *</em><ul>
-<li>无论servlet服务器被访问多少次，init方法只会执行一次。</li>
-</ul>
-</li>
-<li>*<em>destroy  销毁的方法 *</em><ul>
-<li>当servlet服务器被正常关闭时，destroy方法会执行一次。</li>
-</ul>
-</li>
-<li>*<em>getServletConfig    获取配置对象的方法 *</em></li>
-<li>*<em>getServletInfo    获取servlet信息的方法 *</em><blockquote>
-<p>java文件</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 初始化方法 */</span></span><br><span class="line">      <span class="comment">// 只会执行一次</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"===init()执行了"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 获取配置对象方法 */</span></span><br><span class="line">      <span class="comment">//ServletConfig：配置对象</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 提供服务的方法 */</span></span><br><span class="line">      <span class="comment">// servlet被访问一次，就执行一次</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"===service()执行了"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 获取servlet信息方法*/</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* 销毁方法 */</span></span><br><span class="line">      <span class="comment">// servlet正常关闭时，执行一次。</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"===destroy&#123;&#125;执行了"</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h1 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h1><h2 id="被创建"><a href="#被创建" class="headerlink" title="被创建"></a>被创建</h2><ul>
-<li>servlet被创建时会执行init方法，且只执行一次。</li>
-</ul>
-<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><ul>
-<li>默认情况下，在servlet服务器第一次被访问时，Servlet被创建。<ul>
-<li>web.xml文件中，可以配置执行Servlet的创建时机。</li>
-<li>在&lt;servlet&gt;标签下配置 <ol>
-<li>第一次被访问时<ul>
-<li>创建&lt;load-on-startup&gt;标签，值为负数</li>
-</ul>
-</li>
-<li>在服务器启动时<ul>
-<li>创建&lt;load-on-startup&gt;标签，值为0或正整数</li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="安全问题"><a href="#安全问题" class="headerlink" title="安全问题"></a>安全问题</h3><ul>
-<li>Servlet的init方法，只执行一次，说明一个Servlet在内存中只存在一个对象，Servlet是单例的。<ul>
-<li>所以多个用户同时访问时，可能存在线程安全问题。</li>
-<li>解决：尽量不要在Servlet中定义成员变量。即使定义了成员变量，也不要对其修改值。</li>
-</ul>
-</li>
-</ul>
-<h2 id="提供服务"><a href="#提供服务" class="headerlink" title="提供服务"></a>提供服务</h2><ul>
-<li>每次访问Servlet服务器时，Service方法都会被调用一次。</li>
-</ul>
-<h2 id="被销毁"><a href="#被销毁" class="headerlink" title="被销毁"></a>被销毁</h2><ul>
-<li>Servlet服务器被销毁时执行一次。<ul>
-<li>只有服务器正常关闭时，才会执行destroy方法。</li>
-<li>destroy方法在Servlet被销毁之前执行，一般用于释放资源</li>
-</ul>
-</li>
-</ul>
-<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><ul>
-<li>上述情况下，我们发现一个问题，即每次新建文件都需要在web.xml文件中添加虚拟路径。</li>
-<li>为了解决这个问题，官方在Servlet3.0版本支持了注解配置，从而代替web.xml文件了。<ul>
-<li>在web.xml文件，除了需要指定虚拟目录以外，还需要指定文件目录。</li>
-<li>而对于注解来说，@WebServlet已经定义在文件中了，所以只需要指定虚拟目录即可。</li>
-</ul>
-</li>
-</ul>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
-<li>创建JavaEE项目</li>
-<li>定义一个实现了Servlet接口的类</li>
-<li>实现Servlet接口中的抽象方法</li>
-<li>重写抽象方法，输出文字</li>
-<li>在类上使用@WebServlet注解，进行配置<ul>
-<li><strong>@WebServlet(urlPatterns = “/demo3”)</strong></li>
-<li>*<em>@WebServlet(“/demo3”) *</em><ul>
-<li>此处填写的源代码应是”value=’’demo3” “，</li>
-<li>如果注解后只写一个属性的话，value可以不写。    </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>启动tomcat服务器</li>
-<li>项目的访问路径 （虚拟目录）：<em>localhost:8080/web/demo3</em></li>
-<li>文字输出在服务器端</li>
-<li>刷新一次页面，输出一次文字</li>
-</ol>
-<h1 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h1><ul>
-<li><strong>Servlet 接口</strong> <ul>
-<li><strong>GenericServlet  抽象类</strong> （继承）<ul>
-<li><strong>HttpServlet  抽象类</strong>（继承）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="GenericServlet-抽象类"><a href="#GenericServlet-抽象类" class="headerlink" title="GenericServlet  抽象类"></a>GenericServlet  抽象类</h2><ul>
-<li>GenericServlet抽象类 将Servlet接口中其他的抽象方法默认空实现，只将service()方法作为抽象方法。</li>
-<li>上述情况下，我们仍可以发现一个问题，即创建的实现了servlet接口的Java类中，有许多我们不需要重写的抽象方法。但是大部分情况下我只用需要实现service方法，那我们为什么不能不实现其他方法呢？</li>
-<li>为了解决这个问题，我们可以通过GenericServlet抽象类来完成。<ul>
-<li>Java类不再是 实现servlet接口</li>
-<li>Java类如今是 继承GenericServelet抽象类</li>
-</ul>
-</li>
-</ul>
-<h2 id="HttpServlet-抽象类"><a href="#HttpServlet-抽象类" class="headerlink" title="HttpServlet 抽象类"></a>HttpServlet 抽象类</h2><ul>
-<li>HttpServlet抽象类在其父类GenericServlet  抽象类的功能上更进一步。为了可以获取正确的数据，HttpServlet抽象类对请求的方法（get、post）自动进行了判断。<ul>
-<li>Java类继承 HttpServlet抽象类</li>
-<li>复写doGet/doPost方法</li>
-</ul>
-</li>
-</ul>
-<h1 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h1><ul>
-<li>urlpartten：Servlet访问路径<ul>
-<li>一个Servlet可以定义多个访问路径 ： @WebServlet({“/d4”,”/dd4”,”/ddd4”})</li>
-</ul>
-</li>
-<li>路径定义规则：<ul>
-<li>目录结构：/xxx</li>
-<li>多层目录结构：/xxx/xxx</li>
-<li>文件名：*.do</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/11/HTTP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="w.">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/11/HTTP/" class="post-title-link" itemprop="url">HTTP</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-11 18:50:37" itemprop="dateCreated datePublished" datetime="2019-07-11T18:50:37+08:00">2019-07-11</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-19 16:35:28" itemprop="dateModified" datetime="2019-07-19T16:35:28+08:00">2019-07-19</time>
-              </span>
-            
-          
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">0</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">1 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4274,7 +4267,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -4358,7 +4351,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">24</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -4467,7 +4464,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">73k</span>
+    <span title="站点总字数">81k</span>
   
 
   
@@ -4476,7 +4473,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:06</span>
+    <span title="站点阅读时长">1:14</span>
   
 </div>
 
