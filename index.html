@@ -329,6 +329,365 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/25/反射/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="w.">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/25/反射/" class="post-title-link" itemprop="url">反射</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-25 22:48:46 / 修改时间：22:48:41" itemprop="dateCreated datePublished" datetime="2019-07-25T22:48:46+08:00">2019-07-25</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">7.3k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">7 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>反射是框架设计的灵魂。</li>
+<li>反射机制就是将类的各个组成部分封装为其他对象。<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2></li>
+<li>可以在程序运行过程中，操作这些对象。</li>
+<li>可以解耦，提高程序的可扩展性。<h2 id="Java代码的阶段"><a href="#Java代码的阶段" class="headerlink" title="Java代码的阶段"></a>Java代码的阶段</h2></li>
+<li>Java代码在计算机中经历的三个阶段<ul>
+<li>Source（源代码阶段）<ul>
+<li>Java文件被Javac编译为class文件，class文件会将成员变量、成员方法和构造方法等编译成不同的模块。</li>
+<li>class文件通过 Classload类加载器 来进入和下一阶段。</li>
+</ul>
+</li>
+<li>Class（类对象阶段）<ul>
+<li>通过 Classload类加载器，将class文件加载进内存，成员变量、成员方法和构造方法会被封装为Class类中的对象。</li>
+</ul>
+</li>
+<li>Runtime（运行阶段）<ul>
+<li>当我们需要访问Java文件的成员时，我们就可以逆向访问，通过Class类的Classload类加载器来获取该成员的对象。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="获取Class对象"><a href="#获取Class对象" class="headerlink" title="获取Class对象"></a>获取Class对象</h1><ul>
+<li>Class.forName(“全类名”)：将字节码文件加载进内存，返回Class对象。<ul>
+<li>处于Source（源代码阶段），并未加载进内存。<ul>
+<li>用于配置文件，将类名定义在配置文件中。读取文件，从而加载类。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>类名.class：通过类名的属性class获取。<ul>
+<li>处于Class（类对象阶段），已经加载进内存。<ul>
+<li>多用于参数的传递。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>对象.getClass()：Object类中定义的方法。<ul>
+<li>Runtime（运行阶段），处于运行时。<ul>
+<li>用于获取对象的字节码文件对象。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Class类对象<ul>
+<li>同一个字节码文件( .class)在一次程序运行过程中，只会被加载一次。</li>
+<li>不论通过哪一种方式获取的Class类对象都是同一个。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Class类.静态方法forName("全类名")</span></span><br><span class="line">Class class1 = Class.forName(<span class="string">"com.test.Person"</span>);</span><br><span class="line"><span class="comment">// 类名.成员class</span></span><br><span class="line">Class class2 = Person.class;</span><br><span class="line"><span class="comment">// 对象名.成员方法getClass()</span></span><br><span class="line">Person person = <span class="keyword">new</span> Person();</span><br><span class="line">Class class3 = person.getClass();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="获取成员变量"><a href="#获取成员变量" class="headerlink" title="获取成员变量"></a>获取成员变量</h1><ul>
+<li><strong>Field[] getFields()</strong>  <ul>
+<li>返回包含一个 Field对象数组，反射 所有可访问的 public字段类对象。</li>
+</ul>
+</li>
+<li><strong>Field getField(String name)</strong><ul>
+<li>返回一个 Field对象，反射 指定的 public成员字段类对象。</li>
+</ul>
+</li>
+<li><strong>Field[] getDeclaredFields()</strong><ul>
+<li>返回一个 Field对象，反射 所有可访问的 已声明字段类对象。（不考虑修饰符）</li>
+</ul>
+</li>
+<li><strong>Field getDeclaredField(String name)</strong>  <ul>
+<li>返回一个 Field对象数组，反射 指定已声明字段类对象。（不考虑修饰符）<blockquote>
+<p>Person类中的成员变量</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//    public修饰符</span></span><br><span class="line">    <span class="keyword">public</span> String publicName;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> publicAge;</span><br><span class="line"><span class="comment">//    private修饰符</span></span><br><span class="line">    <span class="keyword">private</span> String privateName;</span><br><span class="line"><span class="comment">//    protected修饰符</span></span><br><span class="line">    <span class="keyword">protected</span> String protectedName;</span><br><span class="line"><span class="comment">//    无修饰符</span></span><br><span class="line">    String name;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>获取Person类中的成员变量</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> Class pc = Person.class;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* getField("") */</span></span><br><span class="line">Field fie = pc.getField(<span class="string">"publicName"</span>);</span><br><span class="line">	<span class="comment">// public java.lang.String  test.Person.publicName</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* getFields() */</span></span><br><span class="line">Field[] fies = pc.getFields();</span><br><span class="line">    <span class="comment">// public java.lang.String  test.Person.publicName</span></span><br><span class="line">	<span class="comment">// public int  test.Person.publicAge</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* getDeclaredField("") */</span></span><br><span class="line">Field fie = pc.getDeclaredField(<span class="string">"privateName"</span>);</span><br><span class="line">privateName.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">	<span class="comment">// private java.lang.String test.Person.privateName</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* getDeclaradFields() */</span></span><br><span class="line">Field[] fies = pc.getDeclaredFields();</span><br><span class="line"><span class="keyword">for</span> (Field fie : fies) &#123;</span><br><span class="line">	fie.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">// public java.lang.String test.Person.publicName</span></span><br><span class="line">    <span class="comment">// private java.lang.String test.Person.privateName</span></span><br><span class="line">    <span class="comment">// protected java.lang.String test.Person.protectedName</span></span><br><span class="line">    <span class="comment">// java.lang.String test.Person.name</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="获取构造方法"><a href="#获取构造方法" class="headerlink" title="获取构造方法"></a>获取构造方法</h1><ul>
+<li><strong>Constructor&lt;?&gt;[] getConstructors()</strong>  <ul>
+<li>返回一个 Constructor对象，反射 指定的 public构造类对象。</li>
+</ul>
+</li>
+<li><strong>Constructor&lt;T&gt; getDeclaredConstructor(类&lt;?&gt;… parameterTypes)</strong>  <ul>
+<li>返回一个 Constructor对象，反射 指定的 构造类对象。</li>
+</ul>
+</li>
+<li><strong>Constructor&lt;T&gt; getConstructor(类&lt;?&gt;… parameterTypes)</strong>   <ul>
+<li>返回一个 Constructor对象数组，反射 所有的 public构造类对象。</li>
+</ul>
+</li>
+<li><strong>Constructor&lt;?&gt;[] getDeclaredConstructors()</strong>  <ul>
+<li>返回一个 Constructor对象数组，反射 所有定的 构造类对象。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Person类中的构造方法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//    无参构造</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// public 带参构造（String）</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String publicName)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// private 带参构造（String,String）</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Person</span><span class="params">(String publicName,String privateName)</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>获取Person类中的构造方法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* getConstructor */</span></span><br><span class="line"> Constructor con = pc.getConstructor();</span><br><span class="line"> Object object = constructor.newInstance();</span><br><span class="line">	<span class="comment">// &#123;publicName='null', privateName='null'&#125;</span></span><br><span class="line"> Constructor con =  pc.getConstructor(String.class);</span><br><span class="line"> Object object = constructor2.newInstance(<span class="string">"Cat"</span>);</span><br><span class="line">	<span class="comment">// &#123;publicName='Cat', privateName='null'&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* getDeclaredConstructor */</span></span><br><span class="line"> Constructor con = pc.getDeclaredConstructor(String.class,String.class,);</span><br><span class="line"> declaredConstructor.setAccessible(<span class="keyword">true</span>);</span><br><span class="line"> Object object = declaredConstructor1.newInstance(<span class="string">"Pig"</span>,<span class="string">"Pug"</span>);</span><br><span class="line">	<span class="comment">// &#123;publicName='Pig', privateName='Pug'&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* getConstructors */</span></span><br><span class="line"> Constructor[] cons = pc.getConstructors();</span><br><span class="line">    <span class="comment">// public test.Person()</span></span><br><span class="line">	<span class="comment">// public test.Person(java.lang.String,)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* getDeclaredConstructors */</span></span><br><span class="line"> Constructor[] cons = pc.getDeclaredConstructors();</span><br><span class="line">	<span class="comment">// public test.Person()</span></span><br><span class="line">	<span class="comment">// public test.Person(java.lang.String)</span></span><br><span class="line">	<span class="comment">// private test.Person(java.lang.String,java.lang.String)</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="获取成员方法"><a href="#获取成员方法" class="headerlink" title="获取成员方法"></a>获取成员方法</h1><ul>
+<li><strong>Method getMethod(String name, 类&lt;?&gt;… parameterTypes)</strong>  <ul>
+<li>返回一个 Method对象，反射 指定的 public成员方法类对象。</li>
+</ul>
+</li>
+<li><strong>Method getDeclaredMethod(String name, 类&lt;?&gt;… parameterTypes)</strong>  <ul>
+<li>返回一个 Method对象，反射 指定的 成员方法类对象。</li>
+</ul>
+</li>
+<li><strong>Method[] getMethods()</strong>  <ul>
+<li>返回一个 Method对象数组，反射 所有的 public成员方法类对象。</li>
+</ul>
+</li>
+<li><strong>Method[] getDeclaredMethods()</strong><ul>
+<li>返回一个 Method对象数组，反射 所有的 成员方法类对象。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Person类中的成员方法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//    public修饰符</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">publicMethod111</span><span class="params">()</span></span>&#123;System.out.println(<span class="string">"publicMethod()..."</span>);&#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">publicMethod222</span><span class="params">(String s)</span></span>&#123;System.out.println(<span class="string">"publicMethod("</span>+ s +<span class="string">")..."</span>);&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    private修饰符</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">privateMethod</span><span class="params">()</span></span>&#123;System.out.println(<span class="string">"privateMethod()..."</span>);&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    protected修饰符</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">protectedMethod</span><span class="params">()</span></span>&#123;System.out.println(<span class="string">"publicMethod()..."</span>);&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>获取Person类中的成员方法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> Class pc = Person.class;</span><br><span class="line"> Person p = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line"><span class="comment">/* getMethod */</span></span><br><span class="line"> Method method = personClass.getMethod(<span class="string">"publicMethod111"</span>);</span><br><span class="line">	<span class="comment">// public void test.Person.publicMethod111()</span></span><br><span class="line"> method.invoke(p);</span><br><span class="line">	<span class="comment">// publicMethod()...</span></span><br><span class="line"> Method method = personClass.getMethod(<span class="string">"publicMethod222"</span>, String.class);</span><br><span class="line">	<span class="comment">// public void test.Person.publicMethod222(java.lang.String)</span></span><br><span class="line"> method.invoke(p,<span class="string">"带参"</span>);</span><br><span class="line">	<span class="comment">// publicMethod(带参)...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* getDeclaredMethod */</span></span><br><span class="line">Method method = pc.getDeclaredMethod(<span class="string">"privateMethod"</span>);</span><br><span class="line">	<span class="comment">//private void test.Person.privateMethod()</span></span><br><span class="line">method.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">method.invoke(p);</span><br><span class="line">	<span class="comment">// privateMethod()...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* getMethods */</span></span><br><span class="line"> Method[] methods = personClass.getMethods();</span><br><span class="line"> <span class="comment">//public java.lang.String test.Person.toString()</span></span><br><span class="line"> <span class="comment">//public java.lang.String test.Person.getName()</span></span><br><span class="line"> <span class="comment">//public void test.Person.setName(java.lang.String)</span></span><br><span class="line"> <span class="comment">//public void test.Person.publicMethod111()</span></span><br><span class="line"> <span class="comment">//public void test.Person.publicMethod222(java.lang.String)</span></span><br><span class="line"> <span class="comment">//public void test.Person.setPublicAge(int)</span></span><br><span class="line"> <span class="comment">//public void test.Person.setProtectedName(java.lang.String)</span></span><br><span class="line"> <span class="comment">//public int test.Person.getPublicAge()</span></span><br><span class="line"> <span class="comment">// ................................</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* getDeclaredMethods */</span></span><br><span class="line">Method[] methods = personClass.getDeclaredMethods();</span><br><span class="line"> <span class="comment">// public java.lang.String test.Person.toString()</span></span><br><span class="line"> <span class="comment">// public java.lang.String test.Person.getName()</span></span><br><span class="line"> <span class="comment">// public void test.Person.setName(java.lang.String)</span></span><br><span class="line"> <span class="comment">// public void test.Person.publicMethod111()</span></span><br><span class="line"> <span class="comment">// protected void test.Person.protectedMethod()</span></span><br><span class="line"> <span class="comment">// private void test.Person.privateMethod()</span></span><br><span class="line"> <span class="comment">// public void test.Person.publicMethod222(java.lang.String)</span></span><br><span class="line"> <span class="comment">// public void test.Person.setPublicAge(int)</span></span><br><span class="line"> <span class="comment">// public void test.Person.setProtectedName(java.lang.String)</span></span><br><span class="line"> <span class="comment">// ...............................</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="获取全类名"><a href="#获取全类名" class="headerlink" title="获取全类名"></a>获取全类名</h1><ul>
+<li><strong>String getName()</strong>  </li>
+</ul>
+<h1 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h1><h2 id="操作Field"><a href="#操作Field" class="headerlink" title="操作Field"></a>操作Field</h2><ul>
+<li>设置值<ul>
+<li>void set(Object obj, Object value)  </li>
+</ul>
+</li>
+<li>获取值<ul>
+<li>get(Object obj) </li>
+</ul>
+</li>
+<li>暴力反射：忽略访问权限修饰符的安全检查<ul>
+<li>setAccessible(true):暴力反射<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Class pc = Person.class;</span><br><span class="line">Person p = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line"> <span class="comment">/*public修饰符*/</span></span><br><span class="line">Field fie = pc.getField(<span class="string">"publicName"</span>);</span><br><span class="line">	<span class="comment">// public java.lang.String test.Person.publicName</span></span><br><span class="line">fie.set(p,<span class="string">"cat"</span>);</span><br><span class="line">System.out.print( fie.get(p) );</span><br><span class="line">	<span class="comment">// cat</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">/*private修饰符*/</span></span><br><span class="line">Field fie = pc.getDeclaredField(<span class="string">"privateName"</span>);</span><br><span class="line">	<span class="comment">// private java.lang.String test.Person.privateName</span></span><br><span class="line">pc.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">pc.set(p,<span class="string">"dog"</span>);</span><br><span class="line">System.out.print( fie.get(p) );</span><br><span class="line">	<span class="comment">// dog</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="操作Constructor"><a href="#操作Constructor" class="headerlink" title="操作Constructor"></a>操作Constructor</h2><ul>
+<li>创建对象<ul>
+<li>T newInstance(Object… initargs)  </li>
+</ul>
+</li>
+<li>如果使用空参数构造方法创建对象，操作可以简化<ul>
+<li>Class对象的newInstance方法</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line"> <span class="comment">/* Class */</span></span><br><span class="line"> Class pc = Person.class;</span><br><span class="line"> Object object = pc.newInstance();</span><br><span class="line">	<span class="comment">// &#123;publicName='null', privateName='null'&#125;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Constructor */</span></span><br><span class="line"> Class pc = Person.class;</span><br><span class="line"> Constructor con = pc.getConstructor();</span><br><span class="line"> Object object = constructor.newInstance();</span><br><span class="line">	<span class="comment">// &#123;publicName='null', privateName='null'&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="操作Method"><a href="#操作Method" class="headerlink" title="操作Method"></a>操作Method</h2><ul>
+<li>执行方法<ul>
+<li>Object invoke(Object obj, Object… args)  </li>
+</ul>
+</li>
+<li>获取方法名<ul>
+<li>String getName<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Class pc = Person.class;</span><br><span class="line">Person p = <span class="keyword">new</span> Person();</span><br><span class="line">Method method = personClass.getMethod(<span class="string">"publicMethod111"</span>);</span><br><span class="line">method.invoke(p);</span><br><span class="line"><span class="comment">// publicMethod()...</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/24/MySQL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3887,338 +4246,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/12/Filter&Listener/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="w.">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/12/Filter&Listener/" class="post-title-link" itemprop="url">Filter&Listener</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-12 20:13:57" itemprop="dateCreated datePublished" datetime="2019-07-12T20:13:57+08:00">2019-07-12</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-07-19 16:55:25" itemprop="dateModified" datetime="2019-07-19T16:55:25+08:00">2019-07-19</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">1.7k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">2 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Filter（过滤器）"><a href="#Filter（过滤器）" class="headerlink" title="Filter（过滤器）"></a>Filter（过滤器）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li>web中的过滤器：当访问服务器的资源时，过滤器可以将请求拦截下来，完成一些特殊的功能。<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2></li>
-<li>一般用于完成通用的操作。</li>
-<li>如：登录验证、统一编码处理、敏感字符过滤…</li>
-</ul>
-<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><ul>
-<li>定义一个类，实现接口Filter<ul>
-<li>复写方法</li>
-</ul>
-</li>
-<li>配置拦截路径<ul>
-<li>web.xml</li>
-<li>注解</li>
-</ul>
-</li>
-</ul>
-<h2 id="过滤器细节"><a href="#过滤器细节" class="headerlink" title="过滤器细节"></a>过滤器细节</h2><h3 id="web-xml配置"><a href="#web-xml配置" class="headerlink" title="web.xml配置"></a>web.xml配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>demo1<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>cn.itcast.web.filter.FilterDemo1<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>demo1<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 拦截路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/-<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="过滤器执行流程"><a href="#过滤器执行流程" class="headerlink" title="过滤器执行流程"></a>过滤器执行流程</h2><ol>
-<li>执行过滤器</li>
-<li>执行放行后的资源</li>
-<li>回来执行过滤器放行代码下边的代码<h2 id="过滤器生命周期方法"><a href="#过滤器生命周期方法" class="headerlink" title="过滤器生命周期方法"></a>过滤器生命周期方法</h2></li>
-</ol>
-<ul>
-<li><p>init</p>
-<ul>
-<li>在服务器启动后，会创建Filter对象，然后调用init方法。</li>
-<li>只执行一次。</li>
-<li>用于加载资源。</li>
-</ul>
-</li>
-<li><p>doFilter</p>
-<ul>
-<li>每一次请求被拦截资源时，会执行。</li>
-<li>执行多次。</li>
-</ul>
-</li>
-<li><p>destroy</p>
-<ul>
-<li>在服务器关闭后，Filter对象被销毁。</li>
-<li>如果服务器是正常关闭，则会执行destroy方法。</li>
-<li>只执行一次。</li>
-<li>用于释放资源。<h2 id="过滤器配置详解"><a href="#过滤器配置详解" class="headerlink" title="过滤器配置详解"></a>过滤器配置详解</h2><h3 id="拦截路径配置"><a href="#拦截路径配置" class="headerlink" title="拦截路径配置"></a>拦截路径配置</h3></li>
-</ul>
-</li>
-<li><p>具体资源路径</p>
-<ul>
-<li><strong>/index.jsp</strong>  </li>
-<li>只有访问index.jsp资源时，过滤器才会被执行</li>
-</ul>
-</li>
-<li><p>拦截目录</p>
-<ul>
-<li><strong>/user/*</strong>    </li>
-<li>访问/user下的所有资源时，过滤器都会被执行</li>
-</ul>
-</li>
-<li><p>后缀名拦截</p>
-<ul>
-<li><strong>*.jsp</strong>        </li>
-<li>访问所有后缀名为jsp资源时，过滤器都会被执行</li>
-</ul>
-</li>
-<li><p>拦截所有资源</p>
-<ul>
-<li><strong>/*</strong>        </li>
-<li>访问所有资源时，过滤器都会被执行<h3 id="拦截方式配置"><a href="#拦截方式配置" class="headerlink" title="拦截方式配置"></a>拦截方式配置</h3><blockquote>
-<p>资源被访问的方式</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>注解配置</p>
-<ul>
-<li>设置dispatcherTypes属性<ol>
-<li><strong>REQUEST</strong>：默认值，浏览器直接请求资源。</li>
-<li><strong>FORWARD</strong>：转发访问资源 。</li>
-<li><strong>ERROR</strong>：错误跳转资源。</li>
-<li><strong>ASYNC</strong>：异步访问资源。</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>web.xml配置</p>
-<ul>
-<li>设置&lt;dispatcher&gt;&lt;/dispatcher&gt;标签即可</li>
-</ul>
-</li>
-</ul>
-<h2 id="过滤器链-配置多个过滤器"><a href="#过滤器链-配置多个过滤器" class="headerlink" title="过滤器链(配置多个过滤器)"></a>过滤器链(配置多个过滤器)</h2><ul>
-<li><p>执行顺序：如果有两个过滤器：过滤器1和过滤器2</p>
-<ol>
-<li>过滤器1</li>
-<li>过滤器2</li>
-<li>资源执行</li>
-<li>过滤器2</li>
-<li>过滤器1 </li>
-</ol>
-</li>
-<li><p>过滤器先后顺序问题：</p>
-<ol>
-<li>注解配置：按照类名的字符串比较规则比较，值小的先执行<ul>
-<li>如： AFilter 和 BFilter，AFilter就先执行了。</li>
-</ul>
-</li>
-<li>web.xml配置：&lt;filter-mapping&gt;谁定义在上边，谁先执行</li>
-</ol>
-</li>
-</ul>
-<h1 id="Listener（监听器）"><a href="#Listener（监听器）" class="headerlink" title="Listener（监听器）"></a>Listener（监听器）</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><ul>
-<li>web的三大组件之一<h2 id="事件监听机制"><a href="#事件监听机制" class="headerlink" title="事件监听机制"></a>事件监听机制</h2></li>
-<li>事件：一件事情</li>
-<li>事件源 ：事件发生的地方</li>
-<li>监听器 ：一个对象</li>
-<li>注册监听：将事件、事件源、监听器绑定在一起。 当事件源上发生某个事件后，执行监听器代码<h2 id="运用"><a href="#运用" class="headerlink" title="运用"></a>运用</h2></li>
-<li>监听ServletContext对象的创建和销毁<ul>
-<li>ServletContextListener</li>
-</ul>
-</li>
-<li>方法：<ul>
-<li>ServletContext对象被销毁之前会调用该方法<ul>
-<li>void contextDestroyed(ServletContextEvent sce) </li>
-</ul>
-</li>
-<li>ServletContext对象创建后会调用该方法<ul>
-<li>void contextInitialized(ServletContextEvent sce) </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><h2 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h2></li>
-</ul>
-<ol>
-<li>定义一个类，实现ServletContextListener接口</li>
-<li>复写方法</li>
-<li>配置<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">web.xml</span><br><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>listener.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><ul>
-<li>@WebListener</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4267,7 +4294,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -4355,7 +4382,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">26</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -4464,7 +4495,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">81k</span>
+    <span title="站点总字数">89k</span>
   
 
   
@@ -4473,7 +4504,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:14</span>
+    <span title="站点阅读时长">1:21</span>
   
 </div>
 
