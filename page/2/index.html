@@ -329,6 +329,380 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/13/request/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="w.">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/13/request/" class="post-title-link" itemprop="url">Request</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-13 15:13:57" itemprop="dateCreated datePublished" datetime="2019-07-13T15:13:57+08:00">2019-07-13</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-19 16:46:02" itemprop="dateModified" datetime="2019-07-19T16:46:02+08:00">2019-07-19</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">5.3k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">5 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><ul>
+<li>request和response对象是由服务器创建的。我们来使用它们</li>
+<li>request对象是来获取请求消息，response对象是来设置响应消息</li>
+</ul>
+<h1 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h1><ul>
+<li><strong>ServletRequest 接口</strong> <ul>
+<li><strong>HttpServletRequest  接口</strong> （继承）<ul>
+<li><strong>org.apache.catalina.connector.RequestFacade 类</strong>（Tomcat实现）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><h2 id="获取请求消息数据"><a href="#获取请求消息数据" class="headerlink" title="获取请求消息数据"></a>获取请求消息数据</h2><h3 id="获取请求行数据"><a href="#获取请求行数据" class="headerlink" title="获取请求行数据"></a>获取请求行数据</h3><ul>
+<li>请求行数据：GET  /web/A?name=Cat  HTTP/1.1<ul>
+<li>请求方式： GET<ul>
+<li>String   <strong>getMethod()</strong></li>
+</ul>
+</li>
+<li>请求端的URI(统一资源标识符) 地址：/web/A<ul>
+<li>String   <strong>getRequestURI()</strong></li>
+</ul>
+</li>
+<li>请求端的URL(统一资源定位符)地址： http: //localhost//web/A<ul>
+<li>StringBuilder   <strong>getRequestURL()</strong></li>
+</ul>
+</li>
+<li>虚拟目录：/web<ul>
+<li>String   <strong>getContextPath()</strong></li>
+</ul>
+</li>
+<li>服务器路径：/A<ul>
+<li>String   <strong>getServletPath()</strong></li>
+</ul>
+</li>
+<li>请求参数：name=Cat<ul>
+<li>String   <strong>getQueryString()</strong></li>
+</ul>
+</li>
+<li>HTTP协议的版本：HTTP/1.1<ul>
+<li>String   <strong>getProtocol()</strong></li>
+</ul>
+</li>
+<li>获取客户机的IP地址：<ul>
+<li>String   <strong>getRemoteAddr()</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//请求方式： GET</span></span><br><span class="line">	String method = request.getMethod();</span><br><span class="line"><span class="comment">//请求端的URI地址：/web/A</span></span><br><span class="line">	String requestURI = request.getRequestURI();</span><br><span class="line"><span class="comment">//请求端的URI地址：/web/A</span></span><br><span class="line">	StringBuffer requestURL = request.getRequestURL();</span><br><span class="line"><span class="comment">//虚拟目录：/web</span></span><br><span class="line">	String contextPath = request.getContextPath();</span><br><span class="line"><span class="comment">//服务器路径：/A</span></span><br><span class="line">	String servletPath = request.getServletPath();</span><br><span class="line"><span class="comment">//请求参数：name=Cat</span></span><br><span class="line">	String queryString = request.getQueryString();</span><br><span class="line"><span class="comment">//HTTP协议的版本：HTTP/1.1</span></span><br><span class="line">	String protocol = request.getProtocol();</span><br><span class="line"><span class="comment">//获取客户机的IP地址：</span></span><br><span class="line">	String remoteAddr = request.getRemoteAddr();</span><br><span class="line"><span class="comment">//获取客户机的端口号</span></span><br><span class="line">	<span class="keyword">int</span> remotePort = request.getRemotePort();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="获取请求头数据"><a href="#获取请求头数据" class="headerlink" title="获取请求头数据"></a>获取请求头数据</h3><ul>
+<li>请求头数据<ul>
+<li>通过请求头的名称 获取请求头的值<ul>
+<li>String   <strong>getHeader(String name)</strong></li>
+</ul>
+</li>
+<li>获取 所有的请求头名称（判断浏览器）<ul>
+<li>Enumeration&lt;String&gt;  <strong>getHeaderNames():</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取 所有的请求头名称</span></span><br><span class="line">    Enumeration&lt;String&gt; headerNames = request.getHeaderNames();</span><br><span class="line">    <span class="keyword">while</span> (headerNames.hasMoreElements())&#123;</span><br><span class="line">	<span class="comment">//通过请求头的名称 获取请求头的值</span></span><br><span class="line">        String name = headerNames.nextElement();</span><br><span class="line">        String value = request.getHeader(name);</span><br><span class="line">        System.out.println(name+<span class="string">" ===== "</span>+value);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="获取请求体数据"><a href="#获取请求体数据" class="headerlink" title="获取请求体数据"></a>获取请求体数据</h3><ul>
+<li>请求体（POST请求方式）<ul>
+<li>获取字符输入流（字符数据）<ul>
+<li>BufferedReader   <strong>getReader()</strong></li>
+</ul>
+</li>
+<li>获取字节输入流（所有类型数据）<ul>
+<li>ServletInputStream <strong>getInputStream()</strong><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"/request1"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"hobby"</span> <span class="attr">value</span>=<span class="string">"dance"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"hobby"</span> <span class="attr">value</span>=<span class="string">"sing"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">name</span>=<span class="string">"hobby"</span> <span class="attr">value</span>=<span class="string">"rap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/request1"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Request1</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取字符输入流（字符数据）</span></span><br><span class="line">    BufferedReader reader = request.getReader();</span><br><span class="line">    String line;</span><br><span class="line">    <span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">    	System.out.println(line);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h1><h2 id="获取动态目录"><a href="#获取动态目录" class="headerlink" title="获取动态目录"></a>获取动态目录</h2><ul>
+<li>为了防止虚拟目录变更，建议使用动态虚拟目录<br>  -<strong>getContextPath()</strong>     <h3 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h3></li>
+<li>相对路径<ul>
+<li>相对路径 无法确定唯一资源    ./index.html</li>
+<li>当前资源和目标资源的相对位置关系<ul>
+<li>./  当前目录</li>
+<li>../  后退一级目录</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>绝对路径<ul>
+<li>绝对路径 可以确定唯一资源    /web/index.html </li>
+</ul>
+</li>
+</ul>
+<h2 id="获取请求参数-通用"><a href="#获取请求参数-通用" class="headerlink" title="获取请求参数(通用)"></a>获取请求参数(通用)</h2><ul>
+<li>获取请求参数通用方式</li>
+<li>不论get还是post请求方式都可以使用下列方法来获取请求参数<ul>
+<li>根据参数名称 获取参数值 ：(username) cat<ul>
+<li>String   <strong>getParameter(String name)</strong></li>
+</ul>
+</li>
+<li>根据参数名称 获取参数值的数组：(hobby) dance sing rap<ul>
+<li>String[]  <strong>getParameterValues(String name)</strong> </li>
+</ul>
+</li>
+<li>获取 所有请求的参数名称：username hobby<ul>
+<li>Enumeration&lt;String&gt;  <strong>getParameterNames()</strong></li>
+</ul>
+</li>
+<li>获取 所有参数的map集合：username=cat hobby=sing,rap<ul>
+<li>Map&lt;String,String[]&gt; <strong>getParameterMap()</strong><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//根据参数名称 获取参数值 ：(username)cat</span></span><br><span class="line">    String username = request.getParameter(<span class="string">"username"</span>);</span><br><span class="line">    System.out.println(username);</span><br><span class="line">    </span><br><span class="line"><span class="comment">//根据参数名称 获取参数值的数组：(hobby) dance sing rap</span></span><br><span class="line">    String[] hobbies = request.getParameterValues(<span class="string">"hobby"</span>);</span><br><span class="line">    <span class="keyword">for</span> (String hobby : hobbies) &#123;</span><br><span class="line">    System.out.println(hobby);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取 所有请求的参数名称： username hobby</span></span><br><span class="line">Enumeration&lt;String&gt; parameterNames = request.getParameterNames();</span><br><span class="line"><span class="keyword">while</span> (parameterNames.hasMoreElements())&#123;</span><br><span class="line">String s = parameterNames.nextElement();</span><br><span class="line">System.out.println(s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取 所有参数的map集合</span></span><br><span class="line">    <span class="comment">/* Map集合：获取所有参数 */</span></span><br><span class="line">    Map&lt;String, String[]&gt; parameterMap = request.getParameterMap();</span><br><span class="line">    <span class="comment">/* Set集合：包含参数和参数的值们 */</span></span><br><span class="line">    Set&lt;String&gt; keyset = parameterMap.keySet();</span><br><span class="line">    <span class="comment">/* 迭代器*/</span></span><br><span class="line">    Iterator&lt;String&gt; iterator = keyset.iterator();</span><br><span class="line">    <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">        String key = iterator.next();</span><br><span class="line">        System.out.print(key+<span class="string">": "</span>);</span><br><span class="line">        String[] values = parameterMap.get(key);</span><br><span class="line">        <span class="keyword">for</span> (String value : values) &#123;</span><br><span class="line">        	System.out.print(value+<span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="请求转发（forword）"><a href="#请求转发（forword）" class="headerlink" title="请求转发（forword）"></a>请求转发（forword）</h2><blockquote>
+<p>   请求转发是一种在服务器内部的资源跳转方式。</p>
+</blockquote>
+<ul>
+<li>步骤<ol>
+<li>通过request对象获取请求转发器对象<ul>
+<li>RequestDispatcher <strong>getRequestDispatcher(String path)</strong></li>
+</ul>
+</li>
+<li>使用RequestDispatcher对象来进行转发<ul>
+<li>*<em>forward(ServletRequest request, ServletResponse response) *</em></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>特点<ul>
+<li>浏览器地址栏路径不发生变化。</li>
+<li>只能转发到当前服务器内部资源中。</li>
+<li>多个服务器资源使用一次请求。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Java文件一</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/request111"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Request1</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"助理：我是处理部门的助理，你有什么问题？"</span>);</span><br><span class="line">        System.out.println(<span class="string">"助理：你的问题我解决不了，我去叫经理，稍等。"</span>);</span><br><span class="line">        <span class="comment">//找到“经理的位置”</span></span><br><span class="line">            RequestDispatcher requestDispatcher = 	request.getRequestDispatcher(<span class="string">"/request222"</span>);</span><br><span class="line">        <span class="comment">//把“问题”告诉经理</span></span><br><span class="line">            requestDispatcher.forward(request,response);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Java文件二</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/request222"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Request2</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"经理：我是处理部门的经理，你有什么问题？"</span>);</span><br><span class="line">        System.out.println(<span class="string">"经理：你的问题我已经解决了，你回去吧。"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="共享数据"><a href="#共享数据" class="headerlink" title="共享数据"></a>共享数据</h2><blockquote>
+<p>域对象：一个有作用范围的对象，可以在范围内共享数据。<br>request域：代表一次请求的范围，一般用于让请求转发的多个资源共享数据。</p>
+</blockquote>
+<ul>
+<li>方法<ul>
+<li>存储数据<ul>
+<li>void <strong>setAttribute(String name,Object obj)</strong></li>
+</ul>
+</li>
+<li>通过键 获取值<ul>
+<li>Object <strong>getAttitude(String name)</strong></li>
+</ul>
+</li>
+<li>通过键 移除键值对<ul>
+<li>void <strong>removeAttribute(String name)</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="中文乱码问题"><a href="#中文乱码问题" class="headerlink" title="中文乱码问题"></a>中文乱码问题</h2><ul>
+<li>get方式：tomcat 8 已经将get方式乱码问题解决了。</li>
+<li>post方式：中文或非法数据会乱码。<ul>
+<li>解决：在获取参数前，设置request的编码</li>
+<li><strong>request.setCharacterEncoding(“utf-8”);</strong></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/12/Filter&Listener/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2984,7 +3358,7 @@ redirectPort=&quot;8443&quot; /&gt;</code></pre></li>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3076,7 +3450,9 @@ redirectPort=&quot;8443&quot; /&gt;</code></pre></li>
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                      
+                    
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -3197,7 +3573,7 @@ redirectPort=&quot;8443&quot; /&gt;</code></pre></li>
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">89k</span>
+    <span title="站点总字数">104k</span>
   
 
   
@@ -3206,7 +3582,7 @@ redirectPort=&quot;8443&quot; /&gt;</code></pre></li>
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:21</span>
+    <span title="站点阅读时长">1:35</span>
   
 </div>
 
