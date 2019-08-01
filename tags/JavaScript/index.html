@@ -104,7 +104,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="Water">
-<meta property="og:url" content="https://Water1127.github.io/tags/JavaScript/index.html">
+<meta property="og:url" content="https://Water1127.github.io/tags/Javascript/index.html">
 <meta property="og:site_name" content="Water">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
 
   
   
-  <link rel="canonical" href="https://Water1127.github.io/tags/JavaScript/">
+  <link rel="canonical" href="https://Water1127.github.io/tags/Javascript/">
 
 
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title>标签: JavaScript | Water</title>
+  <title>标签: Javascript | Water</title>
   
 
 
@@ -367,7 +367,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>JavaScript<small>标签</small>
+        <h1>Javascript<small>标签</small>
         </h1>
       </div>
 
@@ -379,43 +379,17 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2019/07/22/JS函数表达式/" itemprop="url">
+          <a class="post-title-link" href="/2019/07/19/jQuery/" itemprop="url">
             
-              <span itemprop="name">关于JS中的函数是否加括号的问题</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-22T21:15:02+08:00" content="2019-07-22">
-          07-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/20/Json/" itemprop="url">
-            
-              <span itemprop="name">JSON</span>
+              <span itemprop="name">jQuery</span>
             
           </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-20T21:15:02+08:00" content="2019-07-20">
-          07-20
+        <time class="post-time" itemprop="dateCreated" datetime="2019-07-19T01:36:24+08:00" content="2019-07-19">
+          07-19
         </time>
       </div>
 
@@ -474,7 +448,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -568,7 +542,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">29</span>
+                      
+                    
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -689,7 +665,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">104k</span>
+    <span title="站点总字数">124k</span>
   
 
   
@@ -698,7 +674,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">1:35</span>
+    <span title="站点阅读时长">1:52</span>
   
 </div>
 
@@ -1114,6 +1090,62 @@
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+function(e) {
       e.stopPropagation();
       if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
