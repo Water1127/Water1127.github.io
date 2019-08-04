@@ -44,7 +44,7 @@
 
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
 
-<link rel="stylesheet" href="//main.css?v=7.2.0">
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
@@ -94,20 +94,12 @@
 
 
 
-  <script>
-  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
-  daovoice('init', {
-      app_id: "0fccaaa9"
-    });
-  daovoice('update');
-  </script>
-
   <meta name="description" content="概念 XML（ Extensible Markup Language），即 可扩展标记语言，标准通用标记语言的子集，是一种用于标记电子文件使其具有结构性的标记语言。 可扩展语言的精华在于其”Extensible”，即 在XML中的标签都是自定义的。">
 <meta name="keywords" content="XML,DTD,Schame,Jsoup,Xpath">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XML">
 <meta property="og:url" content="https://Water1127.github.io/2019/07/10/XML/index.html">
-<meta property="og:site_name" content="Water">
+<meta property="og:site_name" content="Water&#39;s Blog">
 <meta property="og:description" content="概念 XML（ Extensible Markup Language），即 可扩展标记语言，标准通用标记语言的子集，是一种用于标记电子文件使其具有结构性的标记语言。 可扩展语言的精华在于其”Extensible”，即 在XML中的标签都是自定义的。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-08-01T02:09:22.802Z">
@@ -131,7 +123,7 @@
   };
 </script>
 
-  <title>XML | Water</title>
+  <title>XML | Water's Blog</title>
   
 
 
@@ -190,10 +182,14 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Water</span>
+        <span class="site-title">Water's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
+      
+        <p class="site-subtitle">坚持更新博客中...</p>
+      
     
     
   </div>
@@ -365,13 +361,13 @@
     <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/10/XML/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="w.">
-      <meta itemprop="description" content>
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
       <meta itemprop="image" content="/images/header.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water">
+      <meta itemprop="name" content="Water's Blog">
     </span>
 
     
@@ -730,11 +726,48 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取 文件路径</span></span><br><span class="line">	String path = D_Element.class.getClassLoader().getResource(<span class="string">"Jsoup/E_test.html"</span>).getPath();</span><br><span class="line"><span class="comment">// 获取 Document对象</span></span><br><span class="line">	Document document = Jsoup.parse(<span class="keyword">new</span> File(path), <span class="string">"utf-8"</span>);</span><br><span class="line"><span class="comment">// 获取 JXDocument对象</span></span><br><span class="line">	JXDocument jxDocument = <span class="keyword">new</span> JXDocument(document);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 选择所有div标签 */</span></span><br><span class="line">    List&lt;JXNode&gt; jxNodes = jxDocument.selN(<span class="string">"//div"</span>);</span><br><span class="line">    <span class="keyword">for</span> (JXNode jxNode : jxNodes) &#123;</span><br><span class="line">        System.out.println(jxNode);</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 选择所有id属性值为div的div标签  */</span></span><br><span class="line">    List&lt;JXNode&gt; jxNodes2 = jxDocument.selN(<span class="string">"//div[@id='div']"</span>);</span><br><span class="line">    <span class="keyword">for</span> (JXNode jxNode : jxNodes2) &#123;</span><br><span class="line">        System.out.println(jxNode);</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 选择id属性值的所有值*/</span></span><br><span class="line">    List&lt;JXNode&gt; jxNodes3 = jxDocument.selN(<span class="string">"//@id"</span>);</span><br><span class="line">    <span class="keyword">for</span> (JXNode jxNode : jxNodes3) &#123;</span><br><span class="line">        System.out.println(jxNode);</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 选择所有div标签下的div标签 */</span></span><br><span class="line">    List&lt;JXNode&gt; jxNodes4 = jxDocument.selN(<span class="string">"//div/div"</span>);</span><br><span class="line">    <span class="keyword">for</span> (JXNode jxNode : jxNodes4) &#123;</span><br><span class="line">        System.out.println(jxNode);</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 选择所有div标签下的所有带class属性的div标签 */</span></span><br><span class="line">    List&lt;JXNode&gt; jxNodes5 = jxDocument.selN(<span class="string">"//div/div[@class]"</span>);</span><br><span class="line">    <span class="keyword">for</span> (JXNode jxNode : jxNodes5) &#123;</span><br><span class="line">        System.out.println(jxNode);</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"------------------"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 选择 父标签为div，且父标签id属性为div，的div子标签 */</span></span><br><span class="line">    List&lt;JXNode&gt; jxNodes6 = jxDocument.selN(<span class="string">"//div[@id=div]/div"</span>);</span><br><span class="line">    <span class="keyword">for</span> (JXNode jxNode : jxNodes6) &#123;</span><br><span class="line">        System.out.println(jxNode);</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(<span class="string">"------------------"</span>);</span><br></pre></td></tr></table></figure>
       
     </div>
+	
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #f44336;font-size:24px;">-------------本文结束-------------</div>
+    
+</div>
+
+	  
+	</div>
 
     
 
     
     
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>water.</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://Water1127.github.io/2019/07/10/XML/" title="XML">https://Water1127.github.io/2019/07/10/XML/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
     
 
     
@@ -757,7 +790,7 @@
         
       
       <div style="display: inline-block">
-        <img src="/images/wechatpay.png" alt="w. 微信支付">
+        <img src="/images/wechatpay.png" alt="water. 微信支付">
         <p>微信支付</p>
       </div>
     
@@ -766,7 +799,7 @@
         
       
       <div style="display: inline-block">
-        <img src="/images/alipay.png" alt="w. 支付宝">
+        <img src="/images/alipay.png" alt="water. 支付宝">
         <p>支付宝</p>
       </div>
     
@@ -776,9 +809,7 @@
 
       </div>
     
-
-    
-	
+		
     <footer class="post-footer">
       
         
@@ -877,10 +908,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="w.">
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="water.">
             
-              <p class="site-author-name" itemprop="name">w.</p>
-              <div class="site-description motion-element" itemprop="description"></div>
+              <p class="site-author-name" itemprop="name">water.</p>
+              <div class="site-description motion-element" itemprop="description">Few words,many deeds.</div>
           </div>
 
           
@@ -1124,7 +1155,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">w.</span>
+  <span class="author" itemprop="copyrightHolder">water.</span>
 
   
     <span class="post-meta-divider">|</span>
@@ -1153,7 +1184,6 @@
 
 
 
-# 不蒜子
 
         
 
@@ -1223,33 +1253,33 @@
   
 
 
-  <script src="//utils.js?v=7.2.0"></script>
+  <script src="/js/utils.js?v=7.2.0"></script>
 
-  <script src="//motion.js?v=7.2.0"></script>
-
-
-
-  
-  
-
-
-  <script src="//affix.js?v=7.2.0"></script>
-
-  <script src="//schemes/pisces.js?v=7.2.0"></script>
-
+  <script src="/js/motion.js?v=7.2.0"></script>
 
 
 
   
-  <script src="//scrollspy.js?v=7.2.0"></script>
-<script src="//post-details.js?v=7.2.0"></script>
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
 
 
 
   
 
 
-  <script src="//next-boot.js?v=7.2.0"></script>
+  <script src="/js/next-boot.js?v=7.2.0"></script>
 
 
   
