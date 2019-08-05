@@ -1275,14 +1275,14 @@
       <div class="footer-inner">
         <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-user-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">water.</span>
 
   
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
+      <i class="fa fa-file-text-o"></i>
     </span>
     
     <span title="站点总字数">162k</span>
@@ -1291,7 +1291,7 @@
   
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
+      <i class="fa fa-clock-o"></i>
     </span>
     
     <span title="站点阅读时长">2:27</span>
@@ -1306,11 +1306,11 @@
 
 
 
-
         
 <div class="busuanzi-count">
-  <script async src="busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+ <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
+        
   
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
@@ -1807,12 +1807,10 @@
           if (results.length > 0) {
             var counter = results[0];
             
-            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
             
-              .done(function() {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.time + 1);
-              })
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
             
               .fail(function ({ responseJSON }) {
                 console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
