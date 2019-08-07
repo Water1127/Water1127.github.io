@@ -36,6 +36,10 @@
 
 
 
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
 
 
 
@@ -73,7 +77,7 @@
     sidebar: {"position":"left","display":"post","offset":20,"onmobile":false,"dimmer":false},
     back2top: true,
     back2top_sidebar: true,
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -341,6 +345,646 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/06/MyBatis_CRUD_Dao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/06/MyBatis_CRUD_Dao/" class="post-title-link" itemprop="url">Mybatis的CRUD操作（代理持久层实现类）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-06 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-06T14:33:47+08:00">2019-08-06</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-07 23:13:28" itemprop="dateModified" datetime="2019-08-07T23:13:28+08:00">2019-08-07</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">7.7k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">7 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li><a href="https://water1127.github.io/2019/07/09/TyparoMarkdown/">MyBatis环境搭建</a> 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用创建持久层接口实现类的方式来进行MySQL数据库的CRUD操作。</li>
+<li>创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与前一种方法的比较上。</li>
+<li>改变的内容主要是测试类和持久层接口实现类。</li>
+</ul>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
+<li>src/main    <ul>
+<li>java<ul>
+<li>cn/water/dao<ul>
+<li>impl<ul>
+<li><strong>UserDaoImpl.java（持久层接口的实现类）</strong> </li>
+</ul>
+</li>
+<li><strong>UserDao.java（持久层接口）</strong></li>
+</ul>
+</li>
+<li>cn/water/domain<ul>
+<li><strong>User.java（持久层）</strong></li>
+</ul>
+</li>
+<li>resources</li>
+<li>cn/water/dao<ul>
+<li><strong>UserDao.xml（持久层接口的映射配置文件）</strong></li>
+</ul>
+</li>
+<li><strong>SqlMapConfig.xml（MyBatis主配置文件）</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>src/tese<ul>
+<li>java<ul>
+<li>cn/water/test<ul>
+<li><strong>MybatisTest.java（测试文件）</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="持久层接口：UserDao-java"><a href="#持久层接口：UserDao-java" class="headerlink" title="持久层接口：UserDao.java"></a>持久层接口：UserDao.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="持久层接口实现类：UserDaoImp-java"><a href="#持久层接口实现类：UserDaoImp-java" class="headerlink" title="持久层接口实现类：UserDaoImp.java"></a>持久层接口实现类：UserDaoImp.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 私有成员变量</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> SqlSessionFactory factory;</span><br><span class="line">    <span class="keyword">private</span> SqlSession sqlSession;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 带参构造，初始化操作</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> factory</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserDaoImpl</span><span class="params">(SqlSessionFactory factory)</span></span>&#123;</span><br><span class="line">        <span class="comment">/* 5.初始化工厂类 */</span></span><br><span class="line">        <span class="keyword">this</span>.factory = factory;</span><br><span class="line">        <span class="comment">/* 6.通过工厂类，获取产品类，并初始化产品类 */</span></span><br><span class="line">        sqlSession = factory.openSession();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 反初始化操作</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">/* 9.释放资源 */</span></span><br><span class="line">        sqlSession.close();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="映射配置文件：UserDao-xml"><a href="#映射配置文件：UserDao-xml" class="headerlink" title="映射配置文件：UserDao.xml"></a>映射配置文件：UserDao.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 设置映射文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"cn.water.dao.UserDao"</span>&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- ..... --&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- ..... --&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- ..... --&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- ..... --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="测试类：Test-java"><a href="#测试类：Test-java" class="headerlink" title="测试类：Test.java"></a>测试类：Test.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.dao.UserDao;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.QueryVo;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 私有成员变量</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> InputStream inputStream;</span><br><span class="line">    <span class="keyword">private</span> SqlSessionFactory factory;</span><br><span class="line">    <span class="keyword">private</span> UserImpDao userDao;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化操作</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">/* 1.根据主配置文件名，获取其路径的字节输入流 */</span></span><br><span class="line">        inputStream = Resources.getResourceAsStream(<span class="string">"SqlMapConfig.xml"</span>);</span><br><span class="line">        <span class="comment">/* 2.创建工厂实现类 */</span></span><br><span class="line">        SqlSessionFactoryBuilder factoryBuilder = <span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line">        <span class="comment">/* 3.根据主配置文件的字节输入流，获取工厂类 */</span></span><br><span class="line">        factory = factoryBuilder.build(inputStream);</span><br><span class="line">        <span class="comment">/* 4.根据工厂类，通过持久层接口实现类，创建持久层接口 */</span></span><br><span class="line">        userDao = <span class="keyword">new</span> UserImpDaoImpl(factory);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 反初始化操作</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">/* 12.释放资源 */</span></span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    	<span class="comment">// ......</span></span><br><span class="line">      	<span class="comment">// ......      </span></span><br><span class="line">    	<span class="comment">// ......   </span></span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="实现CRUD操作"><a href="#实现CRUD操作" class="headerlink" title="实现CRUD操作"></a>实现CRUD操作</h1><h2 id="查询所有用户"><a href="#查询所有用户" class="headerlink" title="查询所有用户"></a>查询所有用户</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span> </span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="comment">&lt;!-- 参数类型为JavaBean，占位符必须和成员变量的getXXX setXXX方法的小写XXX相同 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">	SELECT * FROM user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口实现类：UserDaoImp.java */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 7.使用产品类对象 调用selectList查询方法 */</span></span><br><span class="line"><span class="comment">/* 参数：持久层接口的映射配置文件的namespace属性值+持久层接口的方法名 */</span></span><br><span class="line">List&lt;UserImp&gt; list = sqlSession.selectList(<span class="string">"cn.water.dao.UserImpDao.findAll"</span>);</span><br><span class="line"><span class="comment">/* 8.返回查询结果 */</span></span><br><span class="line"><span class="keyword">return</span> list;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 10.通过持久层接口，调用方法 */</span></span><br><span class="line">List&lt;UserImp&gt; userList = userDao.findAll();</span><br><span class="line"><span class="comment">/* 11.遍历结果 */</span></span><br><span class="line"><span class="keyword">for</span> (UserImp user : userList) &#123;</span><br><span class="line">    System.out.println(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addUser"</span> <span class="attr">parameterType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    INSERT INTO user VALUES(#&#123;id&#125;,#&#123;username&#125;,#&#123;birthday&#125;,#&#123;sex&#125;,#&#123;address&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口实现类：UserDaoImp.java */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 7.使用产品类对象 调用insert插入方法 */</span></span><br><span class="line">sqlSession.insert(<span class="string">"cn.water.dao.UserImpDao.addUser"</span>,user);</span><br><span class="line"><span class="comment">/* 8.提交事务 */</span></span><br><span class="line">sqlSession.commit();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 10.创建User对象，设置成员变量的值 */</span></span><br><span class="line">UserImp user = <span class="keyword">new</span> UserImp(<span class="number">1</span>,<span class="string">"mybatis addUser"</span>,<span class="keyword">new</span> Date(),<span class="string">"男"</span>,<span class="string">"UserDao"</span>);</span><br><span class="line"><span class="comment">/* 11.根据User对象，通过持久层接口，调用持久层接口的抽象方法 */</span></span><br><span class="line">userDao.addUser(user);</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新用户信息"><a href="#更新用户信息" class="headerlink" title="更新用户信息"></a>更新用户信息</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updateUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUser"</span> <span class="attr">parameterType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    UPDATE user SET username=#&#123;username&#125;,birthday=#&#123;birthday&#125;,sex=#&#123;sex&#125;,address=#&#123;address&#125; WHERE id=#&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口实现类：UserDaoImp.java */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 7.使用产品类对象 调用update更新方法 */</span></span><br><span class="line">sqlSession.update(<span class="string">"cn.water.dao.UserImpDao.updateUser"</span>,user);</span><br><span class="line"><span class="comment">/* 8.提交事务 */</span></span><br><span class="line">sqlSession.commit();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 10.创建User对象，设置成员变量的值 */</span></span><br><span class="line">UserImp user = <span class="keyword">new</span> UserImp(<span class="number">1</span>,<span class="string">"mybatis updateUser"</span>,<span class="keyword">new</span> Date(),<span class="string">"女"</span>,<span class="string">"UserDao"</span>);</span><br><span class="line"><span class="comment">/* 11.根据User对象，通过持久层接口，调用持久层接口的抽象方法 */</span></span><br><span class="line">userDao.updateUser(user);</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteUser</span><span class="params">(Integer userid)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteUser"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.Integer"</span>&gt;</span></span><br><span class="line">    DELETE FROM user WHERE id = #&#123;userId&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口实现类：UserDaoImp.java */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 7.使用产品类对象 调用delete删除方法 */</span></span><br><span class="line">sqlSession.delete(<span class="string">"cn.water.dao.UserImpDao.deleteUser"</span>,userid);</span><br><span class="line"><span class="comment">/* 8.提交事务 */</span></span><br><span class="line">sqlSession.commit();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 10.根据User对象，通过持久层接口，调用持久层接口的抽象方法 */</span></span><br><span class="line">userDao.deleteUser(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="查找单个用户"><a href="#查找单个用户" class="headerlink" title="查找单个用户"></a>查找单个用户</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findOne</span><span class="params">(Integer userid)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findOne"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.Integer"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    SELECT * FROM user WHERE id=#&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口实现类：UserDaoImp.java */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 7.使用产品类对象 调用selectList查询方法 */</span></span><br><span class="line">UserImp user = sqlSession.selectOne(<span class="string">"cn.water.dao.UserImpDao.findOne"</span>, userid);</span><br><span class="line"><span class="comment">/* 8.返回查询结果 */</span></span><br><span class="line"><span class="keyword">return</span> user;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 10.根据User对象，通过持久层接口，调用持久层接口的抽象方法 */</span></span><br><span class="line">UserImp user = userDao.findOne(<span class="number">48</span>);</span><br><span class="line"><span class="comment">/* 11.输出结果 */</span></span><br><span class="line">System.out.println(user);</span><br></pre></td></tr></table></figure>
+
+<h2 id="根据姓名模糊查询"><a href="#根据姓名模糊查询" class="headerlink" title="根据姓名模糊查询"></a>根据姓名模糊查询</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findByName01</span><span class="params">(String username)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findByName02</span><span class="params">(String username)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findByName01"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.String"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    SELECT * FROM user WHERE username LIKE #&#123;username&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findByName02"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.String"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    SELECT * FROM user WHERE username LIKE '%$&#123;value&#125;%' ;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口实现类：UserDaoImp.java */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 7.使用产品类对象 调用selectList查询方法 */</span></span><br><span class="line">List&lt;UserImp&gt; list = sqlSession.selectList(<span class="string">"cn.water.dao.UserImpDao.findByName01"</span>, username);</span><br><span class="line"><span class="comment">/* 8.返回查询结果 */</span></span><br><span class="line"><span class="keyword">return</span> list;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 7.使用产品类对象 调用selectList查询方法 */</span></span><br><span class="line">List&lt;UserImp&gt; list = sqlSession.selectList(<span class="string">"cn.water.dao.UserImpDao.findByName02"</span>, username);</span><br><span class="line"><span class="comment">/* 8.返回查询结果 */</span></span><br><span class="line"><span class="keyword">return</span> list;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 10.根据User对象，通过持久层接口，调用持久层接口的抽象方法 */</span></span><br><span class="line">List&lt;UserImp&gt; userList1 = userDao.findByName01(<span class="string">"%王%"</span>);</span><br><span class="line">List&lt;UserImp&gt; userList2 = userDao.findByName02(<span class="string">"王"</span>);</span><br><span class="line"><span class="comment">/* 11.输出结果 */</span></span><br><span class="line"><span class="keyword">for</span> (UserImp user : userList1) &#123;</span><br><span class="line">    System.out.println(<span class="string">"1--"</span>+user);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (UserImp user : userList2) &#123;</span><br><span class="line">    System.out.println(<span class="string">"2--"</span>+user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询所有用户数量"><a href="#查询所有用户数量" class="headerlink" title="查询所有用户数量"></a>查询所有用户数量</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function">Integer <span class="title">findTotalUser</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findTotalUser"</span> <span class="attr">resultType</span>=<span class="string">"java.lang.Integer"</span>&gt;</span></span><br><span class="line">    SELECT COUNT(*) FROM user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口实现类：UserDaoImp.java */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 7.使用产品类对象 调用selectList查询方法 */</span></span><br><span class="line">Integer count = sqlSession.selectOne(<span class="string">"cn.water.dao.UserImpDao.findTotalUser"</span>);</span><br><span class="line"><span class="comment">/* 8.返回查询结果 */</span></span><br><span class="line"><span class="keyword">return</span> count;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 10.根据User对象，通过持久层接口，调用持久层接口的抽象方法 */</span></span><br><span class="line">Integer totalUser = userDao.findTotalUser();</span><br><span class="line"><span class="comment">/* 11.输出结果 */</span></span><br><span class="line">System.out.println(totalUser);</span><br></pre></td></tr></table></figure>
+
+<h1 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h1><p><img src="http://pvpv3a462.bkt.clouddn.com/StudyNotes/MyBatis_CRUD/pic04.png" alt="pic"></p>
+
+          
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/06/MyBatis_CRUD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/06/MyBatis_CRUD/" class="post-title-link" itemprop="url">Mybatis的CRUD操作（代理持久层实现类）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-06 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-06T14:33:47+08:00">2019-08-06</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-07 23:11:27" itemprop="dateModified" datetime="2019-08-07T23:11:27+08:00">2019-08-07</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">10k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">9 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li><a href="https://water1127.github.io/2019/07/09/TyparoMarkdown/">MyBatis环境搭建</a> 的方式在前面已经详细的介绍过了，本文将通过映射配置文件使用代理持久层接口实现类的方式来进行MySQL数据库的CRUD操作。</li>
+</ul>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
+<li>src/main    <ul>
+<li>java<ul>
+<li>cn/water/dao<ul>
+<li><strong>UserDao.java（持久层接口）</strong></li>
+</ul>
+</li>
+<li>cn/water/domain<ul>
+<li><strong>User.java（持久层）</strong></li>
+</ul>
+</li>
+<li>resources</li>
+<li>cn/water/dao<ul>
+<li><strong>UserDao.xml（持久层接口的映射配置文件）</strong></li>
+</ul>
+</li>
+<li><strong>SqlMapConfig.xml（MyBatis主配置文件）</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>src/tese<ul>
+<li>java<ul>
+<li>cn/water/test<ul>
+<li><strong>MybatisTest.java（测试文件）</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="核心内容"><a href="#核心内容" class="headerlink" title="核心内容"></a>核心内容</h2><ul>
+<li>环境搭建成功后，MySQL数据库的CRUD操作基于以下几个文件的基础上进行修改：<ul>
+<li><strong>UserDao.java（持久层接口）</strong><ul>
+<li>添加CRUD操作的抽象方法。</li>
+</ul>
+</li>
+<li><strong>UserDao.xml（持久层接口的映射配置文件）</strong><ul>
+<li>添加持久层接口的全类名：namespace</li>
+<li>添加CRUD操作的mapper子标签：select、update、insert、</li>
+<li>添加方法名：id</li>
+<li>添加返回值类型的全类名：resultType</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://pvpv3a462.bkt.clouddn.com/StudyNotes/MyBatis_CRUD/pic01.png" alt="pic"></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="持久层接口：UserDao-java"><a href="#持久层接口：UserDao-java" class="headerlink" title="持久层接口：UserDao.java"></a>持久层接口：UserDao.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="映射配置文件：UserDao-xml"><a href="#映射配置文件：UserDao-xml" class="headerlink" title="映射配置文件：UserDao.xml"></a>映射配置文件：UserDao.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 设置映射文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"cn.water.dao.UserDao"</span>&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- ..... --&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- ..... --&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- ..... --&gt;</span></span><br><span class="line">    	<span class="comment">&lt;!-- ..... --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="测试类：Test-java"><a href="#测试类：Test-java" class="headerlink" title="测试类：Test.java"></a>测试类：Test.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.dao.UserDao;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.QueryVo;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 私有成员变量</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> InputStream inputStream;</span><br><span class="line">    <span class="keyword">private</span> SqlSession sqlSession;</span><br><span class="line">    <span class="keyword">private</span> UserDao userDao;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 初始化操作</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">/* 1.根据主配置文件名，获取其路径的字节输入流 */</span></span><br><span class="line">        inputStream = Resources.getResourceAsStream(<span class="string">"SqlMapConfig.xml"</span>);</span><br><span class="line">        <span class="comment">/* 2.创建工厂实现类 */</span></span><br><span class="line">        SqlSessionFactoryBuilder factoryBuilder = <span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line">        <span class="comment">/* 3.根据主配置文件的字节输入流，获取工厂类 */</span></span><br><span class="line">        SqlSessionFactory factory = factoryBuilder.build(inputStream);</span><br><span class="line">        <span class="comment">/* 4.根据工厂类，获取产品类 */</span></span><br><span class="line">        sqlSession = factory.openSession();</span><br><span class="line">        <span class="comment">/* 5.根据持久层接口的字节码文件，获取持久层接口的代理对象 */</span></span><br><span class="line">        userDao = sqlSession.getMapper(UserDao.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 反初始化操作</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">/* 8.释放资源 */</span></span><br><span class="line">        sqlSession.close();</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    	<span class="comment">// ......</span></span><br><span class="line">      	<span class="comment">// ......      </span></span><br><span class="line">    	<span class="comment">// ......   </span></span><br><span class="line">		<span class="comment">// ...... </span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="实现CRUD操作"><a href="#实现CRUD操作" class="headerlink" title="实现CRUD操作"></a>实现CRUD操作</h1><h2 id="查询所有用户"><a href="#查询所有用户" class="headerlink" title="查询所有用户"></a>查询所有用户</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span> </span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="comment">&lt;!-- 参数类型为JavaBean，占位符必须和成员变量的getXXX setXXX方法的小写XXX相同 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">	SELECT * FROM user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 6.通过代理对象，调用持久层接口的抽象方法，并获取返回值 */</span></span><br><span class="line">List&lt;User&gt; userList = userDao.findAll();</span><br><span class="line"><span class="comment">/* 7.遍历 */</span></span><br><span class="line"><span class="keyword">for</span> (User user : userList) &#123;</span><br><span class="line">    System.out.println(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addUser"</span> <span class="attr">parameterType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    INSERT INTO user VALUES(#&#123;id&#125;,#&#123;username&#125;,#&#123;birthday&#125;,#&#123;sex&#125;,#&#123;address&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建User对象，设置成员变量的值 */</span></span><br><span class="line">User user = <span class="keyword">new</span> User(<span class="number">1</span>,<span class="string">"mybatis addUser"</span>,<span class="keyword">new</span> Date(),<span class="string">"男"</span>,<span class="string">"UserDao"</span>);</span><br><span class="line"><span class="comment">/* 6.通过代理对象，调用持久层接口的抽象方法 */</span></span><br><span class="line">userDao.addUser(user);</span><br><span class="line"><span class="comment">/* 7.提交事务!!! */</span></span><br><span class="line">sqlSession.commit();</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新用户信息"><a href="#更新用户信息" class="headerlink" title="更新用户信息"></a>更新用户信息</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updateUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUser"</span> <span class="attr">parameterType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    UPDATE user SET username=#&#123;username&#125;,birthday=#&#123;birthday&#125;,sex=#&#123;sex&#125;,address=#&#123;address&#125; WHERE id=#&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建User对象，设置成员变量的值 */</span></span><br><span class="line">User user = <span class="keyword">new</span> User(<span class="number">1</span>,<span class="string">"mybatis updateUser"</span>,<span class="keyword">new</span> Date(),<span class="string">"女"</span>,<span class="string">"UserDao"</span>);</span><br><span class="line"><span class="comment">/* 6.通过代理对象，调用持久层接口的抽象方法 */</span></span><br><span class="line">userDao.updateUser(user);</span><br><span class="line"><span class="comment">/* 7.提交事务!!! */</span></span><br><span class="line">sqlSession.commit();</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteUser</span><span class="params">(Integer userid)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteUser"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.Integer"</span>&gt;</span></span><br><span class="line">    DELETE FROM user WHERE id = #&#123;userId&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 6.通过代理对象，调用持久层接口的抽象方法 */</span></span><br><span class="line">userDao.deleteUser(<span class="number">1</span>);</span><br><span class="line"><span class="comment">/* 7.提交事务!!! */</span></span><br><span class="line">sqlSession.commit();</span><br></pre></td></tr></table></figure>
+
+<h2 id="查找单个用户"><a href="#查找单个用户" class="headerlink" title="查找单个用户"></a>查找单个用户</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findOne</span><span class="params">(Integer userid)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findOne"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.Integer"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    SELECT * FROM user WHERE id=#&#123;id&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 6.通过代理对象，调用持久层接口的抽象方法 */</span></span><br><span class="line">List&lt;User&gt; userList = userDao.findOne(<span class="number">48</span>);</span><br><span class="line"><span class="comment">/* 7.输出结果 */</span></span><br><span class="line">System.out.println(userList.get(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="根据姓名模糊查询"><a href="#根据姓名模糊查询" class="headerlink" title="根据姓名模糊查询"></a>根据姓名模糊查询</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findByName01</span><span class="params">(String username)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findByName02</span><span class="params">(String username)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findByName01"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.String"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    SELECT * FROM user WHERE username LIKE #&#123;username&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findByName02"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.String"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    SELECT * FROM user WHERE username LIKE '%$&#123;value&#125;%' ;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 6.通过代理对象，调用持久层接口的抽象方法 */</span></span><br><span class="line"><span class="comment">// LIKE #&#123;username&#125; 使用的是PreparedStatement对象</span></span><br><span class="line">List&lt;User&gt; userList1 = userDao.findByName01(<span class="string">"%王%"</span>);</span><br><span class="line"><span class="comment">// LIKE '%$&#123;value&#125;%' 使用的是Statement对象</span></span><br><span class="line">List&lt;User&gt; userList2 = userDao.findByName02(<span class="string">"王"</span>);</span><br><span class="line"><span class="comment">/* 7.输出结果 */</span></span><br><span class="line"><span class="keyword">for</span> (User user : userList1) &#123;</span><br><span class="line">    System.out.println(<span class="string">"1--"</span>+user);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (User user : userList2) &#123;</span><br><span class="line">    System.out.println(<span class="string">"2--"</span>+user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查询所有用户数量"><a href="#查询所有用户数量" class="headerlink" title="查询所有用户数量"></a>查询所有用户数量</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function">Integer <span class="title">findTotalUser</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findTotalUser"</span> <span class="attr">resultType</span>=<span class="string">"java.lang.Integer"</span>&gt;</span></span><br><span class="line">    SELECT COUNT(*) FROM user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 6.通过代理对象，调用持久层接口的抽象方法 */</span></span><br><span class="line">Integer totalUser = userDao.findTotalUser();</span><br><span class="line"><span class="comment">/* 7.输出结果 */</span></span><br><span class="line">System.out.println(totalUser);</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加用户，并且返回ID"><a href="#添加用户，并且返回ID" class="headerlink" title="添加用户，并且返回ID"></a>添加用户，并且返回ID</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addAndReturn</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"addAndReturn"</span> <span class="attr">parameterType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">selectKey</span> <span class="attr">keyProperty</span>=<span class="string">"id"</span> <span class="attr">keyColumn</span>=<span class="string">"id"</span> <span class="attr">resultType</span>=<span class="string">"java.lang.Integer"</span> <span class="attr">order</span>=<span class="string">"AFTER"</span>&gt;</span></span><br><span class="line">        SELECT last_insert_id();</span><br><span class="line">    <span class="tag">&lt;/<span class="name">selectKey</span>&gt;</span></span><br><span class="line">    INSERT INTO user VALUES(NULL,#&#123;username&#125;,#&#123;birthday&#125;,#&#123;sex&#125;,#&#123;address&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建User对象，设置成员变量的值 */</span></span><br><span class="line">User user = <span class="keyword">new</span> User(<span class="number">0</span>,<span class="string">"mybatis addUser"</span>,<span class="keyword">new</span> Date(),<span class="string">"男"</span>,<span class="string">"UserDao"</span>);</span><br><span class="line"><span class="comment">// 保存之前：0</span></span><br><span class="line">System.out.println(user);</span><br><span class="line"><span class="comment">/* 6.通过代理对象，调用持久层接口的抽象方法 */</span></span><br><span class="line">userDao.addAndReturn(user);</span><br><span class="line"><span class="comment">// 保存之后：为实际值</span></span><br><span class="line">System.out.println(user);</span><br></pre></td></tr></table></figure>
+
+<h1 id="OGNL表达式"><a href="#OGNL表达式" class="headerlink" title="OGNL表达式"></a>OGNL表达式</h1><ul>
+<li>Object Graphic Navigation Language：对象图导航语言<ul>
+<li>获取数据的一种表达式，在形式上省略了get<ul>
+<li>Java表达式：user.getUsername();</li>
+<li>OGNL表达式：user.username</li>
+<li>MyBatis表达式：username</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其实在MyBatis的映射配置文件中，我们使用的也是OGNL表达式。只是由于我们再parameterType属性中已经提供了实体类，所以我们可以省略实体类名直接使用属性名来获取数据。</li>
+</ul>
+<h1 id="POJO对象"><a href="#POJO对象" class="headerlink" title="POJO对象"></a>POJO对象</h1><ul>
+<li>POJO对象等同于JavaBean对象，属于实体类的一种。</li>
+<li>我们通过User对象来传递查询条件时，查询条件的范围有限，只能是User对象中有的数据。但在实际操作中，除了需要User对象的查询条件，还会需要其他对象的查询条件，此时使用User对象来传递查询条件显然是不够的。</li>
+<li>通过POJO对象来传递查询条件的优势正在于此，将User对象以及所需的其他对象作为成员变量封装进POJO对象，在查询时，就可以使用多个对象的查询条件。</li>
+</ul>
+<h2 id="根据Query对象的条件，模糊查询"><a href="#根据Query对象的条件，模糊查询" class="headerlink" title="根据Query对象的条件，模糊查询"></a>根据Query对象的条件，模糊查询</h2><ul>
+<li>将User对象封装进QueryVo对象中，并通过QueryVo对象来获取User对象中Username的值，用于进行模糊查询。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* POJO对象：QueryVo.java */</span></span><br><span class="line"><span class="keyword">package</span> cn.water.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QueryVo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> User user;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUser</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.user = user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"> <span class="function">List&lt;User&gt; <span class="title">findByVo</span><span class="params">(QueryVo vo)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findByVo"</span> <span class="attr">parameterType</span>=<span class="string">"cn.water.domain.QueryVo"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">    SELECT * FROM user WHERE username LIKE #&#123;user.username&#125;;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 测试类：Test.java*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建User对象，设置成员变量的值 */</span></span><br><span class="line">User user =<span class="keyword">new</span> User();</span><br><span class="line">user.setUsername(<span class="string">"%王%"</span>);</span><br><span class="line"><span class="comment">/* 创建QueryVo对象，设置成员变量的值 */</span></span><br><span class="line">QueryVo vo = <span class="keyword">new</span> QueryVo();</span><br><span class="line">vo.setUser(user);</span><br><span class="line"><span class="comment">/* 6.通过代理对象，调用持久层接口的抽象方法 */</span></span><br><span class="line">List&lt;User&gt; userList = userDao.findByVo(vo);</span><br><span class="line"><span class="comment">/* 7.输出结果 */</span></span><br><span class="line"><span class="keyword">for</span> (User u : userList) &#123;</span><br><span class="line">    System.out.println(u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="实体类变量和数据库列名的匹配方式"><a href="#实体类变量和数据库列名的匹配方式" class="headerlink" title="实体类变量和数据库列名的匹配方式"></a>实体类变量和数据库列名的匹配方式</h1><h2 id="将实体类变量名设置为数据库列名"><a href="#将实体类变量名设置为数据库列名" class="headerlink" title="将实体类变量名设置为数据库列名"></a>将实体类变量名设置为数据库列名</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成员变量（对应MySQL数据库中的数据）</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> Date birthday;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 省略其他set方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// 省略其他get方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 持久层接口：UserDao.java */</span></span><br><span class="line"></span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span> </span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">	SELECT * FROM user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="为数据库列名设置别名"><a href="#为数据库列名设置别名" class="headerlink" title="为数据库列名设置别名"></a>为数据库列名设置别名</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成员变量（对应MySQL数据库中的数据）</span></span><br><span class="line">    <span class="keyword">private</span> Integer userId;</span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    <span class="keyword">private</span> Date UserBirthday;</span><br><span class="line">    <span class="keyword">private</span> String UserSex;</span><br><span class="line">    <span class="keyword">private</span> String UserAddress;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 省略其他set方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// 省略其他get方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(Integer userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">	SELECT id AS userId,username AS UserName,address AS userAddress,sex AS userSex,birthday AS userBrithday FROM user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="配置对应关系"><a href="#配置对应关系" class="headerlink" title="配置对应关系"></a>配置对应关系</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 成员变量（对应MySQL数据库中的数据）</span></span><br><span class="line">    <span class="keyword">private</span> Integer userId;</span><br><span class="line">    <span class="keyword">private</span> String userName;</span><br><span class="line">    <span class="keyword">private</span> Date UserBirthday;</span><br><span class="line">    <span class="keyword">private</span> String UserSex;</span><br><span class="line">    <span class="keyword">private</span> String UserAddress;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 省略其他set方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// 省略其他get方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(Integer userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 映射配置文件：UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"userMap"</span> <span class="attr">type</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 主键字段的对应 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"userId"</span> <span class="attr">column</span>=<span class="string">"id"</span> &gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 非主键字段的对应 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"userName"</span> <span class="attr">column</span>=<span class="string">"username"</span> &gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"UserBirthday"</span> <span class="attr">column</span>=<span class="string">"birthday"</span> &gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"UserSex"</span> <span class="attr">column</span>=<span class="string">"sex"</span> &gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"UserAddress"</span> <span class="attr">column</span>=<span class="string">"address"</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultMap</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line">	SELECT id * FROM user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h1><p><img src="http://pvpv3a462.bkt.clouddn.com/StudyNotes/MyBatis_CRUD/pic02.png" alt="pic"></p>
+<p><img src="http://pvpv3a462.bkt.clouddn.com/StudyNotes/MyBatis_CRUD/pic03.png" alt="pic"></p>
+
+          
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1257,7 +1901,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-06 14:32:24" itemprop="dateModified" datetime="2019-08-06T14:32:24+08:00">2019-08-06</time>
+                <time title="修改时间：2019-08-07 17:40:52" itemprop="dateModified" datetime="2019-08-07T17:40:52+08:00">2019-08-07</time>
               </span>
             
           
@@ -1328,12 +1972,21 @@
 
       
         
-          <h1 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h1><p>本文是对MyBatis的三种操作方式进行的演示，包括MyBatis环境搭建，以及一些细节知识点。三种方式大同小异，目的是一样的。我为了分别三种操作方式，将以其不同处的特点命名每种操作方法。</p>
-<ol>
-<li>创建映射配置文件的方式</li>
-<li>在持久层接口中使用注解的方式</li>
-<li>创建持久层接口实现类的方式</li>
-</ol>
+          <h1 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h1><p>  本文是对MyBatis的基础操作方式进行的演示，包括MyBatis环境搭建，以及一些细节知识点。<br>  我们会发现其实各种操作方式的步骤大同小异，因为究其根源它们实现的都是相同的功能。<br>  为了让大家能更好的理解，我们来试着分析一下MyBatis究竟帮我们实现了什么样的功能。</p>
+<ul>
+<li>连接MySQL数据库的功能</li>
+<li>连接持久层接口的功能<ul>
+<li>通过映射配置文件的方式</li>
+<li>通过注解的方式</li>
+</ul>
+</li>
+<li>实现持久层接口的功能<ul>
+<li>创建持久层接口实现类</li>
+<li>使用代理的持久层接口实现类</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://pvpv3a462.bkt.clouddn.com/StudyNotes/MyBatis/pic05.png" alt></p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -2021,414 +2674,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/21/redis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/21/redis/" class="post-title-link" itemprop="url">Redis</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-21 15:21:46" itemprop="dateCreated datePublished" datetime="2019-07-21T15:21:46+08:00">2019-07-21</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-01 10:07:41" itemprop="dateModified" datetime="2019-08-01T10:07:41+08:00">2019-08-01</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">8.5k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">8 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h1><ul>
-<li>NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。</li>
-<li>随着互联网web- 0网站的兴起，传统的关系数据库在应付web- 0网站，特别是超大规模和高并发的SNS类型的web- 0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。NoSQL数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，尤其是大数据应用难题。</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/21/redis/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/20/Json/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/20/Json/" class="post-title-link" itemprop="url">JSON</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-20 21:15:02" itemprop="dateCreated datePublished" datetime="2019-07-20T21:15:02+08:00">2019-07-20</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-01 10:06:45" itemprop="dateModified" datetime="2019-08-01T10:06:45+08:00">2019-08-01</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">3.4k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">3 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>JSON：JavaScript 对象表示法（JavaScript Object Notation）</li>
-<li>JSON现在多用于存储和交换文本信息的语法，进行数据的传输。</li>
-<li>JSON 比 XML 更小、更快，更易解析。</li>
-<li>注意：JSON 虽然使用 JavaScript 语法来描述数据对象，但是 JSON 仍然独立于语言和平台。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"employees"</span>: [</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"Bill"</span> , <span class="string">"lastName"</span>:<span class="string">"Gates"</span> &#125;,</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"George"</span> , <span class="string">"lastName"</span>:<span class="string">"Bush"</span> &#125;,</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"Thomas"</span> , <span class="string">"lastName"</span>:<span class="string">"Carter"</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/20/Json/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2477,7 +2722,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2581,7 +2826,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                      
+                    
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2702,7 +2949,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">162k</span>
+    <span title="站点总字数">180k</span>
   
 
   
@@ -2711,7 +2958,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">2:27</span>
+    <span title="站点阅读时长">2:44</span>
   
 </div>
 
@@ -2791,6 +3038,8 @@
 
 
 
+  
+
 
 
 
@@ -2813,6 +3062,9 @@
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
