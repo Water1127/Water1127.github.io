@@ -98,18 +98,18 @@
 
 
 
-  <meta name="description" content="数据库连接池 概念 数据库连接池：其实就是一个容器，存放数据库连接的容器。 当系统初始化后，容器被创建，并且容器会申请一些连接对象。 当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。   优点 节约资源 用户访问高效   接口 数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。 数据库连接池接口： javax.sql.DataSource">
-<meta name="keywords" content="JDBC,MySQL,C3P0,Druid">
+  <meta name="description" content="URL 统一资源定位符（Uniform Resource Locator） 由协议、主机、端口和URI组成 http://localhost:8080/mybatis/demo file://localhost:8080/mybatis/demo.java   表示一个资源位置的唯一标识。    URI 统一资源标识符（Uniform Resource Locator） 在某个应用中，表示一个资源">
+<meta name="keywords" content="MyBatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JDBC连接池">
-<meta property="og:url" content="https://Water1127.github.io/2019/08/02/JDBCDateSource/index.html">
+<meta property="og:title" content="MyBatis配置文件">
+<meta property="og:url" content="https://Water1127.github.io/2019/08/08/MyBatis_Configuration/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
-<meta property="og:description" content="数据库连接池 概念 数据库连接池：其实就是一个容器，存放数据库连接的容器。 当系统初始化后，容器被创建，并且容器会申请一些连接对象。 当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。   优点 节约资源 用户访问高效   接口 数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。 数据库连接池接口： javax.sql.DataSource">
+<meta property="og:description" content="URL 统一资源定位符（Uniform Resource Locator） 由协议、主机、端口和URI组成 http://localhost:8080/mybatis/demo file://localhost:8080/mybatis/demo.java   表示一个资源位置的唯一标识。    URI 统一资源标识符（Uniform Resource Locator） 在某个应用中，表示一个资源">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-02T05:11:38.653Z">
+<meta property="og:updated_time" content="2019-08-07T16:26:06.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JDBC连接池">
-<meta name="twitter:description" content="数据库连接池 概念 数据库连接池：其实就是一个容器，存放数据库连接的容器。 当系统初始化后，容器被创建，并且容器会申请一些连接对象。 当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。   优点 节约资源 用户访问高效   接口 数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。 数据库连接池接口： javax.sql.DataSource">
+<meta name="twitter:title" content="MyBatis配置文件">
+<meta name="twitter:description" content="URL 统一资源定位符（Uniform Resource Locator） 由协议、主机、端口和URI组成 http://localhost:8080/mybatis/demo file://localhost:8080/mybatis/demo.java   表示一个资源位置的唯一标识。    URI 统一资源标识符（Uniform Resource Locator） 在某个应用中，表示一个资源">
 
 
 
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="https://Water1127.github.io/2019/08/02/JDBCDateSource/">
+  <link rel="canonical" href="https://Water1127.github.io/2019/08/08/MyBatis_Configuration/">
 
 
 
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>JDBC连接池 | Water's Blog</title>
+  <title>MyBatis配置文件 | Water's Blog</title>
   
 
 
@@ -362,7 +362,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/02/JDBCDateSource/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/08/MyBatis_Configuration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -379,7 +379,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JDBC连接池
+          <h1 class="post-title" itemprop="name headline">MyBatis配置文件
 
               
             
@@ -405,7 +405,7 @@
                 
               
 
-              <time title="创建时间：2019-08-02 13:10:02 / 修改时间：13:11:38" itemprop="dateCreated datePublished" datetime="2019-08-02T13:10:02+08:00">2019-08-02</time>
+              <time title="创建时间：2019-08-08 00:17:54 / 修改时间：00:26:06" itemprop="dateCreated datePublished" datetime="2019-08-08T00:17:54+08:00">2019-08-08</time>
             </span>
           
 
@@ -442,8 +442,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/02/JDBCDateSource/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/02/JDBCDateSource/" itemprop="commentCount"></span>
+                <a href="/2019/08/08/MyBatis_Configuration/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/08/MyBatis_Configuration/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -469,7 +469,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">5.8k</span>
+              <span title="本文字数">3.1k</span>
             </span>
           
 
@@ -481,7 +481,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">5 分钟</span>
+              <span title="阅读时长">3 分钟</span>
             </span>
           
 
@@ -500,140 +500,52 @@
       
 
       
-        <h1 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h1><ul>
-<li>概念<ul>
-<li>数据库连接池：其实就是一个容器，存放数据库连接的容器。</li>
-<li>当系统初始化后，容器被创建，并且容器会申请一些连接对象。</li>
-<li>当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。</li>
+        <h1 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h1><ul>
+<li>统一资源定位符（Uniform Resource Locator）<ul>
+<li>由协议、主机、端口和URI组成<ul>
+<li><a href="http://localhost:8080/mybatis/demo" target="_blank" rel="noopener">http://localhost:8080/mybatis/demo</a></li>
+<li>file://localhost:8080/mybatis/demo.java</li>
 </ul>
 </li>
-<li>优点<ul>
-<li>节约资源</li>
-<li>用户访问高效</li>
-</ul>
-</li>
-<li>接口<ul>
-<li>数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。</li>
-<li>数据库连接池接口： javax.sql.DataSource  </li>
-</ul>
-</li>
-<li>接口方法<ul>
-<li>获取连接：getConnection()</li>
-<li>归还连接：Connection.close()。<ul>
-<li>Connection对象是从DataSource对象中获取，此时就不再是关闭连接了，而是归还连接。</li>
+<li>表示一个资源位置的唯一标识。</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>接口的实现类<ul>
-<li>C3P0：数据库连接池实现技术</li>
-<li>Druid：数据库连接池实现技术（阿里巴巴）</li>
+<h1 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h1><ul>
+<li>统一资源标识符（Uniform Resource Locator）<ul>
+<li>在某个应用中，表示一个资源位置的唯一标识。</li>
 </ul>
 </li>
 </ul>
 <a id="more"></a>
 
-<h2 id="C3P0"><a href="#C3P0" class="headerlink" title="C3P0"></a>C3P0</h2><ol>
-<li>导入jar包 <ul>
-<li>c3p0-0.9.5.2.jar（数据库连接池技术jar包）</li>
-<li>mchange-commons-java-0.2.12.jar （依赖jar包）</li>
-<li>mysql-connector-java-5.1.37-bin.jar（MySQL数据库驱动jar包）<ul>
-<li>不要忘记导入数据库驱动jar包</li>
+<h1 id="properties标签"><a href="#properties标签" class="headerlink" title="properties标签"></a>properties标签</h1><ul>
+<li>在之前MyBatis主配置文件的环境搭建中，我们将连接数据库的4个基本信息编写在MyBatis主配置文件中，这种方式属于内部配置。</li>
+<li>我们也可以选择外部配置的方式，只要我们通过properties标签来引用外部配置文件信息即可。</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>定义配置文件<ul>
-<li>名称： c3p0.properties 或者 c3p0-config.xml</li>
-<li>路径：src目录下</li>
-</ul>
-</li>
-<li>创建数据库连接池对象<ul>
-<li>ComboPooledDataSource</li>
-</ul>
-</li>
-<li>获取连接对象</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- c3p0-config.xml文件 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">c3p0-config</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 使用默认的配置读取连接池对象 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">default-config</span>&gt;</span></span><br><span class="line">  	<span class="comment">&lt;!--  连接参数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span>&gt;</span>jdbc:mysql://localhost:3306/jdbc<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 连接池参数 --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- initialPoolSize：初始化申请的Connection对象数量 --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- maxPoolSize：最大的的Connection对象数量 --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- checkoutTimeout：超时时间 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialPoolSize"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxPoolSize"</span>&gt;</span>10<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"checkoutTimeout"</span>&gt;</span>3000<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">default-config</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 使用自定义的配置读取连接池对象 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">named-config</span> <span class="attr">name</span>=<span class="string">"otherc3p0"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--  连接参数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span>&gt;</span>jdbc:mysql://localhost:3306/servlet<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 连接池参数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialPoolSize"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxPoolSize"</span>&gt;</span>8<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"checkoutTimeout"</span>&gt;</span>1000<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">named-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">c3p0-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="内部配置"><a href="#内部配置" class="headerlink" title="内部配置"></a>内部配置</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- MyBatis主配置文件 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 内部配置：连接数据库的4个基本信息 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/eesy_mybatis"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 打印获取的数据库连接对象</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line"><span class="comment">//1.导入jar包</span></span><br><span class="line"><span class="comment">//2.定义配置文件</span></span><br><span class="line"><span class="comment">//3.使用默认配置，获取数据库连接池对象</span></span><br><span class="line">DataSource dataSource = <span class="keyword">new</span> ComboPooledDataSource();</span><br><span class="line"><span class="comment">//3.使用自定义配置，获取数据库连接池对象</span></span><br><span class="line"><span class="comment">// DataSource dataSource = new ComboPooledDataSource("otherc3p0");</span></span><br><span class="line"><span class="comment">// 最大获取连接对象为10个，但我们需要获取15个。</span></span><br><span class="line"><span class="comment">// 那就一边获取数据库连接对象，一边归还数据库连接对象。</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;</span><br><span class="line">	<span class="comment">//4.获取 数据库连接对象</span></span><br><span class="line">    Connection connection = dataSource.getConnection();</span><br><span class="line">    System.out.print(i+<span class="string">"  "</span>);</span><br><span class="line">    <span class="comment">//5.打印 数据库连接对象</span></span><br><span class="line">    System.out.println(connection);</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= <span class="number">5</span> &amp;&amp;  i&gt;= <span class="number">9</span> ) &#123;</span><br><span class="line">    	connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="外部配置"><a href="#外部配置" class="headerlink" title="外部配置"></a>外部配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># jdbcConfig.properties配置文件</span><br><span class="line"></span><br><span class="line">jdbc.driver=com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url=jdbc:mysql://localhost:3306/ee42</span><br><span class="line">jdbc.username=root</span><br><span class="line">jdbc.password=1234</span><br></pre></td></tr></table></figure>
 
-<h2 id="Druid"><a href="#Druid" class="headerlink" title="Druid"></a>Druid</h2><ol>
-<li>导入jar包 <ul>
-<li>druid-1.0.9.jar数据库连接池技术jar包）</li>
-<li>mysql-connector-java-5.1.37-bin.jar（MySQL数据库驱动jar包）</li>
-</ul>
-</li>
-<li>定义配置文件<ul>
-<li>任意名称，但必须是properties文件</li>
-<li>任意目录下</li>
-</ul>
-</li>
-<li>加载配置文件</li>
-<li>获取数据库连接池对象<ul>
-<li>通过工厂来来获取  DruidDataSourceFactory</li>
-</ul>
-</li>
-<li>获取连接对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># druid.properties文件</span><br><span class="line">driverClassName=com.mysql.jdbc.Driver</span><br><span class="line">url=jdbc:mysql://127.0.0.1:3306/jdbc</span><br><span class="line">username=root</span><br><span class="line">password=root</span><br><span class="line">initialSize=5</span><br><span class="line">maxActive=10</span><br><span class="line">maxWait=3000</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- MyBatis主配置文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 外部配置的两种方式:resource或url --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"jdbcConfig.properties"</span>&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">properties</span> <span class="attr">url</span>=<span class="string">"file:///C:\Users\water\IDEA-workspace\mybatis_CRUD\src\main\resources\jdbcConfig.properties"</span>&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 配置连接数据库的4个基本信息 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="typeAliases标签"><a href="#typeAliases标签" class="headerlink" title="typeAliases标签"></a>typeAliases标签</h1><ul>
+<li>在之前MyBatis主配置文件的环境搭建中，我们在持久层接口的映射配置文件中的resultType属性中，每次都需要输入冗长的实体类全类名。</li>
+<li>我们可以通过typeAliases标签来取别名，从而避免这个问题。</li>
+<li>别名不区分大小写。<h2 id="实体类全类名"><a href="#实体类全类名" class="headerlink" title="实体类全类名"></a>实体类全类名</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 持久层接口的映射配置文件:UserDao.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">	SELECT * FROM user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 </li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"><span class="comment">//1.导入jar包</span></span><br><span class="line"><span class="comment">//2.定义配置文件</span></span><br><span class="line"><span class="comment">//3.加载配置文件</span></span><br><span class="line">Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">InputStream is = C_Druid.class.getClassLoader().getResourceAsStream(<span class="string">"druid.properties"</span>);</span><br><span class="line">properties.load(is);</span><br><span class="line"><span class="comment">//3.获取 数据库连接池对象</span></span><br><span class="line">DataSource dataSource = DruidDataSourceFactory.createDataSource( properties );</span><br><span class="line"><span class="comment">//4.获取 数据库连接对象</span></span><br><span class="line">Connection connection = dataSource.getConnection();</span><br><span class="line"><span class="comment">//5.打印</span></span><br><span class="line">System.out.println(connection);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</ul>
+<h2 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- MyBatis主配置文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 起别名 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">type</span>=<span class="string">"cn.water.domain.User"</span> <span class="attr">alias</span>=<span class="string">"user"</span>&gt;</span><span class="tag">&lt;/<span class="name">typeAlias</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><ul>
-<li><strong>C3P0</strong><ol>
-<li>导入jar包 <ul>
-<li>c3p0-0.9.5.2.jar（数据库连接池技术jar包）</li>
-<li>mchange-commons-java-0.2.12.jar （依赖jar包）</li>
-<li>mysql-connector-java-5.1.37-bin.jar（MySQL数据库驱动jar包）</li>
-</ul>
-</li>
-<li>定义配置文件<ul>
-<li>名称： c3p0.properties 或者 c3p0-config.xml</li>
-<li>路径：src目录下</li>
-</ul>
-</li>
-<li>创建数据库连接池对象<ul>
-<li>ComboPooledDataSource</li>
-</ul>
-</li>
-<li>获取连接对象</li>
-</ol>
-</li>
-<li><strong>Druid</strong><ol>
-<li>导入jar包 <ul>
-<li>druid-1.0.9.jar数据库连接池技术jar包）</li>
-<li>mysql-connector-java-5.1.37-bin.jar（MySQL数据库驱动jar包）</li>
-</ul>
-</li>
-<li>定义配置文件<ul>
-<li>任意名称，但必须是properties文件</li>
-<li>任意目录下</li>
-</ul>
-</li>
-<li>加载配置文件</li>
-<li>获取数据库连接池对象<ul>
-<li>通过工厂来来获取  DruidDataSourceFactory</li>
-</ul>
-</li>
-<li>获取连接对象</li>
-</ol>
-</li>
-</ul>
-<h1 id="JDBC工具类"><a href="#JDBC工具类" class="headerlink" title="JDBC工具类"></a>JDBC工具类</h1><ul>
-<li>我们需要在JDBC工具类中来编写以下内容：<ul>
-<li>静态变量</li>
-<li>静态代码块</li>
-<li>获取数据库连接池对象的静态方法</li>
-<li>获取数据库连接对象的静态方法</li>
-<li>增删改操作释放资源的静态方法</li>
-<li>查询操作释放资源的静态方法</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JDBCUtils</span> </span>&#123;</span><br><span class="line"><span class="comment">//    [静态变量:数据库连接池]</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> DataSource dataSource;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    [静态代码块：获取数据库连接池对象]</span></span><br><span class="line"><span class="comment">//		使用数据库连接池对象后，我们就不需要挨个获取配置文件中的数据了，因为数据库连接池对象已经帮我们获取了，所以我们只需要获取数据库连接池对象就行了。</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">        	<span class="comment">//1.创建properties对象</span></span><br><span class="line">            Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">			<span class="comment">//2.加载配置文件</span></span><br><span class="line">            properties.load( JDBCUtils.class.getClassLoader(). getResourceAsStream(<span class="string">"druid.properties"</span>));</span><br><span class="line">			<span class="comment">//3.获取 数据库连接池对象</span></span><br><span class="line">            dataSource = DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//[成员方法：获取Connection对象]</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConneciton</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dataSource.getConnection();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//[成员方法：获取DataSource对象]</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DataSource <span class="title">getDataSource</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//[成员方法：增删改操作释放Connection对象、Statement对象]</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">(Statement stat,Connection conn)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">       close(<span class="keyword">null</span>,stat,conn);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">//[成员方法：查询操作释放Connection对象、Statement对象、ResultSet对象]</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">(ResultSet reSet,Statement stat, Connection conn)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (reSet!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                reSet.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (stat!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                stat.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (conn!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 持久层接口的映射配置文件:UserDao.xml --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">	SELECT * FROM user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-
+<h1 id="package标签"><a href="#package标签" class="headerlink" title="package标签"></a>package标签</h1><ul>
+<li>使用TypeAliases标签为每个实体类起别名的确简化了我们的操作，但我们也需要为每一个实体类手动的其别名，仍然有简化的余地。</li>
+<li>为了是操作更加简便，我们可以使用Package标签来指定包，来自动加载包下的所有实体类，并以其类名作为别名，不区分大小写。</li>
+<li>另外，Mappers标签中有Package属性，用于指定包，来自动加载包下的所有映射文件。相当于代替了所有的Mapper标签。</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- MyBatis主配置文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 指定包--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.water.domain"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 指定包 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.water.dao"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
       
     </div>
 	
@@ -671,7 +583,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/02/JDBCDateSource/" title="JDBC连接池">https://Water1127.github.io/2019/08/02/JDBCDateSource/</a>
+    <a href="https://Water1127.github.io/2019/08/08/MyBatis_Configuration/" title="MyBatis配置文件">https://Water1127.github.io/2019/08/08/MyBatis_Configuration/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -727,13 +639,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/JDBC/" rel="tag"># JDBC</a>
-          
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
-          
-            <a href="/tags/C3P0/" rel="tag"># C3P0</a>
-          
-            <a href="/tags/Druid/" rel="tag"># Druid</a>
+            <a href="/tags/MyBatis/" rel="tag"># MyBatis</a>
           
         </div>
       
@@ -746,8 +652,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/01/JDBC/" rel="next" title="JDBC">
-                <i class="fa fa-chevron-left"></i> JDBC
+              <a href="/2019/08/06/MyBatis_CRUD/" rel="next" title="Mybatis的CRUD操作（代理持久层实现类）">
+                <i class="fa fa-chevron-left"></i> Mybatis的CRUD操作（代理持久层实现类）
               </a>
             
           </div>
@@ -755,10 +661,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/02/JdbcTemplate/" rel="prev" title="JdbcTemplate">
-                JdbcTemplate <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1037,7 +939,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库连接池"><span class="nav-number">1.</span> <span class="nav-text">数据库连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C3P0"><span class="nav-number">1.1.</span> <span class="nav-text">C3P0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Druid"><span class="nav-number">1.2.</span> <span class="nav-text">Druid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比"><span class="nav-number">1.3.</span> <span class="nav-text">对比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JDBC工具类"><span class="nav-number">2.</span> <span class="nav-text">JDBC工具类</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#URL"><span class="nav-number">1.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#URI"><span class="nav-number">2.</span> <span class="nav-text">URI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#properties标签"><span class="nav-number">3.</span> <span class="nav-text">properties标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内部配置"><span class="nav-number">3.1.</span> <span class="nav-text">内部配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外部配置"><span class="nav-number">3.2.</span> <span class="nav-text">外部配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#typeAliases标签"><span class="nav-number">4.</span> <span class="nav-text">typeAliases标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实体类全类名"><span class="nav-number">4.1.</span> <span class="nav-text">实体类全类名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#别名"><span class="nav-number">4.2.</span> <span class="nav-text">别名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#package标签"><span class="nav-number">5.</span> <span class="nav-text">package标签</span></a></li></ol></div>
             
 
           </div>

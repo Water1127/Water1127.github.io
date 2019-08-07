@@ -98,19 +98,19 @@
 
 
 
-  <meta name="description" content="搭建环境说明 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用创建持久层接口实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与前一种方法的比较上。 改变的内容主要是测试类和持久层接口实现类。  目录结构 src/main     java cn">
+  <meta name="description" content="搭建环境说明 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用创建持久层接口实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与前一种方法的比较上。 改变的内容主要是测试类和持久层接口实现类。">
 <meta name="keywords" content="Mybatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mybatis的CRUD操作（代理持久层实现类）">
 <meta property="og:url" content="https://Water1127.github.io/2019/08/06/MyBatis_CRUD_Dao/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
-<meta property="og:description" content="搭建环境说明 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用创建持久层接口实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与前一种方法的比较上。 改变的内容主要是测试类和持久层接口实现类。  目录结构 src/main     java cn">
+<meta property="og:description" content="搭建环境说明 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用创建持久层接口实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与前一种方法的比较上。 改变的内容主要是测试类和持久层接口实现类。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://pvpv3a462.bkt.clouddn.com/StudyNotes/MyBatis_CRUD/pic04.png">
-<meta property="og:updated_time" content="2019-08-07T15:13:28.432Z">
+<meta property="og:updated_time" content="2019-08-07T16:25:17.007Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mybatis的CRUD操作（代理持久层实现类）">
-<meta name="twitter:description" content="搭建环境说明 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用创建持久层接口实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与前一种方法的比较上。 改变的内容主要是测试类和持久层接口实现类。  目录结构 src/main     java cn">
+<meta name="twitter:description" content="搭建环境说明 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用创建持久层接口实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与前一种方法的比较上。 改变的内容主要是测试类和持久层接口实现类。">
 <meta name="twitter:image" content="http://pvpv3a462.bkt.clouddn.com/StudyNotes/MyBatis_CRUD/pic04.png">
 
 
@@ -422,7 +422,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-07 23:13:28" itemprop="dateModified" datetime="2019-08-07T23:13:28+08:00">2019-08-07</time>
+                <time title="修改时间：2019-08-08 00:25:17" itemprop="dateModified" datetime="2019-08-08T00:25:17+08:00">2019-08-08</time>
               </span>
             
           
@@ -517,6 +517,8 @@
 <li>创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与前一种方法的比较上。</li>
 <li>改变的内容主要是测试类和持久层接口实现类。</li>
 </ul>
+<a id="more"></a>
+
 <h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
 <li>src/main    <ul>
 <li>java<ul>
@@ -725,8 +727,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/06/MyBatis_CRUD/" rel="next" title="Mybatis的CRUD操作（代理持久层实现类）">
-                <i class="fa fa-chevron-left"></i> Mybatis的CRUD操作（代理持久层实现类）
+              <a href="/2019/08/04/MyBatis_Custom/" rel="next" title="自定义MyBatis">
+                <i class="fa fa-chevron-left"></i> 自定义MyBatis
               </a>
             
           </div>
@@ -734,6 +736,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/06/MyBatis_CRUD/" rel="prev" title="Mybatis的CRUD操作（代理持久层实现类）">
+                Mybatis的CRUD操作（代理持久层实现类） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -808,7 +814,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1052,7 +1058,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">180k</span>
+    <span title="站点总字数">183k</span>
   
 
   
@@ -1061,7 +1067,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">2:44</span>
+    <span title="站点阅读时长">2:47</span>
   
 </div>
 
