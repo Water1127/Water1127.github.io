@@ -389,7 +389,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/10/Spring_Ioc/" class="post-title-link" itemprop="url">Spring</a>
+                <a href="/2019/08/10/Spring_Ioc/" class="post-title-link" itemprop="url">Spring IoC 容器</a>
               
             
           </h1>
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-15 11:17:55" itemprop="dateModified" datetime="2019-08-15T11:17:55+08:00">2019-08-15</time>
+                <time title="修改时间：2019-08-15 14:23:44" itemprop="dateModified" datetime="2019-08-15T14:23:44+08:00">2019-08-15</time>
               </span>
             
           
@@ -500,8 +500,7 @@
 
       
         
-          
-            <h1 id="高内聚低耦合"><a href="#高内聚低耦合" class="headerlink" title="高内聚低耦合"></a>高内聚低耦合</h1><p>在介绍Spring IoC容器之前，我们先要了解一下软件设计好坏的评判标准：耦合和内聚。</p>
+          <h1 id="高内聚低耦合"><a href="#高内聚低耦合" class="headerlink" title="高内聚低耦合"></a>高内聚低耦合</h1><p>在介绍Spring IoC容器之前，我们先要了解一下软件设计好坏的评判标准：耦合和内聚。</p>
 <h2 id="耦合"><a href="#耦合" class="headerlink" title="耦合"></a>耦合</h2><ul>
 <li>耦合性(Coupling)是对模块间关联程度的度量。</li>
 <li>耦合的强弱取决于模块间接口的复杂性、调用模块的方式以及通过界面传送数据的多少。模块间的耦合度是指模块之间的依赖关系，包括控制关系、调用关系、数据传递关系。模块间联系越多，其耦合性越强，同时表明其独立性越差。</li>
@@ -516,171 +515,15 @@
 <li>打个比方，不论是苹果充电接口还是安卓充电接口，都可以使用苹果充电接头，也都可以使用安卓充电接头。（忽略其他影响）</li>
 <li>由此可见，充电接口和充电接头之间的依赖关系松散，独立性高，所以属于低耦合。</li>
 </ul>
-<h2 id="内聚"><a href="#内聚" class="headerlink" title="内聚"></a>内聚</h2><ul>
-<li>内聚（Cohesion）是一个模块内部各成分间关联程度的度量。</li>
-<li>内聚是从功能角度来度量模块内的联系，一个好的内聚模块应当恰好做一件事。</li>
-<li>软件设计中通常用耦合度和内聚度作为衡量模块独立程度的标准。划分模块的一个准则就是高内聚低耦合。</li>
-</ul>
-<h3 id="低内聚"><a href="#低内聚" class="headerlink" title="低内聚"></a>低内聚</h3><ul>
-<li>职责混乱是低内聚。</li>
-<li>打个比方，开发人员除了开发项目，还要参与需求分析；测试人员除了测试项目，还要参与开发。这表示每一个内聚模块都没有做好自己分内的事，因为如果每个内聚模块都做好了自己该做的事情，别的模块是不会有插手的余地的。</li>
-</ul>
-<h3 id="高内聚"><a href="#高内聚" class="headerlink" title="高内聚"></a>高内聚</h3><ul>
-<li>各司其职是高内聚。</li>
-<li>打个比方，软件开发人员完成项目开发，测试人员完成项目测试。这表示每一个内聚模块都做好了自己分内的事情，不需要别的内聚模块来插手，也不需要去别的内裤模块插手。</li>
-</ul>
-<h1 id="控制反转-IoC"><a href="#控制反转-IoC" class="headerlink" title="控制反转 IoC"></a>控制反转 IoC</h1><ul>
-<li>我们在前面已经了解到“高内聚低耦合”是评判软件设计好坏的标准，以及“内聚”和“耦合”的定义。那么我们学习的 Spring 框架是否能帮助我们更好的设计出“高内聚低耦合”的软件呢？答案显然是肯定的。</li>
-<li>但是，Spring 框架使得程序“低耦合”的特点更加突出。因为在 Spring 框架中，由于控制反转 IoC（Inversion of Control）的机制，软件之间的依赖关系由 Spring 框架帮我们管理，这样做有效的降低了对象之间的耦合性。</li>
-<li>那控制反转又是什么呢？<ul>
-<li><strong>控制反转 IoC（Inversion of Control）就是对象之间的依赖关系由容器来创建，对象之间的关系本来是由我们开发者自己创建和维护的，在我们使用Spring框架后，对象之间的关系由容器来创建和维护，将开发者做的事让容器做，这就是控制反转。BeanFactory接口是Spring Ioc容器的核心接口。</strong></li>
-<li>换句话说，就是指<strong>new实例工作不再由程序员来做，而是交给Spring容器来做。new实例工作的控制权不再由程序员掌控。</strong></li>
-</ul>
-</li>
-</ul>
-<h2 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h2><ul>
-<li>我们知道 Spring 框架通过控制反转来帮助我们管理对象，从而降低程序间的耦合。</li>
-<li>那么我们又是如何实现控制反转的呢？<ul>
-<li>我们使用 Spring 最被认同的技术：控制反转的依赖注入模式。具体来说，我们需要通过依赖注入，来实现控制反转。</li>
-</ul>
-</li>
-<li>那么依赖注入又是什么呢？<ul>
-<li>依赖注入 DI  （Dependency Injection） 是一种设计模式，它是我们在使用 Spring 容器的时候，容器通过调用set方法或者是构造器来建立对象之间的依赖关系。</li>
-</ul>
-</li>
-</ul>
-<h1 id="Spring-IoC-容器"><a href="#Spring-IoC-容器" class="headerlink" title="Spring IoC 容器"></a>Spring IoC 容器</h1><ul>
-<li>Spring 容器是 Spring 框架的核心。</li>
-<li><strong>Spring IoC 容器</strong>：是具有依赖注入功能的容器，它可以创建对象，IOC 容器负责实例化、定位、配置应用程序中的对象及建立这些对象间的依赖。<ul>
-<li>Spring IoC 容器中的对象被称为 Spring Beans。</li>
-<li>依赖注入的目标类，被称为JavaBeans。或者是POJO类（Plain Ordinary Java Object）</li>
-</ul>
-</li>
-<li><strong>Spring的工作流程</strong>：<ol>
-<li>通过阅读配置元数据提供的指令</li>
-<li>容器对对象进行实例化，配置和组装。</li>
-</ol>
-</li>
-</ul>
-<h2 id="Spring-环境"><a href="#Spring-环境" class="headerlink" title="Spring 环境"></a>Spring 环境</h2><p>配置pom.xml，注入Spring依赖（只需首次配置）</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Spring-配置元数据"><a href="#Spring-配置元数据" class="headerlink" title="Spring 配置元数据"></a>Spring 配置元数据</h2><ul>
-<li>Spring IoC 容器完全由实际编写的配置元数据的格式解耦。</li>
-<li>把配置元数据提供给 Spring 容器的方法：<ol>
-<li>基于 XML 的配置文件</li>
-<li>基于注解的配置</li>
-<li>基于 Java 的配置</li>
-</ol>
-</li>
-</ul>
-<h2 id="BeanFactory-容器"><a href="#BeanFactory-容器" class="headerlink" title="BeanFactory 容器"></a>BeanFactory 容器</h2><ul>
-<li>它是最简单的容器，给 DI 提供了基本的支持。</li>
-<li>它用org.springframework.beans.factory.BeanFactory 接口来定义。（beans）</li>
-</ul>
-<h3 id="XmlBeanFactory-接口实现"><a href="#XmlBeanFactory-接口实现" class="headerlink" title="XmlBeanFactory 接口实现"></a>XmlBeanFactory 接口实现</h3><p>（1）配置Beans.xml，将 POJO 类注入 Spring 容器</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--  [POJO类]</span></span><br><span class="line"><span class="comment">            bean标签：表示创建一个Bean容器。</span></span><br><span class="line"><span class="comment">                id属性：表示Bean容器的唯一标识符。</span></span><br><span class="line"><span class="comment">                class属性：表示POJO类全类名。     --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"pojoBean"</span> <span class="attr">class</span>=<span class="string">"cn.water.spring_ioc.POJO"</span> &gt;</span></span><br><span class="line">        <span class="comment">&lt;!--  [类成员]</span></span><br><span class="line"><span class="comment">                property标签：表示创建Bean容器的类成员。</span></span><br><span class="line"><span class="comment">                    name属性：表示类成员的唯一标识符。</span></span><br><span class="line"><span class="comment">                    value属性：表示类成员的值。    --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"message"</span> <span class="attr">value</span>=<span class="string">"Hello World!!!!!!!!!!!!!!!!!"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>（2）POJO类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.spring_ioc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">POJO</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMessage</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.message  = message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getMessage</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Your Message : "</span> + message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（3）测试文件，通过 Spring 容器来实例化 POJO 对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.spring_ioc.BeanFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.spring_ioc.POJO;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.BeanFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.xml.XmlBeanFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.io.ClassPathResource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Xml</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  BeanFactory接口  --&gt;  XmlBeanFactory实现类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 1.根据 XMLBean配置文件的位置， 获取 配置的的内容 */</span></span><br><span class="line">        ClassPathResource resource = <span class="keyword">new</span> ClassPathResource(<span class="string">"spring_ioc/Beans.xml"</span>);</span><br><span class="line">        <span class="comment">/* 2.创建 BeanFactory对象 ，初始化 所有Bean对象（Bean配置文件中配置的对象） */</span></span><br><span class="line">        BeanFactory factory = (BeanFactory) <span class="keyword">new</span> XmlBeanFactory(resource);</span><br><span class="line">        <span class="comment">/* 4.根据 配置文件中的BeanId，获取 Bean对象 */</span></span><br><span class="line">        POJO pojo = (POJO) factory.getBean(<span class="string">"pojoBean"</span>);</span><br><span class="line">        <span class="comment">/* 5.执行 Bean对象的方法 */</span></span><br><span class="line">        pojo.getMessage();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="ApplicationContext-容器"><a href="#ApplicationContext-容器" class="headerlink" title="ApplicationContext 容器"></a>ApplicationContext 容器</h2><ul>
-<li>Application Context 是 BeanFactory 的子接口，也被称为 Spring 上下文。 </li>
-<li>Application Context 是 spring 中较高级的容器。和 BeanFactory 类似，它可以加载配置文件中定义的 bean，将所有的 bean 集中在一起，当有请求的时候分配 bean。 </li>
-<li>ApplicationContext 包含 BeanFactory 所有的功能，一般情况下，相对于 BeanFactory，ApplicationContext 会更加优秀。当然，BeanFactory 仍可以在轻量级应用中使用，比如移动设备或者基于 applet 的应用程序。</li>
-<li>该容器是由 org.springframework.context.ApplicationContext 接口定义。（context）</li>
-</ul>
-<h3 id="ClassPathXmlApplicationContext-接口实现"><a href="#ClassPathXmlApplicationContext-接口实现" class="headerlink" title="ClassPathXmlApplicationContext 接口实现"></a>ClassPathXmlApplicationContext 接口实现</h3><ul>
-<li>ClassPathXmlApplicationContext<ul>
-<li>该容器从 XML 文件中加载已被定义的 bean。</li>
-<li>在这里，你需要提供 CLASSPATH 环境变量。</li>
-</ul>
-</li>
-</ul>
-<p>（1）配置Bean.xml，引入Bean对象，并赋值<br>（2）POJO类<br>（3）测试文件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 1.获取Bean配置文件中的内容 */</span></span><br><span class="line"><span class="comment">/* 2.创建BeanFactory对象 */</span></span><br><span class="line"><span class="comment">/* 3.BeanFactory对象初始化所有Bean对象（Bean配置文件中配置的对象） */</span></span><br><span class="line">ApplicationContext applicationContext</span><br><span class="line">= <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"C:\\Users\\water\\IDEA-workspace\\MySpring\\spring_IoC\\src\\main\\resources\\spring_ioc\\Bean.xml"</span>);</span><br><span class="line"><span class="comment">//                = new FileSystemXmlApplicationContext("C:/Users/water/IDEA-workspace/MySpring/spring_IoC/src/main/resources/spring_ioc/Bean.xml");</span></span><br><span class="line"><span class="comment">/* 4.获取BeanFactory对象中你的Bean对象 */</span></span><br><span class="line">HelloWorld hello = (HelloWorld) applicationContext.getBean(<span class="string">"helloWorld"</span>);</span><br><span class="line"><span class="comment">/* 5.执行Bean对象的方法 */</span></span><br><span class="line">hello.getMessage();</span><br></pre></td></tr></table></figure>
-
-<h3 id="FileSystemXmlApplicationContext-接口实现"><a href="#FileSystemXmlApplicationContext-接口实现" class="headerlink" title="FileSystemXmlApplicationContext 接口实现"></a>FileSystemXmlApplicationContext 接口实现</h3><ul>
-<li>FileSystemXmlApplicationContext<ul>
-<li>该容器从 XML 文件中加载已被定义的 bean。</li>
-<li>在这里，你需要提供给构造器 XML 文件的完整路径。<ul>
-<li>C:\\src\\main\\resources\\spring_ioc\\Bean.xml</li>
-<li>C:/src/main/resources/spring_ioc/Bean.xml</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>（1）配置Bean.xml<br>（2）POJO类<br>（3）测试文件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 1.根据 XMLBean配置文件的位置， 获取 配置的的内容 */</span></span><br><span class="line"><span class="comment">/* 2.创建 ApplicationContext对象 ，初始化 所有Bean对象（Bean配置文件中配置的对象） */</span></span><br><span class="line">ApplicationContext applicationContext</span><br><span class="line">                = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"C:\\Users\\water\\IDEA-workspace\\MySpring\\spring_IoC\\src\\main\\resources\\spring_ioc\\Bean.xml"</span>);</span><br><span class="line"><span class="comment">//                = new FileSystemXmlApplicationContext("C:/Users/water/IDEA-workspace/MySpring/spring_IoC/src/main/resources/spring_ioc/Bean.xml");</span></span><br><span class="line"><span class="comment">/* 3.根据 配置文件中的BeanId，获取 Bean对象 */</span></span><br><span class="line">POJO pojo = (POJO) applicationContext.getBean(<span class="string">"pojoBean"</span>);</span><br><span class="line"><span class="comment">/* 4.执行 Bean对象的方法 */</span></span><br><span class="line">pojo.getMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Spring-Bean-容器"><a href="#Spring-Bean-容器" class="headerlink" title="Spring Bean 容器"></a>Spring Bean 容器</h2><ul>
-<li>bean 对象是构成应用程序的支柱。</li>
-<li>bean 是一个被实例化，组装，并通过 Spring IoC 容器所管理的对象。</li>
-<li>bean 是由用容器提供的配置元数据创建的。</li>
-</ul>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>构成每个 bean 定义的一组属性：<br>|      属性       |                描述                |<br>| :————-: | :——————————–: |<br>|      class      | 强制属性，用来指定创建 bean 的类。 |<br>|    name / id    |        唯一的 bean 标识符。        |<br>|      scope      |       指定 bean 对象的作用域       |<br>| constructor-arg |      注入依赖关系（无参构造）      |<br>|   properties    |            注入依赖关系            |<br>| destroy-method  |             初始化方法             |<br>|   init-method   |              销毁方法              |</p>
-<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><ul>
-<li>当在 Spring 中定义一个 bean 时，你必须声明该 bean 的作用域的选项。</li>
-<li>例如，为了强制 Spring 在每次需要时都产生一个新的 bean 实例，你应该声明 bean 的作用域的属性为 prototype。</li>
-<li>同理，如果你想让 Spring 在每次需要时都返回同一个bean实例，你应该声明 bean 的作用域的属性为 singleton。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">作用域</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">singleton</td>
-<td align="center">仅存在一个Bean实例，Bean以单例方式存在<br>（默认值）</td>
-</tr>
-<tr>
-<td align="center">prototype</td>
-<td align="center">每次从容器中调用Bean时，都返回一个新的实例，<br>（即每次调用getBean()时，相当于执行newXxxBean()）</td>
-</tr>
-<tr>
-<td align="center">request</td>
-<td align="center">每次HTTP请求都会创建一个新的Bean<br>（仅适用于WebApplicationContext环境）</td>
-</tr>
-<tr>
-<td align="center">singleton</td>
-<td align="center">同一个HTTP Session共享一个Bean<br>不同Session使用不同的Bean<br>（仅适用于WebApplicationContext环境）</td>
-</tr>
-<tr>
-<td align="center">global-session</td>
-<td align="center">一般用于Portlet应用环境<br>（仅适用于WebApplicationContext环境）</td>
-</tr>
-</tbody></table>
-<p>（1）配置Bean.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- [POJO类]：单例 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"pojoBean_singleton"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"cn.water.spring_ioc.POJO"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">scope</span>=<span class="string">"singleton"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- [POJO类]：多例 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"pojoBean_prototype"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"cn.water.spring_ioc.POJO"</span> </span></span><br><span class="line"><span class="tag">    <span class="attr">scope</span>=<span class="string">"prototype"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>（2）POJO类<br>（3）测试文件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* 1.创建 容器 */</span></span><br><span class="line">ApplicationContext context =</span><br><span class="line">    <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring_ioc/Beans.xml"</span>);</span><br><span class="line"><span class="comment">/* 2.获取 单例的POJO对象 */</span></span><br><span class="line">System.out.println(<span class="string">"单例对象"</span>);</span><br><span class="line">POJO pojo1 = context.getBean(<span class="string">"pojoBean_singleton"</span>, POJO.class);</span><br><span class="line">POJO pojo2 = context.getBean(<span class="string">"pojoBean_singleton"</span>, POJO.class);</span><br><span class="line">POJO pojo3 = context.getBean(<span class="string">"pojoBean_singleton"</span>, POJO.class);</span><br><span class="line">System.out.println(pojo1);</span><br><span class="line">System.out.println(pojo2);</span><br><span class="line">System.out.println(pojo3);</span><br><span class="line"><span class="comment">/* 2.获取 多例的POJO对象 */</span></span><br><span class="line">System.out.println(<span class="string">"多例对象"</span>);</span><br><span class="line">POJO pojo4 = context.getBean(<span class="string">"pojoBean_prototype"</span>, POJO.class);</span><br><span class="line">POJO pojo5 = context.getBean(<span class="string">"pojoBean_prototype"</span>, POJO.class);</span><br><span class="line">POJO pojo6 = context.getBean(<span class="string">"pojoBean_prototype"</span>, POJO.class);</span><br><span class="line">System.out.println(pojo4);</span><br><span class="line">System.out.println(pojo5);</span><br><span class="line">System.out.println(pojo6);</span><br></pre></td></tr></table></figure>
-
-<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
-<li>理解 Spring bean 的生命周期很容易。当一个 bean 被实例化时，它可能需要执行一些初始化使它转换成可用状态。同样，当 bean 不再需要，并且从容器中移除时，可能需要做一些清除工作。</li>
-<li>为了定义安装和拆卸一个 bean，我们只要声明带有 init-method 和/或 destroy-method 参数的 。init-method 属性指定一个方法，在实例化 bean 时，立即调用该方法。同样，destroy-method 指定一个方法，只有从容器中移除 bean 之后，才能调用该方法。</li>
-<li>Bean的生命周期可以表达为：<ul>
-<li>Bean的定义——Bean的初始化——Bean的使用——Bean的销毁 </li>
-</ul>
-</li>
-</ul>
-<p>（1）配置Bean.xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- [POJO类]：生命周期</span></span><br><span class="line"><span class="comment">    init-method属性：指定POJO类中的方法</span></span><br><span class="line"><span class="comment">    destroy-method属性：指定POJO类中的方法  --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"pojoBean_lifycycle"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"cn.water.spring_ioc.POJO"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">init-method</span>=<span class="string">"turnON"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">destroy-method</span>=<span class="string">"turnOFF"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>（2）POJO类（添加两个方法turnON()和turnOFF()）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.spring_ioc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">POJO</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMessage</span><span class="params">(String message)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.message  = message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getMessage</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Your Message : "</span> + message);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnON</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"开启聊天室~~~"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turnOFF</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"关闭聊天室~~~"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（3）测试文件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* 1.创建 抽象容器 */</span></span><br><span class="line">AbstractApplicationContext abstractContext =</span><br><span class="line">    <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring_ioc/Beans.xml"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//     [init-method] -- turnON方法执行了</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 2.获取 单例的POJO对象 */</span></span><br><span class="line">POJO pojo = abstractContext.getBean(<span class="string">"pojoBean_lifycycle"</span>, POJO.class);</span><br><span class="line"><span class="comment">/* 3.注销 抽象容器 */</span></span><br><span class="line">abstractContext.registerShutdownHook();</span><br><span class="line"></span><br><span class="line"><span class="comment">//     [destroy-method] -- turnOFF方法执行了</span></span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/10/Spring_Ioc/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -799,7 +642,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-15 11:22:23" itemprop="dateModified" datetime="2019-08-15T11:22:23+08:00">2019-08-15</time>
+                <time title="修改时间：2019-08-15 14:23:20" itemprop="dateModified" datetime="2019-08-15T14:23:20+08:00">2019-08-15</time>
               </span>
             
           
@@ -870,108 +713,18 @@
 
       
         
-          
-            <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
 <li>Spring是分层的企业级full-stack轻量级开源框架，以IoC和AOP为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，并整合了开源世界中众多著名的第三方框架和类库，逐渐成为使用最多的Java EE企业应用开源框架。</li>
 </ul>
-<h2 id="依赖注入DI（Dependency-Injection）"><a href="#依赖注入DI（Dependency-Injection）" class="headerlink" title="依赖注入DI（Dependency Injection）"></a>依赖注入DI（Dependency Injection）</h2><ul>
-<li>Spring 最被认同的技术是控制反转的依赖注入（DI）模式。</li>
-<li>控制反转（IoC）是一个通用的概念，它可以用许多不同的方式去表达，依赖注入仅仅是控制反转的一个具体的例子。</li>
-<li>当编写一个复杂的 Java 应用程序时，应用程序类应该尽可能的独立于其他的 Java 类来增加这些类可重用可能性，当进行单元测试时，可以使它们独立于其他类进行测试。依赖注入有助于将这些类粘合在一起，并且在同一时间让它们保持独立。</li>
-<li>到底什么是依赖注入？让我们将这两个词分开来看一看。这里将依赖关系部分转化为两个类之间的关联。例如，类 A 依赖于类 B。现在，让我们看一看第二部分，注入。所有这一切都意味着类 B 将通过 IoC 被注入到类 A 中。</li>
-<li>依赖注入可以以向构造函数传递参数的方式发生，或者通过使用 setter 方法。</li>
-</ul>
-<h2 id="面向方面的程序设计AOP（Aspect-Oriented-Programming）"><a href="#面向方面的程序设计AOP（Aspect-Oriented-Programming）" class="headerlink" title="面向方面的程序设计AOP（Aspect-Oriented Programming）"></a>面向方面的程序设计AOP（Aspect-Oriented Programming）</h2><ul>
-<li>Spring 框架的一个关键组件是面向方面的程序设计（AOP）框架。</li>
-<li>一个程序中跨越多个点的功能被称为横切关注点，这些横切关注点在概念上独立于应用程序的业务逻辑。有各种各样常见的很好的关于方面的例子，比如日志记录、声明性事务、安全性，和缓存等等。</li>
-<li>在 OOP 中模块化的关键单元是类，而在 AOP 中模块化的关键单元是方面。AOP 帮助你将横切关注点从它们所影响的对象中分离出来，然而依赖注入帮助你将你的应用程序对象从彼此中分离出来。</li>
-<li>Spring 框架的 AOP 模块提供了面向方面的程序设计实现，可以定义诸如方法拦截器和切入点等，从而使实现功能的代码彻底的解耦出来。</li>
-</ul>
-<h1 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h1><ul>
-<li>Spring 有可能成为所有企业应用程序的一站式服务点，然而，Spring 是模块化的，允许你挑选和选择适用于你的模块，不必要把剩余部分也引入。Spring 框架提供约 20 个模块，可以根据应用程序的要求来使用。</li>
-<li>下面的部分对在 Spring 框架中所有可用的模块给出了详细的介绍。</li>
-</ul>
-<p><img src="http://pvpv3a462.bkt.clouddn.com/StudyNotes/Spring/pic01.png" alt></p>
-<h2 id="核心容器"><a href="#核心容器" class="headerlink" title="核心容器"></a>核心容器</h2><ul>
-<li>Core模块<ul>
-<li>提供了框架的基本组成部分，包括 IoC 和依赖注入功能。</li>
-</ul>
-</li>
-<li>Beans 模块<ul>
-<li>提供 BeanFactory，工厂模式的微妙实现，它移除了编码式单例的需要，并且可以把配置和依赖从实际编码逻辑中解耦。</li>
-</ul>
-</li>
-<li>Context模块<ul>
-<li>建立在由core和 beans 模块的基础上建立起来的，它以一种类似于JNDI注册的方式访问对象。ApplicationContext接口是Context模块的焦点。</li>
-</ul>
-</li>
-<li>SpEL模块（Spring Expression Language）<ul>
-<li>提供了强大的表达式语言，用于在运行时查询和操作对象图。它是JSP2.1规范中定义的统一表达式语言的扩展，支持set和get属性值、属性赋值、方法调用、访问数组集合及索引的内容、逻辑算术运算、命名变量、通过名字从Spring IoC容器检索对象，还支持列表的投影、选择以及聚合等。</li>
-</ul>
-</li>
-</ul>
-<p>它们的完整依赖关系如下图所示：</p>
-<p><img src="http://pvpv3a462.bkt.clouddn.com/StudyNotes/Spring/pic02.png" alt></p>
-<h2 id="数据访问-集成"><a href="#数据访问-集成" class="headerlink" title="数据访问/集成"></a>数据访问/集成</h2><ul>
-<li>JDBC 模块（Java Data Base Connectivity）<ul>
-<li>提供了JDBC抽象层，它消除了冗长的JDBC编码和对数据库供应商特定错误代码的解析。</li>
-</ul>
-</li>
-<li>ORM 模块（Object Relational Mapping）<ul>
-<li>提供了对流行的对象关系映射API的集成，包括JPA、JDO和Hibernate等。通过此模块可以让这些ORM框架和spring的其它功能整合，比如前面提及的事务管理。</li>
-</ul>
-</li>
-<li>OXM 模块（Object XML Mapping）<ul>
-<li>提供了对OXM实现的支持，比如JAXB、Castor、XML Beans、JiBX、XStream等。</li>
-</ul>
-</li>
-<li>JMS 模块（Java Message Service）<ul>
-<li>包含生产（produce）和消费（consume）消息的功能。从Spring 4.1开始，集成了spring-messaging模块。。<br>事务模块为实现特殊接口类及所有的 POJO 支持编程式和声明式事务管理。（注：编程式事务需要自己写beginTransaction()、commit()、rollback()等事务管理方法，声明式事务是通过注解或配置由spring自动处理，编程式事务粒度更细）</li>
-</ul>
-</li>
-</ul>
-<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><ul>
-<li>Web 模块<ul>
-<li>提供面向web的基本功能和面向web的应用上下文，比如多部分（multipart）文件上传功能、使用Servlet监听器初始化IoC容器等。它还包括HTTP客户端以及Spring远程调用中与web相关的部分。。</li>
-</ul>
-</li>
-<li>Web-MVC 模块<ul>
-<li>为web应用提供了模型视图控制（MVC）和REST Web服务的实现。Spring的MVC框架可以使领域模型代码和web表单完全地分离，且可以与Spring框架的其它所有功能进行集成。</li>
-</ul>
-</li>
-<li>Web-Socket 模块<ul>
-<li>为 WebSocket-based 提供了支持，而且在 web 应用程序中提供了客户端和服务器端之间通信的两种方式。</li>
-</ul>
-</li>
-<li>Web-Portlet 模块<ul>
-<li>提供了用于Portlet环境的MVC实现，并反映了spring-webmvc模块的功能。<br>其他</li>
-</ul>
-</li>
-</ul>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li>AOP 模块<ul>
-<li>提供了面向方面的编程实现，允许你定义方法拦截器和切入点对代码进行干净地解耦，从而使实现功能的代码彻底的解耦出来。使用源码级的元数据，可以用类似于.Net属性的方式合并行为信息到代码中。</li>
-</ul>
-</li>
-<li>Aspects 模块<ul>
-<li>提供了与 AspectJ 的集成，这是一个功能强大且成熟的面向切面编程（AOP）框架。</li>
-</ul>
-</li>
-<li>Instrumentation 模块 <ul>
-<li>在一定的应用服务器中提供了类 instrumentation 的支持和类加载器的实现。</li>
-</ul>
-</li>
-<li>Messaging 模块<ul>
-<li>为 STOMP 提供了支持作为在应用程序中 WebSocket 子协议的使用。它也支持一个注解编程模型，它是为了选路和处理来自 WebSocket 客户端的 STOMP 信息。</li>
-</ul>
-</li>
-<li>Testing 模块<ul>
-<li>支持对具有 JUnit 或 TestNG 框架的 Spring 组件的测试。</li>
-</ul>
-</li>
-</ul>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/09/Spring/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1235,6 +988,207 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/06/MyBatis_CRUD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/06/MyBatis_CRUD/" class="post-title-link" itemprop="url">Mybatis的CRUD操作（代理持久层实现类）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-06 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-06T14:33:47+08:00">2019-08-06</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-08 15:13:21" itemprop="dateModified" datetime="2019-08-08T15:13:21+08:00">2019-08-08</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">10k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">9 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li><a href="https://water1127.github.io/2019/07/09/TyparoMarkdown/">MyBatis环境搭建</a> 的方式在前面已经详细的介绍过了，本文将通过映射配置文件使用代理持久层接口实现类的方式来进行MySQL数据库的CRUD操作。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/06/MyBatis_CRUD/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/06/MyBatis_CRUD_Dao/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1375,207 +1329,6 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/2019/08/06/MyBatis_CRUD_Dao/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/06/MyBatis_CRUD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/06/MyBatis_CRUD/" class="post-title-link" itemprop="url">Mybatis的CRUD操作（代理持久层实现类）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-06 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-06T14:33:47+08:00">2019-08-06</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-08 15:13:21" itemprop="dateModified" datetime="2019-08-08T15:13:21+08:00">2019-08-08</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">10k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">9 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
-<li><a href="https://water1127.github.io/2019/07/09/TyparoMarkdown/">MyBatis环境搭建</a> 的方式在前面已经详细的介绍过了，本文将通过映射配置文件使用代理持久层接口实现类的方式来进行MySQL数据库的CRUD操作。</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/06/MyBatis_CRUD/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
