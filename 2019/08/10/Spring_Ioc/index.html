@@ -107,17 +107,19 @@
   </script>
 
   <meta name="description" content="高内聚低耦合在介绍Spring IoC容器之前，我们先要了解一下软件设计好坏的评判标准：耦合和内聚。 耦合 耦合性(Coupling)是对模块间关联程度的度量。 耦合的强弱取决于模块间接口的复杂性、调用模块的方式以及通过界面传送数据的多少。模块间的耦合度是指模块之间的依赖关系，包括控制关系、调用关系、数据传递关系。模块间联系越多，其耦合性越强，同时表明其独立性越差。  高耦合 手机和充电线是高耦合">
-<meta name="keywords" content="Spring,IoC,DI">
+<meta name="keywords" content="Spring,IoC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring IoC 容器">
 <meta property="og:url" content="https://Water1127.github.io/2019/08/10/Spring_Ioc/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
 <meta property="og:description" content="高内聚低耦合在介绍Spring IoC容器之前，我们先要了解一下软件设计好坏的评判标准：耦合和内聚。 耦合 耦合性(Coupling)是对模块间关联程度的度量。 耦合的强弱取决于模块间接口的复杂性、调用模块的方式以及通过界面传送数据的多少。模块间的耦合度是指模块之间的依赖关系，包括控制关系、调用关系、数据传递关系。模块间联系越多，其耦合性越强，同时表明其独立性越差。  高耦合 手机和充电线是高耦合">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T06:23:44.426Z">
+<meta property="og:image" content="http://pvpv3a462.bkt.clouddn.com/StudyNotes/Spring_Ioc/pic02.png">
+<meta property="og:updated_time" content="2019-08-15T06:37:17.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring IoC 容器">
 <meta name="twitter:description" content="高内聚低耦合在介绍Spring IoC容器之前，我们先要了解一下软件设计好坏的评判标准：耦合和内聚。 耦合 耦合性(Coupling)是对模块间关联程度的度量。 耦合的强弱取决于模块间接口的复杂性、调用模块的方式以及通过界面传送数据的多少。模块间的耦合度是指模块之间的依赖关系，包括控制关系、调用关系、数据传递关系。模块间联系越多，其耦合性越强，同时表明其独立性越差。  高耦合 手机和充电线是高耦合">
+<meta name="twitter:image" content="http://pvpv3a462.bkt.clouddn.com/StudyNotes/Spring_Ioc/pic02.png">
 
 
 
@@ -428,7 +430,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-15 14:23:44" itemprop="dateModified" datetime="2019-08-15T14:23:44+08:00">2019-08-15</time>
+                <time title="修改时间：2019-08-15 14:37:17" itemprop="dateModified" datetime="2019-08-15T14:37:17+08:00">2019-08-15</time>
               </span>
             
           
@@ -582,6 +584,7 @@
 </ol>
 </li>
 </ul>
+<p><img src="http://pvpv3a462.bkt.clouddn.com/StudyNotes/Spring_Ioc/pic02.png" alt></p>
 <h2 id="Spring-环境"><a href="#Spring-环境" class="headerlink" title="Spring 环境"></a>Spring 环境</h2><p>配置pom.xml，注入Spring依赖（只需首次配置）</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -797,8 +800,6 @@
           
             <a href="/tags/IoC/" rel="tag"># IoC</a>
           
-            <a href="/tags/DI/" rel="tag"># DI</a>
-          
         </div>
       
 
@@ -819,6 +820,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/11/Spring_DI/" rel="prev" title="Spring 依赖注入">
+                Spring 依赖注入 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -893,7 +898,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-count">28</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1057,7 +1062,7 @@
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://www.canye365.cn" title="https://www.canye365.cn" rel="noopener" target="_blank">残夜</a>
+                    <a href="https://blog.canye365.cn/" title="https://blog.canye365.cn/" rel="noopener" target="_blank">残夜</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
@@ -1143,7 +1148,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">196k</span>
+    <span title="站点总字数">210k</span>
   
 
   
@@ -1152,7 +1157,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">2:58</span>
+    <span title="站点阅读时长">3:11</span>
   
 </div>
 
