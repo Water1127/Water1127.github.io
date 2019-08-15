@@ -106,18 +106,21 @@
   daovoice('update');
   </script>
 
-  <meta name="description" content="数据库连接池 概念 数据库连接池：其实就是一个容器，存放数据库连接的容器。 当系统初始化后，容器被创建，并且容器会申请一些连接对象。 当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。   优点 节约资源 用户访问高效   接口 数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。 数据库连接池接口： javax.sql.DataSource">
-<meta name="keywords" content="JDBC,MySQL,C3P0,Druid">
+  <meta name="description" content="概述 Spring是分层的企业级full-stack轻量级开源框架，以IoC和AOP为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，并整合了开源世界中众多著名的第三方框架和类库，逐渐成为使用最多的Java EE企业应用开源框架。  依赖注入DI（Dependency Injection） Spring 最被认同的技术是控制反转的依赖注">
+<meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JDBC连接池">
-<meta property="og:url" content="https://Water1127.github.io/2019/08/02/JDBCDateSource/index.html">
+<meta property="og:title" content="Spring概述">
+<meta property="og:url" content="https://Water1127.github.io/2019/08/09/Spring/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
-<meta property="og:description" content="数据库连接池 概念 数据库连接池：其实就是一个容器，存放数据库连接的容器。 当系统初始化后，容器被创建，并且容器会申请一些连接对象。 当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。   优点 节约资源 用户访问高效   接口 数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。 数据库连接池接口： javax.sql.DataSource">
+<meta property="og:description" content="概述 Spring是分层的企业级full-stack轻量级开源框架，以IoC和AOP为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，并整合了开源世界中众多著名的第三方框架和类库，逐渐成为使用最多的Java EE企业应用开源框架。  依赖注入DI（Dependency Injection） Spring 最被认同的技术是控制反转的依赖注">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-02T05:11:38.653Z">
+<meta property="og:image" content="http://pvpv3a462.bkt.clouddn.com/StudyNotes/Spring/pic01.png">
+<meta property="og:image" content="http://pvpv3a462.bkt.clouddn.com/StudyNotes/Spring/pic02.png">
+<meta property="og:updated_time" content="2019-08-15T03:22:23.034Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JDBC连接池">
-<meta name="twitter:description" content="数据库连接池 概念 数据库连接池：其实就是一个容器，存放数据库连接的容器。 当系统初始化后，容器被创建，并且容器会申请一些连接对象。 当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。   优点 节约资源 用户访问高效   接口 数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。 数据库连接池接口： javax.sql.DataSource">
+<meta name="twitter:title" content="Spring概述">
+<meta name="twitter:description" content="概述 Spring是分层的企业级full-stack轻量级开源框架，以IoC和AOP为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，并整合了开源世界中众多著名的第三方框架和类库，逐渐成为使用最多的Java EE企业应用开源框架。  依赖注入DI（Dependency Injection） Spring 最被认同的技术是控制反转的依赖注">
+<meta name="twitter:image" content="http://pvpv3a462.bkt.clouddn.com/StudyNotes/Spring/pic01.png">
 
 
 
@@ -125,7 +128,7 @@
 
   
   
-  <link rel="canonical" href="https://Water1127.github.io/2019/08/02/JDBCDateSource/">
+  <link rel="canonical" href="https://Water1127.github.io/2019/08/09/Spring/">
 
 
 
@@ -135,7 +138,7 @@
   };
 </script>
 
-  <title>JDBC连接池 | Water's Blog</title>
+  <title>Spring概述 | Water's Blog</title>
   
 
 
@@ -370,7 +373,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/02/JDBCDateSource/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/09/Spring/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -387,7 +390,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JDBC连接池
+          <h1 class="post-title" itemprop="name headline">Spring概述
 
               
             
@@ -413,13 +416,23 @@
                 
               
 
-              <time title="创建时间：2019-08-02 13:10:02 / 修改时间：13:11:38" itemprop="dateCreated datePublished" datetime="2019-08-02T13:10:02+08:00">2019-08-02</time>
+              <time title="创建时间：2019-08-09 21:12:41" itemprop="dateCreated datePublished" datetime="2019-08-09T21:12:41+08:00">2019-08-09</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-15 11:22:23" itemprop="dateModified" datetime="2019-08-15T11:22:23+08:00">2019-08-15</time>
+              </span>
             
           
 
@@ -450,8 +463,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/02/JDBCDateSource/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/02/JDBCDateSource/" itemprop="commentCount"></span>
+                <a href="/2019/08/09/Spring/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/09/Spring/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -477,7 +490,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">5.8k</span>
+              <span title="本文字数">2.7k</span>
             </span>
           
 
@@ -489,7 +502,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">5 分钟</span>
+              <span title="阅读时长">2 分钟</span>
             </span>
           
 
@@ -508,139 +521,105 @@
       
 
       
-        <h1 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h1><ul>
-<li>概念<ul>
-<li>数据库连接池：其实就是一个容器，存放数据库连接的容器。</li>
-<li>当系统初始化后，容器被创建，并且容器会申请一些连接对象。</li>
-<li>当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。</li>
+        <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>Spring是分层的企业级full-stack轻量级开源框架，以IoC和AOP为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，并整合了开源世界中众多著名的第三方框架和类库，逐渐成为使用最多的Java EE企业应用开源框架。</li>
+</ul>
+<h2 id="依赖注入DI（Dependency-Injection）"><a href="#依赖注入DI（Dependency-Injection）" class="headerlink" title="依赖注入DI（Dependency Injection）"></a>依赖注入DI（Dependency Injection）</h2><ul>
+<li>Spring 最被认同的技术是控制反转的依赖注入（DI）模式。</li>
+<li>控制反转（IoC）是一个通用的概念，它可以用许多不同的方式去表达，依赖注入仅仅是控制反转的一个具体的例子。</li>
+<li>当编写一个复杂的 Java 应用程序时，应用程序类应该尽可能的独立于其他的 Java 类来增加这些类可重用可能性，当进行单元测试时，可以使它们独立于其他类进行测试。依赖注入有助于将这些类粘合在一起，并且在同一时间让它们保持独立。</li>
+<li>到底什么是依赖注入？让我们将这两个词分开来看一看。这里将依赖关系部分转化为两个类之间的关联。例如，类 A 依赖于类 B。现在，让我们看一看第二部分，注入。所有这一切都意味着类 B 将通过 IoC 被注入到类 A 中。</li>
+<li>依赖注入可以以向构造函数传递参数的方式发生，或者通过使用 setter 方法。</li>
+</ul>
+<h2 id="面向方面的程序设计AOP（Aspect-Oriented-Programming）"><a href="#面向方面的程序设计AOP（Aspect-Oriented-Programming）" class="headerlink" title="面向方面的程序设计AOP（Aspect-Oriented Programming）"></a>面向方面的程序设计AOP（Aspect-Oriented Programming）</h2><ul>
+<li>Spring 框架的一个关键组件是面向方面的程序设计（AOP）框架。</li>
+<li>一个程序中跨越多个点的功能被称为横切关注点，这些横切关注点在概念上独立于应用程序的业务逻辑。有各种各样常见的很好的关于方面的例子，比如日志记录、声明性事务、安全性，和缓存等等。</li>
+<li>在 OOP 中模块化的关键单元是类，而在 AOP 中模块化的关键单元是方面。AOP 帮助你将横切关注点从它们所影响的对象中分离出来，然而依赖注入帮助你将你的应用程序对象从彼此中分离出来。</li>
+<li>Spring 框架的 AOP 模块提供了面向方面的程序设计实现，可以定义诸如方法拦截器和切入点等，从而使实现功能的代码彻底的解耦出来。</li>
+</ul>
+<h1 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h1><ul>
+<li>Spring 有可能成为所有企业应用程序的一站式服务点，然而，Spring 是模块化的，允许你挑选和选择适用于你的模块，不必要把剩余部分也引入。Spring 框架提供约 20 个模块，可以根据应用程序的要求来使用。</li>
+<li>下面的部分对在 Spring 框架中所有可用的模块给出了详细的介绍。</li>
+</ul>
+<p><img src="http://pvpv3a462.bkt.clouddn.com/StudyNotes/Spring/pic01.png" alt></p>
+<h2 id="核心容器"><a href="#核心容器" class="headerlink" title="核心容器"></a>核心容器</h2><ul>
+<li>Core模块<ul>
+<li>提供了框架的基本组成部分，包括 IoC 和依赖注入功能。</li>
 </ul>
 </li>
-<li>优点<ul>
-<li>节约资源</li>
-<li>用户访问高效</li>
+<li>Beans 模块<ul>
+<li>提供 BeanFactory，工厂模式的微妙实现，它移除了编码式单例的需要，并且可以把配置和依赖从实际编码逻辑中解耦。</li>
 </ul>
 </li>
-<li>接口<ul>
-<li>数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。</li>
-<li>数据库连接池接口： javax.sql.DataSource  </li>
+<li>Context模块<ul>
+<li>建立在由core和 beans 模块的基础上建立起来的，它以一种类似于JNDI注册的方式访问对象。ApplicationContext接口是Context模块的焦点。</li>
 </ul>
 </li>
-<li>接口方法<ul>
-<li>获取连接：getConnection()</li>
-<li>归还连接：Connection.close()。<ul>
-<li>Connection对象是从DataSource对象中获取，此时就不再是关闭连接了，而是归还连接。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>接口的实现类<ul>
-<li>C3P0：数据库连接池实现技术</li>
-<li>Druid：数据库连接池实现技术（阿里巴巴）</li>
-</ul>
-</li>
-</ul>
-<a id="more"></a>
-
-<h2 id="C3P0"><a href="#C3P0" class="headerlink" title="C3P0"></a>C3P0</h2><ol>
-<li>导入jar包 <ul>
-<li>c3p0-0.9.5.2.jar（数据库连接池技术jar包）</li>
-<li>mchange-commons-java-0.2.12.jar （依赖jar包）</li>
-<li>mysql-connector-java-5.1.37-bin.jar（MySQL数据库驱动jar包）<ul>
-<li>不要忘记导入数据库驱动jar包</li>
+<li>SpEL模块（Spring Expression Language）<ul>
+<li>提供了强大的表达式语言，用于在运行时查询和操作对象图。它是JSP2.1规范中定义的统一表达式语言的扩展，支持set和get属性值、属性赋值、方法调用、访问数组集合及索引的内容、逻辑算术运算、命名变量、通过名字从Spring IoC容器检索对象，还支持列表的投影、选择以及聚合等。</li>
 </ul>
 </li>
 </ul>
-</li>
-<li>定义配置文件<ul>
-<li>名称： c3p0.properties 或者 c3p0-config.xml</li>
-<li>路径：src目录下</li>
+<p>它们的完整依赖关系如下图所示：</p>
+<p><img src="http://pvpv3a462.bkt.clouddn.com/StudyNotes/Spring/pic02.png" alt></p>
+<h2 id="数据访问-集成"><a href="#数据访问-集成" class="headerlink" title="数据访问/集成"></a>数据访问/集成</h2><ul>
+<li>JDBC 模块（Java Data Base Connectivity）<ul>
+<li>提供了JDBC抽象层，它消除了冗长的JDBC编码和对数据库供应商特定错误代码的解析。</li>
 </ul>
 </li>
-<li>创建数据库连接池对象<ul>
-<li>ComboPooledDataSource</li>
+<li>ORM 模块（Object Relational Mapping）<ul>
+<li>提供了对流行的对象关系映射API的集成，包括JPA、JDO和Hibernate等。通过此模块可以让这些ORM框架和spring的其它功能整合，比如前面提及的事务管理。</li>
 </ul>
 </li>
-<li>获取连接对象</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- c3p0-config.xml文件 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">c3p0-config</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 使用默认的配置读取连接池对象 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">default-config</span>&gt;</span></span><br><span class="line">  	<span class="comment">&lt;!--  连接参数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span>&gt;</span>jdbc:mysql://localhost:3306/jdbc<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 连接池参数 --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- initialPoolSize：初始化申请的Connection对象数量 --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- maxPoolSize：最大的的Connection对象数量 --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- checkoutTimeout：超时时间 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialPoolSize"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxPoolSize"</span>&gt;</span>10<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"checkoutTimeout"</span>&gt;</span>3000<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">default-config</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 使用自定义的配置读取连接池对象 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">named-config</span> <span class="attr">name</span>=<span class="string">"otherc3p0"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--  连接参数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span>&gt;</span>jdbc:mysql://localhost:3306/servlet<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 连接池参数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialPoolSize"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxPoolSize"</span>&gt;</span>8<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"checkoutTimeout"</span>&gt;</span>1000<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">named-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">c3p0-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 打印获取的数据库连接对象</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line"><span class="comment">//1.导入jar包</span></span><br><span class="line"><span class="comment">//2.定义配置文件</span></span><br><span class="line"><span class="comment">//3.使用默认配置，获取数据库连接池对象</span></span><br><span class="line">DataSource dataSource = <span class="keyword">new</span> ComboPooledDataSource();</span><br><span class="line"><span class="comment">//3.使用自定义配置，获取数据库连接池对象</span></span><br><span class="line"><span class="comment">// DataSource dataSource = new ComboPooledDataSource("otherc3p0");</span></span><br><span class="line"><span class="comment">// 最大获取连接对象为10个，但我们需要获取15个。</span></span><br><span class="line"><span class="comment">// 那就一边获取数据库连接对象，一边归还数据库连接对象。</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">15</span>; i++) &#123;</span><br><span class="line">	<span class="comment">//4.获取 数据库连接对象</span></span><br><span class="line">    Connection connection = dataSource.getConnection();</span><br><span class="line">    System.out.print(i+<span class="string">"  "</span>);</span><br><span class="line">    <span class="comment">//5.打印 数据库连接对象</span></span><br><span class="line">    System.out.println(connection);</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= <span class="number">5</span> &amp;&amp;  i&gt;= <span class="number">9</span> ) &#123;</span><br><span class="line">    	connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="Druid"><a href="#Druid" class="headerlink" title="Druid"></a>Druid</h2><ol>
-<li>导入jar包 <ul>
-<li>druid-1.0.9.jar数据库连接池技术jar包）</li>
-<li>mysql-connector-java-5.1.37-bin.jar（MySQL数据库驱动jar包）</li>
+<li>OXM 模块（Object XML Mapping）<ul>
+<li>提供了对OXM实现的支持，比如JAXB、Castor、XML Beans、JiBX、XStream等。</li>
 </ul>
 </li>
-<li>定义配置文件<ul>
-<li>任意名称，但必须是properties文件</li>
-<li>任意目录下</li>
-</ul>
-</li>
-<li>加载配置文件</li>
-<li>获取数据库连接池对象<ul>
-<li>通过工厂来来获取  DruidDataSourceFactory</li>
-</ul>
-</li>
-<li>获取连接对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># druid.properties文件</span><br><span class="line">driverClassName=com.mysql.jdbc.Driver</span><br><span class="line">url=jdbc:mysql://127.0.0.1:3306/jdbc</span><br><span class="line">username=root</span><br><span class="line">password=root</span><br><span class="line">initialSize=5</span><br><span class="line">maxActive=10</span><br><span class="line">maxWait=3000</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"><span class="comment">//1.导入jar包</span></span><br><span class="line"><span class="comment">//2.定义配置文件</span></span><br><span class="line"><span class="comment">//3.加载配置文件</span></span><br><span class="line">Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">InputStream is = C_Druid.class.getClassLoader().getResourceAsStream(<span class="string">"druid.properties"</span>);</span><br><span class="line">properties.load(is);</span><br><span class="line"><span class="comment">//3.获取 数据库连接池对象</span></span><br><span class="line">DataSource dataSource = DruidDataSourceFactory.createDataSource( properties );</span><br><span class="line"><span class="comment">//4.获取 数据库连接对象</span></span><br><span class="line">Connection connection = dataSource.getConnection();</span><br><span class="line"><span class="comment">//5.打印</span></span><br><span class="line">System.out.println(connection);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><ul>
-<li><strong>C3P0</strong><ol>
-<li>导入jar包 <ul>
-<li>c3p0-0.9.5.2.jar（数据库连接池技术jar包）</li>
-<li>mchange-commons-java-0.2.12.jar （依赖jar包）</li>
-<li>mysql-connector-java-5.1.37-bin.jar（MySQL数据库驱动jar包）</li>
-</ul>
-</li>
-<li>定义配置文件<ul>
-<li>名称： c3p0.properties 或者 c3p0-config.xml</li>
-<li>路径：src目录下</li>
-</ul>
-</li>
-<li>创建数据库连接池对象<ul>
-<li>ComboPooledDataSource</li>
-</ul>
-</li>
-<li>获取连接对象</li>
-</ol>
-</li>
-<li><strong>Druid</strong><ol>
-<li>导入jar包 <ul>
-<li>druid-1.0.9.jar数据库连接池技术jar包）</li>
-<li>mysql-connector-java-5.1.37-bin.jar（MySQL数据库驱动jar包）</li>
-</ul>
-</li>
-<li>定义配置文件<ul>
-<li>任意名称，但必须是properties文件</li>
-<li>任意目录下</li>
-</ul>
-</li>
-<li>加载配置文件</li>
-<li>获取数据库连接池对象<ul>
-<li>通过工厂来来获取  DruidDataSourceFactory</li>
-</ul>
-</li>
-<li>获取连接对象</li>
-</ol>
-</li>
-</ul>
-<h1 id="JDBC工具类"><a href="#JDBC工具类" class="headerlink" title="JDBC工具类"></a>JDBC工具类</h1><ul>
-<li>我们需要在JDBC工具类中来编写以下内容：<ul>
-<li>静态变量</li>
-<li>静态代码块</li>
-<li>获取数据库连接池对象的静态方法</li>
-<li>获取数据库连接对象的静态方法</li>
-<li>增删改操作释放资源的静态方法</li>
-<li>查询操作释放资源的静态方法</li>
+<li>JMS 模块（Java Message Service）<ul>
+<li>包含生产（produce）和消费（consume）消息的功能。从Spring 4.1开始，集成了spring-messaging模块。。<br>事务模块为实现特殊接口类及所有的 POJO 支持编程式和声明式事务管理。（注：编程式事务需要自己写beginTransaction()、commit()、rollback()等事务管理方法，声明式事务是通过注解或配置由spring自动处理，编程式事务粒度更细）</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JDBCUtils</span> </span>&#123;</span><br><span class="line"><span class="comment">//    [静态变量:数据库连接池]</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> DataSource dataSource;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    [静态代码块：获取数据库连接池对象]</span></span><br><span class="line"><span class="comment">//		使用数据库连接池对象后，我们就不需要挨个获取配置文件中的数据了，因为数据库连接池对象已经帮我们获取了，所以我们只需要获取数据库连接池对象就行了。</span></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">        	<span class="comment">//1.创建properties对象</span></span><br><span class="line">            Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">			<span class="comment">//2.加载配置文件</span></span><br><span class="line">            properties.load( JDBCUtils.class.getClassLoader(). getResourceAsStream(<span class="string">"druid.properties"</span>));</span><br><span class="line">			<span class="comment">//3.获取 数据库连接池对象</span></span><br><span class="line">            dataSource = DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//[成员方法：获取Connection对象]</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConneciton</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dataSource.getConnection();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//[成员方法：获取DataSource对象]</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DataSource <span class="title">getDataSource</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> dataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//[成员方法：增删改操作释放Connection对象、Statement对象]</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">(Statement stat,Connection conn)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">       close(<span class="keyword">null</span>,stat,conn);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">//[成员方法：查询操作释放Connection对象、Statement对象、ResultSet对象]</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">(ResultSet reSet,Statement stat, Connection conn)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (reSet!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                reSet.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (stat!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                stat.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (conn!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                conn.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><ul>
+<li>Web 模块<ul>
+<li>提供面向web的基本功能和面向web的应用上下文，比如多部分（multipart）文件上传功能、使用Servlet监听器初始化IoC容器等。它还包括HTTP客户端以及Spring远程调用中与web相关的部分。。</li>
+</ul>
+</li>
+<li>Web-MVC 模块<ul>
+<li>为web应用提供了模型视图控制（MVC）和REST Web服务的实现。Spring的MVC框架可以使领域模型代码和web表单完全地分离，且可以与Spring框架的其它所有功能进行集成。</li>
+</ul>
+</li>
+<li>Web-Socket 模块<ul>
+<li>为 WebSocket-based 提供了支持，而且在 web 应用程序中提供了客户端和服务器端之间通信的两种方式。</li>
+</ul>
+</li>
+<li>Web-Portlet 模块<ul>
+<li>提供了用于Portlet环境的MVC实现，并反映了spring-webmvc模块的功能。<br>其他</li>
+</ul>
+</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>AOP 模块<ul>
+<li>提供了面向方面的编程实现，允许你定义方法拦截器和切入点对代码进行干净地解耦，从而使实现功能的代码彻底的解耦出来。使用源码级的元数据，可以用类似于.Net属性的方式合并行为信息到代码中。</li>
+</ul>
+</li>
+<li>Aspects 模块<ul>
+<li>提供了与 AspectJ 的集成，这是一个功能强大且成熟的面向切面编程（AOP）框架。</li>
+</ul>
+</li>
+<li>Instrumentation 模块 <ul>
+<li>在一定的应用服务器中提供了类 instrumentation 的支持和类加载器的实现。</li>
+</ul>
+</li>
+<li>Messaging 模块<ul>
+<li>为 STOMP 提供了支持作为在应用程序中 WebSocket 子协议的使用。它也支持一个注解编程模型，它是为了选路和处理来自 WebSocket 客户端的 STOMP 信息。</li>
+</ul>
+</li>
+<li>Testing 模块<ul>
+<li>支持对具有 JUnit 或 TestNG 框架的 Spring 组件的测试。</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -679,7 +658,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/02/JDBCDateSource/" title="JDBC连接池">https://Water1127.github.io/2019/08/02/JDBCDateSource/</a>
+    <a href="https://Water1127.github.io/2019/08/09/Spring/" title="Spring概述">https://Water1127.github.io/2019/08/09/Spring/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -735,13 +714,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/JDBC/" rel="tag"># JDBC</a>
-          
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
-          
-            <a href="/tags/C3P0/" rel="tag"># C3P0</a>
-          
-            <a href="/tags/Druid/" rel="tag"># Druid</a>
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
           
         </div>
       
@@ -754,8 +727,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/01/JDBC/" rel="next" title="JDBC">
-                <i class="fa fa-chevron-left"></i> JDBC
+              <a href="/2019/08/08/MyBatis_Configuration/" rel="next" title="MyBatis配置文件">
+                <i class="fa fa-chevron-left"></i> MyBatis配置文件
               </a>
             
           </div>
@@ -764,8 +737,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/02/JdbcTemplate/" rel="prev" title="JdbcTemplate">
-                JdbcTemplate <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/10/Spring_Ioc/" rel="prev" title="Spring">
+                Spring <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1051,7 +1024,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库连接池"><span class="nav-number">1.</span> <span class="nav-text">数据库连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C3P0"><span class="nav-number">1.1.</span> <span class="nav-text">C3P0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Druid"><span class="nav-number">1.2.</span> <span class="nav-text">Druid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比"><span class="nav-number">1.3.</span> <span class="nav-text">对比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JDBC工具类"><span class="nav-number">2.</span> <span class="nav-text">JDBC工具类</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖注入DI（Dependency-Injection）"><span class="nav-number">1.1.</span> <span class="nav-text">依赖注入DI（Dependency Injection）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向方面的程序设计AOP（Aspect-Oriented-Programming）"><span class="nav-number">1.2.</span> <span class="nav-text">面向方面的程序设计AOP（Aspect-Oriented Programming）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#体系结构"><span class="nav-number">2.</span> <span class="nav-text">体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#核心容器"><span class="nav-number">2.1.</span> <span class="nav-text">核心容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据访问-集成"><span class="nav-number">2.2.</span> <span class="nav-text">数据访问/集成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web"><span class="nav-number">2.3.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">2.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
             
 
           </div>
