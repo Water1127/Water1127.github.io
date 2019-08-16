@@ -110,11 +110,11 @@
 <meta name="keywords" content="Spring,IoC,DI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring 依赖注入">
-<meta property="og:url" content="https://Water1127.github.io/2019/08/11/Spring_DI/index.html">
+<meta property="og:url" content="https://Water1127.github.io/2019/08/15/Spring_DI/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
 <meta property="og:description" content="Spring 依赖注入 Spring框架的核心功能之一就是通过依赖注入的方式来管理Bean之间的依赖关系。 每个基于应用程序的 java 多多少少都会使用几个对象，最后与这些对象一起工作来呈现出终端用户所看到的工作的应用程序。 依赖注入有助于把这些类粘合在一起，同时保持他们独立。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-15T09:09:07.113Z">
+<meta property="og:updated_time" content="2019-08-16T16:05:05.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring 依赖注入">
 <meta name="twitter:description" content="Spring 依赖注入 Spring框架的核心功能之一就是通过依赖注入的方式来管理Bean之间的依赖关系。 每个基于应用程序的 java 多多少少都会使用几个对象，最后与这些对象一起工作来呈现出终端用户所看到的工作的应用程序。 依赖注入有助于把这些类粘合在一起，同时保持他们独立。">
@@ -125,7 +125,7 @@
 
   
   
-  <link rel="canonical" href="https://Water1127.github.io/2019/08/11/Spring_DI/">
+  <link rel="canonical" href="https://Water1127.github.io/2019/08/15/Spring_DI/">
 
 
 
@@ -370,7 +370,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/11/Spring_DI/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/15/Spring_DI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -413,7 +413,7 @@
                 
               
 
-              <time title="创建时间：2019-08-11 23:12:51" itemprop="dateCreated datePublished" datetime="2019-08-11T23:12:51+08:00">2019-08-11</time>
+              <time title="创建时间：2019-08-15 23:12:51" itemprop="dateCreated datePublished" datetime="2019-08-15T23:12:51+08:00">2019-08-15</time>
             </span>
           
 
@@ -428,7 +428,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-15 17:09:07" itemprop="dateModified" datetime="2019-08-15T17:09:07+08:00">2019-08-15</time>
+                <time title="修改时间：2019-08-17 00:05:05" itemprop="dateModified" datetime="2019-08-17T00:05:05+08:00">2019-08-17</time>
               </span>
             
           
@@ -460,8 +460,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/11/Spring_DI/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/11/Spring_DI/" itemprop="commentCount"></span>
+                <a href="/2019/08/15/Spring_DI/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/15/Spring_DI/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -541,16 +541,15 @@
 <li>在 Spring 框架的控制下，TextEditor 不需要担心 SpellChecker 的实现。SpellChecker 将会独立实现，并且在 TextEditor 实例化的时候将提供给 TextEditor。</li>
 <li>我们从 TextEditor 中删除了全面控制，并且把它保存到其他地方（即 XML 配置文件），且依赖关系通过类构造函数被注入到 TextEditor 类中。因此，控制流通过依赖注入（DI）已经“反转”，因为你已经有效地委托依赖关系到一些外部系统。</li>
 <li>对象不查找它的依赖关系，也不知道依赖关系的位置或类，而这一切都由 Spring 框架控制的。</li>
-<li>DI 主要有两种变体，我们将在下面的两个章节，结合实例来分析它们。</li>
 </ul>
 <h1 id="Spring-基于构造函数的依赖注入"><a href="#Spring-基于构造函数的依赖注入" class="headerlink" title="Spring 基于构造函数的依赖注入"></a>Spring 基于构造函数的依赖注入</h1><ul>
 <li>当容器调用带有一组参数的类构造函数时，基于构造函数的 DI 就完成了，其中每个参数代表一个对其他类的依赖。</li>
 </ul>
 <h2 id="POJO类"><a href="#POJO类" class="headerlink" title="POJO类"></a>POJO类</h2><ul>
 <li>接下来，我们将依然通过 TextEditor 和 SpellChecker 的示例来理解 Spring 基于构造函数的依赖注入。<ul>
-<li>本例中，我们首先在XML配置中，对 TextEditor 的构造参数中注入 SpellChecker。这样一来，一旦我们实例化 TextEditor ，Spring 就会在 TextEditor 的构造参数中传入 SpellChecker 。</li>
-<li>我们在 TextEditor 中，恰好是借助了这种方式，在 TextEditor 的构造参数中对成员变量 SpellChecker 进行初始化。由此我们最终才在 TextEditor 中可以得到了 SpellChecker。</li>
-<li>TextEditor 的构造参数由于传递了一个 SpellChecker 参数，看起来像是一个带参构造，但事实上它仍然是一个无参构造。</li>
+<li>本例中，我们首先在XML配置中，对 TextEditor 的构造参数中注入 SpellChecker。这样一来，一旦我们实例化 TextEditor ，Spring 就会在 TextEditor 的带参构造函数中传入其参数 SpellChecker 。</li>
+<li>优点：在获取Bean对象时，必须注入构造参数，否则对象无法创建成功。</li>
+<li>缺点：改变了Bean对象实例化的方式，我们在创建的对象时，用不到的数据，也必须提供。</li>
 </ul>
 </li>
 </ul>
@@ -588,6 +587,8 @@
 <li>当容器调用一个无参的构造函数或一个无参的静态 factory 方法来初始化你的 bean 后，通过容器在你的 bean 上调用设值函数Setter，基于设值函数的 DI 就完成了。</li>
 <li>你应该注意定义在基于构造函数注入和基于设值函数注入中的 Beans.xml 文件的区别。唯一的区别就是在基于构造函数注入中，我们使用的是〈bean〉标签中的〈constructor-arg〉元素，而在基于设值函数的注入中，我们使用的是〈bean〉标签中的〈property〉元素。</li>
 <li>第二个你需要注意的点是，如果你要把一个引用传递给一个对象，那么你需要使用 标签的 ref 属性，而如果你要直接传递一个值，那么你应该使用 value 属性。</li>
+<li>优点：Bean对象实例化的方式不变，可以直接使用默认构造函数。</li>
+<li>缺点：不能保证所有的类成员都被注入了，即使是必须有值的成员。</li>
 </ul>
 <h2 id="POJO类-1"><a href="#POJO类-1" class="headerlink" title="POJO类"></a>POJO类</h2><p>（1）TextEditor</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.spring_DI.setter_based;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextEditor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 成员变量 */</span></span><br><span class="line">    <span class="keyword">private</span> SpellChecker spellChecker;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Setter方法 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSpellChecker</span><span class="params">(SpellChecker spellChecker)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"TextEditor setSpellChecker."</span> );</span><br><span class="line">        <span class="keyword">this</span>.spellChecker = spellChecker;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* 成员方法 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">spellCheck</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        spellChecker.checkSpelling();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -686,7 +687,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/11/Spring_DI/" title="Spring 依赖注入">https://Water1127.github.io/2019/08/11/Spring_DI/</a>
+    <a href="https://Water1127.github.io/2019/08/15/Spring_DI/" title="Spring 依赖注入">https://Water1127.github.io/2019/08/15/Spring_DI/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -759,8 +760,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/10/Spring_Ioc/" rel="next" title="Spring IoC 容器">
-                <i class="fa fa-chevron-left"></i> Spring IoC 容器
+              <a href="/2019/08/14/Spring_autowire/" rel="next" title="Spring 自动装配">
+                <i class="fa fa-chevron-left"></i> Spring 自动装配
               </a>
             
           </div>
@@ -768,6 +769,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/16/Spring_Anno/" rel="prev" title="Spring 注解">
+                Spring 注解 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -842,7 +847,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1092,7 +1097,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">210k</span>
+    <span title="站点总字数">268k</span>
   
 
   
@@ -1101,7 +1106,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">3:11</span>
+    <span title="站点阅读时长">4:04</span>
   
 </div>
 
