@@ -106,18 +106,18 @@
   daovoice('update');
   </script>
 
-  <meta name="description" content="简介 本文将在 Spring 框架中，分别使用使用“XML”，“XML+注释”和“注解+Java”三种方式来实现数据库的CRUD操作。">
+  <meta name="description" content="简介 本文将在 Spring 框架中，分别使用使用“XML”，“XML+注释”和“注解+Java”三种方式来实现数据库的CRUD操作。  数据库代码 创建数据库eesy_spring，在数据库中创建 Account表。  1234567891011121314151617# 创建数据库CREATE DATABASE eesy_spring;# 使用数据库USE eesy_spring;# 创建表C">
 <meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring IoC 案例">
 <meta property="og:url" content="https://Water1127.github.io/2019/08/17/Spring_IoCTest/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
-<meta property="og:description" content="简介 本文将在 Spring 框架中，分别使用使用“XML”，“XML+注释”和“注解+Java”三种方式来实现数据库的CRUD操作。">
+<meta property="og:description" content="简介 本文将在 Spring 框架中，分别使用使用“XML”，“XML+注释”和“注解+Java”三种方式来实现数据库的CRUD操作。  数据库代码 创建数据库eesy_spring，在数据库中创建 Account表。  1234567891011121314151617# 创建数据库CREATE DATABASE eesy_spring;# 使用数据库USE eesy_spring;# 创建表C">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-16T16:08:16.676Z">
+<meta property="og:updated_time" content="2019-08-17T13:59:11.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring IoC 案例">
-<meta name="twitter:description" content="简介 本文将在 Spring 框架中，分别使用使用“XML”，“XML+注释”和“注解+Java”三种方式来实现数据库的CRUD操作。">
+<meta name="twitter:description" content="简介 本文将在 Spring 框架中，分别使用使用“XML”，“XML+注释”和“注解+Java”三种方式来实现数据库的CRUD操作。  数据库代码 创建数据库eesy_spring，在数据库中创建 Account表。  1234567891011121314151617# 创建数据库CREATE DATABASE eesy_spring;# 使用数据库USE eesy_spring;# 创建表C">
 
 
 
@@ -413,7 +413,7 @@
                 
               
 
-              <time title="创建时间：2019-08-17 23:39:54 / 修改时间：00:08:16" itemprop="dateCreated datePublished" datetime="2019-08-17T23:39:54+08:00">2019-08-17</time>
+              <time title="创建时间：2019-08-17 23:39:54 / 修改时间：21:59:11" itemprop="dateCreated datePublished" datetime="2019-08-17T23:39:54+08:00">2019-08-17</time>
             </span>
           
 
@@ -511,12 +511,12 @@
         <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
 <li>本文将在 Spring 框架中，分别使用使用“XML”，“XML+注释”和“注解+Java”三种方式来实现数据库的CRUD操作。</li>
 </ul>
-<a id="more"></a>
-
 <h1 id="数据库代码"><a href="#数据库代码" class="headerlink" title="数据库代码"></a>数据库代码</h1><ul>
 <li>创建数据库eesy_spring，在数据库中创建 Account表。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 创建数据库</span><br><span class="line">CREATE DATABASE eesy_spring;</span><br><span class="line"></span><br><span class="line"># 使用数据库</span><br><span class="line">USE eesy_spring;</span><br><span class="line"></span><br><span class="line"># 创建表</span><br><span class="line">CREATE TABLE account(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">	NAME VARCHAR(40),</span><br><span class="line">	money FLOAT</span><br><span class="line">)CHARACTER SET utf8 COLLATE utf8_general_ci;</span><br><span class="line"></span><br><span class="line"># 插入数据</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Cat&apos;,1000);</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Dog&apos;,1000);</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Rat&apos;,1000);</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <h1 id="基于XML配置文件"><a href="#基于XML配置文件" class="headerlink" title="基于XML配置文件"></a>基于XML配置文件</h1><ul>
 <li>整个程序基于一下四大块：<ul>
@@ -684,8 +684,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/16/Spring_Anno/" rel="next" title="Spring 注解">
-                <i class="fa fa-chevron-left"></i> Spring 注解
+              <a href="/2019/08/16/Spring_AOPTest/" rel="next" title="Spring AOP 转账案例">
+                <i class="fa fa-chevron-left"></i> Spring AOP 转账案例
               </a>
             
           </div>
@@ -767,7 +767,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -879,7 +879,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">38</span>
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1017,7 +1019,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">268k</span>
+    <span title="站点总字数">306k</span>
   
 
   
@@ -1026,7 +1028,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">4:04</span>
+    <span title="站点阅读时长">4:38</span>
   
 </div>
 

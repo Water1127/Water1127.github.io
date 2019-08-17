@@ -106,18 +106,18 @@
   daovoice('update');
   </script>
 
-  <meta name="description" content="Spring 依赖注入 Spring框架的核心功能之一就是通过依赖注入的方式来管理Bean之间的依赖关系。 每个基于应用程序的 java 多多少少都会使用几个对象，最后与这些对象一起工作来呈现出终端用户所看到的工作的应用程序。 依赖注入有助于把这些类粘合在一起，同时保持他们独立。">
+  <meta name="description" content="Spring 依赖注入 Spring框架的核心功能之一就是通过依赖注入的方式来管理Bean之间的依赖关系。 每个基于应用程序的 java 多多少少都会使用几个对象，最后与这些对象一起工作来呈现出终端用户所看到的工作的应用程序。 依赖注入有助于把这些类粘合在一起，同时保持他们独立。  全面控制 假设你现在正在编写一个文本编辑器的应用程序，并且想要添加拼写检查的功能，那么你就需要在TextEditor">
 <meta name="keywords" content="Spring,IoC,DI">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring 依赖注入">
 <meta property="og:url" content="https://Water1127.github.io/2019/08/15/Spring_DI/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
-<meta property="og:description" content="Spring 依赖注入 Spring框架的核心功能之一就是通过依赖注入的方式来管理Bean之间的依赖关系。 每个基于应用程序的 java 多多少少都会使用几个对象，最后与这些对象一起工作来呈现出终端用户所看到的工作的应用程序。 依赖注入有助于把这些类粘合在一起，同时保持他们独立。">
+<meta property="og:description" content="Spring 依赖注入 Spring框架的核心功能之一就是通过依赖注入的方式来管理Bean之间的依赖关系。 每个基于应用程序的 java 多多少少都会使用几个对象，最后与这些对象一起工作来呈现出终端用户所看到的工作的应用程序。 依赖注入有助于把这些类粘合在一起，同时保持他们独立。  全面控制 假设你现在正在编写一个文本编辑器的应用程序，并且想要添加拼写检查的功能，那么你就需要在TextEditor">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-16T16:05:05.025Z">
+<meta property="og:updated_time" content="2019-08-17T13:59:27.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring 依赖注入">
-<meta name="twitter:description" content="Spring 依赖注入 Spring框架的核心功能之一就是通过依赖注入的方式来管理Bean之间的依赖关系。 每个基于应用程序的 java 多多少少都会使用几个对象，最后与这些对象一起工作来呈现出终端用户所看到的工作的应用程序。 依赖注入有助于把这些类粘合在一起，同时保持他们独立。">
+<meta name="twitter:description" content="Spring 依赖注入 Spring框架的核心功能之一就是通过依赖注入的方式来管理Bean之间的依赖关系。 每个基于应用程序的 java 多多少少都会使用几个对象，最后与这些对象一起工作来呈现出终端用户所看到的工作的应用程序。 依赖注入有助于把这些类粘合在一起，同时保持他们独立。  全面控制 假设你现在正在编写一个文本编辑器的应用程序，并且想要添加拼写检查的功能，那么你就需要在TextEditor">
 
 
 
@@ -428,7 +428,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-17 00:05:05" itemprop="dateModified" datetime="2019-08-17T00:05:05+08:00">2019-08-17</time>
+                <time title="修改时间：2019-08-17 21:59:27" itemprop="dateModified" datetime="2019-08-17T21:59:27+08:00">2019-08-17</time>
               </span>
             
           
@@ -523,8 +523,6 @@
 <li>每个基于应用程序的 java 多多少少都会使用几个对象，最后与这些对象一起工作来呈现出终端用户所看到的工作的应用程序。</li>
 <li>依赖注入有助于把这些类粘合在一起，同时保持他们独立。</li>
 </ul>
-<a id="more"></a>
-
 <h2 id="全面控制"><a href="#全面控制" class="headerlink" title="全面控制"></a>全面控制</h2><ul>
 <li>假设你现在正在编写一个文本编辑器的应用程序，并且想要添加拼写检查的功能，那么你就需要在TextEditor类中使用SpellChecker类。</li>
 <li>标准代码看起来是这样的：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextEditor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> SpellChecker spellChecker;  </span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">TextEditor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      spellChecker = <span class="keyword">new</span> SpellChecker();</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -542,6 +540,9 @@
 <li>我们从 TextEditor 中删除了全面控制，并且把它保存到其他地方（即 XML 配置文件），且依赖关系通过类构造函数被注入到 TextEditor 类中。因此，控制流通过依赖注入（DI）已经“反转”，因为你已经有效地委托依赖关系到一些外部系统。</li>
 <li>对象不查找它的依赖关系，也不知道依赖关系的位置或类，而这一切都由 Spring 框架控制的。</li>
 </ul>
+<a id="more"></a>
+
+
 <h1 id="Spring-基于构造函数的依赖注入"><a href="#Spring-基于构造函数的依赖注入" class="headerlink" title="Spring 基于构造函数的依赖注入"></a>Spring 基于构造函数的依赖注入</h1><ul>
 <li>当容器调用带有一组参数的类构造函数时，基于构造函数的 DI 就完成了，其中每个参数代表一个对其他类的依赖。</li>
 </ul>
@@ -847,7 +848,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -959,7 +960,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">38</span>
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1097,7 +1100,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">268k</span>
+    <span title="站点总字数">306k</span>
   
 
   
@@ -1106,7 +1109,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">4:04</span>
+    <span title="站点阅读时长">4:38</span>
   
 </div>
 

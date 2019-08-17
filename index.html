@@ -414,7 +414,7 @@
                 
               
 
-              <time title="创建时间：2019-08-17 23:39:54 / 修改时间：00:08:16" itemprop="dateCreated datePublished" datetime="2019-08-17T23:39:54+08:00">2019-08-17</time>
+              <time title="创建时间：2019-08-17 23:39:54 / 修改时间：21:59:11" itemprop="dateCreated datePublished" datetime="2019-08-17T23:39:54+08:00">2019-08-17</time>
             </span>
           
 
@@ -493,10 +493,245 @@
           <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
 <li>本文将在 Spring 框架中，分别使用使用“XML”，“XML+注释”和“注解+Java”三种方式来实现数据库的CRUD操作。</li>
 </ul>
+<h1 id="数据库代码"><a href="#数据库代码" class="headerlink" title="数据库代码"></a>数据库代码</h1><ul>
+<li>创建数据库eesy_spring，在数据库中创建 Account表。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 创建数据库</span><br><span class="line">CREATE DATABASE eesy_spring;</span><br><span class="line"></span><br><span class="line"># 使用数据库</span><br><span class="line">USE eesy_spring;</span><br><span class="line"></span><br><span class="line"># 创建表</span><br><span class="line">CREATE TABLE account(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">	NAME VARCHAR(40),</span><br><span class="line">	money FLOAT</span><br><span class="line">)CHARACTER SET utf8 COLLATE utf8_general_ci;</span><br><span class="line"></span><br><span class="line"># 插入数据</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Cat&apos;,1000);</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Dog&apos;,1000);</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Rat&apos;,1000);</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
               <a class="btn" href="/2019/08/17/Spring_IoCTest/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/16/Spring_AOPTest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/16/Spring_AOPTest/" class="post-title-link" itemprop="url">Spring AOP 转账案例</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-16 22:26:38" itemprop="dateCreated datePublished" datetime="2019-08-16T22:26:38+08:00">2019-08-16</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-17 21:58:34" itemprop="dateModified" datetime="2019-08-17T21:58:34+08:00">2019-08-17</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">38k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">34 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>本文的三个案例是为了更好的理解 Spring AOP 的机制，以及复习数据库事务管理。具体的功能是实现数据库的转账操作，核心知识主要分为三部分：数据库的连接、事务管理、依赖注入和功能测试。</li>
+<li>案例一<ul>
+<li><strong>数据库的管理问题：通过Connection工具类来实现</strong></li>
+<li><strong>事务管理：通过 Transaction 工具类，在业务层中实现</strong></li>
+<li><strong>依赖注入：通过XML配置文件</strong></li>
+<li><strong>测试：通过Junit测试</strong></li>
+</ul>
+</li>
+<li>案例二<ul>
+<li><strong>数据库的管理问题：通过Connection工具类来实现</strong></li>
+<li><strong>事务管理：通过 Transaction 工具类，在 BeanFactory 代理类中实现。（获取增强过的业务层接口）</strong></li>
+<li><strong>依赖注入：通过 XML 配置文件</strong></li>
+<li><strong>测试：通过 Junit 测试</strong></li>
+</ul>
+</li>
+<li>案例三<ul>
+<li><strong>数据库的管理问题：通过Connection工具类来实现</strong></li>
+<li><strong>事务管理：完全通过 Transaction 工具类实现（AOP，高内聚）</strong></li>
+<li><strong>依赖注入：主要通过注释</strong></li>
+<li><strong>测试：通过 Spring Junit 测试</strong></li>
+</ul>
+</li>
+<li>整个程序基于一下六大块：<ul>
+<li><strong>domain</strong>：用于存放实体类。</li>
+<li><strong>service</strong>：用于存放业务层的接口和实现类。</li>
+<li><strong>dao</strong>：用于存放持久层的接口和实现类。（具体的CRUD操作代码）</li>
+<li><strong>factory</strong>：用于自定义代理类。</li>
+<li><strong>Utils</strong>：用于存放工具类。</li>
+<li><strong>test</strong>：用于测试。</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/16/Spring_AOPTest/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -826,7 +1061,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-17 00:05:05" itemprop="dateModified" datetime="2019-08-17T00:05:05+08:00">2019-08-17</time>
+                <time title="修改时间：2019-08-17 21:59:27" itemprop="dateModified" datetime="2019-08-17T21:59:27+08:00">2019-08-17</time>
               </span>
             
           
@@ -901,6 +1136,23 @@
 <li>Spring框架的核心功能之一就是通过依赖注入的方式来管理Bean之间的依赖关系。</li>
 <li>每个基于应用程序的 java 多多少少都会使用几个对象，最后与这些对象一起工作来呈现出终端用户所看到的工作的应用程序。</li>
 <li>依赖注入有助于把这些类粘合在一起，同时保持他们独立。</li>
+</ul>
+<h2 id="全面控制"><a href="#全面控制" class="headerlink" title="全面控制"></a>全面控制</h2><ul>
+<li>假设你现在正在编写一个文本编辑器的应用程序，并且想要添加拼写检查的功能，那么你就需要在TextEditor类中使用SpellChecker类。</li>
+<li>标准代码看起来是这样的：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextEditor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> SpellChecker spellChecker;  </span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">TextEditor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      spellChecker = <span class="keyword">new</span> SpellChecker();</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="控制反转"><a href="#控制反转" class="headerlink" title="控制反转"></a>控制反转</h2><ul>
+<li>而在 Spring 框架中，我们需要做的则是创建一个 TextEditor 和 SpellChecker 之间的依赖关系。</li>
+<li>在控制反转的场景中，我们反而会做这样的事情：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextEditor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> SpellChecker spellChecker;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">TextEditor</span><span class="params">(SpellChecker spellChecker)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.spellChecker = spellChecker;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ul>
+<li>在 Spring 框架的控制下，TextEditor 不需要担心 SpellChecker 的实现。SpellChecker 将会独立实现，并且在 TextEditor 实例化的时候将提供给 TextEditor。</li>
+<li>我们从 TextEditor 中删除了全面控制，并且把它保存到其他地方（即 XML 配置文件），且依赖关系通过类构造函数被注入到 TextEditor 类中。因此，控制流通过依赖注入（DI）已经“反转”，因为你已经有效地委托依赖关系到一些外部系统。</li>
+<li>对象不查找它的依赖关系，也不知道依赖关系的位置或类，而这一切都由 Spring 框架控制的。</li>
 </ul>
           <!--noindex-->
           
@@ -1029,7 +1281,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-17 00:07:33" itemprop="dateModified" datetime="2019-08-17T00:07:33+08:00">2019-08-17</time>
+                <time title="修改时间：2019-08-17 21:59:54" itemprop="dateModified" datetime="2019-08-17T21:59:54+08:00">2019-08-17</time>
               </span>
             
           
@@ -1103,6 +1355,47 @@
           <h1 id="Spring-Beans-自动装配"><a href="#Spring-Beans-自动装配" class="headerlink" title="Spring Beans 自动装配"></a>Spring Beans 自动装配</h1><ul>
 <li>你已经学会如何使用<code>&lt;bean&gt;</code>元素来声明 bean 和通过使用 XML 配置文件中的<code>&lt;constructor-arg&gt;</code>和<code>&lt;property&gt;</code>元素来注入 。</li>
 <li>而Spring 容器还可以在不使用<code>&lt;constructor-arg&gt;</code>和<code>&lt;property&gt;</code> 元素的情况下<strong>自动装配</strong>相互协作的 bean 之间的关系，这有助于减少编写一个大的基于 Spring 的应用程序的 XML 配置的数量。</li>
+</ul>
+<h2 id="自动装配模式"><a href="#自动装配模式" class="headerlink" title="自动装配模式"></a>自动装配模式</h2><ul>
+<li>下列自动装配模式，它们可用于指示 Spring 容器为来使用自动装配进行依赖注入。你可以使用&lt;bean&gt;元素的 autowire 属性为一个 bean 定义指定自动装配模式。</li>
+<li>no    <ul>
+<li>默认设置，它意味着没有自动装配，表示我们需要使用显式的bean引用来注入依赖。</li>
+</ul>
+</li>
+<li>byName    <ul>
+<li>由属性名自动装配。</li>
+<li>Spring 先匹配POJO类的类成员名称与配置文件中&lt;bean&gt;标签的id属性，如果名称相同，则匹配类型；类型相同，则配对成功。</li>
+</ul>
+</li>
+<li>byType    <ul>
+<li>由属性数据类型自动装配。</li>
+<li>Spring 容器看到在 XML 配置文件中 bean 的自动装配的属性设置为 byType。然后如果它的类型匹配配置文件中的一个确切的 bean 名称，它将尝试匹配和连接属性的类型。如果存在不止一个这样的 bean，则一个致命的异常将会被抛出。</li>
+</ul>
+</li>
+<li>constructor    <ul>
+<li>类似于 byType，但该类型适用于构造函数参数类型。如果在容器中没有一个构造函数参数类型的 bean，则一个致命错误将会发生。</li>
+</ul>
+</li>
+<li>autodetect    <ul>
+<li>Spring首先尝试通过 constructor 使用自动装配来连接，如果它不执行，Spring 尝试通过 byType 来自动装配。</li>
+</ul>
+</li>
+</ul>
+<h2 id="自动装配的局限性"><a href="#自动装配的局限性" class="headerlink" title="自动装配的局限性"></a>自动装配的局限性</h2><ul>
+<li>当自动装配始终在同一个项目中使用时，它的效果最好。如果通常不使用自动装配，它可能会使开发人员混淆的使用它来连接只有一个或两个 bean 定义。</li>
+<li>不过，自动装配可以显著减少需要指定的属性或构造器参数，但你应该在使用它们之前考虑到自动装配的局限性和缺点。</li>
+<li>重写的可能性    <ul>
+<li>你可以使用总是重写自动装配的 &lt;constructor-arg&gt;和 &lt;property&gt; 设置来指定依赖关系。</li>
+</ul>
+</li>
+<li>原始数据类型    <ul>
+<li>你不能自动装配所谓的简单类型包括基本类型，字符串和类。</li>
+</ul>
+</li>
+<li>混乱的本质    <ul>
+<li>自动装配不如显式装配精确，所以如果可能的话尽可能使用显式装配。</li>
+</ul>
+</li>
 </ul>
           <!--noindex-->
           
@@ -1231,7 +1524,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-17 00:08:28" itemprop="dateModified" datetime="2019-08-17T00:08:28+08:00">2019-08-17</time>
+                <time title="修改时间：2019-08-17 21:58:56" itemprop="dateModified" datetime="2019-08-17T21:58:56+08:00">2019-08-17</time>
               </span>
             
           
@@ -1303,6 +1596,20 @@
       
         
           <h1 id="高内聚低耦合"><a href="#高内聚低耦合" class="headerlink" title="高内聚低耦合"></a>高内聚低耦合</h1><p>在介绍Spring IoC容器之前，我们先要了解一下软件设计好坏的评判标准：耦合和内聚。</p>
+<h2 id="耦合"><a href="#耦合" class="headerlink" title="耦合"></a>耦合</h2><ul>
+<li>耦合性(Coupling)是对模块间关联程度的度量。</li>
+<li>耦合的强弱取决于模块间接口的复杂性、调用模块的方式以及通过界面传送数据的多少。模块间的耦合度是指模块之间的依赖关系，包括控制关系、调用关系、数据传递关系。模块间联系越多，其耦合性越强，同时表明其独立性越差。</li>
+</ul>
+<h3 id="高耦合"><a href="#高耦合" class="headerlink" title="高耦合"></a>高耦合</h3><ul>
+<li>手机和充电线是高耦合，为什么呢？</li>
+<li>打个比方，苹果手机和安卓手机必须使用本机适配的充电线，而且在安卓手机中甚至还分为USB接口和Type-C接口。如果我使用苹果充电接口给安卓手机充电，那么苹果充电线无法正常输电，安卓手机也无法正常充电了。（忽略其他影响）</li>
+<li>由此可见，手机和充电接口之间的依赖关系紧密，独立性差，所以属于高耦合。</li>
+</ul>
+<h3 id="低耦合"><a href="#低耦合" class="headerlink" title="低耦合"></a>低耦合</h3><ul>
+<li>充电接口和充电接口是低耦合。</li>
+<li>打个比方，不论是苹果充电接口还是安卓充电接口，都可以使用苹果充电接头，也都可以使用安卓充电接头。（忽略其他影响）</li>
+<li>由此可见，充电接口和充电接头之间的依赖关系松散，独立性高，所以属于低耦合。</li>
+</ul>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1430,7 +1737,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-17 00:06:54" itemprop="dateModified" datetime="2019-08-17T00:06:54+08:00">2019-08-17</time>
+                <time title="修改时间：2019-08-17 22:00:27" itemprop="dateModified" datetime="2019-08-17T22:00:27+08:00">2019-08-17</time>
               </span>
             
           
@@ -1503,6 +1810,19 @@
         
           <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
 <li>Spring是分层的企业级full-stack轻量级开源框架，以IoC和AOP为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，并整合了开源世界中众多著名的第三方框架和类库，逐渐成为使用最多的Java EE企业应用开源框架。</li>
+</ul>
+<h2 id="依赖注入DI（Dependency-Injection）"><a href="#依赖注入DI（Dependency-Injection）" class="headerlink" title="依赖注入DI（Dependency Injection）"></a>依赖注入DI（Dependency Injection）</h2><ul>
+<li>Spring 最被认同的技术是控制反转的依赖注入（DI）模式。</li>
+<li>控制反转（IoC）是一个通用的概念，它可以用许多不同的方式去表达，依赖注入仅仅是控制反转的一个具体的例子。</li>
+<li>当编写一个复杂的 Java 应用程序时，应用程序类应该尽可能的独立于其他的 Java 类来增加这些类可重用可能性，当进行单元测试时，可以使它们独立于其他类进行测试。依赖注入有助于将这些类粘合在一起，并且在同一时间让它们保持独立。</li>
+<li>到底什么是依赖注入？让我们将这两个词分开来看一看。这里将依赖关系部分转化为两个类之间的关联。例如，类 A 依赖于类 B。现在，让我们看一看第二部分，注入。所有这一切都意味着类 B 将通过 IoC 被注入到类 A 中。</li>
+<li>依赖注入可以以向构造函数传递参数的方式发生，或者通过使用 setter 方法。</li>
+</ul>
+<h2 id="面向方面的程序设计AOP（Aspect-Oriented-Programming）"><a href="#面向方面的程序设计AOP（Aspect-Oriented-Programming）" class="headerlink" title="面向方面的程序设计AOP（Aspect-Oriented Programming）"></a>面向方面的程序设计AOP（Aspect-Oriented Programming）</h2><ul>
+<li>Spring 框架的一个关键组件是面向方面的程序设计（AOP）框架。</li>
+<li>一个程序中跨越多个点的功能被称为横切关注点，这些横切关注点在概念上独立于应用程序的业务逻辑。有各种各样常见的很好的关于方面的例子，比如日志记录、声明性事务、安全性，和缓存等等。</li>
+<li>在 OOP 中模块化的关键单元是类，而在 AOP 中模块化的关键单元是方面。AOP 帮助你将横切关注点从它们所影响的对象中分离出来，然而依赖注入帮助你将你的应用程序对象从彼此中分离出来。</li>
+<li>Spring 框架的 AOP 模块提供了面向方面的程序设计实现，可以定义诸如方法拦截器和切入点等，从而使实现功能的代码彻底的解耦出来。</li>
 </ul>
           <!--noindex-->
           
@@ -1776,207 +2096,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/06/MyBatis_CRUD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/06/MyBatis_CRUD/" class="post-title-link" itemprop="url">Mybatis的CRUD操作（代理持久层实现类）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-06 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-06T14:33:47+08:00">2019-08-06</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-08 15:13:21" itemprop="dateModified" datetime="2019-08-08T15:13:21+08:00">2019-08-08</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">10k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">9 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
-<li><a href="https://water1127.github.io/2019/07/09/TyparoMarkdown/">MyBatis环境搭建</a> 的方式在前面已经详细的介绍过了，本文将通过映射配置文件使用代理持久层接口实现类的方式来进行MySQL数据库的CRUD操作。</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/06/MyBatis_CRUD/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/06/MyBatis_CRUD_Dao/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2180,7 +2299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/04/MyBatis_Custom/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/06/MyBatis_CRUD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -2200,7 +2319,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/04/MyBatis_Custom/" class="post-title-link" itemprop="url">自定义MyBatis</a>
+                <a href="/2019/08/06/MyBatis_CRUD/" class="post-title-link" itemprop="url">Mybatis的CRUD操作（代理持久层实现类）</a>
               
             
           </h1>
@@ -2225,7 +2344,7 @@
                 
               
 
-              <time title="创建时间：2019-08-04 01:26:32" itemprop="dateCreated datePublished" datetime="2019-08-04T01:26:32+08:00">2019-08-04</time>
+              <time title="创建时间：2019-08-06 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-06T14:33:47+08:00">2019-08-06</time>
             </span>
           
 
@@ -2240,7 +2359,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-06 15:16:03" itemprop="dateModified" datetime="2019-08-06T15:16:03+08:00">2019-08-06</time>
+                <time title="修改时间：2019-08-08 15:13:21" itemprop="dateModified" datetime="2019-08-08T15:13:21+08:00">2019-08-08</time>
               </span>
             
           
@@ -2279,7 +2398,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">29k</span>
+              <span title="本文字数">10k</span>
             </span>
           
 
@@ -2291,7 +2410,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">26 分钟</span>
+              <span title="阅读时长">9 分钟</span>
             </span>
           
 
@@ -2311,14 +2430,13 @@
 
       
         
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
-<li>我们知道创建Maven项目后，在项目中的pom.xml配置文件中引入MyBatis依赖之后，我们就可以使用MyBatis相关的类和接口，和相应的功能。</li>
-<li>但为了对MyBatis的体系结构和功能有更加深刻的理解和全面的认识，本文Maven项目中的pom.xml配置文件，将不再引入MyBatis依赖，转而通过自定义编写MyBatis相关的类和接口来实现同样的功能。</li>
+          <h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li><a href="https://water1127.github.io/2019/07/09/TyparoMarkdown/">MyBatis环境搭建</a> 的方式在前面已经详细的介绍过了，本文将通过映射配置文件使用代理持久层接口实现类的方式来进行MySQL数据库的CRUD操作。</li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/08/04/MyBatis_Custom/#more" rel="contents">
+              <a class="btn" href="/2019/08/06/MyBatis_CRUD/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2415,7 +2533,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2527,7 +2645,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">38</span>
+                      
+                    
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2648,7 +2768,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">268k</span>
+    <span title="站点总字数">306k</span>
   
 
   
@@ -2657,7 +2777,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">4:04</span>
+    <span title="站点阅读时长">4:38</span>
   
 </div>
 
