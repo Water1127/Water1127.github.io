@@ -110,11 +110,11 @@
 <meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring 自动装配">
-<meta property="og:url" content="https://Water1127.github.io/2019/08/14/Spring_autowire/index.html">
+<meta property="og:url" content="https://Water1127.github.io/2019/08/15/Spring_autowire/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
 <meta property="og:description" content="Spring Beans 自动装配 你已经学会如何使用&amp;lt;bean&amp;gt;元素来声明 bean 和通过使用 XML 配置文件中的&amp;lt;constructor-arg&amp;gt;和&amp;lt;property&amp;gt;元素来注入 。 而Spring 容器还可以在不使用&amp;lt;constructor-arg&amp;gt;和&amp;lt;property&amp;gt; 元素的情况下自动装配相互协作的 bean 之间的关系，这">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-17T13:59:54.587Z">
+<meta property="og:updated_time" content="2019-08-18T01:46:40.333Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring 自动装配">
 <meta name="twitter:description" content="Spring Beans 自动装配 你已经学会如何使用&amp;lt;bean&amp;gt;元素来声明 bean 和通过使用 XML 配置文件中的&amp;lt;constructor-arg&amp;gt;和&amp;lt;property&amp;gt;元素来注入 。 而Spring 容器还可以在不使用&amp;lt;constructor-arg&amp;gt;和&amp;lt;property&amp;gt; 元素的情况下自动装配相互协作的 bean 之间的关系，这">
@@ -125,7 +125,7 @@
 
   
   
-  <link rel="canonical" href="https://Water1127.github.io/2019/08/14/Spring_autowire/">
+  <link rel="canonical" href="https://Water1127.github.io/2019/08/15/Spring_autowire/">
 
 
 
@@ -370,7 +370,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/14/Spring_autowire/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/15/Spring_autowire/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -413,7 +413,7 @@
                 
               
 
-              <time title="创建时间：2019-08-14 00:32:47" itemprop="dateCreated datePublished" datetime="2019-08-14T00:32:47+08:00">2019-08-14</time>
+              <time title="创建时间：2019-08-15 00:32:47" itemprop="dateCreated datePublished" datetime="2019-08-15T00:32:47+08:00">2019-08-15</time>
             </span>
           
 
@@ -428,7 +428,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-17 21:59:54" itemprop="dateModified" datetime="2019-08-17T21:59:54+08:00">2019-08-17</time>
+                <time title="修改时间：2019-08-18 09:46:40" itemprop="dateModified" datetime="2019-08-18T09:46:40+08:00">2019-08-18</time>
               </span>
             
           
@@ -460,8 +460,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/14/Spring_autowire/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/14/Spring_autowire/" itemprop="commentCount"></span>
+                <a href="/2019/08/15/Spring_autowire/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/15/Spring_autowire/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -547,6 +547,8 @@
 </ul>
 </li>
 </ul>
+<a id="more"></a>
+
 <h2 id="自动装配的局限性"><a href="#自动装配的局限性" class="headerlink" title="自动装配的局限性"></a>自动装配的局限性</h2><ul>
 <li>当自动装配始终在同一个项目中使用时，它的效果最好。如果通常不使用自动装配，它可能会使开发人员混淆的使用它来连接只有一个或两个 bean 定义。</li>
 <li>不过，自动装配可以显著减少需要指定的属性或构造器参数，但你应该在使用它们之前考虑到自动装配的局限性和缺点。</li>
@@ -563,8 +565,6 @@
 </ul>
 </li>
 </ul>
-<a id="more"></a>
-
 <h1 id="Spring-自动装配-‘byName’"><a href="#Spring-自动装配-‘byName’" class="headerlink" title="Spring 自动装配 ‘byName’"></a>Spring 自动装配 ‘byName’</h1><ul>
 <li>这种模式由属性名称指定自动装配。Spring 容器看作 beans，在 XML 配置文件中 beans 的 auto-wire 属性设置为 byName。然后，它尝试将它的属性与配置文件中定义为相同名称的 beans 进行匹配和连接。如果找到匹配项，它将注入这些 beans，否则，它将抛出异常。</li>
 <li>例如，在配置文件中，如果一个 bean 定义设置为自动装配 byName，并且它包含 spellChecker 属性（即，它有一个 setSpellChecker(…) 方法），那么 Spring 就会查找定义名为 spellChecker 的 bean，并且用它来设置这个属性。你仍然可以使用 &lt;property&gt; 标签连接其余的属性。下面的例子将说明这个概念。</li>
@@ -650,7 +650,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/14/Spring_autowire/" title="Spring 自动装配">https://Water1127.github.io/2019/08/14/Spring_autowire/</a>
+    <a href="https://Water1127.github.io/2019/08/15/Spring_autowire/" title="Spring 自动装配">https://Water1127.github.io/2019/08/15/Spring_autowire/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -806,7 +806,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1058,7 +1058,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">306k</span>
+    <span title="站点总字数">327k</span>
   
 
   
@@ -1067,7 +1067,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">4:38</span>
+    <span title="站点阅读时长">4:58</span>
   
 </div>
 
