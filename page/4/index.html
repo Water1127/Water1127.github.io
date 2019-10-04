@@ -369,7 +369,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/11/tomcat/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/02/Java SE/JDBCDateSource/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -389,7 +389,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/11/tomcat/" class="post-title-link" itemprop="url">Tomcat</a>
+                <a href="/2019/08/02/Java SE/JDBCDateSource/" class="post-title-link" itemprop="url">JDBC连接池</a>
               
             
           </h1>
@@ -414,7 +414,424 @@
                 
               
 
-              <time title="创建时间：2019-07-11 01:50:28" itemprop="dateCreated datePublished" datetime="2019-07-11T01:50:28+08:00">2019-07-11</time>
+              <time title="创建时间：2019-08-02 13:10:02 / 修改时间：13:11:38" itemprop="dateCreated datePublished" datetime="2019-08-02T13:10:02+08:00">2019-08-02</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">5.8k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">5 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h1><ul>
+<li>概念<ul>
+<li>数据库连接池：其实就是一个容器，存放数据库连接的容器。</li>
+<li>当系统初始化后，容器被创建，并且容器会申请一些连接对象。</li>
+<li>当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>节约资源</li>
+<li>用户访问高效</li>
+</ul>
+</li>
+<li>接口<ul>
+<li>数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。</li>
+<li>数据库连接池接口： javax.sql.DataSource  </li>
+</ul>
+</li>
+<li>接口方法<ul>
+<li>获取连接：getConnection()</li>
+<li>归还连接：Connection.close()。<ul>
+<li>Connection对象是从DataSource对象中获取，此时就不再是关闭连接了，而是归还连接。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>接口的实现类<ul>
+<li>C3P0：数据库连接池实现技术</li>
+<li>Druid：数据库连接池实现技术（阿里巴巴）</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/02/Java SE/JDBCDateSource/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/01/Java SE/JDBC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/01/Java SE/JDBC/" class="post-title-link" itemprop="url">JDBC</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-01 23:41:36 / 修改时间：23:51:11" itemprop="dateCreated datePublished" datetime="2019-08-01T23:41:36+08:00">2019-08-01</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">20k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">18 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="JDBC简介"><a href="#JDBC简介" class="headerlink" title="JDBC简介"></a>JDBC简介</h1><ul>
+<li>概念<ul>
+<li>Java DataBase Connectivity  Java 数据库连接， Java语言操作数据库。</li>
+</ul>
+</li>
+<li>JDBC本质<ul>
+<li>JDBC其实是sun公司定义的一套操作所有关系型数据库的规则，即接口。各个数据库厂商去编写这套接口的实现类，包装成数据库驱动jar包。通过导入不同数据库厂商编写的数据库驱动jar包，来对JBDC接口进行实现。</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/01/Java SE/JDBC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/31/SSM框架/MyBatis/MyBatis_BDE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/31/SSM框架/MyBatis/MyBatis_BDE/" class="post-title-link" itemprop="url">Building MyBatis development environment</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-31 23:13:45" itemprop="dateCreated datePublished" datetime="2019-07-31T23:13:45+08:00">2019-07-31</time>
             </span>
           
 
@@ -429,7 +846,1263 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-01 10:08:53" itemprop="dateModified" datetime="2019-08-01T10:08:53+08:00">2019-08-01</time>
+                <time title="修改时间：2019-08-07 17:40:52" itemprop="dateModified" datetime="2019-08-07T17:40:52+08:00">2019-08-07</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">15k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">14 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="内容简介"><a href="#内容简介" class="headerlink" title="内容简介"></a>内容简介</h1><p>  本文是对MyBatis的基础操作方式进行的演示，包括MyBatis环境搭建，以及一些细节知识点。<br>  我们会发现其实各种操作方式的步骤大同小异，因为究其根源它们实现的都是相同的功能。<br>  为了让大家能更好的理解，我们来试着分析一下MyBatis究竟帮我们实现了什么样的功能。</p>
+<ul>
+<li>连接MySQL数据库的功能</li>
+<li>连接持久层接口的功能<ul>
+<li>通过映射配置文件的方式</li>
+<li>通过注解的方式</li>
+</ul>
+</li>
+<li>实现持久层接口的功能<ul>
+<li>创建持久层接口实现类</li>
+<li>使用代理的持久层接口实现类</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://pvpv3a462.bkt.clouddn.com/StudyNotes/MyBatis/pic05.png" alt></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/31/SSM框架/MyBatis/MyBatis_BDE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/25/Java SE/反射/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/25/Java SE/反射/" class="post-title-link" itemprop="url">反射</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-25 22:48:46" itemprop="dateCreated datePublished" datetime="2019-07-25T22:48:46+08:00">2019-07-25</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-01 10:09:35" itemprop="dateModified" datetime="2019-08-01T10:09:35+08:00">2019-08-01</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">7.3k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">7 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>反射是框架设计的灵魂。</li>
+<li>反射机制就是将类的各个组成部分封装为其他对象。<h2 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h2></li>
+<li>可以在程序运行过程中，操作这些对象。</li>
+<li>可以解耦，提高程序的可扩展性。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/25/Java SE/反射/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/24/MySQL/MySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/24/MySQL/MySQL/" class="post-title-link" itemprop="url">MySQL</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-24 02:25:41" itemprop="dateCreated datePublished" datetime="2019-07-24T02:25:41+08:00">2019-07-24</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-01 10:07:30" itemprop="dateModified" datetime="2019-08-01T10:07:30+08:00">2019-08-01</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">6.3k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">6 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><ul>
+<li>数据库（Database）是按照数据结构来组织、存储和管理数据的仓库。</li>
+<li>每个数据库都有一个或多个不同的 API 用于创建，访问，管理，搜索和复制所保存的数据。</li>
+<li>我们也可以将数据存储在文件中，但是在文件中读写数据速度相对较慢。</li>
+<li>所以，现在我们使用关系型数据库管理系统（RDBMS）来存储和管理的大数据量。所谓的关系型数据库，是建立在关系模型基础上的数据库，借助于集合代数等数学概念和方法来处理数据库中的数据。</li>
+<li>RDBMS 即关系数据库管理系统(Relational Database Management System)的特点：<ol>
+<li>数据以表格的形式出现</li>
+<li>每行为各种记录名称</li>
+<li>每列为记录名称所对应的数据域</li>
+<li>许多的行和列组成一张表单</li>
+<li>若干的表单组成database</li>
+</ol>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/24/MySQL/MySQL/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/22/Java WEB/JS函数表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/22/Java WEB/JS函数表达式/" class="post-title-link" itemprop="url">关于JS中的函数是否加括号的问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-22 21:15:02" itemprop="dateCreated datePublished" datetime="2019-07-22T21:15:02+08:00">2019-07-22</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-01 10:07:03" itemprop="dateModified" datetime="2019-08-01T10:07:03+08:00">2019-08-01</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">1.1k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">1 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="函数表达式的定位"><a href="#函数表达式的定位" class="headerlink" title="函数表达式的定位"></a>函数表达式的定位</h1><blockquote>
+<p>本文相关的概念：函数，函数表达式，返回值。</p>
+<p>函数：函数名为Fun的函数。<br>函数表达式：Fun() 和 fun。<br>返回值：即函数Fun的返回值。</p>
+</blockquote>
+<p>首先，需要明确的概念是：函数表达式的定位。<br>不同的定位决定了不同的功能，以下是我列出来的函数表达式及其定位。<br>我会在详细表述表达式时，附上便于理解的代码。</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数表达式</th>
+<th align="center">定位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>function()</strong></td>
+<td align="center">调用函数、返回返回值</td>
+</tr>
+<tr>
+<td align="center"><strong>function</strong></td>
+<td align="center">函数的副本</td>
+</tr>
+</tbody></table>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/22/Java WEB/JS函数表达式/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/21/Java WEB/redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/21/Java WEB/redis/" class="post-title-link" itemprop="url">Redis</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-21 15:21:46" itemprop="dateCreated datePublished" datetime="2019-07-21T15:21:46+08:00">2019-07-21</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-01 10:07:41" itemprop="dateModified" datetime="2019-08-01T10:07:41+08:00">2019-08-01</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">8.5k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">8 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h1><ul>
+<li>NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。</li>
+<li>随着互联网web- 0网站的兴起，传统的关系数据库在应付web- 0网站，特别是超大规模和高并发的SNS类型的web- 0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。NoSQL数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，尤其是大数据应用难题。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/21/Java WEB/redis/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/20/Java WEB/Json/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/20/Java WEB/Json/" class="post-title-link" itemprop="url">JSON</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-20 21:15:02" itemprop="dateCreated datePublished" datetime="2019-07-20T21:15:02+08:00">2019-07-20</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-01 10:06:45" itemprop="dateModified" datetime="2019-08-01T10:06:45+08:00">2019-08-01</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">3.4k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">3 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
+<li>JSON：JavaScript 对象表示法（JavaScript Object Notation）</li>
+<li>JSON现在多用于存储和交换文本信息的语法，进行数据的传输。</li>
+<li>JSON 比 XML 更小、更快，更易解析。</li>
+<li>注意：JSON 虽然使用 JavaScript 语法来描述数据对象，但是 JSON 仍然独立于语言和平台。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"employees"</span>: [</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"Bill"</span> , <span class="string">"lastName"</span>:<span class="string">"Gates"</span> &#125;,</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"George"</span> , <span class="string">"lastName"</span>:<span class="string">"Bush"</span> &#125;,</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"Thomas"</span> , <span class="string">"lastName"</span>:<span class="string">"Carter"</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/20/Java WEB/Json/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/20/Java WEB/Ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/20/Java WEB/Ajax/" class="post-title-link" itemprop="url">Ajax</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-20 17:18:33" itemprop="dateCreated datePublished" datetime="2019-07-20T17:18:33+08:00">2019-07-20</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-01 10:04:26" itemprop="dateModified" datetime="2019-08-01T10:04:26+08:00">2019-08-01</time>
               </span>
             
           
@@ -500,60 +2173,20 @@
 
       
         
-          <h1 id="web相关概念回顾"><a href="#web相关概念回顾" class="headerlink" title="web相关概念回顾"></a>web相关概念回顾</h1><h2 id="软件架构"><a href="#软件架构" class="headerlink" title="软件架构"></a>软件架构</h2><ul>
-<li><strong>C/S</strong><ul>
-<li>客户端/服务器端</li>
-</ul>
-</li>
-<li><strong>B/S</strong><ul>
-<li>浏览器/服务器端</li>
-</ul>
-</li>
-</ul>
-<h2 id="资源分类"><a href="#资源分类" class="headerlink" title="资源分类"></a>资源分类</h2><ul>
-<li><strong>静态资源</strong><ul>
-<li>所有用户访问后，得到的结果都是一样的。静态资源可以直接被浏览器解析。</li>
-<li>如： html，css，JavaScript</li>
-</ul>
-</li>
-<li><strong>动态资源</strong><ul>
-<li>每个用户访问相同资源后，得到的结果可能不一样。动态资源被访问后，需要先转换为静态资源，再返回给浏览器。</li>
-<li>如：servlet/jsp，php，asp</li>
-</ul>
-</li>
-</ul>
-<h2 id="网络通信三要素"><a href="#网络通信三要素" class="headerlink" title="网络通信三要素"></a>网络通信三要素</h2><ol>
-<li><strong>IP</strong>：电子设备(计算机)在网络中的唯一标识。</li>
-<li><strong>端口</strong>：应用程序在计算机中的唯一标识。 0~65536</li>
-<li><strong>传输协议</strong>：规定了数据传输的规则<ul>
-<li>基础协议<ul>
-<li>TCP：安全协议，三次握手； 速度稍慢。</li>
-<li>UDP：不安全协议；速度快。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="web服务器软件"><a href="#web服务器软件" class="headerlink" title="web服务器软件"></a>web服务器软件</h2><ul>
-<li><strong>服务器</strong><ul>
-<li>安装了服务器软件的计算机。</li>
-</ul>
-</li>
-<li><strong>服务器软件</strong><ul>
-<li>接收用户的请求，处理请求，做出响应。</li>
-</ul>
-</li>
-<li><strong>web服务器软件</strong><ul>
-<li>在web服务器软件中，部署web项目，让用户通过浏览器来访问项目。</li>
-<li>同时，接收用户的请求，处理请求，做出响应。</li>
-<li>动态资源依赖于web服务器软件，只能运行在web服务器中。</li>
+          <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
+<li>AJAX 是与服务器交换数据的艺术，它在不重载全部页面的情况下，实现了对部分网页的更新。</li>
+<li>AJAX = 异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。</li>
+<li>Ajax 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。<ul>
+<li>通过在后台与服务器进行少量数据交换，Ajax 可以使网页实现异步更新。</li>
+<li>这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
+<li>传统的网页（不使用 Ajax）如果需要更新内容，必须重载整个网页页面。</li>
 </ul>
 </li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/11/tomcat/#more" rel="contents">
+              <a class="btn" href="/2019/07/20/Java WEB/Ajax/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -617,7 +2250,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/10/XML/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/19/Java WEB/jQuery/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -637,7 +2270,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/10/XML/" class="post-title-link" itemprop="url">XML</a>
+                <a href="/2019/07/19/Java WEB/jQuery/" class="post-title-link" itemprop="url">jQuery</a>
               
             
           </h1>
@@ -662,7 +2295,7 @@
                 
               
 
-              <time title="创建时间：2019-07-10 20:40:07" itemprop="dateCreated datePublished" datetime="2019-07-10T20:40:07+08:00">2019-07-10</time>
+              <time title="创建时间：2019-07-19 01:36:24" itemprop="dateCreated datePublished" datetime="2019-07-19T01:36:24+08:00">2019-07-19</time>
             </span>
           
 
@@ -677,7 +2310,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-01 10:09:22" itemprop="dateModified" datetime="2019-08-01T10:09:22+08:00">2019-08-01</time>
+                <time title="修改时间：2019-08-01 10:06:25" itemprop="dateModified" datetime="2019-08-01T10:06:25+08:00">2019-08-01</time>
               </span>
             
           
@@ -716,7 +2349,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">14k</span>
+              <span title="本文字数">9.7k</span>
             </span>
           
 
@@ -728,7 +2361,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">13 分钟</span>
+              <span title="阅读时长">9 分钟</span>
             </span>
           
 
@@ -748,519 +2381,17 @@
 
       
         
-          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>XML（ Extensible Markup Language），即 可扩展标记语言，标准通用标记语言的子集，是一种用于标记电子文件使其具有结构性的标记语言。</li>
-<li>可扩展语言的精华在于其”Extensible”，即 在XML中的标签都是自定义的。</li>
+          <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>jQuery是一个快速、简洁的JavaScript框架，是继Prototype之后又一个优秀的JavaScript代码库（或JavaScript框架）。</li>
+<li>jQuery设计的宗旨是“write Less，Do More”，即倡导写更少的代码，做更多的事情。</li>
+<li>jQuery封装了JavaScript常用的功能代码，提供一种简便的JavaScript设计模式，优化HTML文档操作、事件处理、动画设计和Ajax交互。</li>
+<li>jQuery本质上就是一些js文件，封装了js的原生代码而已。</li>
+<li>jQuery 语法是为 HTML 元素的选取编制的，可以对元素执行某些操作。</li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/10/XML/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/09/BootStrap/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/09/BootStrap/" class="post-title-link" itemprop="url">BootStrap</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-09 21:18:48" itemprop="dateCreated datePublished" datetime="2019-07-09T21:18:48+08:00">2019-07-09</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-04 23:04:28" itemprop="dateModified" datetime="2019-08-04T23:04:28+08:00">2019-08-04</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">14k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">12 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>Bootstrap是一个前端开发的框架，来自 Twitter，是目前很受欢迎的前端框架。它基于 HTML、CSS、JavaScript ，具有简洁、直观、强悍的优点，使得 Web 开发更加快捷。</p>
-<h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ol>
-<li>响应式设计，能够自适应于台式机、平板电脑、手机，确保了适当的绘制和触屏缩放，同时可以设置禁止缩放功能，使网站看上去感觉更像原生应用。</li>
-<li>包含了功能强大的内置组件（css样式和js插件），我们开发人员直接可以使用这些样式和插件得到丰富的页面效果。</li>
-</ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/09/BootStrap/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/09/TyparoMarkdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/09/TyparoMarkdown/" class="post-title-link" itemprop="url">TyparoMarkdown</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-09 18:31:06" itemprop="dateCreated datePublished" datetime="2019-07-09T18:31:06+08:00">2019-07-09</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-04 23:06:52" itemprop="dateModified" datetime="2019-08-04T23:06:52+08:00">2019-08-04</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">1.6k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">1 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="语法手册"><a href="#语法手册" class="headerlink" title="*语法手册*"></a>*语法手册*</h1><table>
-<thead>
-<tr>
-<th align="center">功能</th>
-<th align="center">markdown语法</th>
-<th align="center">快捷键</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">转义字符</td>
-<td align="center">\</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">分割线</td>
-<td align="center">-–</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">标题</td>
-<td align="center">#  ##  ###</td>
-<td align="center">ctrl + 1~6</td>
-</tr>
-<tr>
-<td align="center">斜体</td>
-<td align="center">*</td>
-<td align="center">ctrl + I</td>
-</tr>
-<tr>
-<td align="center">粗体</td>
-<td align="center">**</td>
-<td align="center">ctrl + B</td>
-</tr>
-<tr>
-<td align="center">下划线</td>
-<td align="center"><u></u></td>
-<td align="center">ctrl + U</td>
-</tr>
-<tr>
-<td align="center">删除线</td>
-<td align="center">~~</td>
-<td align="center">alt + shift +5</td>
-</tr>
-<tr>
-<td align="center">引用</td>
-<td align="center">&lt;</td>
-<td align="center">ctrl + shift + Q</td>
-</tr>
-<tr>
-<td align="center">超链接</td>
-<td align="center">\</td>
-<td align="center">ctrl + K</td>
-</tr>
-<tr>
-<td align="center">代码片段</td>
-<td align="center">·</td>
-<td align="center">ctrl + shift + `</td>
-</tr>
-<tr>
-<td align="center">代码块</td>
-<td align="center">···</td>
-<td align="center">ctrl + shift + K</td>
-</tr>
-<tr>
-<td align="center">图片</td>
-<td align="center">[ ](   “”)</td>
-<td align="center">ctrl + shift + I</td>
-</tr>
-<tr>
-<td align="center">有序列表</td>
-<td align="center">1. 2. 3.</td>
-<td align="center">ctrl + shift + [</td>
-</tr>
-<tr>
-<td align="center">无序列表</td>
-<td align="center">- + *</td>
-<td align="center">ctrl + shift + ]</td>
-</tr>
-<tr>
-<td align="center">表格</td>
-<td align="center"></td>
-<td align="center">ctrl + T</td>
-</tr>
-<tr>
-<td align="center">清除样式</td>
-<td align="center"></td>
-<td align="center">ctrl + \</td>
-</tr>
-<tr>
-<td align="center">源代码模式</td>
-<td align="center"></td>
-<td align="center">ctrl + /</td>
-</tr>
-<tr>
-<td align="center">目录</td>
-<td align="center">[toc]</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center">脚注</td>
-<td align="center">[^ ]:</td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/09/TyparoMarkdown/#more" rel="contents">
+              <a class="btn" href="/2019/07/19/Java WEB/jQuery/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1313,7 +2444,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1357,7 +2488,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1471,7 +2602,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1592,7 +2731,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">327k</span>
+    <span title="站点总字数">542k</span>
   
 
   
@@ -1601,7 +2740,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">4:58</span>
+    <span title="站点阅读时长">8:13</span>
   
 </div>
 

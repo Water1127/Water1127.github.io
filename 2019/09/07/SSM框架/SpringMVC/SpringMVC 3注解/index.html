@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":20,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "0fccaaa9"
+    });
+  daovoice('update');
+  </script>
+
+  <meta name="description" content="项目结构 java controller SessionController.java（Java文件）     resources springmvc.xml（springmvc配置文件）   webapp WEB-INF pages success.jsp（web页面） session.jsp（web页面）   web.xml（web配置文件）   index.jsp（web页面） annota">
+<meta name="keywords" content="Spring MVC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring MVC 参数绑定">
+<meta property="og:url" content="https://Water1127.github.io/2019/09/07/SSM框架/SpringMVC/SpringMVC 3注解/index.html">
+<meta property="og:site_name" content="Water&#39;s Blog">
+<meta property="og:description" content="项目结构 java controller SessionController.java（Java文件）     resources springmvc.xml（springmvc配置文件）   webapp WEB-INF pages success.jsp（web页面） session.jsp（web页面）   web.xml（web配置文件）   index.jsp（web页面） annota">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-04T14:30:48.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring MVC 参数绑定">
+<meta name="twitter:description" content="项目结构 java controller SessionController.java（Java文件）     resources springmvc.xml（springmvc配置文件）   webapp WEB-INF pages success.jsp（web页面） session.jsp（web页面）   web.xml（web配置文件）   index.jsp（web页面） annota">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://Water1127.github.io/2019/09/07/SSM框架/SpringMVC/SpringMVC 3注解/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Spring MVC 参数绑定 | Water's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Water's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">坚持更新博客中...</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/Water1177" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/09/07/SSM框架/SpringMVC/SpringMVC 3注解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring MVC 参数绑定
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-07 20:53:02" itemprop="dateCreated datePublished" datetime="2019-09-07T20:53:02+08:00">2019-09-07</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-04 22:30:48" itemprop="dateModified" datetime="2019-10-04T22:30:48+08:00">2019-10-04</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/09/07/SSM框架/SpringMVC/SpringMVC 3注解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/09/07/SSM框架/SpringMVC/SpringMVC 3注解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">20k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">18 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><ul>
+<li>java<ul>
+<li>controller<ul>
+<li><u>SessionController.java（Java文件）</u></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>resources<ul>
+<li>springmvc.xml（springmvc配置文件）</li>
+</ul>
+</li>
+<li>webapp<ul>
+<li>WEB-INF<ul>
+<li>pages<ul>
+<li>success.jsp（web页面）</li>
+<li><u>session.jsp（web页面）</u></li>
+</ul>
+</li>
+<li>web.xml（web配置文件）</li>
+</ul>
+</li>
+<li><u>index.jsp（web页面）</u></li>
+<li><u>annotation.jsp（web页面）</u></li>
+</ul>
+</li>
+<li>pom.xml（maven项目配置文件）</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="maven项目配置文件"><a href="#maven项目配置文件" class="headerlink" title="maven项目配置文件"></a>maven项目配置文件</h2><ul>
+<li>配置maven项目需要的依赖<ul>
+<li>spring-context</li>
+<li>spring-web</li>
+<li>spring-webmvc</li>
+<li>servlet-api</li>
+<li>jsp-api</li>
+</ul>
+</li>
+</ul>
+<h2 id="web配置文件"><a href="#web配置文件" class="headerlink" title="web配置文件"></a>web配置文件</h2><ul>
+<li>前端控制器（DispatcherServlet）<ul>
+<li>配置一个前端控制器（&lt;servlet&gt;）<ul>
+<li>创建前端控制器时，加载Spring配置文件（&lt;init-param&gt;）</li>
+<li>启动服务器时，创建前端控制器（&lt;\load-on-startup&gt;）</li>
+</ul>
+</li>
+<li>配置前端控制器的作用范围（&lt;servlet-mapping&gt;）</li>
+</ul>
+</li>
+<li>过滤器（CharacterEncodingFilter）<ul>
+<li>配置一个过滤器（&lt;filter&gt;）<ul>
+<li>配置编码（&lt;init-param&gt;）：解决中文乱码</li>
+</ul>
+</li>
+<li>配置前端控制器的作用范围（&lt;filter-mapping&gt;）</li>
+</ul>
+</li>
+</ul>
+<h2 id="springmvc配置文件"><a href="#springmvc配置文件" class="headerlink" title="springmvc配置文件"></a>springmvc配置文件</h2><ul>
+<li>导入名称空间（&lt;beans xmlns=””&gt;）</li>
+<li>开启注解扫描（&lt;context:component-scan base-package=””&gt;）</li>
+<li>配置视图解析器（InternalResourceViewResolver）<ul>
+<li>配置前缀（prefix -&gt; “/WEB-INF/pages”）</li>
+<li>配置后缀（suffix -&gt; “.jsp”）</li>
+</ul>
+</li>
+<li>开启SpringMVC注解支持（&lt;mvc:annotation-driven&gt;）</li>
+</ul>
+<h2 id="Java文件"><a href="#Java文件" class="headerlink" title="Java文件"></a>Java文件</h2><ul>
+<li><p>表现层</p>
+<ul>
+<li><p>类</p>
+<ul>
+<li>添加进IoC核心容器（@Controller）</li>
+<li>设置请求映射（@RequestMapping()）<ul>
+<li>一级目录（path=””）</li>
+<li>设置允许访问的请求方法（method=””）</li>
+<li>设置必需的参数和参数值（params=””）<ul>
+<li>设置必需的请求头（headers=””）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><u>设置Session域的键值对（@SessionAttributes()）</u></li>
+</ul>
+</li>
+<li><p>方法</p>
+<ul>
+<li>设置请求映射（@RequestMapping()）<ul>
+<li>二级目录（path=””）</li>
+</ul>
+</li>
+<li>返回值（return “success”;）</li>
+<li>参数列表（数据类型 请求参数名，数据类型 请求参数名）<ul>
+<li><u>Model：用于存储键值对至Request域</u></li>
+<li><u>ModelMap：用于获取Request域中的键值对</u></li>
+<li><u>SessionStatus：用于清空Session域中的键值对</u></li>
+</ul>
+</li>
+<li><u>设置初始化方法（@ModelAttribute）</u></li>
+</ul>
+</li>
+<li><p>方法参数</p>
+<ul>
+<li><p><u>获取请求参数（@RequestParam()）</u></p>
+<ul>
+<li>二级目录：”/testRequestParam”</li>
+<li>请求地址：”anno/testRequestParam?name=cat”</li>
+</ul>
+</li>
+<li><p><u>获取请求参数（@PathVariable()）</u></p>
+<ul>
+<li>二级目录：”/testPathVariable/{name}”</li>
+<li>请求地址：”anno/testPathVariable/cat”</li>
+</ul>
+</li>
+<li><p><u>获取请求体（@RequestBody）</u></p>
+</li>
+<li><p><u>获取请求头（@RequestHeader）</u></p>
+</li>
+<li><p><u>获取缓存（@CookieValue()）</u></p>
+</li>
+<li><p><u>获取底层Map集合的键值对（@ModelAttribute()）</u></p>
+</li>
+<li><p><u>设置Session域的键值对（@SessionAttributes()）</u></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="JSP文件"><a href="#JSP文件" class="headerlink" title="JSP文件"></a>JSP文件</h2><ul>
+<li>超链接（href=”一级目录/二级目录?请求参数=值&amp;请求参数=值”）</li>
+<li>表单（&lt;form action=”一级目录/二级目录” method=”post”&gt;）</li>
+</ul>
+<h1 id="执行代码"><a href="#执行代码" class="headerlink" title="执行代码"></a>执行代码</h1><ul>
+<li>需求：在<u>annotation.jsp</u>页面，点击的超链接，跳转到success.jsp页面，并且在控制台输出<u>请求消息</u>。</li>
+</ul>
+<h2 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.water<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>section01_Introduction<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>section01_Introduction Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- FIXME change it to the project's website --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://www.example.com<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 版本锁定 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spring.version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">spring.version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 依赖注入 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- spring --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- spring-web --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- spring-webmvc --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- servlet --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- jsp --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet.jsp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jsp-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>section01_Introduction<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span><span class="comment">&lt;!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-clean-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-resources-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-surefire-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.22.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-install-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-deploy-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="web-xml"><a href="#web-xml" class="headerlink" title="web.xml"></a>web.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE web-app PUBLIC</span></span><br><span class="line"><span class="meta"> "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"</span></span><br><span class="line"><span class="meta"> "http://java.sun.com/dtd/web-app_2_3.dtd" &gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>Archetype Created Web Application<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!--   【Filter】   --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--   创建过滤器   --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--   配置编码   --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--   映射   --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!--   【Servlet】   --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--   创建前端控制器   --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--   创建前端控制器时，加载spring配置文件   --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:springmvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--   启动服务器时，创建前端控制器   --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--   映射   --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>dispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="springmvc-xml"><a href="#springmvc-xml" class="headerlink" title="springmvc.xml"></a>springmvc.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/mvc</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/mvc/spring-mvc.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 开启注解扫描 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.water"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 视图解析器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"internalResourceViewResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span> &gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 配置前缀 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/pages/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 配置后缀 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 开启springMVC框架注解支持 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="AnnotationController-java"><a href="#AnnotationController-java" class="headerlink" title="AnnotationController.java"></a>AnnotationController.java</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.domain.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.ui.Model;</span><br><span class="line"><span class="keyword">import</span> org.springframework.ui.ModelMap;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.support.SessionStatus;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/9/10 - 10:48</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/anno"</span>)</span><br><span class="line"><span class="comment">/* 将键值对存储到session域 */</span></span><br><span class="line"><span class="meta">@SessionAttributes</span>(<span class="string">"message"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotationController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 【获取请求参数】 */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/testRequestParam"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testRequestParam</span><span class="params">(@RequestParam(name = <span class="string">"name"</span>)</span> String username )</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"请求参数："</span>+username);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 【获取请求参数】 */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/testPathVariable/&#123;name&#125;"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testPathVariable</span><span class="params">(@PathVariable(name = <span class="string">"name"</span>)</span> String username )</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"请求参数："</span>+username);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 【获取请求体（GET请求方式没有请求体）】 */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/testRequestBody"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testRequestBody</span><span class="params">(@RequestBody String body )</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"请求体："</span>+body);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 【获取请求头】 */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/testRequestHeader"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testRequestHeader</span><span class="params">(@RequestHeader(value = <span class="string">"Accept"</span>)</span> String header )</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"请求头："</span>+header);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 【Cookie】 */</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/testCookieValue"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testCookieValue</span><span class="params">(@CookieValue(value = <span class="string">"JSESSIONID"</span>)</span> String cookieValue )</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Cookie："</span>+cookieValue);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 【ModelAttribute】 */</span></span><br><span class="line">    <span class="comment">/* 用于将表单提交的数据封装至JavaBean对象时，当时当数据不全时，使用ModelAttribute注释的方法将数据补全 */</span></span><br><span class="line"><span class="comment">//    [方法一]</span></span><br><span class="line"><span class="comment">//    @RequestMapping("/testModelAttribute")</span></span><br><span class="line"><span class="comment">//    public String testModelAttribute(User user)&#123;</span></span><br><span class="line"><span class="comment">//        System.out.println("testModelAttribute执行了...");</span></span><br><span class="line"><span class="comment">//        System.out.println(user);</span></span><br><span class="line"><span class="comment">//        return "success";</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    @ModelAttribute /* 先执行 */</span></span><br><span class="line"><span class="comment">//    public User ModelAttributeMethod(String name)&#123;</span></span><br><span class="line"><span class="comment">//        System.out.println("ModelAttributeMethod执行了...");</span></span><br><span class="line"><span class="comment">//        User user = new User();</span></span><br><span class="line"><span class="comment">//        user.setName(name);</span></span><br><span class="line"><span class="comment">//        user.setAge("11");</span></span><br><span class="line"><span class="comment">//        return user;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    [方法二]</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/testModelAttribute"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testModelAttribute</span><span class="params">(@ModelAttribute(<span class="string">"user_name"</span>)</span> User user)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"testModelAttribute执行了..."</span>);</span><br><span class="line">        System.out.println(user);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* 将User对象存储进底层的Map集合中 */</span></span><br><span class="line">    <span class="meta">@ModelAttribute</span> <span class="comment">/* 先执行 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ModelAttributeMethod</span><span class="params">(String username, Map&lt;String,User&gt; map)</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"ModelAttributeMethod执行了..."</span>);</span><br><span class="line">        User user = <span class="keyword">new</span> User();</span><br><span class="line">        user.setName(username);</span><br><span class="line">        user.setAge(<span class="string">"11"</span>);</span><br><span class="line">        map.put(<span class="string">"user_name"</span>,user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"testSessionAttributes"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testSessionAttributes</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">        <span class="comment">/* 将键值对存储到request域 */</span></span><br><span class="line">        model.addAttribute(<span class="string">"message"</span>,<span class="string">"Hello,Request Field!"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"session"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"getSessionAttributes"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSessionAttributes</span><span class="params">(ModelMap modelMap)</span></span>&#123;</span><br><span class="line">        <span class="comment">/* 获取Session域中的值 */</span></span><br><span class="line">        Object message = modelMap.get(<span class="string">"message"</span>);</span><br><span class="line">        System.out.println(message);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"session"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"removeSessionAttributes"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">removeSessionAttributes</span><span class="params">(SessionStatus sessionStatus)</span></span>&#123;</span><br><span class="line">        <span class="comment">/* 清空Session域中的值 */</span></span><br><span class="line">        sessionStatus.setComplete();</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"session"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="index-jsp"><a href="#index-jsp" class="headerlink" title="index.jsp"></a>index.jsp</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h2&gt;&lt;a href="controller/sayHello?username=cat"&gt;入门&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line">    &lt;h2&gt;&lt;a href="parameters.jsp"&gt;参数绑定&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line">    &lt;h2&gt;&lt;a href="annotation.jsp"&gt;注解&lt;/a&gt;&lt;/h2&gt;</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="annotation-jsp"><a href="#annotation-jsp" class="headerlink" title="annotation.jsp"></a>annotation.jsp</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;%--</span><br><span class="line">  Created by IntelliJ IDEA.</span><br><span class="line">  User: Water</span><br><span class="line">  Date: <span class="number">2019</span>/<span class="number">9</span>/<span class="number">19</span></span><br><span class="line">  Time: <span class="number">14</span>:<span class="number">28</span></span><br><span class="line">  To change <span class="keyword">this</span> template use File | Settings | File Templates.</span><br><span class="line">--%&gt;</span><br><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;%-- 请求参数 --%&gt;</span><br><span class="line">    &lt;h3&gt;&lt;a href="anno/testRequestParam?name=cat&amp;name=dog&amp;name=rat"&gt;获取 请求参数（RequestParam）&lt;/a&gt;&lt;/h3&gt;</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line"></span><br><span class="line">    &lt;%-- 请求参数 --%&gt;</span><br><span class="line">    &lt;%--&lt;a href="anno/testRequestParam?name=cat"&gt;请点击&lt;/a&gt;--%&gt;</span><br><span class="line">    &lt;a href="anno/testPathVariable/cat"&gt;获取 请求参数（PathVariable）&lt;/a&gt;     // "cat" &lt;br&gt;</span><br><span class="line">    &lt;a href="anno/testPathVariable/cat&amp;dog"&gt;获取 请求参数（PathVariable）&lt;/a&gt;     // "cat&amp;dog"</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line"></span><br><span class="line">    &lt;%-- 请求体 --%&gt;</span><br><span class="line">    &lt;form action=<span class="string">"anno/testRequestBody"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">        姓名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span> /&gt;&lt;br/&gt;</span><br><span class="line">        密码：&lt;input type=<span class="string">"text"</span> name=<span class="string">"password"</span> /&gt;&lt;br/&gt;</span><br><span class="line">        金额：&lt;input type=<span class="string">"text"</span> name=<span class="string">"money"</span> /&gt;&lt;br/&gt;</span><br><span class="line">        &lt;input type=<span class="string">"submit"</span> value=<span class="string">"获取 请求体（RequestBody）"</span>&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line"></span><br><span class="line">    &lt;%-- 请求头 --%&gt;</span><br><span class="line">    &lt;h3&gt;&lt;a href="anno/testRequestHeader"&gt;获取 请求头（RequestHeader）&lt;/a&gt;&lt;/h3&gt;</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line"></span><br><span class="line">    &lt;%-- 缓存 --%&gt;</span><br><span class="line">    &lt;h3&gt;&lt;a href="anno/testCookieValue"&gt;获取 缓存（CookieValue）&lt;/a&gt;&lt;/h3&gt;</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line"></span><br><span class="line">    &lt;%-- ModelAttribute --%&gt;</span><br><span class="line">    &lt;form action=<span class="string">"anno/testModelAttribute"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">        姓名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span> /&gt;&lt;br/&gt;</span><br><span class="line">        &lt;input type=<span class="string">"submit"</span> value=<span class="string">"ModelAttribute"</span>&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line">    &lt;hr&gt;</span><br><span class="line"></span><br><span class="line">    &lt;a href="anno/testSessionAttributes"&gt;设置，并在浏览器查看Request域和Session域中的message值&lt;/a&gt;&lt;br&gt;</span><br><span class="line">    &lt;a href="anno/getSessionAttributes"&gt;在控制台查看Session域中的message值&lt;/a&gt;&lt;br&gt;</span><br><span class="line">    &lt;a href="anno/removeSessionAttributes"&gt;删除，并在浏览器查看Session域中的message值&lt;/a&gt;&lt;br&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="success-jsp"><a href="#success-jsp" class="headerlink" title="success.jsp"></a>success.jsp</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;h3&gt;访问成功！！！&lt;/h3&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="session-jsp"><a href="#session-jsp" class="headerlink" title="session.jsp"></a>session.jsp</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> isELIgnored=<span class="string">"false"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;Request域：&lt;/h1&gt;$&#123;requestScope.message&#125;&lt;br&gt;</span><br><span class="line">    &lt;h1&gt;Session域：&lt;/h1&gt;$&#123;sessionScope&#125;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="RequestParam-请求参数"><a href="#RequestParam-请求参数" class="headerlink" title="@RequestParam 请求参数"></a>@RequestParam 请求参数</h1><ul>
+<li><p>发出请求</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href="anno/testRequestParam?name=cat&amp;name=dog&amp;name=rat"&gt;获取 请求参数（RequestParam）&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接收请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testRequestParam"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testRequestParam</span><span class="params">(@RequestParam(name = <span class="string">"name"</span>)</span> String username )</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"请求参数："</span>+username);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请求参数：cat,dog,rat</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="PathVariable-请求参数"><a href="#PathVariable-请求参数" class="headerlink" title="@PathVariable 请求参数"></a>@PathVariable 请求参数</h1><ul>
+<li><p>发出请求</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href="anno/testPathVariable/cat"&gt;获取 请求参数（PathVariable）&lt;/a&gt; &lt;br&gt;</span><br><span class="line">&lt;a href="anno/testPathVariable/cat&amp;dog"&gt;获取 请求参数（PathVariable）&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接收请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testPathVariable/&#123;name&#125;"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testPathVariable</span><span class="params">(@PathVariable(name = <span class="string">"name"</span>)</span> String username )</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"请求参数："</span>+username);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">请求参数：cat</span><br><span class="line">请求参数：cat&amp;dog</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="RequestBody-请求体"><a href="#RequestBody-请求体" class="headerlink" title="@RequestBody 请求体"></a>@RequestBody 请求体</h1><ul>
+<li><p>发出请求</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">"anno/testRequestBody"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">    姓名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span> /&gt;&lt;br/&gt;</span><br><span class="line">    密码：&lt;input type=<span class="string">"text"</span> name=<span class="string">"password"</span> /&gt;&lt;br/&gt;</span><br><span class="line">    金额：&lt;input type=<span class="string">"text"</span> name=<span class="string">"money"</span> /&gt;&lt;br/&gt;</span><br><span class="line">    &lt;input type=<span class="string">"submit"</span> value=<span class="string">"获取 请求体（RequestBody）"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接收请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 【GET请求方式没有请求体】 */</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testRequestBody"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testRequestBody</span><span class="params">(@RequestBody String body )</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"请求体："</span>+body);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请求体：username=cat&amp;password=111&amp;money=999</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="RequestHeader-请求头"><a href="#RequestHeader-请求头" class="headerlink" title="@RequestHeader 请求头"></a>@RequestHeader 请求头</h1><ul>
+<li><p>发出请求</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href="anno/testRequestHeader"&gt;获取 请求头（RequestHeader）&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接收请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testRequestHeader"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testRequestHeader</span><span class="params">(@RequestHeader(value = <span class="string">"Accept"</span>)</span> String header )</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"请求头："</span>+header);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请求头：text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="CookieValue-缓存"><a href="#CookieValue-缓存" class="headerlink" title="@CookieValue 缓存"></a>@CookieValue 缓存</h1><ul>
+<li><p>发出请求</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href="anno/testCookieValue"&gt;获取 缓存（CookieValue）&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接收请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testCookieValue"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testCookieValue</span><span class="params">(@CookieValue(value = <span class="string">"JSESSIONID"</span>)</span> String cookieValue )</span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"Cookie："</span>+cookieValue);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie：93E4FB2388E1A6249DA4552C947FE2C2</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="ModelAttribute"><a href="#ModelAttribute" class="headerlink" title="@ModelAttribute"></a>@ModelAttribute</h1><ul>
+<li><p>发出请求</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">"anno/testModelAttribute"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">    姓名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span> /&gt;&lt;br/&gt;</span><br><span class="line">    &lt;input type=<span class="string">"submit"</span> value=<span class="string">"ModelAttribute"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接收请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/testModelAttribute"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">testModelAttribute</span><span class="params">(User user)</span></span>&#123;</span><br><span class="line">	System.out.println(<span class="string">"testModelAttribute执行了..."</span>);</span><br><span class="line">	System.out.println(user);</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 直接返回User对象 */</span></span><br><span class="line"><span class="meta">@ModelAttribute</span> <span class="comment">/* 先执行 */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">ModelAttributeMethod</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"ModelAttributeMethod执行了..."</span>);</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setName(name);</span><br><span class="line">    user.setAge(<span class="string">"11"</span>);</span><br><span class="line">    <span class="keyword">return</span> user;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ModelAttributeMethod执行了...</span><br><span class="line">testModelAttribute执行了...</span><br><span class="line">User&#123;name=&apos;cat&apos;, age=&apos;11&apos;&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><ul>
+<li>接收请求<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 将User对象存储进底层的Map集合中 */</span></span><br><span class="line"><span class="meta">@ModelAttribute</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ModelAttributeMethod</span><span class="params">(String username, Map&lt;String,User&gt; map)</span></span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"ModelAttributeMethod执行了..."</span>);</span><br><span class="line">    User user = <span class="keyword">new</span> User();</span><br><span class="line">    user.setName(username);</span><br><span class="line">    user.setAge(<span class="string">"11"</span>);</span><br><span class="line">    map.put(<span class="string">"user_name"</span>,user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="设置域"><a href="#设置域" class="headerlink" title="设置域"></a>设置域</h1><ul>
+<li><p>发出请求</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href="anno/testSessionAttributes"&gt;设置，并在浏览器查看Request域和Session域中的message值&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接收请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"testSessionAttributes"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">testSessionAttributes</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">    <span class="comment">/* 将键值对存储到request域 */</span></span><br><span class="line">    model.addAttribute(<span class="string">"message"</span>,<span class="string">"Hello,Request Field!"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"session"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>响应页面</p>
+</li>
+</ul>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Request域：$&#123;requestScope.message&#125;&lt;br&gt;</span><br><span class="line">Session域：$&#123;sessionScope&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>响应结果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Request域：Hello,Request Field!</span><br><span class="line">Session域：&#123;message=Hello,Request Field!&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="查看域"><a href="#查看域" class="headerlink" title="查看域"></a>查看域</h1><ul>
+<li><p>发出请求</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href="anno/getSessionAttributes"&gt;在控制台查看Session域中的message值&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接收请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"getSessionAttributes"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getSessionAttributes</span><span class="params">(ModelMap modelMap)</span></span>&#123;</span><br><span class="line">    <span class="comment">/* 获取Session域中的值 */</span></span><br><span class="line">    Object message = modelMap.get(<span class="string">"message"</span>);</span><br><span class="line">    System.out.println(message);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"session"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>响应页面</p>
+</li>
+</ul>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Request域：$&#123;requestScope.message&#125;&lt;br&gt;</span><br><span class="line">Session域：$&#123;sessionScope&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>响应结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Request域：Hello,Request Field!</span><br><span class="line">Session域：&#123;message=Hello,Request Field!&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行结果</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello,Request Field!</span><br></pre></td></tr></table></figure>
+
+<h1 id="删除域"><a href="#删除域" class="headerlink" title="删除域"></a>删除域</h1><ul>
+<li><p>发出请求</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href="anno/removeSessionAttributes"&gt;删除，并在浏览器查看Session域中的message值&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接收请求</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"removeSessionAttributes"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">removeSessionAttributes</span><span class="params">(SessionStatus sessionStatus)</span></span>&#123;</span><br><span class="line">    <span class="comment">/* 清空Session域中的值 */</span></span><br><span class="line">    sessionStatus.setComplete();</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"session"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>响应页面</p>
+</li>
+</ul>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Request域：$&#123;requestScope.message&#125;&lt;br&gt;</span><br><span class="line">Session域：$&#123;sessionScope&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>响应结果<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Request域：</span><br><span class="line">Session域：&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+
+      
+    </div>
+	
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #f44336;font-size:24px;">-------------本文结束-------------</div>
+    
+</div>
+
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>water.</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://Water1127.github.io/2019/09/07/SSM框架/SpringMVC/SpringMVC 3注解/" title="Spring MVC 参数绑定">https://Water1127.github.io/2019/09/07/SSM框架/SpringMVC/SpringMVC 3注解/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>Donate comment here</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.png" alt="water. 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="water. 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+		
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Spring-MVC/" rel="tag"># Spring MVC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/03/SSM框架/SpringMVC/SpringMVC 2参数绑定/" rel="next" title="Spring MVC 参数绑定">
+                <i class="fa fa-chevron-left"></i> Spring MVC 参数绑定
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/10/SSM框架/SpringMVC/SpringMVC 4响应数据类型/" rel="prev" title="Spring MVC 响应数据类型">
+                Spring MVC 响应数据类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="water.">
+            
+              <p class="site-author-name" itemprop="name">water.</p>
+              <div class="site-description motion-element" itemprop="description">Few words,many deeds.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Water1127" title="GitHub &rarr; https://github.com/Water1127" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:1219042242@qq.com" title="E-Mail &rarr; mailto:1219042242@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.canye365.cn/" title="https://blog.canye365.cn/" rel="noopener" target="_blank">残夜</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.imcyc.cn" title="https://www.imcyc.cn" rel="noopener" target="_blank">Morty</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.tmiracle.xyz/" title="https://www.tmiracle.xyz/" rel="noopener" target="_blank">Tmiracle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://dxoca.cn/" title="https://dxoca.cn/" rel="noopener" target="_blank">Dxoca</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://css0209.cn/" title="https://css0209.cn/" rel="noopener" target="_blank">BlankYk</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xyhmnb.ml/" title="http://xyhmnb.ml/" rel="noopener" target="_blank">UncleGood</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构"><span class="nav-number">1.</span> <span class="nav-text">项目结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#maven项目配置文件"><span class="nav-number">1.1.</span> <span class="nav-text">maven项目配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web配置文件"><span class="nav-number">1.2.</span> <span class="nav-text">web配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springmvc配置文件"><span class="nav-number">1.3.</span> <span class="nav-text">springmvc配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java文件"><span class="nav-number">1.4.</span> <span class="nav-text">Java文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP文件"><span class="nav-number">1.5.</span> <span class="nav-text">JSP文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行代码"><span class="nav-number">2.</span> <span class="nav-text">执行代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pom-xml"><span class="nav-number">2.1.</span> <span class="nav-text">pom.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web-xml"><span class="nav-number">2.2.</span> <span class="nav-text">web.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#springmvc-xml"><span class="nav-number">2.3.</span> <span class="nav-text">springmvc.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AnnotationController-java"><span class="nav-number">2.4.</span> <span class="nav-text">AnnotationController.java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#index-jsp"><span class="nav-number">2.5.</span> <span class="nav-text">index.jsp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#annotation-jsp"><span class="nav-number">2.6.</span> <span class="nav-text">annotation.jsp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#success-jsp"><span class="nav-number">2.7.</span> <span class="nav-text">success.jsp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#session-jsp"><span class="nav-number">2.8.</span> <span class="nav-text">session.jsp</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RequestParam-请求参数"><span class="nav-number">3.</span> <span class="nav-text">@RequestParam 请求参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PathVariable-请求参数"><span class="nav-number">4.</span> <span class="nav-text">@PathVariable 请求参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RequestBody-请求体"><span class="nav-number">5.</span> <span class="nav-text">@RequestBody 请求体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RequestHeader-请求头"><span class="nav-number">6.</span> <span class="nav-text">@RequestHeader 请求头</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CookieValue-缓存"><span class="nav-number">7.</span> <span class="nav-text">@CookieValue 缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ModelAttribute"><span class="nav-number">8.</span> <span class="nav-text">@ModelAttribute</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二"><span class="nav-number">8.1.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置域"><span class="nav-number">9.</span> <span class="nav-text">设置域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查看域"><span class="nav-number">10.</span> <span class="nav-text">查看域</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#删除域"><span class="nav-number">11.</span> <span class="nav-text">删除域</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">water.</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-file-text-o"></i>
+    </span>
+    
+    <span title="站点总字数">542k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-clock-o"></i>
+    </span>
+    
+    <span title="站点阅读时长">8:13</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+ <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 'hL3jXaWdTJKBa02z3dKMjyqm-gzGzoHsz',
+    appKey: 'HH4IpNc1WU9Sc48x6rTqwoWO',
+    placeholder: '说点什么把！',
+    avatar: 'retro',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'hL3jXaWdTJKBa02z3dKMjyqm-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'hL3jXaWdTJKBa02z3dKMjyqm-gzGzoHsz',
+                'X-LC-Key': 'HH4IpNc1WU9Sc48x6rTqwoWO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+            if (localhost.test(document.URL)) return;
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/clipboard-use.js"></script>
+  
+</body>
+</html>

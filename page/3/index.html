@@ -369,7 +369,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/21/redis/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/16/SSM框架/Spring/Spring_Anno/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -389,7 +389,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/21/redis/" class="post-title-link" itemprop="url">Redis</a>
+                <a href="/2019/08/16/SSM框架/Spring/Spring_Anno/" class="post-title-link" itemprop="url">Spring 注解</a>
               
             
           </h1>
@@ -414,7 +414,7 @@
                 
               
 
-              <time title="创建时间：2019-07-21 15:21:46" itemprop="dateCreated datePublished" datetime="2019-07-21T15:21:46+08:00">2019-07-21</time>
+              <time title="创建时间：2019-08-16 20:42:18" itemprop="dateCreated datePublished" datetime="2019-08-16T20:42:18+08:00">2019-08-16</time>
             </span>
           
 
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-01 10:07:41" itemprop="dateModified" datetime="2019-08-01T10:07:41+08:00">2019-08-01</time>
+                <time title="修改时间：2019-08-17 00:07:22" itemprop="dateModified" datetime="2019-08-17T00:07:22+08:00">2019-08-17</time>
               </span>
             
           
@@ -468,7 +468,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">8.5k</span>
+              <span title="本文字数">15k</span>
             </span>
           
 
@@ -480,7 +480,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">8 分钟</span>
+              <span title="阅读时长">13 分钟</span>
             </span>
           
 
@@ -500,14 +500,18 @@
 
       
         
-          <h1 id="NoSQL概念"><a href="#NoSQL概念" class="headerlink" title="NoSQL概念"></a>NoSQL概念</h1><ul>
-<li>NoSQL(NoSQL = Not Only SQL)，意即“不仅仅是SQL”，是一项全新的数据库理念，泛指非关系型的数据库。</li>
-<li>随着互联网web- 0网站的兴起，传统的关系数据库在应付web- 0网站，特别是超大规模和高并发的SNS类型的web- 0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。NoSQL数据库的产生就是为了解决大规模数据集合多重数据种类带来的挑战，尤其是大数据应用难题。</li>
+          <h1 id="Spring-基于注解的配置"><a href="#Spring-基于注解的配置" class="headerlink" title="Spring 基于注解的配置"></a>Spring 基于注解的配置</h1><ul>
+<li>在使用基于注解的注入依赖之前，我们需要在 Spring 配置文件中指定需要 Spring 去自动扫描出注解配置的文件的包。</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置需要扫描的包：告知spring在创建容器时需要扫描的包。--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"cn.water.Annotation"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一旦 被配置后，你就可以开始注解你的代码，表明 Spring 会自动连接值到属性，方法和构造函数。让我们来看看几个重要的注解，并且了解它们是如何工作的。</li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/21/redis/#more" rel="contents">
+              <a class="btn" href="/2019/08/16/SSM框架/Spring/Spring_Anno/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -571,7 +575,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/20/Json/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/15/SSM框架/Spring/Spring_DI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -591,7 +595,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/20/Json/" class="post-title-link" itemprop="url">JSON</a>
+                <a href="/2019/08/15/SSM框架/Spring/Spring_DI/" class="post-title-link" itemprop="url">Spring 依赖注入</a>
               
             
           </h1>
@@ -616,7 +620,7 @@
                 
               
 
-              <time title="创建时间：2019-07-20 21:15:02" itemprop="dateCreated datePublished" datetime="2019-07-20T21:15:02+08:00">2019-07-20</time>
+              <time title="创建时间：2019-08-15 23:12:51" itemprop="dateCreated datePublished" datetime="2019-08-15T23:12:51+08:00">2019-08-15</time>
             </span>
           
 
@@ -631,7 +635,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-01 10:06:45" itemprop="dateModified" datetime="2019-08-01T10:06:45+08:00">2019-08-01</time>
+                <time title="修改时间：2019-08-17 21:59:27" itemprop="dateModified" datetime="2019-08-17T21:59:27+08:00">2019-08-17</time>
               </span>
             
           
@@ -670,7 +674,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">3.4k</span>
+              <span title="本文字数">14k</span>
             </span>
           
 
@@ -682,7 +686,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">3 分钟</span>
+              <span title="阅读时长">13 分钟</span>
             </span>
           
 
@@ -702,18 +706,259 @@
 
       
         
-          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>JSON：JavaScript 对象表示法（JavaScript Object Notation）</li>
-<li>JSON现在多用于存储和交换文本信息的语法，进行数据的传输。</li>
-<li>JSON 比 XML 更小、更快，更易解析。</li>
-<li>注意：JSON 虽然使用 JavaScript 语法来描述数据对象，但是 JSON 仍然独立于语言和平台。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"employees"</span>: [</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"Bill"</span> , <span class="string">"lastName"</span>:<span class="string">"Gates"</span> &#125;,</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"George"</span> , <span class="string">"lastName"</span>:<span class="string">"Bush"</span> &#125;,</span><br><span class="line">    &#123; <span class="string">"firstName"</span>:<span class="string">"Thomas"</span> , <span class="string">"lastName"</span>:<span class="string">"Carter"</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="Spring-依赖注入"><a href="#Spring-依赖注入" class="headerlink" title="Spring 依赖注入"></a>Spring 依赖注入</h1><ul>
+<li>Spring框架的核心功能之一就是通过依赖注入的方式来管理Bean之间的依赖关系。</li>
+<li>每个基于应用程序的 java 多多少少都会使用几个对象，最后与这些对象一起工作来呈现出终端用户所看到的工作的应用程序。</li>
+<li>依赖注入有助于把这些类粘合在一起，同时保持他们独立。</li>
+</ul>
+<h2 id="全面控制"><a href="#全面控制" class="headerlink" title="全面控制"></a>全面控制</h2><ul>
+<li>假设你现在正在编写一个文本编辑器的应用程序，并且想要添加拼写检查的功能，那么你就需要在TextEditor类中使用SpellChecker类。</li>
+<li>标准代码看起来是这样的：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextEditor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> SpellChecker spellChecker;  </span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">TextEditor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      spellChecker = <span class="keyword">new</span> SpellChecker();</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+<h2 id="控制反转"><a href="#控制反转" class="headerlink" title="控制反转"></a>控制反转</h2><ul>
+<li>而在 Spring 框架中，我们需要做的则是创建一个 TextEditor 和 SpellChecker 之间的依赖关系。</li>
+<li>在控制反转的场景中，我们反而会做这样的事情：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextEditor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> SpellChecker spellChecker;</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">TextEditor</span><span class="params">(SpellChecker spellChecker)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.spellChecker = spellChecker;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ul>
+<li>在 Spring 框架的控制下，TextEditor 不需要担心 SpellChecker 的实现。SpellChecker 将会独立实现，并且在 TextEditor 实例化的时候将提供给 TextEditor。</li>
+<li>我们从 TextEditor 中删除了全面控制，并且把它保存到其他地方（即 XML 配置文件），且依赖关系通过类构造函数被注入到 TextEditor 类中。因此，控制流通过依赖注入（DI）已经“反转”，因为你已经有效地委托依赖关系到一些外部系统。</li>
+<li>对象不查找它的依赖关系，也不知道依赖关系的位置或类，而这一切都由 Spring 框架控制的。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/15/SSM框架/Spring/Spring_DI/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/15/SSM框架/Spring/Spring_autowire/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/15/SSM框架/Spring/Spring_autowire/" class="post-title-link" itemprop="url">Spring 自动装配</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-15 00:32:47" itemprop="dateCreated datePublished" datetime="2019-08-15T00:32:47+08:00">2019-08-15</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-18 09:46:40" itemprop="dateModified" datetime="2019-08-18T09:46:40+08:00">2019-08-18</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">6.2k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">6 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Spring-Beans-自动装配"><a href="#Spring-Beans-自动装配" class="headerlink" title="Spring Beans 自动装配"></a>Spring Beans 自动装配</h1><ul>
+<li>你已经学会如何使用<code>&lt;bean&gt;</code>元素来声明 bean 和通过使用 XML 配置文件中的<code>&lt;constructor-arg&gt;</code>和<code>&lt;property&gt;</code>元素来注入 。</li>
+<li>而Spring 容器还可以在不使用<code>&lt;constructor-arg&gt;</code>和<code>&lt;property&gt;</code> 元素的情况下<strong>自动装配</strong>相互协作的 bean 之间的关系，这有助于减少编写一个大的基于 Spring 的应用程序的 XML 配置的数量。</li>
+</ul>
+<h2 id="自动装配模式"><a href="#自动装配模式" class="headerlink" title="自动装配模式"></a>自动装配模式</h2><ul>
+<li>下列自动装配模式，它们可用于指示 Spring 容器为来使用自动装配进行依赖注入。你可以使用&lt;bean&gt;元素的 autowire 属性为一个 bean 定义指定自动装配模式。</li>
+<li>no    <ul>
+<li>默认设置，它意味着没有自动装配，表示我们需要使用显式的bean引用来注入依赖。</li>
+</ul>
+</li>
+<li>byName    <ul>
+<li>由属性名自动装配。</li>
+<li>Spring 先匹配POJO类的类成员名称与配置文件中&lt;bean&gt;标签的id属性，如果名称相同，则匹配类型；类型相同，则配对成功。</li>
+</ul>
+</li>
+<li>byType    <ul>
+<li>由属性数据类型自动装配。</li>
+<li>Spring 容器看到在 XML 配置文件中 bean 的自动装配的属性设置为 byType。然后如果它的类型匹配配置文件中的一个确切的 bean 名称，它将尝试匹配和连接属性的类型。如果存在不止一个这样的 bean，则一个致命的异常将会被抛出。</li>
+</ul>
+</li>
+<li>constructor    <ul>
+<li>类似于 byType，但该类型适用于构造函数参数类型。如果在容器中没有一个构造函数参数类型的 bean，则一个致命错误将会发生。</li>
+</ul>
+</li>
+<li>autodetect    <ul>
+<li>Spring首先尝试通过 constructor 使用自动装配来连接，如果它不执行，Spring 尝试通过 byType 来自动装配。</li>
+</ul>
 </li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/20/Json/#more" rel="contents">
+              <a class="btn" href="/2019/08/15/SSM框架/Spring/Spring_autowire/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -777,7 +1022,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/20/Ajax/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/13/SSM框架/Spring/Spring_Ioc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -797,7 +1042,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/20/Ajax/" class="post-title-link" itemprop="url">Ajax</a>
+                <a href="/2019/08/13/SSM框架/Spring/Spring_Ioc/" class="post-title-link" itemprop="url">Spring IoC 容器</a>
               
             
           </h1>
@@ -822,7 +1067,7 @@
                 
               
 
-              <time title="创建时间：2019-07-20 17:18:33" itemprop="dateCreated datePublished" datetime="2019-07-20T17:18:33+08:00">2019-07-20</time>
+              <time title="创建时间：2019-08-13 22:52:31" itemprop="dateCreated datePublished" datetime="2019-08-13T22:52:31+08:00">2019-08-13</time>
             </span>
           
 
@@ -837,7 +1082,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-01 10:04:26" itemprop="dateModified" datetime="2019-08-01T10:04:26+08:00">2019-08-01</time>
+                <time title="修改时间：2019-08-17 21:58:56" itemprop="dateModified" datetime="2019-08-17T21:58:56+08:00">2019-08-17</time>
               </span>
             
           
@@ -876,7 +1121,220 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">2.4k</span>
+              <span title="本文字数">18k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">16 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="高内聚低耦合"><a href="#高内聚低耦合" class="headerlink" title="高内聚低耦合"></a>高内聚低耦合</h1><p>在介绍Spring IoC容器之前，我们先要了解一下软件设计好坏的评判标准：耦合和内聚。</p>
+<h2 id="耦合"><a href="#耦合" class="headerlink" title="耦合"></a>耦合</h2><ul>
+<li>耦合性(Coupling)是对模块间关联程度的度量。</li>
+<li>耦合的强弱取决于模块间接口的复杂性、调用模块的方式以及通过界面传送数据的多少。模块间的耦合度是指模块之间的依赖关系，包括控制关系、调用关系、数据传递关系。模块间联系越多，其耦合性越强，同时表明其独立性越差。</li>
+</ul>
+<h3 id="高耦合"><a href="#高耦合" class="headerlink" title="高耦合"></a>高耦合</h3><ul>
+<li>手机和充电线是高耦合，为什么呢？</li>
+<li>打个比方，苹果手机和安卓手机必须使用本机适配的充电线，而且在安卓手机中甚至还分为USB接口和Type-C接口。如果我使用苹果充电接口给安卓手机充电，那么苹果充电线无法正常输电，安卓手机也无法正常充电了。（忽略其他影响）</li>
+<li>由此可见，手机和充电接口之间的依赖关系紧密，独立性差，所以属于高耦合。</li>
+</ul>
+<h3 id="低耦合"><a href="#低耦合" class="headerlink" title="低耦合"></a>低耦合</h3><ul>
+<li>充电接口和充电接口是低耦合。</li>
+<li>打个比方，不论是苹果充电接口还是安卓充电接口，都可以使用苹果充电接头，也都可以使用安卓充电接头。（忽略其他影响）</li>
+<li>由此可见，充电接口和充电接头之间的依赖关系松散，独立性高，所以属于低耦合。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/13/SSM框架/Spring/Spring_Ioc/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/12/SSM框架/Spring/Spring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/12/SSM框架/Spring/Spring/" class="post-title-link" itemprop="url">Spring概述</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-12 21:12:41" itemprop="dateCreated datePublished" datetime="2019-08-12T21:12:41+08:00">2019-08-12</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-17 22:00:27" itemprop="dateModified" datetime="2019-08-17T22:00:27+08:00">2019-08-17</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">2.7k</span>
             </span>
           
 
@@ -908,20 +1366,26 @@
 
       
         
-          <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><ul>
-<li>AJAX 是与服务器交换数据的艺术，它在不重载全部页面的情况下，实现了对部分网页的更新。</li>
-<li>AJAX = 异步 JavaScript 和 XML（Asynchronous JavaScript and XML）。</li>
-<li>Ajax 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。<ul>
-<li>通过在后台与服务器进行少量数据交换，Ajax 可以使网页实现异步更新。</li>
-<li>这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。</li>
-<li>传统的网页（不使用 Ajax）如果需要更新内容，必须重载整个网页页面。</li>
+          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>Spring是分层的企业级full-stack轻量级开源框架，以IoC和AOP为内核，提供了展现层Spring MVC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，并整合了开源世界中众多著名的第三方框架和类库，逐渐成为使用最多的Java EE企业应用开源框架。</li>
 </ul>
-</li>
+<h2 id="依赖注入DI（Dependency-Injection）"><a href="#依赖注入DI（Dependency-Injection）" class="headerlink" title="依赖注入DI（Dependency Injection）"></a>依赖注入DI（Dependency Injection）</h2><ul>
+<li>Spring 最被认同的技术是控制反转的依赖注入（DI）模式。</li>
+<li>控制反转（IoC）是一个通用的概念，它可以用许多不同的方式去表达，依赖注入仅仅是控制反转的一个具体的例子。</li>
+<li>当编写一个复杂的 Java 应用程序时，应用程序类应该尽可能的独立于其他的 Java 类来增加这些类可重用可能性，当进行单元测试时，可以使它们独立于其他类进行测试。依赖注入有助于将这些类粘合在一起，并且在同一时间让它们保持独立。</li>
+<li>到底什么是依赖注入？让我们将这两个词分开来看一看。这里将依赖关系部分转化为两个类之间的关联。例如，类 A 依赖于类 B。现在，让我们看一看第二部分，注入。所有这一切都意味着类 B 将通过 IoC 被注入到类 A 中。</li>
+<li>依赖注入可以以向构造函数传递参数的方式发生，或者通过使用 setter 方法。</li>
+</ul>
+<h2 id="面向方面的程序设计AOP（Aspect-Oriented-Programming）"><a href="#面向方面的程序设计AOP（Aspect-Oriented-Programming）" class="headerlink" title="面向方面的程序设计AOP（Aspect-Oriented Programming）"></a>面向方面的程序设计AOP（Aspect-Oriented Programming）</h2><ul>
+<li>Spring 框架的一个关键组件是面向方面的程序设计（AOP）框架。</li>
+<li>一个程序中跨越多个点的功能被称为横切关注点，这些横切关注点在概念上独立于应用程序的业务逻辑。有各种各样常见的很好的关于方面的例子，比如日志记录、声明性事务、安全性，和缓存等等。</li>
+<li>在 OOP 中模块化的关键单元是类，而在 AOP 中模块化的关键单元是方面。AOP 帮助你将横切关注点从它们所影响的对象中分离出来，然而依赖注入帮助你将你的应用程序对象从彼此中分离出来。</li>
+<li>Spring 框架的 AOP 模块提供了面向方面的程序设计实现，可以定义诸如方法拦截器和切入点等，从而使实现功能的代码彻底的解耦出来。</li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/20/Ajax/#more" rel="contents">
+              <a class="btn" href="/2019/08/12/SSM框架/Spring/Spring/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -985,7 +1449,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/19/jQuery/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/08/SSM框架/MyBatis/MyBatis_Configuration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -1005,7 +1469,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/19/jQuery/" class="post-title-link" itemprop="url">jQuery</a>
+                <a href="/2019/08/08/SSM框架/MyBatis/MyBatis_Configuration/" class="post-title-link" itemprop="url">MyBatis配置文件</a>
               
             
           </h1>
@@ -1030,7 +1494,212 @@
                 
               
 
-              <time title="创建时间：2019-07-19 01:36:24" itemprop="dateCreated datePublished" datetime="2019-07-19T01:36:24+08:00">2019-07-19</time>
+              <time title="创建时间：2019-08-08 00:17:54 / 修改时间：00:26:06" itemprop="dateCreated datePublished" datetime="2019-08-08T00:17:54+08:00">2019-08-08</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">3.1k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">3 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h1><ul>
+<li>统一资源定位符（Uniform Resource Locator）<ul>
+<li>由协议、主机、端口和URI组成<ul>
+<li><a href="http://localhost:8080/mybatis/demo" target="_blank" rel="noopener">http://localhost:8080/mybatis/demo</a></li>
+<li>file://localhost:8080/mybatis/demo.java</li>
+</ul>
+</li>
+<li>表示一个资源位置的唯一标识。</li>
+</ul>
+</li>
+</ul>
+<h1 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h1><ul>
+<li>统一资源标识符（Uniform Resource Locator）<ul>
+<li>在某个应用中，表示一个资源位置的唯一标识。</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/08/SSM框架/MyBatis/MyBatis_Configuration/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/06/SSM框架/MyBatis/MyBatis_CRUD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/06/SSM框架/MyBatis/MyBatis_CRUD/" class="post-title-link" itemprop="url">Mybatis的CRUD操作（代理持久层实现类）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-06 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-06T14:33:47+08:00">2019-08-06</time>
             </span>
           
 
@@ -1045,7 +1714,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-01 10:06:25" itemprop="dateModified" datetime="2019-08-01T10:06:25+08:00">2019-08-01</time>
+                <time title="修改时间：2019-08-08 15:13:21" itemprop="dateModified" datetime="2019-08-08T15:13:21+08:00">2019-08-08</time>
               </span>
             
           
@@ -1084,7 +1753,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">9.7k</span>
+              <span title="本文字数">10k</span>
             </span>
           
 
@@ -1116,17 +1785,13 @@
 
       
         
-          <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
-<li>jQuery是一个快速、简洁的JavaScript框架，是继Prototype之后又一个优秀的JavaScript代码库（或JavaScript框架）。</li>
-<li>jQuery设计的宗旨是“write Less，Do More”，即倡导写更少的代码，做更多的事情。</li>
-<li>jQuery封装了JavaScript常用的功能代码，提供一种简便的JavaScript设计模式，优化HTML文档操作、事件处理、动画设计和Ajax交互。</li>
-<li>jQuery本质上就是一些js文件，封装了js的原生代码而已。</li>
-<li>jQuery 语法是为 HTML 元素的选取编制的，可以对元素执行某些操作。</li>
+          <h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li><a href="https://water1127.github.io/2019/07/09/TyparoMarkdown/">MyBatis环境搭建</a> 的方式在前面已经详细的介绍过了，本文将通过映射配置文件使用代理持久层接口实现类的方式来进行MySQL数据库的CRUD操作。</li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/19/jQuery/#more" rel="contents">
+              <a class="btn" href="/2019/08/06/SSM框架/MyBatis/MyBatis_CRUD/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1190,7 +1855,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/15/Cookie&Session&JSP/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/06/SSM框架/MyBatis/MyBatis_CRUD_Dao/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -1210,7 +1875,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/15/Cookie&Session&JSP/" class="post-title-link" itemprop="url">Cookie&Session&JSP</a>
+                <a href="/2019/08/06/SSM框架/MyBatis/MyBatis_CRUD_Dao/" class="post-title-link" itemprop="url">Mybatis的CRUD操作（代理持久层实现类）</a>
               
             
           </h1>
@@ -1235,7 +1900,7 @@
                 
               
 
-              <time title="创建时间：2019-07-15 18:13:57" itemprop="dateCreated datePublished" datetime="2019-07-15T18:13:57+08:00">2019-07-15</time>
+              <time title="创建时间：2019-08-06 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-06T14:33:47+08:00">2019-08-06</time>
             </span>
           
 
@@ -1250,7 +1915,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-01 10:05:01" itemprop="dateModified" datetime="2019-08-01T10:05:01+08:00">2019-08-01</time>
+                <time title="修改时间：2019-08-08 00:25:17" itemprop="dateModified" datetime="2019-08-08T00:25:17+08:00">2019-08-08</time>
               </span>
             
           
@@ -1289,7 +1954,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">3.2k</span>
+              <span title="本文字数">7.7k</span>
             </span>
           
 
@@ -1301,7 +1966,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">3 分钟</span>
+              <span title="阅读时长">7 分钟</span>
             </span>
           
 
@@ -1321,26 +1986,15 @@
 
       
         
-          <h1 id="会话技术"><a href="#会话技术" class="headerlink" title="会话技术"></a>会话技术</h1><ul>
-<li>概念<ul>
-<li>一次会话中包含多次请求和响应。</li>
-<li>一次会话：浏览器第一次给服务器资源发送请求，会话建立，直到有一方断开为止。</li>
-</ul>
-</li>
-<li>功能<ul>
-<li>在一次会话的范围内的多次请求间，来共享数据。</li>
-</ul>
-</li>
-<li>方式<ul>
-<li>客户端会话技术：Cookie</li>
-<li>服务器端会话技术：Session</li>
-</ul>
-</li>
+          <h1 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ul>
+<li><a href="https://water1127.github.io/2019/07/09/TyparoMarkdown/">MyBatis环境搭建</a> 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用创建持久层接口实现类的方式来进行MySQL数据库的CRUD操作。</li>
+<li>创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与前一种方法的比较上。</li>
+<li>改变的内容主要是测试类和持久层接口实现类。</li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/15/Cookie&Session&JSP/#more" rel="contents">
+              <a class="btn" href="/2019/08/06/SSM框架/MyBatis/MyBatis_CRUD_Dao/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1404,7 +2058,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/14/response/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/MyBatis_Custom/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -1424,7 +2078,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/14/response/" class="post-title-link" itemprop="url">Request</a>
+                <a href="/2019/08/04/SSM框架/MyBatis/MyBatis_Custom/" class="post-title-link" itemprop="url">自定义MyBatis</a>
               
             
           </h1>
@@ -1449,7 +2103,7 @@
                 
               
 
-              <time title="创建时间：2019-07-14 10:13:57" itemprop="dateCreated datePublished" datetime="2019-07-14T10:13:57+08:00">2019-07-14</time>
+              <time title="创建时间：2019-08-04 01:26:32" itemprop="dateCreated datePublished" datetime="2019-08-04T01:26:32+08:00">2019-08-04</time>
             </span>
           
 
@@ -1464,7 +2118,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-01 10:08:05" itemprop="dateModified" datetime="2019-08-01T10:08:05+08:00">2019-08-01</time>
+                <time title="修改时间：2019-08-06 15:16:03" itemprop="dateModified" datetime="2019-08-06T15:16:03+08:00">2019-08-06</time>
               </span>
             
           
@@ -1503,7 +2157,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1.6k</span>
+              <span title="本文字数">29k</span>
             </span>
           
 
@@ -1515,7 +2169,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">1 分钟</span>
+              <span title="阅读时长">26 分钟</span>
             </span>
           
 
@@ -1535,35 +2189,14 @@
 
       
         
-          <h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><h2 id="设置响应行"><a href="#设置响应行" class="headerlink" title="设置响应行"></a>设置响应行</h2><ul>
-<li>设置状态码<ul>
-<li>*<em>setStatus(int sc) *</em></li>
-</ul>
-</li>
-</ul>
-<h2 id="设置响应头"><a href="#设置响应头" class="headerlink" title="设置响应头"></a>设置响应头</h2><ul>
-<li>设置响应头<ul>
-<li>*<em>setHeader(String name, String value) *</em></li>
-</ul>
-</li>
-</ul>
-<h2 id="设置响应体"><a href="#设置响应体" class="headerlink" title="设置响应体"></a>设置响应体</h2><ul>
-<li>获取输出流<ul>
-<li>字符输出流（字符数据）<ul>
-<li><strong>PrintWriter getWriter()</strong></li>
-</ul>
-</li>
-<li>字节输出流（任意数据）<ul>
-<li><strong>ServletOutputStream getOutputStream()</strong></li>
-</ul>
-</li>
-</ul>
-</li>
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>我们知道创建Maven项目后，在项目中的pom.xml配置文件中引入MyBatis依赖之后，我们就可以使用MyBatis相关的类和接口，和相应的功能。</li>
+<li>但为了对MyBatis的体系结构和功能有更加深刻的理解和全面的认识，本文Maven项目中的pom.xml配置文件，将不再引入MyBatis依赖，转而通过自定义编写MyBatis相关的类和接口来实现同样的功能。</li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/14/response/#more" rel="contents">
+              <a class="btn" href="/2019/08/04/SSM框架/MyBatis/MyBatis_Custom/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1627,7 +2260,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/13/request/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/02/Java SE/JdbcTemplate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -1647,7 +2280,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/13/request/" class="post-title-link" itemprop="url">Request</a>
+                <a href="/2019/08/02/Java SE/JdbcTemplate/" class="post-title-link" itemprop="url">JdbcTemplate</a>
               
             
           </h1>
@@ -1672,7 +2305,7 @@
                 
               
 
-              <time title="创建时间：2019-07-13 15:13:57" itemprop="dateCreated datePublished" datetime="2019-07-13T15:13:57+08:00">2019-07-13</time>
+              <time title="创建时间：2019-08-02 23:15:12" itemprop="dateCreated datePublished" datetime="2019-08-02T23:15:12+08:00">2019-08-02</time>
             </span>
           
 
@@ -1687,7 +2320,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-01 10:08:18" itemprop="dateModified" datetime="2019-08-01T10:08:18+08:00">2019-08-01</time>
+                <time title="修改时间：2019-08-04 15:51:13" itemprop="dateModified" datetime="2019-08-04T15:51:13+08:00">2019-08-04</time>
               </span>
             
           
@@ -1726,7 +2359,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">5.3k</span>
+              <span title="本文字数">3.9k</span>
             </span>
           
 
@@ -1738,7 +2371,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">5 分钟</span>
+              <span title="阅读时长">4 分钟</span>
             </span>
           
 
@@ -1758,669 +2391,33 @@
 
       
         
-          <h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><ul>
-<li>request和response对象是由服务器创建的。我们来使用它们</li>
-<li>request对象是来获取请求消息，response对象是来设置响应消息</li>
+          <h1 id="Spring-JDBC"><a href="#Spring-JDBC" class="headerlink" title="Spring JDBC"></a>Spring JDBC</h1><ul>
+<li>Spring框架对JDBC的简单封装，它提供了一个JDBCTemplate对象，简化JDBC的开发。</li>
 </ul>
-<h1 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h1><ul>
-<li><strong>ServletRequest 接口</strong> <ul>
-<li><strong>HttpServletRequest  接口</strong> （继承）<ul>
-<li><strong>org.apache.catalina.connector.RequestFacade 类</strong>（Tomcat实现）</li>
+<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><ol>
+<li><p>导入jar包</p>
+</li>
+<li><p>创建JdbcTemplate对象，传递DataSource对象</p>
+<ul>
+<li>JdbcTemplate template = new JdbcTemplate(dataSource);</li>
 </ul>
 </li>
+<li><p>调用JdbcTemplate的方法，完成CRUD的操作</p>
+<ul>
+<li><strong>update</strong>()</li>
+<li><strong>queryForMap</strong>()</li>
+</ul>
+<ul>
+<li><strong>queryForList</strong>()</li>
+<li><strong>query</strong>()</li>
+<li><strong>queryForObject</strong>()</li>
 </ul>
 </li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/13/request/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/12/Filter&Listener/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/12/Filter&Listener/" class="post-title-link" itemprop="url">Filter&Listener</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-12 20:13:57" itemprop="dateCreated datePublished" datetime="2019-07-12T20:13:57+08:00">2019-07-12</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-01 10:05:16" itemprop="dateModified" datetime="2019-08-01T10:05:16+08:00">2019-08-01</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">1.7k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">2 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Filter（过滤器）"><a href="#Filter（过滤器）" class="headerlink" title="Filter（过滤器）"></a>Filter（过滤器）</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
-<li>web中的过滤器：当访问服务器的资源时，过滤器可以将请求拦截下来，完成一些特殊的功能。<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2></li>
-<li>一般用于完成通用的操作。</li>
-<li>如：登录验证、统一编码处理、敏感字符过滤…</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/12/Filter&Listener/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/12/servlet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/12/servlet/" class="post-title-link" itemprop="url">Servlet</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-12 14:52:31" itemprop="dateCreated datePublished" datetime="2019-07-12T14:52:31+08:00">2019-07-12</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-01 10:08:28" itemprop="dateModified" datetime="2019-08-01T10:08:28+08:00">2019-08-01</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">5.2k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">5 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li><strong>server applet：运行在服务器端的小程序</strong></li>
-<li>为了更好的理解servlet，我们先从B/S模式来示例<ul>
-<li>用户输入账号密码，请求登录<ul>
-<li>我们需要判断 用户A输入的账号和密码是否正确。</li>
-<li>此处需要运用 Java逻辑来判断。</li>
-<li>也就是，我们需要通过Java代码来确定。</li>
-<li>具体就是，通过Java类来实现。</li>
-</ul>
-</li>
-<li>创建 Java类，判断账号密码<ul>
-<li>但是，并非所有的Java类都可以在服务器端运行，想要在服务器端运行就必须依赖于服务器端。</li>
-<li>换句话说，想要在服务器端运行就要遵循服务器端的”规则“。</li>
-<li>而具体来说，在Java中的规则，即是接口。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Servlet就是一个接口<ul>
-<li>Servlet接口中定义了能被浏览器访问到的，且能被tomcat服务器识别到的Java类的规则。</li>
-<li>自定义一个类，实现Servlet接口，复写Servlet接口方法。</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/12/servlet/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/07/11/HTTP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/11/HTTP/" class="post-title-link" itemprop="url">HTTP</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-11 18:50:37" itemprop="dateCreated datePublished" datetime="2019-07-11T18:50:37+08:00">2019-07-11</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-04 23:05:23" itemprop="dateModified" datetime="2019-08-04T23:05:23+08:00">2019-08-04</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">1.3k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">1 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul>
-<li>HTTP协议<ul>
-<li>Hyper Text Transfer Protocol 超文本传输协议</li>
-</ul>
-</li>
-<li>传输协议<ul>
-<li>传输协议定义了客户端和服务器端通信时，发送数据的格式。</li>
-</ul>
-</li>
-<li>特点<ol>
-<li>基于TCP/IP的高级协议</li>
-<li>默认端口号：80</li>
-<li>基于请求/响应模型  ：一次请求对应一次响应</li>
-<li>无状态的：每次请求之间相互独立，不能交互数据</li>
 </ol>
-</li>
-<li>历史版本<ul>
-<li>HTTP 1.0：每一次请求响应都会建立新的连接，浪费时间，消耗资源。</li>
-<li>HTTP 1.1：复用连接。</li>
-<li>请求消息数据格式</li>
-</ul>
-</li>
-</ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/11/HTTP/#more" rel="contents">
+              <a class="btn" href="/2019/08/02/Java SE/JdbcTemplate/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2473,7 +2470,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2517,7 +2514,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2631,7 +2628,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">39</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2752,7 +2757,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">327k</span>
+    <span title="站点总字数">542k</span>
   
 
   
@@ -2761,7 +2766,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">4:58</span>
+    <span title="站点阅读时长">8:13</span>
   
 </div>
 
