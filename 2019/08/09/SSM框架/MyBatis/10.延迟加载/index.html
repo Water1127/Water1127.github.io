@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":20,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "0fccaaa9"
+    });
+  daovoice('update');
+  </script>
+
+  <meta name="description" content="简介 通过前面的学习，我们已经掌握了Mybatis中一对一，一对多，多对多关系的配置及实现，可以实现对象的关联查询。实际开发过程中很多时候我们并不需要总是在加载用户信息时就一定要加载他的账户信息。此时就是我们所说的延迟加载。  延迟加载 延迟加载（懒加载）就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。 优点 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表">
+<meta name="keywords" content="MyBatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis 多延迟加载">
+<meta property="og:url" content="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/10.延迟加载/index.html">
+<meta property="og:site_name" content="Water&#39;s Blog">
+<meta property="og:description" content="简介 通过前面的学习，我们已经掌握了Mybatis中一对一，一对多，多对多关系的配置及实现，可以实现对象的关联查询。实际开发过程中很多时候我们并不需要总是在加载用户信息时就一定要加载他的账户信息。此时就是我们所说的延迟加载。  延迟加载 延迟加载（懒加载）就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。 优点 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-11T23:28:54.589Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MyBatis 多延迟加载">
+<meta name="twitter:description" content="简介 通过前面的学习，我们已经掌握了Mybatis中一对一，一对多，多对多关系的配置及实现，可以实现对象的关联查询。实际开发过程中很多时候我们并不需要总是在加载用户信息时就一定要加载他的账户信息。此时就是我们所说的延迟加载。  延迟加载 延迟加载（懒加载）就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。 优点 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/10.延迟加载/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MyBatis 多延迟加载 | Water's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Water's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">坚持更新博客中...</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/Water1177" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/10.延迟加载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MyBatis 多延迟加载
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-09 11:35:51" itemprop="dateCreated datePublished" datetime="2019-08-09T11:35:51+08:00">2019-08-09</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-12 07:28:54" itemprop="dateModified" datetime="2019-10-12T07:28:54+08:00">2019-10-12</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/09/SSM框架/MyBatis/10.延迟加载/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/09/SSM框架/MyBatis/10.延迟加载/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">13k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">12 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>通过前面的学习，我们已经掌握了Mybatis中一对一，一对多，多对多关系的配置及实现，可以实现对象的<br>关联查询。实际开发过程中很多时候我们并不需要总是在加载用户信息时就一定要加载他的账户信息。此时就是我们所说的延迟加载。</li>
+</ul>
+<h2 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h2><ul>
+<li><strong>延迟加载（懒加载）就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。</strong><ul>
+<li>优点<ul>
+<li>先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多张速度要快。</li>
+</ul>
+</li>
+<li>坏处<ul>
+<li>因为只有当需要用到数据时，才会进行数据库查询，这样在大批量数据查询时，因为查询工作也要消耗时间，所以可能造成用户等待时间变长，造成用户体验下降。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+
+<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><ul>
+<li>src<ul>
+<li>main<ul>
+<li>java<ul>
+<li>cn.water.dao<ul>
+<li><strong>AccountDao.java</strong>（持久层接口）</li>
+<li><strong>UserDao.java</strong>（持久层接口）</li>
+</ul>
+</li>
+<li>cn.water.domain<ul>
+<li><strong>Account.java</strong>（实体类）</li>
+<li><strong>User.java</strong>（实体类）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>resources<ul>
+<li>cn.water.dao<ul>
+<li><strong>AccountDao.xml</strong>（映射配置文件）</li>
+<li><strong>UserDao.xml</strong>（映射配置文件）</li>
+</ul>
+</li>
+<li><strong>SqlMapConfig.xml</strong>（MyBatis主配置文件）</li>
+<li><strong>jdbcConfig.properties</strong>（数据库连接信息文件）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>test<ul>
+<li>java.cn.water<ul>
+<li><strong>MybatisTest.java</strong>（测试类）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="MyBatis主配置文件"><a href="#MyBatis主配置文件" class="headerlink" title="MyBatis主配置文件"></a>MyBatis主配置文件</h2><h3 id="SqlMapConfig-xml"><a href="#SqlMapConfig-xml" class="headerlink" title="SqlMapConfig.xml"></a>SqlMapConfig.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- mybatis的主配置文件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 外部配置 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"jdbcConfig.properties"</span>&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 指定包：实体类--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.water.domain"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 配置环境 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!-- 配置连接数据库的4个基本信息 --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 指定包：持久层接口 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.water.dao"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库连接信息文件"><a href="#数据库连接信息文件" class="headerlink" title="数据库连接信息文件"></a>数据库连接信息文件</h2><h3 id="jdbcConfig-properties"><a href="#jdbcConfig-properties" class="headerlink" title="jdbcConfig.properties"></a>jdbcConfig.properties</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver=com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url=jdbc:mysql://localhost:3306/mybatis</span><br><span class="line">jdbc.username=root</span><br><span class="line">jdbc.password=root</span><br></pre></td></tr></table></figure>
+
+<h2 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h2><h3 id="Account-java"><a href="#Account-java" class="headerlink" title="Account.java"></a>Account.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.domain;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/11 - 8:35</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> Integer uid;</span><br><span class="line">    <span class="keyword">private</span> Double money;</span><br><span class="line">    <span class="keyword">private</span> User user;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Account&#123;"</span> +</span><br><span class="line">                <span class="string">"id="</span> + id +</span><br><span class="line">                <span class="string">", uid="</span> + uid +</span><br><span class="line">                <span class="string">", money="</span> + money +</span><br><span class="line">                <span class="string">", user="</span> + user +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getUid</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> uid;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUid</span><span class="params">(Integer uid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.uid = uid;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">getMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMoney</span><span class="params">(Double money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.money = money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUser</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.user = user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="User-java"><a href="#User-java" class="headerlink" title="User.java"></a>User.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/11 - 8:35</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> Date birthday;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Account&gt; accounts;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">                <span class="string">"id="</span> + id +</span><br><span class="line">                <span class="string">", username='"</span> + username + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", birthday="</span> + birthday +</span><br><span class="line">                <span class="string">", sex='"</span> + sex + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", address='"</span> + address + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", accounts="</span> + accounts +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">getBirthday</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBirthday</span><span class="params">(Date birthday)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.birthday = birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAddress</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAddress</span><span class="params">(String address)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.address = address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Account&gt; <span class="title">getAccounts</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> accounts;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAccounts</span><span class="params">(List&lt;Account&gt; accounts)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.accounts = accounts;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="持久层接口"><a href="#持久层接口" class="headerlink" title="持久层接口"></a>持久层接口</h2><h3 id="AccountDao-java"><a href="#AccountDao-java" class="headerlink" title="AccountDao.java"></a>AccountDao.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.domain.Account;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/11 - 8:35</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AccountDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 一对一查询 */</span></span><br><span class="line">    <span class="function">List&lt;Account&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 一对多查询 */</span></span><br><span class="line">    <span class="function">List&lt;Account&gt; <span class="title">findById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="UserDao-java"><a href="#UserDao-java" class="headerlink" title="UserDao.java"></a>UserDao.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.domain.Account;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.User;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/11 - 8:35</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 一对一查询 */</span></span><br><span class="line">    <span class="function">User <span class="title">findById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 一对多查询 */</span></span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="映射配置文件"><a href="#映射配置文件" class="headerlink" title="映射配置文件"></a>映射配置文件</h2><h3 id="AccountDao-xml"><a href="#AccountDao-xml" class="headerlink" title="AccountDao.xml"></a>AccountDao.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"cn.water.dao.AccountDao"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 【次表：Account】 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"o2o"</span> <span class="attr">type</span>=<span class="string">"account"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"uid"</span> <span class="attr">property</span>=<span class="string">"uid"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"money"</span> <span class="attr">property</span>=<span class="string">"money"</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 【主表：User】 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">association</span></span></span><br><span class="line"><span class="tag">                <span class="attr">property</span>=<span class="string">"user"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">javaType</span>=<span class="string">"user"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">select</span>=<span class="string">"cn.water.dao.UserDao.findById"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">column</span>=<span class="string">"uid"</span></span></span><br><span class="line"><span class="tag">        &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultMap</span>=<span class="string">"o2o"</span>&gt;</span></span><br><span class="line">        SELECT * FROM account</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">parameterType</span>=<span class="string">"INT"</span> <span class="attr">resultType</span>=<span class="string">"account"</span>&gt;</span></span><br><span class="line">        SELECT * FROM account WHERE uid = #&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="UserDao-xml"><a href="#UserDao-xml" class="headerlink" title="UserDao.xml"></a>UserDao.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span>  <span class="attr">namespace</span>=<span class="string">"cn.water.dao.UserDao"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">parameterType</span>=<span class="string">"INT"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">        SELECT * FROM user WHERE id = #&#123;uid&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 【主表：User】 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"o2m"</span> <span class="attr">type</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"username"</span> <span class="attr">property</span>=<span class="string">"username"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"birthday"</span> <span class="attr">property</span>=<span class="string">"birthday"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"sex"</span> <span class="attr">property</span>=<span class="string">"sex"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"address"</span> <span class="attr">property</span>=<span class="string">"address"</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 【次表：Account】 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">collection</span></span></span><br><span class="line"><span class="tag">                <span class="attr">property</span>=<span class="string">"accounts"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">ofType</span>=<span class="string">"account"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">select</span>=<span class="string">"cn.water.dao.AccountDao.findById"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">column</span>=<span class="string">"id"</span></span></span><br><span class="line"><span class="tag">        &gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultMap</span>=<span class="string">"o2m"</span>&gt;</span></span><br><span class="line">        SELECT * FROM user</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h2><h3 id="MyBatisTest-java"><a href="#MyBatisTest-java" class="headerlink" title="MyBatisTest.java"></a>MyBatisTest.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.dao.AccountDao;</span><br><span class="line"><span class="keyword">import</span> cn.water.dao.UserDao;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.Account;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/11 - 8:49</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 成员变量 */</span></span><br><span class="line">    <span class="keyword">private</span> InputStream inputStream;</span><br><span class="line">    <span class="keyword">private</span> SqlSession session;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 初始化操作 */</span></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">/* 加载 MyBatis配置文件 */</span></span><br><span class="line">        inputStream = Resources.getResourceAsStream(<span class="string">"SqlMapConfig.xml"</span>);</span><br><span class="line">        <span class="comment">/* 获取 工厂类 */</span></span><br><span class="line">        SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">        <span class="comment">/* 获取 产品类 */</span></span><br><span class="line">        session = factory.openSession(<span class="keyword">true</span>);<span class="comment">/* 设置自动提交 */</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 销毁操作 */</span></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        session.close();</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* OneToOne */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        AccountDao dao = session.getMapper(AccountDao.class);</span><br><span class="line">        <span class="keyword">for</span> (Account account : dao.findAll()) &#123;</span><br><span class="line">            System.out.println(account);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* OneToMany */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">        UserDao dao = session.getMapper(UserDao.class);</span><br><span class="line">        <span class="keyword">for</span> (User user : dao.findAll()) &#123;</span><br><span class="line">            System.out.println(user);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="一对一查询"><a href="#一对一查询" class="headerlink" title="一对一查询"></a>一对一查询</h1><ul>
+<li><strong>一对一查询：从查询 账户信息（Account） 出发，关联查询 用户信息（User）</strong><ul>
+<li>立即加载：一次多表查询<ul>
+<li>SELECT u.*,a.* FROM user u,account a WHERE u.id = a.uid;</li>
+</ul>
+</li>
+<li><strong>延迟加载：多次单表查询（提供关联信息）</strong><ul>
+<li>SELECT * FROM account;（获取uid）</li>
+<li>SELECT * FROM user WHERE id = #{uid}; （提供uid）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Account-实体类"><a href="#Account-实体类" class="headerlink" title="Account 实体类"></a>Account 实体类</h2><ul>
+<li>将 用户类（User）设置为变量</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* 成员变量 */</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> Integer uid;</span><br><span class="line">    <span class="keyword">private</span> Double money;</span><br><span class="line">    <span class="keyword">private</span> User user; <span class="comment">/* 用户类 */</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* toString方法 省略 */</span></span><br><span class="line">    <span class="comment">/* Setter Getter 省略 */</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="User-实体类"><a href="#User-实体类" class="headerlink" title="User 实体类"></a>User 实体类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* 成员变量 */</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> Date birthday;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* toString方法 省略 */</span></span><br><span class="line">    <span class="comment">/* Setter Getter 省略 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Account-持久层接口"><a href="#Account-持久层接口" class="headerlink" title="Account 持久层接口"></a>Account 持久层接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一对一查询 */</span></span><br><span class="line"><span class="function">List&lt;Account&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="User-持久层接口"><a href="#User-持久层接口" class="headerlink" title="User 持久层接口"></a>User 持久层接口</h2><ul>
+<li>返回值 对应 Account类的User变量</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一对一查询 */</span></span><br><span class="line"><span class="function">User <span class="title">findById</span><span class="params">(Integer id)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Account-映射配置文件"><a href="#Account-映射配置文件" class="headerlink" title="Account 映射配置文件"></a>Account 映射配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 【次表：Account】 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"o2o"</span> <span class="attr">type</span>=<span class="string">"account"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"uid"</span> <span class="attr">property</span>=<span class="string">"uid"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"money"</span> <span class="attr">property</span>=<span class="string">"money"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 【主表：User】 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">association</span></span></span><br><span class="line"><span class="tag">         <span class="attr">property</span>=<span class="string">"user"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">javaType</span>=<span class="string">"user"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">select</span>=<span class="string">"cn.water.dao.UserDao.findById"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">column</span>=<span class="string">"uid"</span></span></span><br><span class="line"><span class="tag">    &gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 单表查询 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultMap</span>=<span class="string">"o2o"</span>&gt;</span></span><br><span class="line">    SELECT * FROM account</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="User-映射配置文件"><a href="#User-映射配置文件" class="headerlink" title="User 映射配置文件"></a>User 映射配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 单表查询 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">parameterType</span>=<span class="string">"INT"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">    SELECT * FROM user WHERE id = #&#123;uid&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="测试类-1"><a href="#测试类-1" class="headerlink" title="测试类"></a>测试类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">    AccountDao dao = session.getMapper(AccountDao.class);</span><br><span class="line">    <span class="keyword">for</span> (Account account : dao.findAll()) &#123;</span><br><span class="line">        System.out.println(account);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p>![](10.延迟加载\延迟加载 一对一查询 控制台输出.png)</p>
+<h1 id="一对多查询"><a href="#一对多查询" class="headerlink" title="一对多查询"></a>一对多查询</h1><ul>
+<li><strong>一对多查询：从查询 用户信息（User） 出发，关联查询 账户信息（Account）</strong><ul>
+<li>立即加载：一次多表查询<ul>
+<li>SELECT * FROM user u LEFT OUTER JOIN account a ON u.id = a.uid;</li>
+</ul>
+</li>
+<li><strong>延迟加载：多次单表查询（通过关联信息）</strong><ul>
+<li>SELECT * FROM user;（获取id）</li>
+<li>SELECT * FROM account WHERE uid = #{id}（提供id）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="User-实体类-1"><a href="#User-实体类-1" class="headerlink" title="User 实体类"></a>User 实体类</h2><ul>
+<li>将 账户类（Account） 的List集合 设置为变量</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* 成员变量 */</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> Date birthday;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Account&gt; accounts;<span class="comment">/* 账户类的集合 */</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* toString方法 省略 */</span></span><br><span class="line">    <span class="comment">/* Setter Getter 省略 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Account-实体类-1"><a href="#Account-实体类-1" class="headerlink" title="Account 实体类"></a>Account 实体类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* 成员变量 */</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> Integer uid;</span><br><span class="line">    <span class="keyword">private</span> Double money;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* toString方法 省略 */</span></span><br><span class="line">    <span class="comment">/* Setter Getter 省略 */</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="User-持久层接口-1"><a href="#User-持久层接口-1" class="headerlink" title="User 持久层接口"></a>User 持久层接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一对多查询 */</span></span><br><span class="line">  <span class="function">List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Account-持久层接口-1"><a href="#Account-持久层接口-1" class="headerlink" title="Account 持久层接口"></a>Account 持久层接口</h2><ul>
+<li>返回值 对应 User类的List&lt;Account&gt;变量</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 一对多查询 */</span></span><br><span class="line">   <span class="function">List&lt;Account&gt; <span class="title">findById</span><span class="params">(Integer id)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="User-映射配置文件-1"><a href="#User-映射配置文件-1" class="headerlink" title="User 映射配置文件"></a>User 映射配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 【主表：User】 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"o2m"</span> <span class="attr">type</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"username"</span> <span class="attr">property</span>=<span class="string">"username"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"birthday"</span> <span class="attr">property</span>=<span class="string">"birthday"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"sex"</span> <span class="attr">property</span>=<span class="string">"sex"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"address"</span> <span class="attr">property</span>=<span class="string">"address"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 【次表：Account】 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">collection</span></span></span><br><span class="line"><span class="tag">                <span class="attr">property</span>=<span class="string">"accounts"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">ofType</span>=<span class="string">"account"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">select</span>=<span class="string">"cn.water.dao.AccountDao.findById"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">column</span>=<span class="string">"id"</span></span></span><br><span class="line"><span class="tag">                &gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 单表查询 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultMap</span>=<span class="string">"o2m"</span>&gt;</span></span><br><span class="line">    SELECT * FROM user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Account-映射配置文件-1"><a href="#Account-映射配置文件-1" class="headerlink" title="Account 映射配置文件"></a>Account 映射配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 单表查询 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">parameterType</span>=<span class="string">"INT"</span> <span class="attr">resultType</span>=<span class="string">"account"</span>&gt;</span></span><br><span class="line">        SELECT * FROM account WHERE uid = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="测试类-2"><a href="#测试类-2" class="headerlink" title="测试类"></a>测试类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">    UserDao dao = session.getMapper(UserDao.class);</span><br><span class="line">    <span class="keyword">for</span> (User user : dao.findAll()) &#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行结果-1"><a href="#运行结果-1" class="headerlink" title="运行结果"></a>运行结果</h2><p>![](10.延迟加载\延迟加载 一对多查询 控制台输出.png)</p>
+
+      
+    </div>
+	
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #f44336;font-size:24px;">-------------本文结束-------------</div>
+    
+</div>
+
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>water.</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/10.延迟加载/" title="MyBatis 多延迟加载">https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/10.延迟加载/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>Donate comment here</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.png" alt="water. 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.png" alt="water. 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+		
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/MyBatis/" rel="tag"># MyBatis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/08/SSM框架/MyBatis/9.多表查询/" rel="next" title="MyBatis 多表查询">
+                <i class="fa fa-chevron-left"></i> MyBatis 多表查询
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/09/SSM框架/MyBatis/11.缓存/" rel="prev" title="MyBatis 缓存">
+                MyBatis 缓存 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="water.">
+            
+              <p class="site-author-name" itemprop="name">water.</p>
+              <div class="site-description motion-element" itemprop="description">Few words,many deeds.</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/Water1127" title="GitHub &rarr; https://github.com/Water1127" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:1219042242@qq.com" title="E-Mail &rarr; mailto:1219042242@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.canye365.cn/" title="https://blog.canye365.cn/" rel="noopener" target="_blank">残夜</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.imcyc.cn" title="https://www.imcyc.cn" rel="noopener" target="_blank">Morty</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.tmiracle.xyz/" title="https://www.tmiracle.xyz/" rel="noopener" target="_blank">Tmiracle</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://dxoca.cn/" title="https://dxoca.cn/" rel="noopener" target="_blank">Dxoca</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://css0209.cn/" title="https://css0209.cn/" rel="noopener" target="_blank">BlankYk</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xyhmnb.ml/" title="http://xyhmnb.ml/" rel="noopener" target="_blank">UncleGood</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#延迟加载"><span class="nav-number">1.1.</span> <span class="nav-text">延迟加载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录结构"><span class="nav-number">2.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis主配置文件"><span class="nav-number">2.1.</span> <span class="nav-text">MyBatis主配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SqlMapConfig-xml"><span class="nav-number">2.1.1.</span> <span class="nav-text">SqlMapConfig.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库连接信息文件"><span class="nav-number">2.2.</span> <span class="nav-text">数据库连接信息文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jdbcConfig-properties"><span class="nav-number">2.2.1.</span> <span class="nav-text">jdbcConfig.properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体类"><span class="nav-number">2.3.</span> <span class="nav-text">实体类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Account-java"><span class="nav-number">2.3.1.</span> <span class="nav-text">Account.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-java"><span class="nav-number">2.3.2.</span> <span class="nav-text">User.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久层接口"><span class="nav-number">2.4.</span> <span class="nav-text">持久层接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AccountDao-java"><span class="nav-number">2.4.1.</span> <span class="nav-text">AccountDao.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-java"><span class="nav-number">2.4.2.</span> <span class="nav-text">UserDao.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#映射配置文件"><span class="nav-number">2.5.</span> <span class="nav-text">映射配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AccountDao-xml"><span class="nav-number">2.5.1.</span> <span class="nav-text">AccountDao.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-xml"><span class="nav-number">2.5.2.</span> <span class="nav-text">UserDao.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类"><span class="nav-number">2.6.</span> <span class="nav-text">测试类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MyBatisTest-java"><span class="nav-number">2.6.1.</span> <span class="nav-text">MyBatisTest.java</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一对一查询"><span class="nav-number">3.</span> <span class="nav-text">一对一查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-实体类"><span class="nav-number">3.1.</span> <span class="nav-text">Account 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-实体类"><span class="nav-number">3.2.</span> <span class="nav-text">User 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-持久层接口"><span class="nav-number">3.3.</span> <span class="nav-text">Account 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-持久层接口"><span class="nav-number">3.4.</span> <span class="nav-text">User 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-映射配置文件"><span class="nav-number">3.5.</span> <span class="nav-text">Account 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-映射配置文件"><span class="nav-number">3.6.</span> <span class="nav-text">User 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类-1"><span class="nav-number">3.7.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果"><span class="nav-number">3.8.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一对多查询"><span class="nav-number">4.</span> <span class="nav-text">一对多查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#User-实体类-1"><span class="nav-number">4.1.</span> <span class="nav-text">User 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-实体类-1"><span class="nav-number">4.2.</span> <span class="nav-text">Account 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-持久层接口-1"><span class="nav-number">4.3.</span> <span class="nav-text">User 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-持久层接口-1"><span class="nav-number">4.4.</span> <span class="nav-text">Account 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-映射配置文件-1"><span class="nav-number">4.5.</span> <span class="nav-text">User 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-映射配置文件-1"><span class="nav-number">4.6.</span> <span class="nav-text">Account 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类-2"><span class="nav-number">4.7.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果-1"><span class="nav-number">4.8.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user-o"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">water.</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-file-text-o"></i>
+    </span>
+    
+    <span title="站点总字数">613k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-clock-o"></i>
+    </span>
+    
+    <span title="站点阅读时长">9:17</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+ <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+        
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.2.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 'hL3jXaWdTJKBa02z3dKMjyqm-gzGzoHsz',
+    appKey: 'HH4IpNc1WU9Sc48x6rTqwoWO',
+    placeholder: '说点什么把！',
+    avatar: 'retro',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $('.leancloud_visitors');
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+            
+              .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+              })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log('LeanCloud Counter Error: ' + responseJSON.code + ' ' + responseJSON.error);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'hL3jXaWdTJKBa02z3dKMjyqm-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'hL3jXaWdTJKBa02z3dKMjyqm-gzGzoHsz',
+                'X-LC-Key': 'HH4IpNc1WU9Sc48x6rTqwoWO',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+            if (localhost.test(document.URL)) return;
+            addCount(Counter);
+          
+        });
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/clipboard-use.js"></script>
+  
+</body>
+</html>

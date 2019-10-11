@@ -107,21 +107,17 @@
   </script>
 
   <meta name="description" content="简介 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用手动编写持久层实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与使用代理持久层实现类方法的比较上。 改变的内容主要是测试类和持久层接口实现类。  目录结构 src/main     java">
-<meta name="keywords" content="MyBatis">
+<meta name="keywords" content="Mybatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mybatis框架中数据库的CRUD操作 —— 手动编写持久层实现类">
-<meta property="og:url" content="https://Water1127.github.io/2019/08/07/SSM框架/MyBatis/MyBatis04/index.html">
+<meta property="og:url" content="https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
 <meta property="og:description" content="简介 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用手动编写持久层实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与使用代理持久层实现类方法的比较上。 改变的内容主要是测试类和持久层接口实现类。  目录结构 src/main     java">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://water1127.github.io/2019/08/07/SSM框架/MyBatis/MyBatis04/pic01.png">
-<meta property="og:image" content="https://water1127.github.io/2019/08/07/SSM框架/MyBatis/MyBatis04/pic02.png">
-<meta property="og:image" content="https://water1127.github.io/2019/08/07/SSM框架/MyBatis/MyBatis04/pic03.png">
-<meta property="og:updated_time" content="2019-10-09T04:51:05.040Z">
+<meta property="og:updated_time" content="2019-10-11T23:26:07.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mybatis框架中数据库的CRUD操作 —— 手动编写持久层实现类">
 <meta name="twitter:description" content="简介 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用手动编写持久层实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与使用代理持久层实现类方法的比较上。 改变的内容主要是测试类和持久层接口实现类。  目录结构 src/main     java">
-<meta name="twitter:image" content="https://water1127.github.io/2019/08/07/SSM框架/MyBatis/MyBatis04/pic01.png">
 
 
 
@@ -129,7 +125,7 @@
 
   
   
-  <link rel="canonical" href="https://Water1127.github.io/2019/08/07/SSM框架/MyBatis/MyBatis04/">
+  <link rel="canonical" href="https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/">
 
 
 
@@ -374,7 +370,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/07/SSM框架/MyBatis/MyBatis04/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -417,7 +413,7 @@
                 
               
 
-              <time title="创建时间：2019-08-07 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-07T14:33:47+08:00">2019-08-07</time>
+              <time title="创建时间：2019-08-04 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-04T14:33:47+08:00">2019-08-04</time>
             </span>
           
 
@@ -432,7 +428,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-09 12:51:05" itemprop="dateModified" datetime="2019-10-09T12:51:05+08:00">2019-10-09</time>
+                <time title="修改时间：2019-10-12 07:26:07" itemprop="dateModified" datetime="2019-10-12T07:26:07+08:00">2019-10-12</time>
               </span>
             
           
@@ -464,8 +460,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/08/07/SSM框架/MyBatis/MyBatis04/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/07/SSM框架/MyBatis/MyBatis04/" itemprop="commentCount"></span>
+                <a href="/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -593,7 +589,7 @@
 <li>本章节抛开了获取代理持久层实现类或持久层实现类的代码，以便直接显示 ProxyDao 和 MyDao 的具体区别。</li>
 <li>我们可以<strong>明显的看出 MyDao 代码的臃肿</strong>，所以这也是为什么<strong>手动编写持久层实现类</strong>的方法在实际编程中不受欢迎的原因了。</li>
 </ul>
-<h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p><img src="/2019/08/07/SSM框架/MyBatis/MyBatis04/pic01.png" alt></p>
+<h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><p>![](4.MyDao CRUD操作/ProxyDao MyDao 区别.png)</p>
 <h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><h3 id="ProxyDao-1"><a href="#ProxyDao-1" class="headerlink" title="ProxyDao"></a>ProxyDao</h3><ul>
 <li>测试类</li>
 </ul>
@@ -699,8 +695,8 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Integer <span class="title">findTotal</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> session.selectOne(<span class="string">"cn.water.dao.UserDao.findTotal"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<h1 id="执行过程（思维流图）"><a href="#执行过程（思维流图）" class="headerlink" title="执行过程（思维流图）"></a>执行过程（思维流图）</h1><h3 id="查询方法"><a href="#查询方法" class="headerlink" title="查询方法"></a>查询方法</h3><p><img src="/2019/08/07/SSM框架/MyBatis/MyBatis04/pic02.png" alt></p>
-<h3 id="增删改方法"><a href="#增删改方法" class="headerlink" title="增删改方法"></a>增删改方法</h3><p><img src="/2019/08/07/SSM框架/MyBatis/MyBatis04/pic03.png" alt></p>
+<h1 id="执行过程（思维流图）"><a href="#执行过程（思维流图）" class="headerlink" title="执行过程（思维流图）"></a>执行过程（思维流图）</h1><h3 id="查询方法"><a href="#查询方法" class="headerlink" title="查询方法"></a>查询方法</h3><p>![](4.MyDao CRUD操作/MyDao 查询操作 底层.png)</p>
+<h2 id="增删改方法"><a href="#增删改方法" class="headerlink" title="增删改方法"></a>增删改方法</h2><p>![](4.MyDao CRUD操作/MyDao 增删改操作 底层.png)</p>
 
       
     </div>
@@ -739,7 +735,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/07/SSM框架/MyBatis/MyBatis04/" title="Mybatis框架中数据库的CRUD操作 —— 手动编写持久层实现类">https://Water1127.github.io/2019/08/07/SSM框架/MyBatis/MyBatis04/</a>
+    <a href="https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/" title="Mybatis框架中数据库的CRUD操作 —— 手动编写持久层实现类">https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -795,7 +791,7 @@
         
         <div class="post-tags">
           
-            <a href="/tags/MyBatis/" rel="tag"># MyBatis</a>
+            <a href="/tags/Mybatis/" rel="tag"># Mybatis</a>
           
         </div>
       
@@ -808,7 +804,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/06/SSM框架/MyBatis/MyBatis03/" rel="next" title="Mybatis框架中数据库的CRUD操作 —— 使用代理持久层实现类">
+              <a href="/2019/08/03/SSM框架/MyBatis/3.ProxyDao CRUD操作/" rel="next" title="Mybatis框架中数据库的CRUD操作 —— 使用代理持久层实现类">
                 <i class="fa fa-chevron-left"></i> Mybatis框架中数据库的CRUD操作 —— 使用代理持久层实现类
               </a>
             
@@ -818,8 +814,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/08/SSM框架/MyBatis/MyBatis05/" rel="prev" title="Mybatis CRUD操作 源码分析">
-                Mybatis CRUD操作 源码分析 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/06/SSM框架/MyBatis/6.MyBatis主配置文件 标签/" rel="prev" title="MyBatis主配置文件中的常用标签">
+                MyBatis主配置文件中的常用标签 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -895,7 +891,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1011,7 +1007,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">40</span>
+                      
+                    
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1109,7 +1107,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录结构"><span class="nav-number">2.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#持久层接口"><span class="nav-number">2.1.</span> <span class="nav-text">持久层接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-java"><span class="nav-number">2.1.1.</span> <span class="nav-text">UserDao.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#映射配置文件"><span class="nav-number">2.2.</span> <span class="nav-text">映射配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-xml"><span class="nav-number">2.2.1.</span> <span class="nav-text">UserDao.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久层实现类"><span class="nav-number">2.3.</span> <span class="nav-text">持久层实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDaoImp-java"><span class="nav-number">2.3.1.</span> <span class="nav-text">UserDaoImp.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类"><span class="nav-number">2.4.</span> <span class="nav-text">测试类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-java"><span class="nav-number">2.4.1.</span> <span class="nav-text">Test.java</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ProxyDao-vs-MyDao"><span class="nav-number">3.</span> <span class="nav-text">ProxyDao vs MyDao</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ProxyDao"><span class="nav-number">3.1.</span> <span class="nav-text">ProxyDao</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试类-1"><span class="nav-number">3.1.1.</span> <span class="nav-text">测试类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyDao"><span class="nav-number">3.2.</span> <span class="nav-text">MyDao</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试类-2"><span class="nav-number">3.2.1.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现类"><span class="nav-number">3.2.2.</span> <span class="nav-text">实现类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现CRUD操作"><span class="nav-number">4.</span> <span class="nav-text">实现CRUD操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思维导图"><span class="nav-number">4.1.</span> <span class="nav-text">思维导图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加用户"><span class="nav-number">4.2.</span> <span class="nav-text">添加用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新用户"><span class="nav-number">4.3.</span> <span class="nav-text">更新用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-2"><span class="nav-number">4.3.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-2"><span class="nav-number">4.3.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除用户"><span class="nav-number">4.4.</span> <span class="nav-text">删除用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-3"><span class="nav-number">4.4.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-3"><span class="nav-number">4.4.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找所有用户"><span class="nav-number">4.5.</span> <span class="nav-text">查找所有用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-4"><span class="nav-number">4.5.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-4"><span class="nav-number">4.5.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询单个用户"><span class="nav-number">4.6.</span> <span class="nav-text">查询单个用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-5"><span class="nav-number">4.6.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-5"><span class="nav-number">4.6.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据姓名模糊查询"><span class="nav-number">4.7.</span> <span class="nav-text">根据姓名模糊查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-6"><span class="nav-number">4.7.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-6"><span class="nav-number">4.7.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询所有用户数量"><span class="nav-number">4.8.</span> <span class="nav-text">查询所有用户数量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-7"><span class="nav-number">4.8.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-7"><span class="nav-number">4.8.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行过程（思维流图）"><span class="nav-number">5.</span> <span class="nav-text">执行过程（思维流图）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询方法"><span class="nav-number">5.0.1.</span> <span class="nav-text">查询方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增删改方法"><span class="nav-number">5.0.2.</span> <span class="nav-text">增删改方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录结构"><span class="nav-number">2.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#持久层接口"><span class="nav-number">2.1.</span> <span class="nav-text">持久层接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-java"><span class="nav-number">2.1.1.</span> <span class="nav-text">UserDao.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#映射配置文件"><span class="nav-number">2.2.</span> <span class="nav-text">映射配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-xml"><span class="nav-number">2.2.1.</span> <span class="nav-text">UserDao.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久层实现类"><span class="nav-number">2.3.</span> <span class="nav-text">持久层实现类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDaoImp-java"><span class="nav-number">2.3.1.</span> <span class="nav-text">UserDaoImp.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类"><span class="nav-number">2.4.</span> <span class="nav-text">测试类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Test-java"><span class="nav-number">2.4.1.</span> <span class="nav-text">Test.java</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ProxyDao-vs-MyDao"><span class="nav-number">3.</span> <span class="nav-text">ProxyDao vs MyDao</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ProxyDao"><span class="nav-number">3.1.</span> <span class="nav-text">ProxyDao</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试类-1"><span class="nav-number">3.1.1.</span> <span class="nav-text">测试类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyDao"><span class="nav-number">3.2.</span> <span class="nav-text">MyDao</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试类-2"><span class="nav-number">3.2.1.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现类"><span class="nav-number">3.2.2.</span> <span class="nav-text">实现类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现CRUD操作"><span class="nav-number">4.</span> <span class="nav-text">实现CRUD操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思维导图"><span class="nav-number">4.1.</span> <span class="nav-text">思维导图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加用户"><span class="nav-number">4.2.</span> <span class="nav-text">添加用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-1"><span class="nav-number">4.2.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新用户"><span class="nav-number">4.3.</span> <span class="nav-text">更新用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-2"><span class="nav-number">4.3.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-2"><span class="nav-number">4.3.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除用户"><span class="nav-number">4.4.</span> <span class="nav-text">删除用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-3"><span class="nav-number">4.4.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-3"><span class="nav-number">4.4.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找所有用户"><span class="nav-number">4.5.</span> <span class="nav-text">查找所有用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-4"><span class="nav-number">4.5.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-4"><span class="nav-number">4.5.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询单个用户"><span class="nav-number">4.6.</span> <span class="nav-text">查询单个用户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-5"><span class="nav-number">4.6.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-5"><span class="nav-number">4.6.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据姓名模糊查询"><span class="nav-number">4.7.</span> <span class="nav-text">根据姓名模糊查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-6"><span class="nav-number">4.7.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-6"><span class="nav-number">4.7.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询所有用户数量"><span class="nav-number">4.8.</span> <span class="nav-text">查询所有用户数量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ProxyDao-7"><span class="nav-number">4.8.1.</span> <span class="nav-text">ProxyDao</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MyDao-7"><span class="nav-number">4.8.2.</span> <span class="nav-text">MyDao</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行过程（思维流图）"><span class="nav-number">5.</span> <span class="nav-text">执行过程（思维流图）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询方法"><span class="nav-number">5.0.1.</span> <span class="nav-text">查询方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增删改方法"><span class="nav-number">5.1.</span> <span class="nav-text">增删改方法</span></a></li></ol></div>
             
 
           </div>
@@ -1149,7 +1147,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">562k</span>
+    <span title="站点总字数">613k</span>
   
 
   
@@ -1158,7 +1156,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">8:31</span>
+    <span title="站点阅读时长">9:17</span>
   
 </div>
 

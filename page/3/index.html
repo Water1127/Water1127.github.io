@@ -1449,7 +1449,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/10/SSM框架/MyBatis/MyBatis06/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/10/SSM框架/MyBatis/12.注解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -1469,7 +1469,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/10/SSM框架/MyBatis/MyBatis06/" class="post-title-link" itemprop="url">MyBatis主配置文件中的常用标签</a>
+                <a href="/2019/08/10/SSM框架/MyBatis/12.注解/" class="post-title-link" itemprop="url">MyBatis 注解开发</a>
               
             
           </h1>
@@ -1494,7 +1494,7 @@
                 
               
 
-              <time title="创建时间：2019-08-10 00:17:54" itemprop="dateCreated datePublished" datetime="2019-08-10T00:17:54+08:00">2019-08-10</time>
+              <time title="创建时间：2019-08-10 23:01:41" itemprop="dateCreated datePublished" datetime="2019-08-10T23:01:41+08:00">2019-08-10</time>
             </span>
           
 
@@ -1509,7 +1509,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-09 10:54:44" itemprop="dateModified" datetime="2019-10-09T10:54:44+08:00">2019-10-09</time>
+                <time title="修改时间：2019-10-11 08:20:54" itemprop="dateModified" datetime="2019-10-11T08:20:54+08:00">2019-10-11</time>
               </span>
             
           
@@ -1548,264 +1548,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">4.6k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">4 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
-<li>介绍 MyBatis主配置文件 中常用的三个标签<ul>
-<li><strong>properties标签：用于数据库连接的内外部配置。</strong></li>
-<li><strong>typeAliases标签：用于对全类名设置别名。</strong></li>
-<li><strong>package标签：用于指定类。</strong></li>
-</ul>
-</li>
-</ul>
-<h1 id="properties标签"><a href="#properties标签" class="headerlink" title="properties标签"></a>properties标签</h1><ul>
-<li>在之前MyBatis主配置文件的环境搭建中，我们将连接数据库的4个基本信息编写在MyBatis主配置文件中，这种方式属于<strong>内部配置</strong>。</li>
-<li>我们也可以选择<strong>外部配置</strong>的方式，只要我们通过properties标签来引用外部配置文件信息即可。</li>
-</ul>
-<h2 id="内部配置"><a href="#内部配置" class="headerlink" title="内部配置"></a>内部配置</h2><h3 id="SqlMapConfig-xml"><a href="#SqlMapConfig-xml" class="headerlink" title="SqlMapConfig.xml"></a>SqlMapConfig.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 内部配置：连接数据库的4个基本信息 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/eesy_mybatis"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="外部配置"><a href="#外部配置" class="headerlink" title="外部配置"></a>外部配置</h2><ul>
-<li><p>外部配置的两种方式</p>
-<ul>
-<li><u>resource=”jdbcConfig.properties”</u></li>
-<li><u>url=”file:///C:\Users\water\IDEA-workspace\mybatis_CRUD\src\main\resources\jdbcConfig.properties”</u></li>
-</ul>
-</li>
-<li><p><strong>URL 统一资源定位符（Uniform Resource Locator）</strong></p>
-<ul>
-<li>表示一个资源位置的唯一标识。<ul>
-<li>由协议、主机、端口和URI组成<ul>
-<li><a href="http://localhost:8080/mybatis/demo" target="_blank" rel="noopener">http://localhost:8080/mybatis/demo</a></li>
-<li>file://localhost:8080/mybatis/demo.java</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>URI 统一资源标识符（Uniform Resource Locator）</strong></p>
-<ul>
-<li>在某个应用中，表示一个资源位置的唯一标识。</li>
-</ul>
-</li>
-</ul>
-<h3 id="jdbcConfig-properties"><a href="#jdbcConfig-properties" class="headerlink" title="jdbcConfig.properties"></a>jdbcConfig.properties</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver=com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url=jdbc:mysql://localhost:3306/ee42</span><br><span class="line">jdbc.username=root</span><br><span class="line">jdbc.password=1234</span><br></pre></td></tr></table></figure>
-
-<h3 id="SqlMapConfig-xml-1"><a href="#SqlMapConfig-xml-1" class="headerlink" title="SqlMapConfig.xml"></a>SqlMapConfig.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- MyBatis主配置文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 外部配置的两种方式:resource或url --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"jdbcConfig.properties"</span>&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">properties</span> <span class="attr">url</span>=<span class="string">"file:///C:\Users\water\IDEA-workspace\mybatis_CRUD\src\main\resources\jdbcConfig.properties"</span>&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 配置连接数据库的4个基本信息 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="typeAliases标签"><a href="#typeAliases标签" class="headerlink" title="typeAliases标签"></a>typeAliases标签</h1><ul>
-<li>在之前MyBatis主配置文件的环境搭建中，我们在持久层接口的映射配置文件中的resultType属性中，每次都需要输入冗长的实体类全类名。我们可以<strong>通过 typeAliases标签 来取别名，从而避免输入冗长的实体类全类名问题</strong>。</li>
-<li>别名不区分大小写。<h2 id="实体类全类名"><a href="#实体类全类名" class="headerlink" title="实体类全类名"></a>实体类全类名</h2></li>
-</ul>
-<h3 id="UserDao-xml"><a href="#UserDao-xml" class="headerlink" title="UserDao.xml"></a>UserDao.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 添加用户 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"add"</span> <span class="attr">parameterType</span>=<span class="string">"cn.water.domain.User"</span> &gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 更新用户 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"update"</span> <span class="attr">parameterType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 删除用户 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"delete"</span> <span class="attr">parameterType</span>=<span class="string">"INT"</span> &gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 查询所有 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 查询单个用户 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findOne"</span> <span class="attr">parameterType</span>=<span class="string">"INT"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="起别名"><a href="#起别名" class="headerlink" title="起别名"></a>起别名</h2><h3 id="SqlMapConfig-xml-2"><a href="#SqlMapConfig-xml-2" class="headerlink" title="SqlMapConfig.xml"></a>SqlMapConfig.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 起别名 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">type</span>=<span class="string">"cn.water.domain.User"</span> <span class="attr">alias</span>=<span class="string">"user"</span>&gt;</span><span class="tag">&lt;/<span class="name">typeAlias</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!-- ................. --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="UserDao-xml-1"><a href="#UserDao-xml-1" class="headerlink" title="UserDao.xml"></a>UserDao.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 添加用户 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"add"</span> <span class="attr">parameterType</span>=<span class="string">"user"</span> &gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 更新用户 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"update"</span> <span class="attr">parameterType</span>=<span class="string">"user"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 删除用户 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"delete"</span> <span class="attr">parameterType</span>=<span class="string">"INT"</span> &gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 查询所有 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 查询单个用户 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findOne"</span> <span class="attr">parameterType</span>=<span class="string">"INT"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="package标签"><a href="#package标签" class="headerlink" title="package标签"></a>package标签</h1><ul>
-<li>使用 TypeAliases标签 为每个实体类起别名的确简化了我们的操作，但我们也需要为每一个实体类手动的其别名，仍然有简化的余地。为了是操作更加简便，我们可以<strong>使用Package标签来指定包，来自动加载包下的所有实体类，并以其类名作为别名，不区分大小写。</strong>另外，Mappers标签中有Package属性，用于指定包，来自动加载包下的所有映射文件。相当于代替了所有的Mapper标签。</li>
-</ul>
-<h2 id="mappers标签"><a href="#mappers标签" class="headerlink" title="mappers标签"></a>mappers标签</h2><h4 id="mapper标签"><a href="#mapper标签" class="headerlink" title="mapper标签"></a>mapper标签</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;mappers&gt;</span><br><span class="line">    &lt;mapper resource="cn/water/dao/UserDao.xml"&gt;&lt;/mapper&gt;</span><br><span class="line">    &lt;mapper resource="cn/water/dao/AccountDao.xml"&gt;&lt;/mapper&gt;</span><br><span class="line">    &lt;mapper resource="cn/water/dao/StudentDao.xml"&gt;&lt;/mapper&gt;</span><br><span class="line">    &lt;mapper resource="cn/water/dao/EmployeeDao.xml"&gt;&lt;/mapper&gt;</span><br><span class="line">&lt;/mappers&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="package标签-1"><a href="#package标签-1" class="headerlink" title="package标签"></a>package标签</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;mappers&gt;</span><br><span class="line">    &lt;<span class="keyword">package</span> name=<span class="string">"cn.water.dao"</span>/&gt;</span><br><span class="line">&lt;/mappers&gt;</span><br></pre></td></tr></table></figure>
-
-<h2 id="typeAliases标签-1"><a href="#typeAliases标签-1" class="headerlink" title="typeAliases标签"></a>typeAliases标签</h2><h4 id="mapper标签-1"><a href="#mapper标签-1" class="headerlink" title="mapper标签"></a>mapper标签</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">type</span>=<span class="string">"cn.water.domain.User"</span> <span class="attr">alias</span>=<span class="string">"user"</span>&gt;</span><span class="tag">&lt;/<span class="name">typeAlias</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">type</span>=<span class="string">"cn.water.domain.Account"</span> <span class="attr">alias</span>=<span class="string">"account"</span>&gt;</span><span class="tag">&lt;/<span class="name">typeAlias</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">type</span>=<span class="string">"cn.water.domain.Student"</span> <span class="attr">alias</span>=<span class="string">"studnet"</span>&gt;</span><span class="tag">&lt;/<span class="name">typeAlias</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">type</span>=<span class="string">"cn.water.domain.Employee"</span> <span class="attr">alias</span>=<span class="string">"employee"</span>&gt;</span><span class="tag">&lt;/<span class="name">typeAlias</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="package标签-2"><a href="#package标签-2" class="headerlink" title="package标签"></a>package标签</h4><ul>
-<li>别名默认为类名</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.water.domain"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/08/SSM框架/MyBatis/MyBatis05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/08/SSM框架/MyBatis/MyBatis05/" class="post-title-link" itemprop="url">Mybatis CRUD操作 源码分析</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-08 16:13:42" itemprop="dateCreated datePublished" datetime="2019-08-08T16:13:42+08:00">2019-08-08</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-09 12:50:37" itemprop="dateModified" datetime="2019-10-09T12:50:37+08:00">2019-10-09</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">537</span>
+              <span title="本文字数">0</span>
             </span>
           
 
@@ -1838,54 +1581,7 @@
       
         
           
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
-<li>代理持久层实现类（ProxyDao）<ul>
-<li><strong>通过动态代理增强代码，自动获取 SqlSession类</strong>，并调用 selectOne方法、selectList方法、insert方法、update方法、delete方法。</li>
-</ul>
-</li>
-<li>手动编写持久层实现类（MyDao）<ul>
-<li><strong>手动获取 SqlSession类</strong>，并用 selectList方法、selectOne方法、insert方法、update方法、delete方法。</li>
-</ul>
-</li>
-<li>CRED方法分析<ul>
-<li>SqlSession接口<ul>
-<li><u>selectOne方法</u> 实际上调用的是 <strong><u>selectList方法</u></strong>，</li>
-<li><u>insert方法</u>、<u>delete方法</u> 实际上调用的是 <strong><u>update方法</u></strong>，</li>
-</ul>
-</li>
-<li>Executor接口<ul>
-<li><strong>query方法</strong></li>
-<li><strong>update方法</strong></li>
-</ul>
-</li>
-<li>StatementHandler接口<ul>
-<li><strong>query方法</strong></li>
-<li><strong>update方法</strong></li>
-</ul>
-</li>
-<li>PreparedStatement接口<ul>
-<li><strong>execute方法</strong><ul>
-<li>执行 CRUD语句</li>
-<li>返回值：有结果集是 true，没有结果集是 false</li>
-</ul>
-</li>
-<li><strong>executeUpdate方法</strong><ul>
-<li>执行 CUD语句</li>
-<li>返回值：数据库中受影响记录的行数</li>
-</ul>
-</li>
-<li><strong>executeQuery方法</strong><ul>
-<li>执行 SELECT语句</li>
-<li>返回值：ResultSet 结果集对象</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="源码展示"><a href="#源码展示" class="headerlink" title="源码展示"></a>源码展示</h1><p><img src="/2019/08/08/SSM框架/MyBatis/MyBatis05/pic01.jpg" alt="源码"></p>
-
+            
           
         
       
@@ -1945,7 +1641,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/07/SSM框架/MyBatis/MyBatis04/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/11.缓存/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -1965,7 +1661,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/07/SSM框架/MyBatis/MyBatis04/" class="post-title-link" itemprop="url">Mybatis框架中数据库的CRUD操作 —— 手动编写持久层实现类</a>
+                <a href="/2019/08/09/SSM框架/MyBatis/11.缓存/" class="post-title-link" itemprop="url">MyBatis 缓存</a>
               
             
           </h1>
@@ -1990,7 +1686,7 @@
                 
               
 
-              <time title="创建时间：2019-08-07 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-07T14:33:47+08:00">2019-08-07</time>
+              <time title="创建时间：2019-08-09 23:52:09" itemprop="dateCreated datePublished" datetime="2019-08-09T23:52:09+08:00">2019-08-09</time>
             </span>
           
 
@@ -2005,7 +1701,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-09 12:51:05" itemprop="dateModified" datetime="2019-10-09T12:51:05+08:00">2019-10-09</time>
+                <time title="修改时间：2019-10-11 16:39:59" itemprop="dateModified" datetime="2019-10-11T16:39:59+08:00">2019-10-11</time>
               </span>
             
           
@@ -2044,7 +1740,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">11k</span>
+              <span title="本文字数">0</span>
             </span>
           
 
@@ -2056,7 +1752,199 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">10 分钟</span>
+              <span title="阅读时长">1 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/10.延迟加载/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/09/SSM框架/MyBatis/10.延迟加载/" class="post-title-link" itemprop="url">MyBatis 多延迟加载</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-09 11:35:51" itemprop="dateCreated datePublished" datetime="2019-08-09T11:35:51+08:00">2019-08-09</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-12 07:28:54" itemprop="dateModified" datetime="2019-10-12T07:28:54+08:00">2019-10-12</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">13k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">12 分钟</span>
             </span>
           
 
@@ -2077,43 +1965,16 @@
       
         
           <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
-<li>MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用<strong>手动编写持久层实现类</strong>的方式来进行MySQL数据库的CRUD操作。</li>
-<li>创建持久层接口实现类的方式<strong>在实际开发中并不常用</strong>，所以我会将本文的主题放在与使用<strong>代理持久层实现类</strong>方法的比较上。</li>
-<li>改变的内容主要是测试类和持久层接口实现类。</li>
+<li>通过前面的学习，我们已经掌握了Mybatis中一对一，一对多，多对多关系的配置及实现，可以实现对象的<br>关联查询。实际开发过程中很多时候我们并不需要总是在加载用户信息时就一定要加载他的账户信息。此时就是我们所说的延迟加载。</li>
 </ul>
-<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><ul>
-<li>src/main    <ul>
-<li>java<ul>
-<li>cn/water/dao<ul>
-<li>impl<ul>
-<li><strong>UserDaoImpl.java（持久层实现类）</strong> </li>
+<h2 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h2><ul>
+<li><strong>延迟加载（懒加载）就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。</strong><ul>
+<li>优点<ul>
+<li>先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多张速度要快。</li>
 </ul>
 </li>
-<li><strong>UserDao.java（持久层接口）</strong></li>
-</ul>
-</li>
-<li>cn/water/domain<ul>
-<li><strong>User.java（实体类）</strong></li>
-</ul>
-</li>
-<li>resources<ul>
-<li>cn/water/dao<ul>
-<li><strong>UserDao.xml（映射配置文件）</strong></li>
-</ul>
-</li>
-<li><strong>SqlMapConfig.xml（MyBatis主配置文件）</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>src/tese<ul>
-<li>java<ul>
-<li>cn/water/test<ul>
-<li><strong>MybatisTest.java（测试文件）</strong></li>
-</ul>
-</li>
+<li>坏处<ul>
+<li>因为只有当需要用到数据时，才会进行数据库查询，这样在大批量数据查询时，因为查询工作也要消耗时间，所以可能造成用户等待时间变长，造成用户体验下降。</li>
 </ul>
 </li>
 </ul>
@@ -2122,7 +1983,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/08/07/SSM框架/MyBatis/MyBatis04/#more" rel="contents">
+              <a class="btn" href="/2019/08/09/SSM框架/MyBatis/10.延迟加载/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2186,7 +2047,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/06/SSM框架/MyBatis/MyBatis03/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/08/SSM框架/MyBatis/9.多表查询/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -2206,7 +2067,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/06/SSM框架/MyBatis/MyBatis03/" class="post-title-link" itemprop="url">Mybatis框架中数据库的CRUD操作 —— 使用代理持久层实现类</a>
+                <a href="/2019/08/08/SSM框架/MyBatis/9.多表查询/" class="post-title-link" itemprop="url">MyBatis 多表查询</a>
               
             
           </h1>
@@ -2231,7 +2092,7 @@
                 
               
 
-              <time title="创建时间：2019-08-06 14:33:47" itemprop="dateCreated datePublished" datetime="2019-08-06T14:33:47+08:00">2019-08-06</time>
+              <time title="创建时间：2019-08-08 23:01:41" itemprop="dateCreated datePublished" datetime="2019-08-08T23:01:41+08:00">2019-08-08</time>
             </span>
           
 
@@ -2246,7 +2107,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-09 12:50:31" itemprop="dateModified" datetime="2019-10-09T12:50:31+08:00">2019-10-09</time>
+                <time title="修改时间：2019-10-12 07:28:42" itemprop="dateModified" datetime="2019-10-12T07:28:42+08:00">2019-10-12</time>
               </span>
             
           
@@ -2285,7 +2146,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">15k</span>
+              <span title="本文字数">31k</span>
             </span>
           
 
@@ -2297,7 +2158,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">14 分钟</span>
+              <span title="阅读时长">28 分钟</span>
             </span>
           
 
@@ -2317,73 +2178,29 @@
 
       
         
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
-<li>MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文将通过映射配置文件，使用<strong>代理持久层实现类</strong>的方式，来进行MySQL数据库的CRUD操作。</li>
-<li>环境搭建成功后，MySQL数据库的CRUD操作基于以下几个文件的基础上进行修改：<ul>
-<li>UserDao.java（持久层接口）<ul>
-<li>添加CRUD操作的抽象方法。</li>
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="多表之间的关系"><a href="#多表之间的关系" class="headerlink" title="多表之间的关系"></a>多表之间的关系</h2><ul>
+<li><strong>一对多</strong><ul>
+<li>用户 ——&gt; 订单、订单、订单、订单</li>
 </ul>
 </li>
-<li>UserDao.xml（持久层接口的映射配置文件）<ul>
-<li>添加持久层接口的全类名：namespace</li>
-<li>添加CRUD操作的mapper子标签：select、update、insert、</li>
-<li>添加方法名：id</li>
-<li>添加返回值类型的全类名：resultType</li>
+<li><strong>多对一（一对一）</strong><ul>
+<li>订单、订单、订单、订单 ——&gt; 用户</li>
+<li>单个订单 ——&gt; 用户</li>
 </ul>
 </li>
+<li><strong>一对一</strong><ul>
+<li>中国公民——&gt;身份证</li>
 </ul>
 </li>
-</ul>
-<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><h2 id="Maven项目依赖"><a href="#Maven项目依赖" class="headerlink" title="Maven项目依赖"></a>Maven项目依赖</h2><ul>
-<li>在pom.xml 文件中，并不引入MyBatis框架的依赖：<ul>
-<li>mybatis（MyBatis框架）</li>
-<li>mysql-connector-java（数据库连接）</li>
-<li>junit （单元测试）</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>cn.water<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>section03_CRUD_ProxyDao<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- MyBatis框架 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- MySQL 数据库驱动 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 单元测试 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="数据库表"><a href="#数据库表" class="headerlink" title="数据库表"></a>数据库表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">#创建数据库</span><br><span class="line">CREATE DATABASE mybatis;</span><br><span class="line">USE mybatis;</span><br><span class="line"></span><br><span class="line">#创建表</span><br><span class="line">CREATE TABLE USER(</span><br><span class="line">	id INT(11) PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">	username VARCHAR(32) NOT NULL COMMENT &apos;用户名称&apos;,</span><br><span class="line">	birthday DATETIME DEFAULT NULL COMMENT &apos;生日&apos;,</span><br><span class="line">	sex CHAR(1) DEFAULT NULL COMMENT &apos;性别&apos;,</span><br><span class="line">	address VARCHAR(256) DEFAULT NULL COMMENT &apos;地址&apos;	</span><br><span class="line">) ENGINE = INNODB DEFAULT CHARSET = utf8;</span><br><span class="line"></span><br><span class="line">#插入数据</span><br><span class="line">INSERT INTO USER VALUES </span><br><span class="line">	(41,&apos;老王&apos;,&apos;2018-02-27 17:47:08&apos;,&apos;男&apos;,&apos;北京&apos;),</span><br><span class="line">    (42,&apos;小二王&apos;,&apos;2018-03-02 15:09:37&apos;,&apos;女&apos;,&apos;北京金燕龙&apos;),</span><br><span class="line">    (43,&apos;小二王&apos;,&apos;2018-03-04 11:34:34&apos;,&apos;女&apos;,&apos;北京金燕龙&apos;),</span><br><span class="line">    (45,&apos;传智播客&apos;,&apos;2018-03-04 12:04:06&apos;,&apos;男&apos;,&apos;北京金燕龙&apos;),</span><br><span class="line">    (46,&apos;老王&apos;,&apos;2018-03-07 17:37:26&apos;,&apos;男&apos;,&apos;北京&apos;),</span><br><span class="line">    (48,&apos;小马宝莉&apos;,&apos;2018-03-08 11:44:00&apos;,&apos;女&apos;,&apos;北京修正&apos;);</span><br></pre></td></tr></table></figure>
-
-<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><ul>
-<li>src/main    <ul>
-<li>java<ul>
-<li>cn/water/dao<ul>
-<li><strong>UserDao.java（持久层接口）</strong></li>
-</ul>
-</li>
-<li>cn/water/domain<ul>
-<li><strong>User.java（实体层）</strong></li>
-</ul>
-</li>
-<li>resources<ul>
-<li>cn/water/dao<ul>
-<li><strong>UserDao.xml（持久层接口的映射配置文件）</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>SqlMapConfig.xml（MyBatis主配置文件）</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>src/tese<ul>
-<li>java<ul>
-<li>cn/water/test<ul>
-<li><strong>MybatisTest.java（测试文件）</strong></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><strong>多对多</strong><ul>
+<li>语文老师、数学老师、英语老师——&gt;小明、小红、小黑、小绿</li>
 </ul>
 </li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/08/06/SSM框架/MyBatis/MyBatis03/#more" rel="contents">
+              <a class="btn" href="/2019/08/08/SSM框架/MyBatis/9.多表查询/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2447,7 +2264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/MyBatis02/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/08/SSM框架/MyBatis/8.数据匹配方式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -2467,7 +2284,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/04/SSM框架/MyBatis/MyBatis02/" class="post-title-link" itemprop="url">自定义MyBatis相关的类和接口</a>
+                <a href="/2019/08/08/SSM框架/MyBatis/8.数据匹配方式/" class="post-title-link" itemprop="url">MyBatis中Java与数据库的数据匹配方式</a>
               
             
           </h1>
@@ -2492,7 +2309,7 @@
                 
               
 
-              <time title="创建时间：2019-08-04 01:26:32" itemprop="dateCreated datePublished" datetime="2019-08-04T01:26:32+08:00">2019-08-04</time>
+              <time title="创建时间：2019-08-08 00:22:04" itemprop="dateCreated datePublished" datetime="2019-08-08T00:22:04+08:00">2019-08-08</time>
             </span>
           
 
@@ -2507,7 +2324,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-09 12:45:08" itemprop="dateModified" datetime="2019-10-09T12:45:08+08:00">2019-10-09</time>
+                <time title="修改时间：2019-10-11 08:14:16" itemprop="dateModified" datetime="2019-10-11T08:14:16+08:00">2019-10-11</time>
               </span>
             
           
@@ -2546,7 +2363,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">30k</span>
+              <span title="本文字数">2.3k</span>
             </span>
           
 
@@ -2558,7 +2375,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">27 分钟</span>
+              <span title="阅读时长">2 分钟</span>
             </span>
           
 
@@ -2578,20 +2395,121 @@
 
       
         
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
-<li>我们知道创建Maven项目后，在项目中的pom.xml配置文件中引入MyBatis依赖之后，我们就可以使用MyBatis相关的类和接口和相应的功能。</li>
-<li>但为了对MyBatis的体系结构和功能有更加深刻的理解和全面的认识，<strong>本文Maven项目中的pom.xml配置文件将不再引入MyBatis依赖，转而通过自定义编写MyBatis相关的类和接口来实现同样的功能。</strong></li>
-<li>MyBatis相关类和接口的介绍流程按照 测试类 中的操作步骤为顺序，先用到的类和接口先出现。</li>
+          
+            <h1 id="方式一：修改-JavaBean变量"><a href="#方式一：修改-JavaBean变量" class="headerlink" title="方式一：修改 JavaBean变量"></a>方式一：修改 JavaBean变量</h1><ul>
+<li><strong>在 JavaBean中，将 变量名 设置为 数据库的字段名</strong></li>
 </ul>
-          <!--noindex-->
+<h2 id="MySQL数据库"><a href="#MySQL数据库" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h2><ul>
+<li>字段<ul>
+<li>id</li>
+<li>username</li>
+<li>birthday</li>
+<li>sex</li>
+<li>address</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java实体类"><a href="#Java实体类" class="headerlink" title="Java实体类"></a>Java实体类</h2><ul>
+<li>变量名<ul>
+<li>id</li>
+<li>username</li>
+<li>birthday</li>
+<li>sex</li>
+<li>address</li>
+</ul>
+</li>
+</ul>
+<h2 id="映射配置文件"><a href="#映射配置文件" class="headerlink" title="映射配置文件"></a>映射配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">	SELECT </span><br><span class="line">    	id,</span><br><span class="line">        username,</span><br><span class="line">        address,</span><br><span class="line">        sex,</span><br><span class="line">        birthday </span><br><span class="line">    FROM </span><br><span class="line">    	user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="方式二：修改-SQL语句"><a href="#方式二：修改-SQL语句" class="headerlink" title="方式二：修改 SQL语句"></a>方式二：修改 SQL语句</h1><ul>
+<li><strong>在SQL语句中，为 数据库字段 设置 别名</strong></li>
+</ul>
+<h2 id="MySQL数据库-1"><a href="#MySQL数据库-1" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h2><ul>
+<li>字段<ul>
+<li>id</li>
+<li>username</li>
+<li>birthday</li>
+<li>sex</li>
+<li>address</li>
+</ul>
+</li>
+</ul>
+<h2 id="Java实体类-1"><a href="#Java实体类-1" class="headerlink" title="Java实体类"></a>Java实体类</h2><ul>
+<li>变量名<ul>
+<li><u>userId</u></li>
+<li>username</li>
+<li><u>userBirthday</u></li>
+<li><u>userSex</u></li>
+<li><u>userAddress</u></li>
+</ul>
+</li>
+</ul>
+<h2 id="映射配置文件-1"><a href="#映射配置文件-1" class="headerlink" title="映射配置文件"></a>映射配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">	SELECT </span><br><span class="line">    	id AS userId,</span><br><span class="line">        username,</span><br><span class="line">        address AS userAddress,</span><br><span class="line">        sex AS userSex,</span><br><span class="line">        birthday AS userBrithday </span><br><span class="line">    FROM </span><br><span class="line">    	user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="方式三：设置-对应关系"><a href="#方式三：设置-对应关系" class="headerlink" title="方式三：设置 对应关系"></a>方式三：设置 对应关系</h1><ul>
+<li><strong>在 映射配置文件 中，设置 JavaBean变量 与 数据库字段 的对应关系。</strong></li>
+</ul>
+<h2 id="变量：数据类型"><a href="#变量：数据类型" class="headerlink" title="变量：数据类型"></a>变量：数据类型</h2><h3 id="MySQL数据库-2"><a href="#MySQL数据库-2" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h3><ul>
+<li>字段<ul>
+<li>id</li>
+<li>username</li>
+<li>birthday</li>
+<li>sex</li>
+<li>address</li>
+</ul>
+</li>
+</ul>
+<h3 id="Java实体类-2"><a href="#Java实体类-2" class="headerlink" title="Java实体类"></a>Java实体类</h3><ul>
+<li>变量名<ul>
+<li><u>userId</u></li>
+<li>username</li>
+<li><u>userBirthday</u></li>
+<li><u>userSex</u></li>
+<li><u>userAddress</u></li>
+</ul>
+</li>
+</ul>
+<h3 id="映射配置文件-2"><a href="#映射配置文件-2" class="headerlink" title="映射配置文件"></a>映射配置文件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置对应关系 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"userMap"</span> <span class="attr">type</span>=<span class="string">"cn.water.domain.User"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 主键字段的对应 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"userId"</span> <span class="attr">column</span>=<span class="string">"id"</span> &gt;</span><span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 非主键字段的对应 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"username"</span> <span class="attr">column</span>=<span class="string">"username"</span> &gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"UserBirthday"</span> <span class="attr">column</span>=<span class="string">"birthday"</span> &gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"UserSex"</span> <span class="attr">column</span>=<span class="string">"sex"</span> &gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"UserAddress"</span> <span class="attr">column</span>=<span class="string">"address"</span> &gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultMap</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line">	SELECT id * FROM user;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="变量：JavaBean（多表查询）"><a href="#变量：JavaBean（多表查询）" class="headerlink" title="变量：JavaBean（多表查询）"></a>变量：JavaBean（多表查询）</h2><h3 id="MySQL数据库-3"><a href="#MySQL数据库-3" class="headerlink" title="MySQL数据库"></a>MySQL数据库</h3><ul>
+<li><strong>用户表</strong><ul>
+<li>字段<ul>
+<li>id</li>
+<li>username</li>
+<li>birthday</li>
+<li>sex</li>
+<li>address</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>账户表</strong><ul>
+<li>字段<ul>
+<li>id</li>
+<li>uid</li>
+<li>money</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Java实体类-3"><a href="#Java实体类-3" class="headerlink" title="Java实体类"></a>Java实体类</h3><ul>
+<li><strong>账户类</strong><ul>
+<li>变量名<ul>
+<li>id</li>
+<li>uid</li>
+<li>money</li>
+<li><strong>User</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="映射配置文件-3"><a href="#映射配置文件-3" class="headerlink" title="映射配置文件"></a>映射配置文件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"userAccountsMap"</span> <span class="attr">type</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"id"</span>&gt;</span><span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"username"</span> <span class="attr">column</span>=<span class="string">"username"</span>&gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"address"</span> <span class="attr">column</span>=<span class="string">"address"</span>&gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"sex"</span> <span class="attr">column</span>=<span class="string">"sex"</span>&gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"birthday"</span> <span class="attr">column</span>=<span class="string">"birthday"</span>&gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">"accountList"</span> <span class="attr">ofType</span>=<span class="string">"account"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"aid"</span>&gt;</span><span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"uid"</span> <span class="attr">column</span>=<span class="string">"uid"</span>&gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"money"</span> <span class="attr">column</span>=<span class="string">"money"</span>&gt;</span><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>## </p>
+
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/04/SSM框架/MyBatis/MyBatis02/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -2683,7 +2601,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2799,7 +2717,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">40</span>
+                      
+                    
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2920,7 +2840,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">562k</span>
+    <span title="站点总字数">613k</span>
   
 
   
@@ -2929,7 +2849,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">8:31</span>
+    <span title="站点阅读时长">9:17</span>
   
 </div>
 
