@@ -106,18 +106,18 @@
   daovoice('update');
   </script>
 
-  <meta name="description" content="Few words,many deeds.">
+  <meta name="description" content="简介 什么是缓存？ 缓存是存在于内存中的临时数据。   为什么使用缓存？ 缓存能够减少和数据库的交互次数，提高执行效率。   什么样的数据适用于缓存，什么样的数据不适用于缓存？ 适用于缓存： 经常查询，并且不经常改变的数据。 数据的正确与否对最终结果的影响不大。   不适用于缓存： 经常改变的数据。 数据的正确与否对最终结果的影响非常大。     像大多数的持久化框架一样，Mybatis 也提供了">
 <meta name="keywords" content="MyBatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MyBatis框架 缓存">
+<meta property="og:title" content="MyBatis框架的缓存机制">
 <meta property="og:url" content="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/11.缓存/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
-<meta property="og:description" content="Few words,many deeds.">
+<meta property="og:description" content="简介 什么是缓存？ 缓存是存在于内存中的临时数据。   为什么使用缓存？ 缓存能够减少和数据库的交互次数，提高执行效率。   什么样的数据适用于缓存，什么样的数据不适用于缓存？ 适用于缓存： 经常查询，并且不经常改变的数据。 数据的正确与否对最终结果的影响不大。   不适用于缓存： 经常改变的数据。 数据的正确与否对最终结果的影响非常大。     像大多数的持久化框架一样，Mybatis 也提供了">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-11T23:34:12.918Z">
+<meta property="og:updated_time" content="2019-10-27T00:55:46.719Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MyBatis框架 缓存">
-<meta name="twitter:description" content="Few words,many deeds.">
+<meta name="twitter:title" content="MyBatis框架的缓存机制">
+<meta name="twitter:description" content="简介 什么是缓存？ 缓存是存在于内存中的临时数据。   为什么使用缓存？ 缓存能够减少和数据库的交互次数，提高执行效率。   什么样的数据适用于缓存，什么样的数据不适用于缓存？ 适用于缓存： 经常查询，并且不经常改变的数据。 数据的正确与否对最终结果的影响不大。   不适用于缓存： 经常改变的数据。 数据的正确与否对最终结果的影响非常大。     像大多数的持久化框架一样，Mybatis 也提供了">
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>MyBatis框架 缓存 | Water's Blog</title>
+  <title>MyBatis框架的缓存机制 | Water's Blog</title>
   
 
 
@@ -387,7 +387,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MyBatis框架 缓存
+          <h1 class="post-title" itemprop="name headline">MyBatis框架的缓存机制
 
               
             
@@ -428,7 +428,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-12 07:34:12" itemprop="dateModified" datetime="2019-10-12T07:34:12+08:00">2019-10-12</time>
+                <time title="修改时间：2019-10-27 08:55:46" itemprop="dateModified" datetime="2019-10-27T08:55:46+08:00">2019-10-27</time>
               </span>
             
           
@@ -487,7 +487,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">0</span>
+              <span title="本文字数">9.9k</span>
             </span>
           
 
@@ -499,7 +499,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">1 分钟</span>
+              <span title="阅读时长">9 分钟</span>
             </span>
           
 
@@ -518,7 +518,152 @@
       
 
       
-        
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>什么是缓存？<ul>
+<li><strong>缓存是存在于内存中的临时数据。</strong></li>
+</ul>
+</li>
+<li>为什么使用缓存？<ul>
+<li><strong>缓存能够减少和数据库的交互次数，提高执行效率。</strong></li>
+</ul>
+</li>
+<li>什么样的数据适用于缓存，什么样的数据不适用于缓存？<ul>
+<li>适用于缓存：<ul>
+<li>经常查询，并且不经常改变的数据。</li>
+<li>数据的正确与否对最终结果的影响不大。</li>
+</ul>
+</li>
+<li>不适用于缓存：<ul>
+<li>经常改变的数据。</li>
+<li>数据的正确与否对最终结果的影响非常大。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>像大多数的持久化框架一样，Mybatis 也提供了缓存策略，通过缓存策略来减少数据库的查询次数，从而提<br>高性能。Mybatis 中缓存分为一级缓存，二级缓存。<ul>
+<li><strong>一级缓存</strong><ul>
+<li>当我们执行查询操作之后，Mybatis 框架会将在数据库中的查询的结果自动存储到 SqlSession 中为一级缓存划分的一块区域中。（该区域的低层结构是 Map集合）</li>
+<li>当我们再次执行同样的查询操作之后，Mybatis 框架会先从 SqlSession 中的一级缓存区域查询。如果存在数据，就直接拿出来；如果不存在数据，才会去数据库中进行查询。</li>
+<li>因为一级缓存区域被设置在 SqlSession 中，所以当 SqlSession 消失时，一级缓存也就消失。</li>
+</ul>
+</li>
+<li><strong>二级缓存</strong><ul>
+<li>二级缓存被存储在 SqlSessionFactory 中，同一个 SqlSessionFactory 创建的 SqlSession 共享二级缓存。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>![](11.缓存\一级缓存 二级缓存.png)</p>
+<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><p>src</p>
+<ul>
+<li>main<ul>
+<li>java<ul>
+<li>cn.water.dao<ul>
+<li><strong>UserDao.java</strong>（持久层接口）</li>
+</ul>
+</li>
+<li>cn.water.domain<ul>
+<li><strong>User.java</strong>（实体类）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>resources<ul>
+<li>cn.water.dao<ul>
+<li><strong>UserDao.xml</strong>（映射配置文件）</li>
+</ul>
+</li>
+<li><strong>SqlMapConfig.xml</strong>（MyBatis主配置文件）</li>
+<li><strong>jdbcConfig.properties</strong>（数据库连接信息文件）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>test<ul>
+<li>java.cn.water<ul>
+<li><strong>MybatisTest.java</strong>（测试类）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="MyBatis配置文件"><a href="#MyBatis配置文件" class="headerlink" title="MyBatis配置文件"></a>MyBatis配置文件</h2><h3 id="jdbcConfig-properties"><a href="#jdbcConfig-properties" class="headerlink" title="jdbcConfig.properties"></a>jdbcConfig.properties</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver=com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url=jdbc:mysql://localhost:3306/mybatis</span><br><span class="line">jdbc.username=root</span><br><span class="line">jdbc.password=root</span><br></pre></td></tr></table></figure>
+
+<h3 id="SqlMapConfig-xml"><a href="#SqlMapConfig-xml" class="headerlink" title="SqlMapConfig.xml"></a>SqlMapConfig.xml</h3><ul>
+<li>开启 二级缓存</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- mybatis的主配置文件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">            <span class="comment">&lt;!-- 外部配置 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"jdbcConfig.properties"</span>&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 配置参数 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 开启 二级缓存 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"cacheEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 指定包：实体类--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.water.domain"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 配置环境 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!-- 配置连接数据库的4个基本信息 --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 指定包：持久层接口 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.water.dao"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h2><h3 id="User-java"><a href="#User-java" class="headerlink" title="User.java"></a>User.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/12 - 7:51</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> Date birthday;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">                <span class="string">"id="</span> + id +</span><br><span class="line">                <span class="string">", username='"</span> + username + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", birthday="</span> + birthday +</span><br><span class="line">                <span class="string">", sex='"</span> + sex + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", address='"</span> + address + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">getBirthday</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBirthday</span><span class="params">(Date birthday)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.birthday = birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAddress</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAddress</span><span class="params">(String address)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.address = address;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="持久层接口"><a href="#持久层接口" class="headerlink" title="持久层接口"></a>持久层接口</h2><h3 id="UserDao-java"><a href="#UserDao-java" class="headerlink" title="UserDao.java"></a>UserDao.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.domain.User;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/12 - 7:51</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*  */</span></span><br><span class="line">    <span class="function">User <span class="title">findById</span><span class="params">(Integer userId)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="映射配置文件"><a href="#映射配置文件" class="headerlink" title="映射配置文件"></a>映射配置文件</h2><h3 id="UserDao-xml"><a href="#UserDao-xml" class="headerlink" title="UserDao.xml"></a>UserDao.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"cn.water.dao.UserDao"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">cache</span>&gt;</span><span class="tag">&lt;/<span class="name">cache</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">parameterType</span>=<span class="string">"INT"</span> <span class="attr">resultType</span>=<span class="string">"user"</span> <span class="attr">useCache</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    &lt;select id="findById" parameterType="INT" resultType="user" &gt;--&gt;</span></span><br><span class="line">        SELECT * FROM user WHERE id = #&#123;userId&#125;;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h2><h3 id="MyBatisTest-java"><a href="#MyBatisTest-java" class="headerlink" title="MyBatisTest.java"></a>MyBatisTest.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.dao.UserDao;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/12 - 7:56</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 成员变量 */</span></span><br><span class="line">    <span class="keyword">private</span> InputStream inputStream;</span><br><span class="line">    <span class="keyword">private</span> SqlSessionFactory factory;</span><br><span class="line">    <span class="keyword">private</span> SqlSession session;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 初始化操作 */</span></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">/* 加载 MyBatis配置文件 */</span></span><br><span class="line">        inputStream = Resources.getResourceAsStream(<span class="string">"SqlMapConfig.xml"</span>);</span><br><span class="line">        <span class="comment">/* 获取 工厂类 */</span></span><br><span class="line">        factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">        <span class="comment">/* 获取 产品类 */</span></span><br><span class="line">        session = factory.openSession(<span class="keyword">true</span>);<span class="comment">/* 设置自动提交 */</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 销毁操作 */</span></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        session.close();</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 一级缓存：同一个 SqlSession */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        UserDao dao = session.getMapper(UserDao.class);</span><br><span class="line">        User user01 = dao.findById(<span class="number">41</span>);</span><br><span class="line">        System.out.println(<span class="string">"第一次查询："</span>+user01);</span><br><span class="line">        User user02 = dao.findById(<span class="number">41</span>);</span><br><span class="line">        System.out.println(<span class="string">"第二次查询："</span>+user02);</span><br><span class="line">        System.out.println(<span class="string">"两次查询结果是否相等："</span>+(user01==user02)); <span class="comment">//true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 一级缓存：不同 SqlSession */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">        UserDao dao = session.getMapper(UserDao.class);</span><br><span class="line">        User user01 = dao.findById(<span class="number">41</span>);</span><br><span class="line">        System.out.println(<span class="string">"第一次查询："</span>+user01);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* commit()（执行插入、更新、删除）、close() */</span></span><br><span class="line">        session.close();</span><br><span class="line">        session = factory.openSession();</span><br><span class="line"></span><br><span class="line">        UserDao dao02 = session.getMapper(UserDao.class);</span><br><span class="line">        User user02 = dao02.findById(<span class="number">41</span>);</span><br><span class="line">        System.out.println(<span class="string">"第二次查询："</span>+user02);</span><br><span class="line">        System.out.println(<span class="string">"两次查询结果是否相等："</span>+(user01==user02));<span class="comment">//false</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h1><h2 id="测试类-1"><a href="#测试类-1" class="headerlink" title="测试类"></a>测试类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 一级缓存：同一个 SqlSession */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">    UserDao dao = session.getMapper(UserDao.class);</span><br><span class="line">    User user01 = dao.findById(<span class="number">41</span>);</span><br><span class="line">    System.out.println(<span class="string">"第一次查询："</span>+user01);</span><br><span class="line">    User user02 = dao.findById(<span class="number">41</span>);</span><br><span class="line">    System.out.println(<span class="string">"第二次查询："</span>+user02);</span><br><span class="line">    System.out.println(<span class="string">"两次查询结果是否相等："</span>+(user01==user02));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><ul>
+<li><strong>一级缓存是SqlSession级别的缓存，只要SqlSession没有flush或close，它就存在。</strong><ul>
+<li>我们可以发现，在测试一中虽然我们查询了两次，但最后只执行了一次数据库操作，这就是Mybatis提供给我们的一级缓存在起作用了。</li>
+<li>因为一级缓存的存在，导致第二次查询id为41的记录时，并没有发出sql语句从数据库中查询数据，而是从一级缓存中查询。</li>
+</ul>
+</li>
+</ul>
+<p>![](11.缓存\控制台 证明 一级缓存.png)</p>
+<h1 id="一级缓存的清空"><a href="#一级缓存的清空" class="headerlink" title="一级缓存的清空"></a>一级缓存的清空</h1><h2 id="测试类-2"><a href="#测试类-2" class="headerlink" title="测试类"></a>测试类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 一级缓存：不同 SqlSession */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">    UserDao dao = session.getMapper(UserDao.class);</span><br><span class="line">    User user01 = dao.findById(<span class="number">41</span>);</span><br><span class="line">    System.out.println(<span class="string">"第一次查询："</span>+user01);</span><br><span class="line">    <span class="comment">/* commit()（执行插入、更新、删除）、close() */</span></span><br><span class="line">    session.close();</span><br><span class="line">    session = factory.openSession();</span><br><span class="line">    UserDao dao02 = session.getMapper(UserDao.class);</span><br><span class="line">    User user02 = dao02.findById(<span class="number">41</span>);</span><br><span class="line">    System.out.println(<span class="string">"第二次查询："</span>+user02);</span><br><span class="line">    System.out.println(<span class="string">"两次查询结果是否相等："</span>+(user01==user02));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行结果-1"><a href="#运行结果-1" class="headerlink" title="运行结果"></a>运行结果</h2><ul>
+<li><strong>一级缓存是SqlSession范围的缓存，当调用SqlSession的commit()（修改，添加，删除），close()等方法时，就会清空一级缓存。</strong></li>
+<li>第一次发起查询用户id为1的用户信息，先去找缓存中是否有id为1的用户信息，如果没有，从数据库查<br>询用户信息。得到用户信息，将用户信息存储到一级缓存中。如果sqlSession去执行commit操作（执行插入、更新、删除），清空SqlSession中的一级缓存，这样做的目的为了让缓存中存储的是最新的信息，避免脏读。</li>
+<li>第二次发起查询用户id为1的用户信息，先去找缓存中是否有id为1的用户信息，缓存中有，直接从缓存中获取用户信息。</li>
+</ul>
+<p>![](11.缓存\控制台 证明 一级缓存02.png)</p>
+<h1 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h1><ul>
+<li>当我们在使用二级缓存时，<strong>所缓存的类一定要实现 java.io.Serializable接口</strong>，这种就可以使用序列化<br>方式来保存对象。</li>
+</ul>
+<h2 id="开启二级缓存"><a href="#开启二级缓存" class="headerlink" title="开启二级缓存"></a>开启二级缓存</h2><ul>
+<li>二级缓存的使用步骤：<ul>
+<li><strong>第一步：让Mybatis框架支持二级缓存（在SqlMapConfig.xml中配置）</strong></li>
+<li><strong>第二步：让当前的映射文件支持二级缓存（在IUserDao.xml中配置</strong></li>
+<li><strong>第三步：让当前的操作支持二级缓存（在select标签中配置）</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="MyBatis主配置文件"><a href="#MyBatis主配置文件" class="headerlink" title="MyBatis主配置文件"></a>MyBatis主配置文件</h3><ol>
+<li><p><strong>开启二级缓存支持</strong></p>
+<p>cacheEnabled 默认值为 true（此配置可以省略）</p>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置参数 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 开启 延迟加载 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"lazyLoadingEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"aggressiveLazyLoading"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 开启 二级缓存 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"cacheEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="映射配置文件-1"><a href="#映射配置文件-1" class="headerlink" title="映射配置文件"></a>映射配置文件</h3><ol start="2">
+<li><p><strong>设置 &lt;cache&gt; 标签</strong></p>
+<p>表示当前 mapper 映射将使用二级缓存，区分的标准为 mapper 标签的 namespace 值。</p>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"cn.water.dao.UserDao"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">cache</span>&gt;</span><span class="tag">&lt;/<span class="name">cache</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p><strong>&lt;select&gt; 标签 设置 useCache=”true” 属性</strong></p>
+<p>注意：针对每次查询都需要最新的数据sql，要设置成useCache=false，禁用二级缓存。</p>
+</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"cn.water.dao.UserDao"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">cache</span>&gt;</span><span class="tag">&lt;/<span class="name">cache</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">parameterType</span>=<span class="string">"INT"</span> <span class="attr">resultType</span>=<span class="string">"user"</span> <span class="attr">useCache</span>=<span class="string">"true"</span> &gt;</span></span><br><span class="line">        SELECT * FROM user WHERE id = #&#123;userId&#125;;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="测试类-3"><a href="#测试类-3" class="headerlink" title="测试类"></a>测试类</h2><ul>
+<li>依然执行 Test02()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">       UserDao dao = session.getMapper(UserDao.class);</span><br><span class="line">       User user01 = dao.findById(<span class="number">41</span>);</span><br><span class="line">       System.out.println(<span class="string">"第一次查询："</span>+user01);</span><br><span class="line"></span><br><span class="line">       <span class="comment">/* commit()（执行插入、更新、删除）、close() */</span></span><br><span class="line">       session.close();</span><br><span class="line">       session = factory.openSession();</span><br><span class="line"></span><br><span class="line">       UserDao dao02 = session.getMapper(UserDao.class);</span><br><span class="line">       User user02 = dao02.findById(<span class="number">41</span>);</span><br><span class="line">       System.out.println(<span class="string">"第二次查询："</span>+user02);</span><br><span class="line">       System.out.println(<span class="string">"两次查询结果是否相等："</span>+(user01==user02));<span class="comment">//false</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行结果-2"><a href="#运行结果-2" class="headerlink" title="运行结果"></a>运行结果</h2><ul>
+<li>经过上面的测试，我们发现执行了两次查询，并且在执行第一次查询后，我们关闭了一级缓存，再去执行第二<br>次查询时，我们发现并没有对数据库发出sql语句，所以此时的数据就只能是来自于我们所说的二级缓存。</li>
+</ul>
+<h3 id="一级缓存-1"><a href="#一级缓存-1" class="headerlink" title="一级缓存"></a>一级缓存</h3><p>![](11.缓存\控制台 证明 一级缓存02.png)</p>
+<h3 id="一级缓存和二级缓存"><a href="#一级缓存和二级缓存" class="headerlink" title="一级缓存和二级缓存"></a>一级缓存和二级缓存</h3><p>![](11.缓存\控制台 证明 二级缓存.png)</p>
+
       
     </div>
 	
@@ -556,7 +701,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/11.缓存/" title="MyBatis框架 缓存">https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/11.缓存/</a>
+    <a href="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/11.缓存/" title="MyBatis框架的缓存机制">https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/11.缓存/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -625,8 +770,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/09/SSM框架/MyBatis/10.延迟加载/" rel="next" title="MyBatis框架 多延迟加载">
-                <i class="fa fa-chevron-left"></i> MyBatis框架 多延迟加载
+              <a href="/2019/08/09/SSM框架/MyBatis/10.延迟加载/" rel="next" title="MyBatis框架实现多表查询的延迟加载操作">
+                <i class="fa fa-chevron-left"></i> MyBatis框架实现多表查询的延迟加载操作
               </a>
             
           </div>
@@ -635,8 +780,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/10/SSM框架/MyBatis/12.注解/" rel="prev" title="MyBatis框架 注解开发">
-                MyBatis框架 注解开发 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/10/SSM框架/MyBatis/12.注解 CRUD操作/" rel="prev" title="Mybatis框架中数据库的CRUD操作 —— 基于注解">
+                Mybatis框架中数据库的CRUD操作 —— 基于注解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -685,8 +830,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -703,7 +857,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-count">61</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -821,7 +975,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -909,6 +1067,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录结构"><span class="nav-number">2.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis配置文件"><span class="nav-number">2.1.</span> <span class="nav-text">MyBatis配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jdbcConfig-properties"><span class="nav-number">2.1.1.</span> <span class="nav-text">jdbcConfig.properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SqlMapConfig-xml"><span class="nav-number">2.1.2.</span> <span class="nav-text">SqlMapConfig.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体类"><span class="nav-number">2.2.</span> <span class="nav-text">实体类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#User-java"><span class="nav-number">2.2.1.</span> <span class="nav-text">User.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久层接口"><span class="nav-number">2.3.</span> <span class="nav-text">持久层接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-java"><span class="nav-number">2.3.1.</span> <span class="nav-text">UserDao.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#映射配置文件"><span class="nav-number">2.4.</span> <span class="nav-text">映射配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-xml"><span class="nav-number">2.4.1.</span> <span class="nav-text">UserDao.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类"><span class="nav-number">2.5.</span> <span class="nav-text">测试类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MyBatisTest-java"><span class="nav-number">2.5.1.</span> <span class="nav-text">MyBatisTest.java</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一级缓存"><span class="nav-number">3.</span> <span class="nav-text">一级缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类-1"><span class="nav-number">3.1.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果"><span class="nav-number">3.2.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一级缓存的清空"><span class="nav-number">4.</span> <span class="nav-text">一级缓存的清空</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类-2"><span class="nav-number">4.1.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果-1"><span class="nav-number">4.2.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二级缓存"><span class="nav-number">5.</span> <span class="nav-text">二级缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开启二级缓存"><span class="nav-number">5.1.</span> <span class="nav-text">开启二级缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MyBatis主配置文件"><span class="nav-number">5.1.1.</span> <span class="nav-text">MyBatis主配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#映射配置文件-1"><span class="nav-number">5.1.2.</span> <span class="nav-text">映射配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类-3"><span class="nav-number">5.2.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果-2"><span class="nav-number">5.3.</span> <span class="nav-text">运行结果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一级缓存-1"><span class="nav-number">5.3.1.</span> <span class="nav-text">一级缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一级缓存和二级缓存"><span class="nav-number">5.3.2.</span> <span class="nav-text">一级缓存和二级缓存</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -942,7 +1117,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">613k</span>
+    <span title="站点总字数">673k</span>
   
 
   
@@ -951,7 +1126,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">9:17</span>
+    <span title="站点阅读时长">10:12</span>
   
 </div>
 

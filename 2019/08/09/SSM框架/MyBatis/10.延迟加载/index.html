@@ -109,14 +109,14 @@
   <meta name="description" content="简介 通过前面的学习，我们已经掌握了Mybatis中一对一，一对多，多对多关系的配置及实现，可以实现对象的关联查询。实际开发过程中很多时候我们并不需要总是在加载用户信息时就一定要加载他的账户信息。此时就是我们所说的延迟加载。  延迟加载 延迟加载（懒加载）就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。 优点 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表">
 <meta name="keywords" content="MyBatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MyBatis框架 多延迟加载">
+<meta property="og:title" content="MyBatis框架实现多表查询的延迟加载操作">
 <meta property="og:url" content="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/10.延迟加载/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
 <meta property="og:description" content="简介 通过前面的学习，我们已经掌握了Mybatis中一对一，一对多，多对多关系的配置及实现，可以实现对象的关联查询。实际开发过程中很多时候我们并不需要总是在加载用户信息时就一定要加载他的账户信息。此时就是我们所说的延迟加载。  延迟加载 延迟加载（懒加载）就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。 优点 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-11T23:34:08.794Z">
+<meta property="og:updated_time" content="2019-10-27T00:54:37.178Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MyBatis框架 多延迟加载">
+<meta name="twitter:title" content="MyBatis框架实现多表查询的延迟加载操作">
 <meta name="twitter:description" content="简介 通过前面的学习，我们已经掌握了Mybatis中一对一，一对多，多对多关系的配置及实现，可以实现对象的关联查询。实际开发过程中很多时候我们并不需要总是在加载用户信息时就一定要加载他的账户信息。此时就是我们所说的延迟加载。  延迟加载 延迟加载（懒加载）就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。 优点 先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表">
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>MyBatis框架 多延迟加载 | Water's Blog</title>
+  <title>MyBatis框架实现多表查询的延迟加载操作 | Water's Blog</title>
   
 
 
@@ -387,7 +387,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MyBatis框架 多延迟加载
+          <h1 class="post-title" itemprop="name headline">MyBatis框架实现多表查询的延迟加载操作
 
               
             
@@ -428,7 +428,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-12 07:34:08" itemprop="dateModified" datetime="2019-10-12T07:34:08+08:00">2019-10-12</time>
+                <time title="修改时间：2019-10-27 08:54:37" itemprop="dateModified" datetime="2019-10-27T08:54:37+08:00">2019-10-27</time>
               </span>
             
           
@@ -534,8 +534,6 @@
 </ul>
 </li>
 </ul>
-<a id="more"></a>
-
 <h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><ul>
 <li>src<ul>
 <li>main<ul>
@@ -592,7 +590,7 @@
 
 <h2 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h2><h3 id="MyBatisTest-java"><a href="#MyBatisTest-java" class="headerlink" title="MyBatisTest.java"></a>MyBatisTest.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.dao.AccountDao;</span><br><span class="line"><span class="keyword">import</span> cn.water.dao.UserDao;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.Account;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/11 - 8:49</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 成员变量 */</span></span><br><span class="line">    <span class="keyword">private</span> InputStream inputStream;</span><br><span class="line">    <span class="keyword">private</span> SqlSession session;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 初始化操作 */</span></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">/* 加载 MyBatis配置文件 */</span></span><br><span class="line">        inputStream = Resources.getResourceAsStream(<span class="string">"SqlMapConfig.xml"</span>);</span><br><span class="line">        <span class="comment">/* 获取 工厂类 */</span></span><br><span class="line">        SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">        <span class="comment">/* 获取 产品类 */</span></span><br><span class="line">        session = factory.openSession(<span class="keyword">true</span>);<span class="comment">/* 设置自动提交 */</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 销毁操作 */</span></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        session.close();</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* OneToOne */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        AccountDao dao = session.getMapper(AccountDao.class);</span><br><span class="line">        <span class="keyword">for</span> (Account account : dao.findAll()) &#123;</span><br><span class="line">            System.out.println(account);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* OneToMany */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">        UserDao dao = session.getMapper(UserDao.class);</span><br><span class="line">        <span class="keyword">for</span> (User user : dao.findAll()) &#123;</span><br><span class="line">            System.out.println(user);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="一对一查询"><a href="#一对一查询" class="headerlink" title="一对一查询"></a>一对一查询</h1><ul>
+<h1 id="一对一查询（延迟）"><a href="#一对一查询（延迟）" class="headerlink" title="一对一查询（延迟）"></a>一对一查询（延迟）</h1><ul>
 <li><strong>一对一查询：从查询 账户信息（Account） 出发，关联查询 用户信息（User）</strong><ul>
 <li>立即加载：一次多表查询<ul>
 <li>SELECT u.*,a.* FROM user u,account a WHERE u.id = a.uid;</li>
@@ -627,7 +625,7 @@
 <h2 id="测试类-1"><a href="#测试类-1" class="headerlink" title="测试类"></a>测试类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">    AccountDao dao = session.getMapper(AccountDao.class);</span><br><span class="line">    <span class="keyword">for</span> (Account account : dao.findAll()) &#123;</span><br><span class="line">        System.out.println(account);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p>![](10.延迟加载\延迟加载 一对一查询 控制台输出.png)</p>
-<h1 id="一对多查询"><a href="#一对多查询" class="headerlink" title="一对多查询"></a>一对多查询</h1><ul>
+<h1 id="一对多查询（延迟）"><a href="#一对多查询（延迟）" class="headerlink" title="一对多查询（延迟）"></a>一对多查询（延迟）</h1><ul>
 <li><strong>一对多查询：从查询 用户信息（User） 出发，关联查询 账户信息（Account）</strong><ul>
 <li>立即加载：一次多表查询<ul>
 <li>SELECT * FROM user u LEFT OUTER JOIN account a ON u.id = a.uid;</li>
@@ -700,7 +698,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/10.延迟加载/" title="MyBatis框架 多延迟加载">https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/10.延迟加载/</a>
+    <a href="https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/10.延迟加载/" title="MyBatis框架实现多表查询的延迟加载操作">https://Water1127.github.io/2019/08/09/SSM框架/MyBatis/10.延迟加载/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -769,8 +767,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/08/SSM框架/MyBatis/9.多表查询/" rel="next" title="MyBatis框架 多表查询">
-                <i class="fa fa-chevron-left"></i> MyBatis框架 多表查询
+              <a href="/2019/08/08/SSM框架/MyBatis/9.多表查询/" rel="next" title="MyBatis框架实现多表查询操作">
+                <i class="fa fa-chevron-left"></i> MyBatis框架实现多表查询操作
               </a>
             
           </div>
@@ -779,8 +777,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/09/SSM框架/MyBatis/11.缓存/" rel="prev" title="MyBatis框架 缓存">
-                MyBatis框架 缓存 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/09/SSM框架/MyBatis/11.缓存/" rel="prev" title="MyBatis框架的缓存机制">
+                MyBatis框架的缓存机制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -856,7 +854,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-count">61</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -974,7 +972,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1072,7 +1074,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#延迟加载"><span class="nav-number">1.1.</span> <span class="nav-text">延迟加载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录结构"><span class="nav-number">2.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis主配置文件"><span class="nav-number">2.1.</span> <span class="nav-text">MyBatis主配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SqlMapConfig-xml"><span class="nav-number">2.1.1.</span> <span class="nav-text">SqlMapConfig.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库连接信息文件"><span class="nav-number">2.2.</span> <span class="nav-text">数据库连接信息文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jdbcConfig-properties"><span class="nav-number">2.2.1.</span> <span class="nav-text">jdbcConfig.properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体类"><span class="nav-number">2.3.</span> <span class="nav-text">实体类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Account-java"><span class="nav-number">2.3.1.</span> <span class="nav-text">Account.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-java"><span class="nav-number">2.3.2.</span> <span class="nav-text">User.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久层接口"><span class="nav-number">2.4.</span> <span class="nav-text">持久层接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AccountDao-java"><span class="nav-number">2.4.1.</span> <span class="nav-text">AccountDao.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-java"><span class="nav-number">2.4.2.</span> <span class="nav-text">UserDao.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#映射配置文件"><span class="nav-number">2.5.</span> <span class="nav-text">映射配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AccountDao-xml"><span class="nav-number">2.5.1.</span> <span class="nav-text">AccountDao.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-xml"><span class="nav-number">2.5.2.</span> <span class="nav-text">UserDao.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类"><span class="nav-number">2.6.</span> <span class="nav-text">测试类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MyBatisTest-java"><span class="nav-number">2.6.1.</span> <span class="nav-text">MyBatisTest.java</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一对一查询"><span class="nav-number">3.</span> <span class="nav-text">一对一查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-实体类"><span class="nav-number">3.1.</span> <span class="nav-text">Account 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-实体类"><span class="nav-number">3.2.</span> <span class="nav-text">User 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-持久层接口"><span class="nav-number">3.3.</span> <span class="nav-text">Account 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-持久层接口"><span class="nav-number">3.4.</span> <span class="nav-text">User 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-映射配置文件"><span class="nav-number">3.5.</span> <span class="nav-text">Account 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-映射配置文件"><span class="nav-number">3.6.</span> <span class="nav-text">User 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类-1"><span class="nav-number">3.7.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果"><span class="nav-number">3.8.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一对多查询"><span class="nav-number">4.</span> <span class="nav-text">一对多查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#User-实体类-1"><span class="nav-number">4.1.</span> <span class="nav-text">User 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-实体类-1"><span class="nav-number">4.2.</span> <span class="nav-text">Account 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-持久层接口-1"><span class="nav-number">4.3.</span> <span class="nav-text">User 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-持久层接口-1"><span class="nav-number">4.4.</span> <span class="nav-text">Account 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-映射配置文件-1"><span class="nav-number">4.5.</span> <span class="nav-text">User 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-映射配置文件-1"><span class="nav-number">4.6.</span> <span class="nav-text">Account 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类-2"><span class="nav-number">4.7.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果-1"><span class="nav-number">4.8.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#延迟加载"><span class="nav-number">1.1.</span> <span class="nav-text">延迟加载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#目录结构"><span class="nav-number">2.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis主配置文件"><span class="nav-number">2.1.</span> <span class="nav-text">MyBatis主配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SqlMapConfig-xml"><span class="nav-number">2.1.1.</span> <span class="nav-text">SqlMapConfig.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库连接信息文件"><span class="nav-number">2.2.</span> <span class="nav-text">数据库连接信息文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jdbcConfig-properties"><span class="nav-number">2.2.1.</span> <span class="nav-text">jdbcConfig.properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实体类"><span class="nav-number">2.3.</span> <span class="nav-text">实体类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Account-java"><span class="nav-number">2.3.1.</span> <span class="nav-text">Account.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-java"><span class="nav-number">2.3.2.</span> <span class="nav-text">User.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久层接口"><span class="nav-number">2.4.</span> <span class="nav-text">持久层接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AccountDao-java"><span class="nav-number">2.4.1.</span> <span class="nav-text">AccountDao.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-java"><span class="nav-number">2.4.2.</span> <span class="nav-text">UserDao.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#映射配置文件"><span class="nav-number">2.5.</span> <span class="nav-text">映射配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AccountDao-xml"><span class="nav-number">2.5.1.</span> <span class="nav-text">AccountDao.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UserDao-xml"><span class="nav-number">2.5.2.</span> <span class="nav-text">UserDao.xml</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类"><span class="nav-number">2.6.</span> <span class="nav-text">测试类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MyBatisTest-java"><span class="nav-number">2.6.1.</span> <span class="nav-text">MyBatisTest.java</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一对一查询（延迟）"><span class="nav-number">3.</span> <span class="nav-text">一对一查询（延迟）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-实体类"><span class="nav-number">3.1.</span> <span class="nav-text">Account 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-实体类"><span class="nav-number">3.2.</span> <span class="nav-text">User 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-持久层接口"><span class="nav-number">3.3.</span> <span class="nav-text">Account 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-持久层接口"><span class="nav-number">3.4.</span> <span class="nav-text">User 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-映射配置文件"><span class="nav-number">3.5.</span> <span class="nav-text">Account 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-映射配置文件"><span class="nav-number">3.6.</span> <span class="nav-text">User 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类-1"><span class="nav-number">3.7.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果"><span class="nav-number">3.8.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一对多查询（延迟）"><span class="nav-number">4.</span> <span class="nav-text">一对多查询（延迟）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#User-实体类-1"><span class="nav-number">4.1.</span> <span class="nav-text">User 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-实体类-1"><span class="nav-number">4.2.</span> <span class="nav-text">Account 实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-持久层接口-1"><span class="nav-number">4.3.</span> <span class="nav-text">User 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-持久层接口-1"><span class="nav-number">4.4.</span> <span class="nav-text">Account 持久层接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-映射配置文件-1"><span class="nav-number">4.5.</span> <span class="nav-text">User 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Account-映射配置文件-1"><span class="nav-number">4.6.</span> <span class="nav-text">Account 映射配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试类-2"><span class="nav-number">4.7.</span> <span class="nav-text">测试类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行结果-1"><span class="nav-number">4.8.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1112,7 +1114,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">613k</span>
+    <span title="站点总字数">673k</span>
   
 
   
@@ -1121,7 +1123,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">9:17</span>
+    <span title="站点阅读时长">10:12</span>
   
 </div>
 

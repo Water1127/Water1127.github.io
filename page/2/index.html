@@ -1295,7 +1295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/20/SSM框架/Spring/Spring_TransactionTest/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/26/SSM框架/Spring/14.Spring事务管理案例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -1315,7 +1315,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/20/SSM框架/Spring/Spring_TransactionTest/" class="post-title-link" itemprop="url">Spring 事务管理 案例</a>
+                <a href="/2019/08/26/SSM框架/Spring/14.Spring事务管理案例/" class="post-title-link" itemprop="url">Spring框架 事务管理案例</a>
               
             
           </h1>
@@ -1340,7 +1340,7 @@
                 
               
 
-              <time title="创建时间：2019-08-20 17:43:52" itemprop="dateCreated datePublished" datetime="2019-08-20T17:43:52+08:00">2019-08-20</time>
+              <time title="创建时间：2019-08-26 17:43:52" itemprop="dateCreated datePublished" datetime="2019-08-26T17:43:52+08:00">2019-08-26</time>
             </span>
           
 
@@ -1355,7 +1355,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-04 22:10:06" itemprop="dateModified" datetime="2019-10-04T22:10:06+08:00">2019-10-04</time>
+                <time title="修改时间：2019-10-26 18:35:21" itemprop="dateModified" datetime="2019-10-26T18:35:21+08:00">2019-10-26</time>
               </span>
             
           
@@ -1394,7 +1394,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">25k</span>
+              <span title="本文字数">21k</span>
             </span>
           
 
@@ -1406,7 +1406,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">23 分钟</span>
+              <span title="阅读时长">19 分钟</span>
             </span>
           
 
@@ -1429,14 +1429,28 @@
           <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
 <li>本文将在 Spring 框架中，分别使用使用“XML”，“XML+注释”和“注解+Java”三种方式来演示数据库的转账操作。</li>
 </ul>
-<h1 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h1><ul>
-<li>创建数据库eesy_spring，在数据库中创建 Account表。</li>
+<h1 id="项目环境"><a href="#项目环境" class="headerlink" title="项目环境"></a>项目环境</h1><h2 id="数据库代码"><a href="#数据库代码" class="headerlink" title="数据库代码"></a>数据库代码</h2><ul>
+<li>创建数据库spring，在数据库中创建 Account表。</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 创建数据库</span><br><span class="line">CREATE DATABASE eesy_spring;</span><br><span class="line"></span><br><span class="line"># 使用数据库</span><br><span class="line">USE eesy_spring;</span><br><span class="line"></span><br><span class="line"># 创建表</span><br><span class="line">CREATE TABLE account(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">	NAME VARCHAR(40),</span><br><span class="line">	money FLOAT</span><br><span class="line">)CHARACTER SET utf8 COLLATE utf8_general_ci;</span><br><span class="line"></span><br><span class="line"># 插入数据</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Cat&apos;,1000);</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Dog&apos;,1000);</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Rat&apos;,1000);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 创建数据库</span><br><span class="line">CREATE DATABASE spring;</span><br><span class="line"></span><br><span class="line"># 使用数据库</span><br><span class="line">USE spring;</span><br><span class="line"></span><br><span class="line"># 创建表</span><br><span class="line">CREATE TABLE account(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">	NAME VARCHAR(40),</span><br><span class="line">	money FLOAT</span><br><span class="line">)CHARACTER SET utf8 COLLATE utf8_general_ci;</span><br><span class="line"></span><br><span class="line"># 插入数据</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Cat&apos;,1000);</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Dog&apos;,1000);</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Rat&apos;,1000);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h2><h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- Spring 框架 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- Spring AOP --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- spring JDBC框架 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- Spring 事务管理 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-tx<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- MySQL数据库驱动 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- 【被 Spring JDBC 代替】 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 数据库连接池 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;dependency&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;groupId&gt;c3p0&lt;/groupId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;artifactId&gt;c3p0&lt;/artifactId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;version&gt;0.9.1.2&lt;/version&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;/dependency&gt;--&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- 【被 Spring JDBC 代替】 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 操作数据库的工具包 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;dependency&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;groupId&gt;commons-dbutils&lt;/groupId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;artifactId&gt;commons-dbutils&lt;/artifactId&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--            &lt;version&gt;1.4&lt;/version&gt;--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        &lt;/dependency&gt;--&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- Spring 测试 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- 单元测试 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring配置文件"><a href="#Spring配置文件" class="headerlink" title="Spring配置文件"></a>Spring配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/tx</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/tx/spring-tx.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/aop/spring-aop.xsd"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h2><h3 id="Account-java"><a href="#Account-java" class="headerlink" title="Account.java"></a>Account.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 成员变量 */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> money;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 构造函数 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Account</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Account</span><span class="params">(<span class="keyword">int</span> id, String name, <span class="keyword">float</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.money = money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 设值函数 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMoney</span><span class="params">(<span class="keyword">float</span> money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.money = money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* toString方法 */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Account&#123;"</span> +</span><br><span class="line">                <span class="string">"id="</span> + id +</span><br><span class="line">                <span class="string">", name='"</span> + name + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", money="</span> + money +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="持久层接口"><a href="#持久层接口" class="headerlink" title="持久层接口"></a>持久层接口</h2><h3 id="AccountDao-java"><a href="#AccountDao-java" class="headerlink" title="AccountDao.java"></a>AccountDao.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AccountDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 查询所有 */</span></span><br><span class="line">    <span class="function">List&lt;Account&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">/** 查询单个 */</span></span><br><span class="line">    <span class="function">Account <span class="title">findByID</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line">    <span class="comment">/** 添加 */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(Account account)</span></span>;</span><br><span class="line">    <span class="comment">/** 修改 */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(Account account)</span></span>;</span><br><span class="line">    <span class="comment">/** 删除 */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="业务层接口"><a href="#业务层接口" class="headerlink" title="业务层接口"></a>业务层接口</h2><h3 id="AccountService-java"><a href="#AccountService-java" class="headerlink" title="AccountService.java"></a>AccountService.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AccountService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 转账 */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">(<span class="keyword">int</span> sourceId, <span class="keyword">int</span> targetId, <span class="keyword">float</span> money)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h2><h3 id="junit"><a href="#junit" class="headerlink" title="junit"></a>junit</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"><span class="keyword">import</span> xml.service.AccountService;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 成员变量 */</span></span><br><span class="line">    <span class="keyword">private</span> ApplicationContext app;</span><br><span class="line">    <span class="keyword">private</span> AccountService service;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        app = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"xml/Beans.xml"</span>);</span><br><span class="line">        service = app.getBean(<span class="string">"serviceImp"</span>,AccountService.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 转账 */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        service.transfer(<span class="number">1</span>,<span class="number">2</span>,<span class="number">10f</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring整合junit"><a href="#Spring整合junit" class="headerlink" title="Spring整合junit"></a>Spring整合junit</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java_anno.config.SpringConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"><span class="keyword">import</span> java_anno.service.AccountService;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</span><br><span class="line"><span class="meta">@ContextConfiguration</span>(classes = SpringConfiguration.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 成员变量 */</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AccountService service;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 查询所有 */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        service.transfer(<span class="number">1</span>,<span class="number">2</span>,<span class="number">10f</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/08/20/SSM框架/Spring/Spring_TransactionTest/#more" rel="contents">
+              <a class="btn" href="/2019/08/26/SSM框架/Spring/14.Spring事务管理案例/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1500,7 +1514,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/20/SSM框架/Spring/Spring_Transaction/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/25/SSM框架/Spring/13.Spring事务管理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -1520,7 +1534,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/20/SSM框架/Spring/Spring_Transaction/" class="post-title-link" itemprop="url">Spring 事务管理</a>
+                <a href="/2019/08/25/SSM框架/Spring/13.Spring事务管理/" class="post-title-link" itemprop="url">Spring框架 事务管理</a>
               
             
           </h1>
@@ -1545,13 +1559,23 @@
                 
               
 
-              <time title="创建时间：2019-08-20 12:34:01 / 修改时间：17:43:14" itemprop="dateCreated datePublished" datetime="2019-08-20T12:34:01+08:00">2019-08-20</time>
+              <time title="创建时间：2019-08-25 12:34:01" itemprop="dateCreated datePublished" datetime="2019-08-25T12:34:01+08:00">2019-08-25</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-26 16:02:40" itemprop="dateModified" datetime="2019-10-26T16:02:40+08:00">2019-10-26</time>
+              </span>
             
           
 
@@ -1589,7 +1613,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">1.3k</span>
+              <span title="本文字数">1.1k</span>
             </span>
           
 
@@ -1623,17 +1647,11 @@
         
           
             <h1 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h1><ul>
-<li>一个数据库事务是一个被视为单一的工作单元的操作序列。这些操作应该要么完整地执行，要么完全不执行。事务管理是一个重要组成部分，RDBMS 面向企业应用程序，以确保数据完整性和一致性。事务的概念可以描述为具有以下四个关键属性说成是 <strong>ACID</strong>：<ul>
+<li>一个数据库事务是一个被视为单一的工作单元的操作序列。这些操作应该要么完整地执行，要么完全不执行。事务管理是一个重要组成部分，RDBMS（ 关系数据库管理系统 ） 面向企业应用程序，以确保数据完整性和一致性。事务的概念可以描述为具有以下四个关键属性说成是 <strong>ACID</strong>：<ul>
 <li><strong>原子性：</strong>事务应该当作一个单独单元的操作，这意味着整个序列操作要么是成功，要么是失败的。</li>
 <li><strong>一致性：</strong>这表示数据库的引用完整性的一致性，表中唯一的主键等。</li>
 <li><strong>隔离性：</strong>可能同时处理很多有相同的数据集的事务，每个事务应该与其他事务隔离，以防止数据损坏。</li>
 <li><strong>持久性：</strong>一个事务一旦完成全部操作后，这个事务的结果必须是永久性的，不能因系统故障而从数据库中删除。</li>
-</ul>
-</li>
-<li>一个真正的 RDBMS 数据库系统将为每个事务保证所有的四个属性。使用 SQL 发布到数据库中的事务的简单视图如下：<ul>
-<li>使用 begin transaction 命令开始事务。</li>
-<li>使用 SQL 查询语句执行各种删除、更新或插入操作。</li>
-<li>如果所有的操作都成功，则执行提交操作，否则回滚所有操作。</li>
 </ul>
 </li>
 </ul>
@@ -1657,7 +1675,6 @@
 <li>目标方法会在 try / catch 块中执行。</li>
 <li>如果方法正常结束，AOP 建议会成功的提交事务，否则它执行回滚操作。</li>
 </ul>
-<p># </p>
 
           
         
@@ -1718,7 +1735,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/19/SSM框架/Spring/Spring_JDBCTest/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/24/SSM框架/Spring/11.JDBCTemplate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -1738,7 +1755,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/19/SSM框架/Spring/Spring_JDBCTest/" class="post-title-link" itemprop="url">Spring JDBC 案例</a>
+                <a href="/2019/08/24/SSM框架/Spring/11.JDBCTemplate/" class="post-title-link" itemprop="url">Spring框架 JDBCTemplate</a>
               
             
           </h1>
@@ -1763,7 +1780,7 @@
                 
               
 
-              <time title="创建时间：2019-08-19 22:48:17" itemprop="dateCreated datePublished" datetime="2019-08-19T22:48:17+08:00">2019-08-19</time>
+              <time title="创建时间：2019-08-24 12:52:31" itemprop="dateCreated datePublished" datetime="2019-08-24T12:52:31+08:00">2019-08-24</time>
             </span>
           
 
@@ -1778,7 +1795,439 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-18 12:32:00" itemprop="dateModified" datetime="2019-08-18T12:32:00+08:00">2019-08-18</time>
+                <time title="修改时间：2019-10-26 15:42:29" itemprop="dateModified" datetime="2019-10-26T15:42:29+08:00">2019-10-26</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">23k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">21 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li>在我们使用普通的 JDBC 数据库时，操作步骤非常麻烦，我们需要写一些不必要的代码来处理异常，打开和关闭数据库连接等。</li>
+<li><strong>Spring JDBC 框架则会帮我们负责所有的低层细节，从开始打开连接，准备和执行 SQL 语句，处理异常，处理事务，到最后关闭连接。所以当从数据库中获取数据时，我们需要做的仅是定义连接参数，指定要执行的 SQL 语句，以及后续操作。</strong></li>
+<li>Spring JDBC 提供几种方法和数据库中相应的不同的类与接口。我将给出使用 <strong>JdbcTemplate</strong> 类框架的经典和最受欢迎的方法。这是管理所有数据库通信和异常处理的中央框架类。</li>
+</ul>
+<h2 id="JdbcTemplate-类"><a href="#JdbcTemplate-类" class="headerlink" title="JdbcTemplate 类"></a>JdbcTemplate 类</h2><ul>
+<li>JdbcTemplate 类执行 SQL 查询、更新语句和存储过程调用，执行迭代结果集和提取返回参数值。它也捕获 JDBC 异常并转换它们到 org.springframework.dao 包中定义的通用类、更多的信息、异常层次结构。</li>
+<li>JdbcTemplate 类的实例是*<u>线程安全</u>* 配置的。所以我们可以配置 JdbcTemplate 的单个实例，然后将这个共享的引用安全地注入到多个 DAOs 中。</li>
+<li>使用 JdbcTemplate 类时常见的做法是我们在 Spring 配置文件中配置数据源，然后共享数据源 bean 依赖注入到 DAO 类中，并在数据源的设值函数中创建了 JdbcTemplate。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/24/SSM框架/Spring/11.JDBCTemplate/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/23/SSM框架/Spring/10.事务管理案例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/23/SSM框架/Spring/10.事务管理案例/" class="post-title-link" itemprop="url">三种事务管理机制的转账案例</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-23 22:26:38" itemprop="dateCreated datePublished" datetime="2019-08-23T22:26:38+08:00">2019-08-23</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-26 15:42:24" itemprop="dateModified" datetime="2019-10-26T15:42:24+08:00">2019-10-26</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">36k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">33 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li>本文的三个案例是为了更好的理解 Spring AOP 的机制，以及复习数据库事务管理。具体的功能是实现数据库的转账操作，核心知识主要分为三部分：数据库的连接、事务管理、依赖注入和功能测试。<ul>
+<li><strong><u>案例一：直接在业务层添加代码，来进行事务管理</u></strong><ul>
+<li><strong>数据库的管理问题：通过Connection工具类来实现</strong></li>
+<li><strong><u>事务管理</u>：通过 Transaction 工具类，在 Service 业务层中实现</strong></li>
+<li><strong>依赖注入：通过 xml配置文件</strong></li>
+<li><strong>测试：通过Junit测试</strong></li>
+</ul>
+</li>
+<li><strong><u>案例二：通过代理模式增强代码，来进行事务管理</u></strong><ul>
+<li><strong>数据库的管理问题：通过Connection工具类来实现</strong></li>
+<li><strong><u>事务管理</u>：通过 Transaction 工具类，在 BeanFactory 代理类中实现。（获取增强过的业务层接口）</strong></li>
+<li><strong>依赖注入：通过 xml配置文件</strong></li>
+<li><strong>测试：通过 Junit 测试</strong></li>
+</ul>
+</li>
+<li><strong><u>案例三：通过SpringAOP，来进行事务管理</u></strong><ul>
+<li><strong>数据库的管理问题：通过Connection工具类来实现</strong></li>
+<li><strong><u>事务管理</u>：完全通过 Transaction 工具类实现（AOP，高内聚）</strong></li>
+<li><strong>依赖注入：通过 xml配置文件 + 注解</strong></li>
+<li><strong>测试：通过 Spring Junit 测试</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/23/SSM框架/Spring/10.事务管理案例/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/21/SSM框架/Spring/9.SpringAOP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/21/SSM框架/Spring/9.SpringAOP/" class="post-title-link" itemprop="url">Spring框架 面向切面编程（Aspect Oriented Programming）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-21 21:56:21" itemprop="dateCreated datePublished" datetime="2019-08-21T21:56:21+08:00">2019-08-21</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-26 15:42:49" itemprop="dateModified" datetime="2019-10-26T15:42:49+08:00">2019-10-26</time>
               </span>
             
           
@@ -1849,249 +2298,15 @@
 
       
         
-          <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
-<li>使用Spring JDBC 完成 查询操作。</li>
-<li>主要的问题在于：如何获取 JdbcTemplate<ul>
-<li>案例一：创建 JdbcTemplate</li>
-<li>案例二：继承 JdbcDaoSupport</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/19/SSM框架/Spring/Spring_JDBCTest/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/19/SSM框架/Spring/Spring_AOPTest/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/19/SSM框架/Spring/Spring_AOPTest/" class="post-title-link" itemprop="url">Spring AOP 转账案例</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-19 22:26:38" itemprop="dateCreated datePublished" datetime="2019-08-19T22:26:38+08:00">2019-08-19</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-18 09:47:42" itemprop="dateModified" datetime="2019-08-18T09:47:42+08:00">2019-08-18</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">38k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">34 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
           <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
-<li>本文的三个案例是为了更好的理解 Spring AOP 的机制，以及复习数据库事务管理。具体的功能是实现数据库的转账操作，核心知识主要分为三部分：数据库的连接、事务管理、依赖注入和功能测试。</li>
-<li>案例一<ul>
-<li><strong>数据库的管理问题：通过Connection工具类来实现</strong></li>
-<li><strong>事务管理：通过 Transaction 工具类，在业务层中实现</strong></li>
-<li><strong>依赖注入：通过XML配置文件</strong></li>
-<li><strong>测试：通过Junit测试</strong></li>
-</ul>
-</li>
-<li>案例二<ul>
-<li><strong>数据库的管理问题：通过Connection工具类来实现</strong></li>
-<li><strong>事务管理：通过 Transaction 工具类，在 BeanFactory 代理类中实现。（获取增强过的业务层接口）</strong></li>
-<li><strong>依赖注入：通过 XML 配置文件</strong></li>
-<li><strong>测试：通过 Junit 测试</strong></li>
-</ul>
-</li>
-<li>案例三<ul>
-<li><strong>数据库的管理问题：通过Connection工具类来实现</strong></li>
-<li><strong>事务管理：完全通过 Transaction 工具类实现（AOP，高内聚）</strong></li>
-<li><strong>依赖注入：主要通过注释</strong></li>
-<li><strong>测试：通过 Spring Junit 测试</strong></li>
-</ul>
-</li>
-<li>整个程序基于一下六大块：<ul>
-<li><strong>domain</strong>：用于存放实体类。</li>
-<li><strong>service</strong>：用于存放业务层的接口和实现类。</li>
-<li><strong>dao</strong>：用于存放持久层的接口和实现类。（具体的CRUD操作代码）</li>
-<li><strong>factory</strong>：用于自定义代理类。</li>
-<li><strong>Utils</strong>：用于存放工具类。</li>
-<li><strong>test</strong>：用于测试。</li>
-</ul>
-</li>
+<li>Spring 框架的关键组件是 <u><strong>面向切面的编程(AOP，Aspect Oriented Programming)</strong></u>，面向切面的编程需要把程序逻辑分解成不同的部分称为所谓的连接点。跨一个应用程序的多个点的功能被称为切入点，切入点在概念上独立于应用程序的业务逻辑。有各种各样的常见的很好的方面的例子，如日志记录、审计、声明式事务、安全性和缓存等。</li>
+<li>在 <u><strong>面向对象编程（OOP，Object Oriented Programming）</strong></u> 中，关键单元模块度是类，而在 AOP 中单元模块度是方面。依赖注入帮助你对应用程序对象相互解耦和 AOP 可以帮助你从它们所影响的对象中对切入点解耦。AOP 是像编程语言的触发物，如 Perl，.NET，Java 或者其他。</li>
+<li><strong>Spring AOP 模块提供拦截器来拦截一个应用程序，例如，当执行一个方法时，你可以在方法执行之前或之后添加额外的功能。</strong></li>
 </ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/08/19/SSM框架/Spring/Spring_AOPTest/#more" rel="contents">
+              <a class="btn" href="/2019/08/21/SSM框架/Spring/9.SpringAOP/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2155,7 +2370,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/19/SSM框架/Spring/Spring_JDBC/">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/20/SSM框架/Spring/8.Proxy代理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="water.">
@@ -2175,7 +2390,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/19/SSM框架/Spring/Spring_JDBC/" class="post-title-link" itemprop="url">Spring JDBC</a>
+                <a href="/2019/08/20/SSM框架/Spring/8.Proxy代理/" class="post-title-link" itemprop="url">Proxy 代理模式</a>
               
             
           </h1>
@@ -2200,7 +2415,7 @@
                 
               
 
-              <time title="创建时间：2019-08-19 12:52:31" itemprop="dateCreated datePublished" datetime="2019-08-19T12:52:31+08:00">2019-08-19</time>
+              <time title="创建时间：2019-08-20 13:55:54" itemprop="dateCreated datePublished" datetime="2019-08-20T13:55:54+08:00">2019-08-20</time>
             </span>
           
 
@@ -2215,7 +2430,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-18 12:31:45" itemprop="dateModified" datetime="2019-08-18T12:31:45+08:00">2019-08-18</time>
+                <time title="修改时间：2019-10-26 15:42:53" itemprop="dateModified" datetime="2019-10-26T15:42:53+08:00">2019-10-26</time>
               </span>
             
           
@@ -2254,7 +2469,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span title="本文字数">8.4k</span>
+              <span title="本文字数">7.2k</span>
             </span>
           
 
@@ -2266,7 +2481,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span title="阅读时长">8 分钟</span>
+              <span title="阅读时长">7 分钟</span>
             </span>
           
 
@@ -2286,235 +2501,134 @@
 
       
         
-          <h1 id="JDBC-框架概述"><a href="#JDBC-框架概述" class="headerlink" title="JDBC 框架概述"></a>JDBC 框架概述</h1><ul>
-<li><p>在使用普通的 JDBC 数据库时，就会很麻烦的写不必要的代码来处理异常，打开和关闭数据库连接等。</p>
-</li>
-<li><p>但 Spring JDBC 框架负责所有的低层细节，从开始打开连接，准备和执行 SQL 语句，处理异常，处理事务，到最后关闭连接。</p>
-</li>
-<li><p>所以当从数据库中获取数据时，你所做的是定义连接参数，指定要执行的 SQL 语句，每次迭代完成所需的工作。</p>
-</li>
-<li><p>Spring JDBC 提供几种方法和数据库中相应的不同的类与接口。我将给出使用 <strong>JdbcTemplate</strong> 类框架的经典和最受欢迎的方法。这是管理所有数据库通信和异常处理的中央框架类。</p>
+          
+            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li><strong>Proxy代理模式是一种结构型设计模式。通过代理模式可以实现程序之间的解耦，可以解决在直接访问对象时带来的程序之间耦合度增大的问题。</strong></li>
+<li>按照代理的创建时期，代理类分为两种：<ul>
+<li><strong>静态代理</strong>：在编译期，手动创建代理类，而不是由编译器生成代理类。</li>
+<li><strong>动态代理</strong>：在运行期，运用反射机制动态而生成代理类。<ul>
+<li>JDK代理基于接口接口</li>
+<li>CGlib代理基于继承</li>
+</ul>
 </li>
 </ul>
-<h2 id="JdbcTemplate-类"><a href="#JdbcTemplate-类" class="headerlink" title="JdbcTemplate 类"></a>JdbcTemplate 类</h2><ul>
-<li>JdbcTemplate 类执行 SQL 查询、更新语句和存储过程调用，执行迭代结果集和提取返回参数值。它也捕获 JDBC 异常并转换它们到 org.springframework.dao 包中定义的通用类、更多的信息、异常层次结构。</li>
-<li><em>JdbcTemplate</em> 类的实例是<em>线程安全</em>配置的。所以你可以配置 JdbcTemplate 的单个实例，然后将这个共享的引用安全地注入到多个 DAOs 中。</li>
-<li>使用 JdbcTemplate 类时常见的做法是在你的 Spring 配置文件中配置数据源，然后共享数据源 bean 依赖注入到 DAO 类中，并在数据源的设值函数中创建了 JdbcTemplate。</li>
+</li>
 </ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/19/SSM框架/Spring/Spring_JDBC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/17/SSM框架/Spring/Spring_IoCTest/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/17/SSM框架/Spring/Spring_IoCTest/" class="post-title-link" itemprop="url">Spring IoC 增删改查案例</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-17 23:39:54" itemprop="dateCreated datePublished" datetime="2019-08-17T23:39:54+08:00">2019-08-17</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-18 09:50:24" itemprop="dateModified" datetime="2019-08-18T09:50:24+08:00">2019-08-18</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">29k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">27 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
-<li>本文将在 Spring 框架中，分别使用使用“XML”，“XML+注释”和“注解+Java”三种方式来实现数据库的CRUD操作。</li>
+<h1 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h1><ul>
+<li>优点<ul>
+<li>静态代理可以将目标类和目标方法封装起来，有隐蔽的作用。</li>
 </ul>
-<h1 id="数据库代码"><a href="#数据库代码" class="headerlink" title="数据库代码"></a>数据库代码</h1><ul>
-<li>创建数据库eesy_spring，在数据库中创建 Account表。</li>
+</li>
+<li>缺点<ul>
+<li>静态代理类只能为特定的接口服务。</li>
+<li>如想要为多个接口服务则需要建立很多个代理类。 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 创建数据库</span><br><span class="line">CREATE DATABASE eesy_spring;</span><br><span class="line"></span><br><span class="line"># 使用数据库</span><br><span class="line">USE eesy_spring;</span><br><span class="line"></span><br><span class="line"># 创建表</span><br><span class="line">CREATE TABLE account(</span><br><span class="line">	id INT PRIMARY KEY AUTO_INCREMENT,</span><br><span class="line">	NAME VARCHAR(40),</span><br><span class="line">	money FLOAT</span><br><span class="line">)CHARACTER SET utf8 COLLATE utf8_general_ci;</span><br><span class="line"></span><br><span class="line"># 插入数据</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Cat&apos;,1000);</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Dog&apos;,1000);</span><br><span class="line">INSERT INTO account(NAME,money) VALUES(&apos;Rat&apos;,1000);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
+</li>
+</ul>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
+<li>cn.water<ul>
+<li>main<ul>
+<li><u>java</u><ul>
+<li><strong>IProducer.java</strong>（接口）</li>
+<li><strong>Producer.java</strong>（实现类）</li>
+<li><strong>ProxyProducer.java</strong>（代理类）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><u>test</u><ul>
+<li><strong>staticTest.java</strong>（测试类）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><h4 id="IProducer-java"><a href="#IProducer-java" class="headerlink" title="IProducer.java"></a>IProducer.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.StaticProxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IProducer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 销售 */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saleProduct</span><span class="params">(<span class="keyword">float</span> money)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 售后 */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">afterService</span><span class="params">(<span class="keyword">float</span> money)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现类"><a href="#实现类" class="headerlink" title="实现类"></a>实现类</h3><h4 id="Producer-java"><a href="#Producer-java" class="headerlink" title="Producer.java"></a>Producer.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.StaticProxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Producer</span> <span class="keyword">implements</span> <span class="title">IProducer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 销售 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saleProduct</span><span class="params">(<span class="keyword">float</span> money)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"生产者：通过[销售]，获得了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 售后 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterService</span><span class="params">(<span class="keyword">float</span> money)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"生产者：通过[售后]，获得了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="代理类"><a href="#代理类" class="headerlink" title="代理类"></a>代理类</h3><h4 id="ProxyProducer-java"><a href="#ProxyProducer-java" class="headerlink" title="ProxyProducer.java"></a>ProxyProducer.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.StaticProxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyProducer</span> <span class="keyword">implements</span> <span class="title">IProducer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Producer producer = <span class="keyword">new</span> Producer();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 销售 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saleProduct</span><span class="params">(<span class="keyword">float</span> money)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"消费者：消费了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">        producer.saleProduct(money * <span class="number">0.2f</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 售后 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterService</span><span class="params">(<span class="keyword">float</span> money)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"消费者：消费了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">        producer.afterService(<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h3><h4 id="staticTest-java"><a href="#staticTest-java" class="headerlink" title="staticTest.java"></a>staticTest.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.StaticProxy.IProducer;</span><br><span class="line"><span class="keyword">import</span> cn.water.StaticProxy.Producer;</span><br><span class="line"><span class="keyword">import</span> cn.water.StaticProxy.ProxyProducer;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">staticTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/** 成员变量 */</span></span><br><span class="line">        <span class="keyword">final</span> Producer producer = <span class="keyword">new</span> Producer();</span><br><span class="line">        <span class="comment">/** 获取动态代理对象 */</span></span><br><span class="line">        IProducer proxy =  <span class="keyword">new</span> ProxyProducer() ;</span><br><span class="line">        <span class="comment">/** 调用方法 */</span></span><br><span class="line">        <span class="comment">/* 销售方法经过加强，增强的方法被调用 */</span></span><br><span class="line">        proxy.saleProduct(<span class="number">999.12f</span>);</span><br><span class="line">        <span class="comment">/* 销售方法经过加强，方法不被调用 */</span></span><br><span class="line">        proxy.afterService(<span class="number">99f</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="动态代理（JDK）"><a href="#动态代理（JDK）" class="headerlink" title="动态代理（JDK）"></a>动态代理（JDK）</h1><ul>
+<li>JDK动态代理基于 <u><strong>Java的反射机制</strong></u> 实现。<ul>
+<li><strong>因为Java的反射机制基于接口，所以目标类一定要有接口。</strong> </li>
+</ul>
+</li>
+<li>基于JDK技术动态代理类技术核心：<strong>Proxy类</strong> 和 <strong>InvocationHandler接口</strong>。（java.lang.reflect）<ul>
+<li>Proxy类中定义了生成JDK动态代理类的方法 <code>getProxyClass(ClassLoader loader,Class... interfaces)</code>，返回class实例代表一个class文件。生成的动态代理类继承Proxy类(重要特性) ，并实现公共接口。</li>
+<li>InvocationHandler接口 是被动态代理类回调的接口，我们所有需要增加的处理逻辑都添加到 invoke方法里面。</li>
+</ul>
+</li>
+<li>匿名内部类参数必须为final类型</li>
+</ul>
+<h2 id="目录结构-1"><a href="#目录结构-1" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
+<li>cn.water<ul>
+<li><strong>IProducer.java</strong>（接口）</li>
+<li><strong>Producer.java</strong>（实现类）</li>
+</ul>
+</li>
+<li>test<ul>
+<li><strong>staticTest.java</strong>（测试类）</li>
+</ul>
+</li>
+</ul>
+<h3 id="接口-1"><a href="#接口-1" class="headerlink" title="接口"></a>接口</h3><h4 id="IProducer-java-1"><a href="#IProducer-java-1" class="headerlink" title="IProducer.java"></a>IProducer.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.DynamicProxy.jdk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IProducer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 销售 */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saleProduct</span><span class="params">(<span class="keyword">float</span> money)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 售后 */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">afterService</span><span class="params">(<span class="keyword">float</span> money)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现类-1"><a href="#实现类-1" class="headerlink" title="实现类"></a>实现类</h3><h4 id="Producer-java-1"><a href="#Producer-java-1" class="headerlink" title="Producer.java"></a>Producer.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.DynamicProxy.jdk;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Producer</span> <span class="keyword">implements</span> <span class="title">IProducer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 销售 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saleProduct</span><span class="params">(<span class="keyword">float</span> money)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"生产者：通过[销售]，获得了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 售后 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterService</span><span class="params">(<span class="keyword">float</span> money)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"生产者：通过[售后]，获得了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试类-1"><a href="#测试类-1" class="headerlink" title="测试类"></a>测试类</h3><h4 id="staticTest-java-1"><a href="#staticTest-java-1" class="headerlink" title="staticTest.java"></a>staticTest.java</h4><ul>
+<li><strong>Proxy.newProxyInstance方法</strong><ul>
+<li><strong>加载器</strong></li>
+<li><strong>接口</strong></li>
+<li><strong>InvocationHandler接口</strong><ul>
+<li><strong>invoke方法</strong><ul>
+<li><strong>method</strong>：代表方法</li>
+<li><strong>args</strong>：参数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>匿名内部类只能访问方法内修饰符为final的参数</strong><ul>
+<li>为了保持数据的一致性</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.DynamicProxy.jdk.IProducer;</span><br><span class="line"><span class="keyword">import</span> cn.water.DynamicProxy.jdk.Producer;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">jdkTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">/** 1、成员变量 */</span></span><br><span class="line">        <span class="keyword">final</span> Producer producer = <span class="keyword">new</span> Producer();</span><br><span class="line">        <span class="comment">/** 2、获取动态代理对象 */</span></span><br><span class="line">        IProducer proxy = (IProducer) Proxy.newProxyInstance(</span><br><span class="line">                <span class="comment">/* 类加载器 */</span></span><br><span class="line">                producer.getClass().getClassLoader(),</span><br><span class="line">                <span class="comment">/* 实现类的接口 */</span></span><br><span class="line">                producer.getClass().getInterfaces(),</span><br><span class="line">                <span class="comment">/** 增强代码 */</span></span><br><span class="line">                <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">                    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                        Object result = <span class="keyword">null</span>;</span><br><span class="line">                        <span class="comment">/* 方法参数 */</span></span><br><span class="line">                        Float money = (Float) args[<span class="number">0</span>];</span><br><span class="line">                        <span class="comment">/* 方法名 */</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="string">"saleProduct"</span>.equals(method.getName())) &#123;</span><br><span class="line">                            <span class="comment">/* 调用方法 */</span></span><br><span class="line">                            System.out.println(<span class="string">"消费者：消费了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">                            result = method.invoke(producer, money * <span class="number">0.2f</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">if</span> (<span class="string">"afterService"</span>.equals(method.getName())) &#123;</span><br><span class="line">                            <span class="comment">/* 调用方法 */</span></span><br><span class="line">                            System.out.println(<span class="string">"消费者：消费了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">                            result = method.invoke(producer, <span class="number">5</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="comment">/* 返回 */</span></span><br><span class="line">                        <span class="keyword">return</span> result;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        );</span><br><span class="line">        <span class="comment">/** 3、调用方法 */</span></span><br><span class="line">        <span class="comment">/* 销售方法经过加强，增强的方法被调用 */</span></span><br><span class="line">        proxy.saleProduct(<span class="number">999.12f</span>);</span><br><span class="line">        <span class="comment">/* 销售方法经过加强，方法不被调用 */</span></span><br><span class="line">        proxy.afterService(<span class="number">999.12f</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="动态代理（cglib）"><a href="#动态代理（cglib）" class="headerlink" title="动态代理（cglib）"></a>动态代理（cglib）</h1><h2 id="目录结构-2"><a href="#目录结构-2" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
+<li>cn.water<ul>
+<li><strong>Producer.java</strong>（类）</li>
+</ul>
+</li>
+<li>test<ul>
+<li><strong>staticTest.java</strong>（测试类）</li>
+</ul>
+</li>
+</ul>
+<h3 id="实现类-2"><a href="#实现类-2" class="headerlink" title="实现类"></a>实现类</h3><h4 id="Producer-java-2"><a href="#Producer-java-2" class="headerlink" title="Producer.java"></a>Producer.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.DynamicProxy.cglib;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.DynamicProxy.jdk.IProducer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Producer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 销售 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">saleProduct</span><span class="params">(<span class="keyword">float</span> money)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"生产者：通过[销售]，获得了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 售后 */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterService</span><span class="params">(<span class="keyword">float</span> money)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"生产者：通过[售后]，获得了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试类-2"><a href="#测试类-2" class="headerlink" title="测试类"></a>测试类</h3><ul>
+<li><strong>Enhancer.create方法</strong><ul>
+<li><strong>字节码</strong></li>
+<li><strong>MethodInterceptor接口</strong><ul>
+<li><strong>intercept方法</strong><ul>
+<li><strong>method</strong>：代表方法</li>
+<li><strong>args</strong>：参数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="staticTest-java-2"><a href="#staticTest-java-2" class="headerlink" title="staticTest.java"></a>staticTest.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.DynamicProxy.cglib.Producer;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.Enhancer;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodInterceptor;</span><br><span class="line"><span class="keyword">import</span> net.sf.cglib.proxy.MethodProxy;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">cglibTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">/** 1、成员变量 */</span></span><br><span class="line">        <span class="keyword">final</span> Producer producer = <span class="keyword">new</span> Producer();</span><br><span class="line">        <span class="comment">/** 2、获取动态代理对象 */</span></span><br><span class="line">        Producer cglibProducer = (Producer) Enhancer.create(</span><br><span class="line">                <span class="comment">/* 字节码 */</span></span><br><span class="line">                producer.getClass(),</span><br><span class="line">                <span class="comment">/* CallBack子类 */</span></span><br><span class="line">                <span class="keyword">new</span> MethodInterceptor() &#123;</span><br><span class="line">                    <span class="comment">/** 增强代码 */</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object o, Method method, Object[] args, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                        Object result = <span class="keyword">null</span>;</span><br><span class="line">                        <span class="comment">/* 方法参数 */</span></span><br><span class="line">                        Float money = (Float) args[<span class="number">0</span>];</span><br><span class="line">                        <span class="comment">/* 方法名 */</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="string">"saleProduct"</span>.equals(method.getName())) &#123;</span><br><span class="line">                            <span class="comment">/* 调用方法 */</span></span><br><span class="line">                            System.out.println(<span class="string">"消费者：消费了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">                            result = method.invoke(producer, money * <span class="number">0.2f</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">if</span> (<span class="string">"afterService"</span>.equals(method.getName())) &#123;</span><br><span class="line">                            <span class="comment">/* 调用方法 */</span></span><br><span class="line">                            System.out.println(<span class="string">"消费者：消费了"</span>+money+<span class="string">"元"</span>);</span><br><span class="line">                            result = method.invoke(producer, <span class="number">5</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="comment">/* 返回 */</span></span><br><span class="line">                        <span class="keyword">return</span> result;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        <span class="comment">/** 3、调用方法 */</span></span><br><span class="line">        <span class="comment">/* 销售方法经过加强，增强的方法被调用 */</span></span><br><span class="line">        cglibProducer.saleProduct(<span class="number">999.12f</span>);</span><br><span class="line">        <span class="comment">/* 销售方法经过加强，方法不被调用 */</span></span><br><span class="line">        cglibProducer.afterService(<span class="number">999.12f</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/17/SSM框架/Spring/Spring_IoCTest/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -2562,7 +2676,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2606,7 +2720,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-count">61</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2724,7 +2838,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">41</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2845,7 +2963,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">613k</span>
+    <span title="站点总字数">673k</span>
   
 
   
@@ -2854,7 +2972,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">9:17</span>
+    <span title="站点阅读时长">10:12</span>
   
 </div>
 
