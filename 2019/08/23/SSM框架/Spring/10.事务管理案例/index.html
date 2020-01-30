@@ -107,16 +107,16 @@
   </script>
 
   <meta name="description" content="简介 本文的三个案例是为了更好的理解 Spring AOP 的机制，以及复习数据库事务管理。具体的功能是实现数据库的转账操作，核心知识主要分为三部分：数据库的连接、事务管理、依赖注入和功能测试。 案例一：直接在业务层添加代码，来进行事务管理 数据库的管理问题：通过Connection工具类来实现 事务管理：通过 Transaction 工具类，在 Service 业务层中实现 依赖注入：通过 xm">
-<meta name="keywords" content="Spring,事务管理,Proxy,AOP">
+<meta name="keywords" content="事务管理,Proxy,AOP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="三种事务管理机制的转账案例">
+<meta property="og:title" content="Spring框架09 —— 三种事务管理机制的转账案例">
 <meta property="og:url" content="https://Water1127.github.io/2019/08/23/SSM框架/Spring/10.事务管理案例/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
 <meta property="og:description" content="简介 本文的三个案例是为了更好的理解 Spring AOP 的机制，以及复习数据库事务管理。具体的功能是实现数据库的转账操作，核心知识主要分为三部分：数据库的连接、事务管理、依赖注入和功能测试。 案例一：直接在业务层添加代码，来进行事务管理 数据库的管理问题：通过Connection工具类来实现 事务管理：通过 Transaction 工具类，在 Service 业务层中实现 依赖注入：通过 xm">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-26T07:42:24.316Z">
+<meta property="og:updated_time" content="2020-01-30T06:18:19.318Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="三种事务管理机制的转账案例">
+<meta name="twitter:title" content="Spring框架09 —— 三种事务管理机制的转账案例">
 <meta name="twitter:description" content="简介 本文的三个案例是为了更好的理解 Spring AOP 的机制，以及复习数据库事务管理。具体的功能是实现数据库的转账操作，核心知识主要分为三部分：数据库的连接、事务管理、依赖注入和功能测试。 案例一：直接在业务层添加代码，来进行事务管理 数据库的管理问题：通过Connection工具类来实现 事务管理：通过 Transaction 工具类，在 Service 业务层中实现 依赖注入：通过 xm">
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>三种事务管理机制的转账案例 | Water's Blog</title>
+  <title>Spring框架09 —— 三种事务管理机制的转账案例 | Water's Blog</title>
   
 
 
@@ -387,7 +387,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">三种事务管理机制的转账案例
+          <h1 class="post-title" itemprop="name headline">Spring框架09 —— 三种事务管理机制的转账案例
 
               
             
@@ -428,7 +428,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-26 15:42:24" itemprop="dateModified" datetime="2019-10-26T15:42:24+08:00">2019-10-26</time>
+                <time title="修改时间：2020-01-30 14:18:19" itemprop="dateModified" datetime="2020-01-30T14:18:19+08:00">2020-01-30</time>
               </span>
             
           
@@ -442,7 +442,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/" itemprop="url" rel="index"><span itemprop="name"><b>Java</b></span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
 
                 
                 
@@ -925,7 +932,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/23/SSM框架/Spring/10.事务管理案例/" title="三种事务管理机制的转账案例">https://Water1127.github.io/2019/08/23/SSM框架/Spring/10.事务管理案例/</a>
+    <a href="https://Water1127.github.io/2019/08/23/SSM框架/Spring/10.事务管理案例/" title="Spring框架09 —— 三种事务管理机制的转账案例">https://Water1127.github.io/2019/08/23/SSM框架/Spring/10.事务管理案例/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -981,8 +988,6 @@
         
         <div class="post-tags">
           
-            <a href="/tags/Spring/" rel="tag"># Spring</a>
-          
             <a href="/tags/事务管理/" rel="tag"># 事务管理</a>
           
             <a href="/tags/Proxy/" rel="tag"># Proxy</a>
@@ -1000,8 +1005,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/21/SSM框架/Spring/9.SpringAOP/" rel="next" title="Spring框架 面向切面编程（Aspect Oriented Programming）">
-                <i class="fa fa-chevron-left"></i> Spring框架 面向切面编程（Aspect Oriented Programming）
+              <a href="/2019/08/21/SSM框架/Spring/9.SpringAOP/" rel="next" title="Spring框架08 —— 面向切面编程（AOP）">
+                <i class="fa fa-chevron-left"></i> Spring框架08 —— 面向切面编程（AOP）
               </a>
             
           </div>
@@ -1010,8 +1015,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/24/SSM框架/Spring/11.JDBCTemplate/" rel="prev" title="Spring框架 JDBCTemplate">
-                Spring框架 JDBCTemplate <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/24/SSM框架/Spring/11.JDBCTemplate/" rel="prev" title="Spring框架10 —— JDBCTemplate">
+                Spring框架10 —— JDBCTemplate <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1087,7 +1092,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1106,7 +1111,47 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1347,7 +1392,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">673k</span>
+    <span title="站点总字数">678k</span>
   
 
   
@@ -1356,7 +1401,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">10:12</span>
+    <span title="站点阅读时长">10:16</span>
   
 </div>
 

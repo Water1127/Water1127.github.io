@@ -109,14 +109,14 @@
   <meta name="description" content="简介 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用手动编写持久层实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与使用代理持久层实现类方法的比较上。 改变的内容主要是测试类和持久层接口实现类。  目录结构 src/main     java">
 <meta name="keywords" content="Mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mybatis框架实现CRUD操作 —— 手动编写持久层实现类">
+<meta property="og:title" content="Mybatis框架04 —— 手动编写持久层实现类实现CRUD操作">
 <meta property="og:url" content="https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
 <meta property="og:description" content="简介 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用手动编写持久层实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与使用代理持久层实现类方法的比较上。 改变的内容主要是测试类和持久层接口实现类。  目录结构 src/main     java">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-27T00:53:46.068Z">
+<meta property="og:updated_time" content="2020-01-30T06:15:50.631Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mybatis框架实现CRUD操作 —— 手动编写持久层实现类">
+<meta name="twitter:title" content="Mybatis框架04 —— 手动编写持久层实现类实现CRUD操作">
 <meta name="twitter:description" content="简介 MyBatis环境搭建 的方式在前面已经详细的介绍过了，本文仍然通过映射配置文件，但不再使用代理持久层接口实现类的方式，而是使用手动编写持久层实现类的方式来进行MySQL数据库的CRUD操作。 创建持久层接口实现类的方式在实际开发中并不常用，所以我会将本文的主题放在与使用代理持久层实现类方法的比较上。 改变的内容主要是测试类和持久层接口实现类。  目录结构 src/main     java">
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>Mybatis框架实现CRUD操作 —— 手动编写持久层实现类 | Water's Blog</title>
+  <title>Mybatis框架04 —— 手动编写持久层实现类实现CRUD操作 | Water's Blog</title>
   
 
 
@@ -387,7 +387,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mybatis框架实现CRUD操作 —— 手动编写持久层实现类
+          <h1 class="post-title" itemprop="name headline">Mybatis框架04 —— 手动编写持久层实现类实现CRUD操作
 
               
             
@@ -428,7 +428,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 08:53:46" itemprop="dateModified" datetime="2019-10-27T08:53:46+08:00">2019-10-27</time>
+                <time title="修改时间：2020-01-30 14:15:50" itemprop="dateModified" datetime="2020-01-30T14:15:50+08:00">2020-01-30</time>
               </span>
             
           
@@ -442,7 +442,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/" itemprop="url" rel="index"><span itemprop="name"><b>Java</b></span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/MyBatis/" itemprop="url" rel="index"><span itemprop="name">MyBatis</span></a></span>
 
                 
                 
@@ -735,7 +742,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/" title="Mybatis框架实现CRUD操作 —— 手动编写持久层实现类">https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/</a>
+    <a href="https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/" title="Mybatis框架04 —— 手动编写持久层实现类实现CRUD操作">https://Water1127.github.io/2019/08/04/SSM框架/MyBatis/4.MyDao CRUD操作/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -804,8 +811,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/03/SSM框架/MyBatis/3.ProxyDao CRUD操作/" rel="next" title="Mybatis框架实现CRUD操作 —— 使用代理持久层实现类">
-                <i class="fa fa-chevron-left"></i> Mybatis框架实现CRUD操作 —— 使用代理持久层实现类
+              <a href="/2019/08/03/SSM框架/MyBatis/3.ProxyDao CRUD操作/" rel="next" title="Mybatis框架03 —— 使用代理持久层实现类实现CRUD操作">
+                <i class="fa fa-chevron-left"></i> Mybatis框架03 —— 使用代理持久层实现类实现CRUD操作
               </a>
             
           </div>
@@ -814,8 +821,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/06/SSM框架/MyBatis/6.MyBatis主配置文件 标签/" rel="prev" title="MyBatis主配置文件中的常用标签">
-                MyBatis主配置文件中的常用标签 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/06/SSM框架/MyBatis/6.MyBatis主配置文件 标签/" rel="prev" title="Mybatis框架06 —— MyBatis主配置文件中的常用标签">
+                Mybatis框架06 —— MyBatis主配置文件中的常用标签 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -891,7 +898,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -910,7 +917,47 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1151,7 +1198,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">673k</span>
+    <span title="站点总字数">678k</span>
   
 
   
@@ -1160,7 +1207,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">10:12</span>
+    <span title="站点阅读时长">10:16</span>
   
 </div>
 

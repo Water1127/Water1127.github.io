@@ -109,14 +109,14 @@
   <meta name="description" content="简介MyBatis中多表之间的关系 本次案例主要以最为简单的用户（User）、账户（Account）、角色（Role）的模型来分析Mybatis多表关系。 用户为User 表，账户为Account表。 一对多关系 一个用户（User）可以开设多个账户（Account） 从查询 用户信息（User） 出发，关联查询 账户信息（Account）属于一对多查询     一对一关系（多对一） 多个账户（A">
 <meta name="keywords" content="MyBatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mybatis框架实现多表查询的延迟加载操作 —— 基于注解">
+<meta property="og:title" content="Mybatis框架13 —— 实现多表查询的延迟加载操作（基于注解）">
 <meta property="og:url" content="https://Water1127.github.io/2019/08/10/SSM框架/MyBatis/13.注解 多表查询 延迟加载/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
 <meta property="og:description" content="简介MyBatis中多表之间的关系 本次案例主要以最为简单的用户（User）、账户（Account）、角色（Role）的模型来分析Mybatis多表关系。 用户为User 表，账户为Account表。 一对多关系 一个用户（User）可以开设多个账户（Account） 从查询 用户信息（User） 出发，关联查询 账户信息（Account）属于一对多查询     一对一关系（多对一） 多个账户（A">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-27T00:57:22.451Z">
+<meta property="og:updated_time" content="2020-01-30T06:16:17.940Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mybatis框架实现多表查询的延迟加载操作 —— 基于注解">
+<meta name="twitter:title" content="Mybatis框架13 —— 实现多表查询的延迟加载操作（基于注解）">
 <meta name="twitter:description" content="简介MyBatis中多表之间的关系 本次案例主要以最为简单的用户（User）、账户（Account）、角色（Role）的模型来分析Mybatis多表关系。 用户为User 表，账户为Account表。 一对多关系 一个用户（User）可以开设多个账户（Account） 从查询 用户信息（User） 出发，关联查询 账户信息（Account）属于一对多查询     一对一关系（多对一） 多个账户（A">
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>Mybatis框架实现多表查询的延迟加载操作 —— 基于注解 | Water's Blog</title>
+  <title>Mybatis框架13 —— 实现多表查询的延迟加载操作（基于注解） | Water's Blog</title>
   
 
 
@@ -387,7 +387,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Mybatis框架实现多表查询的延迟加载操作 —— 基于注解
+          <h1 class="post-title" itemprop="name headline">Mybatis框架13 —— 实现多表查询的延迟加载操作（基于注解）
 
               
             
@@ -428,7 +428,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 08:57:22" itemprop="dateModified" datetime="2019-10-27T08:57:22+08:00">2019-10-27</time>
+                <time title="修改时间：2020-01-30 14:16:17" itemprop="dateModified" datetime="2020-01-30T14:16:17+08:00">2020-01-30</time>
               </span>
             
           
@@ -442,7 +442,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/" itemprop="url" rel="index"><span itemprop="name"><b>Java</b></span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/MyBatis/" itemprop="url" rel="index"><span itemprop="name">MyBatis</span></a></span>
 
                 
                 
@@ -675,7 +682,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/10/SSM框架/MyBatis/13.注解 多表查询 延迟加载/" title="Mybatis框架实现多表查询的延迟加载操作 —— 基于注解">https://Water1127.github.io/2019/08/10/SSM框架/MyBatis/13.注解 多表查询 延迟加载/</a>
+    <a href="https://Water1127.github.io/2019/08/10/SSM框架/MyBatis/13.注解 多表查询 延迟加载/" title="Mybatis框架13 —— 实现多表查询的延迟加载操作（基于注解）">https://Water1127.github.io/2019/08/10/SSM框架/MyBatis/13.注解 多表查询 延迟加载/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -744,8 +751,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/10/SSM框架/MyBatis/12.注解 CRUD操作/" rel="next" title="Mybatis框架中数据库的CRUD操作 —— 基于注解">
-                <i class="fa fa-chevron-left"></i> Mybatis框架中数据库的CRUD操作 —— 基于注解
+              <a href="/2019/08/10/SSM框架/MyBatis/12.注解 CRUD操作/" rel="next" title="Mybatis框架12 —— 实现数据库的CRUD操作（基于注解）">
+                <i class="fa fa-chevron-left"></i> Mybatis框架12 —— 实现数据库的CRUD操作（基于注解）
               </a>
             
           </div>
@@ -754,8 +761,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/10/SSM框架/MyBatis/14注解 缓存/" rel="prev" title="MyBatis框架中的缓存机制 —— 基于注解">
-                MyBatis框架中的缓存机制 —— 基于注解 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/10/SSM框架/MyBatis/14注解 缓存/" rel="prev" title="MyBatis框架14 —— 缓存机制（基于注解）">
+                MyBatis框架14 —— 缓存机制（基于注解） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -831,7 +838,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -850,7 +857,47 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1091,7 +1138,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">673k</span>
+    <span title="站点总字数">678k</span>
   
 
   
@@ -1100,7 +1147,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">10:12</span>
+    <span title="站点阅读时长">10:16</span>
   
 </div>
 

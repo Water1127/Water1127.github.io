@@ -107,16 +107,16 @@
   </script>
 
   <meta name="description" content="数据库连接池 概念 数据库连接池：其实就是一个容器，存放数据库连接的容器。 当系统初始化后，容器被创建，并且容器会申请一些连接对象。 当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。   优点 节约资源 用户访问高效   接口 数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。 数据库连接池接口： javax.sql.DataSource">
-<meta name="keywords" content="JDBC,MySQL,C3P0,Druid">
+<meta name="keywords" content="JDBC,DataSource,C3P0,Druid">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JDBC连接池">
+<meta property="og:title" content="Java数据库连接对象的容器：JDBC连接池">
 <meta property="og:url" content="https://Water1127.github.io/2019/08/02/Java SE/JDBCDateSource/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
 <meta property="og:description" content="数据库连接池 概念 数据库连接池：其实就是一个容器，存放数据库连接的容器。 当系统初始化后，容器被创建，并且容器会申请一些连接对象。 当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。   优点 节约资源 用户访问高效   接口 数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。 数据库连接池接口： javax.sql.DataSource">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-02T05:11:38.653Z">
+<meta property="og:updated_time" content="2020-01-30T05:57:07.663Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JDBC连接池">
+<meta name="twitter:title" content="Java数据库连接对象的容器：JDBC连接池">
 <meta name="twitter:description" content="数据库连接池 概念 数据库连接池：其实就是一个容器，存放数据库连接的容器。 当系统初始化后，容器被创建，并且容器会申请一些连接对象。 当用户来访问数据库时，从容器中获取连接对象；用户访问完之后，会将连接对象归还给容器。   优点 节约资源 用户访问高效   接口 数据库连接池接口由Sun公司编写，具体实现类由各个数据库厂商提供。 数据库连接池接口： javax.sql.DataSource">
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>JDBC连接池 | Water's Blog</title>
+  <title>Java数据库连接对象的容器：JDBC连接池 | Water's Blog</title>
   
 
 
@@ -387,7 +387,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JDBC连接池
+          <h1 class="post-title" itemprop="name headline">Java数据库连接对象的容器：JDBC连接池
 
               
             
@@ -413,13 +413,23 @@
                 
               
 
-              <time title="创建时间：2019-08-02 13:10:02 / 修改时间：13:11:38" itemprop="dateCreated datePublished" datetime="2019-08-02T13:10:02+08:00">2019-08-02</time>
+              <time title="创建时间：2019-08-02 13:10:02" itemprop="dateCreated datePublished" datetime="2019-08-02T13:10:02+08:00">2019-08-02</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-01-30 13:57:07" itemprop="dateModified" datetime="2020-01-30T13:57:07+08:00">2020-01-30</time>
+              </span>
             
           
 
@@ -432,7 +442,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/学习笔记/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/" itemprop="url" rel="index"><span itemprop="name"><b>Java</b></span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/JDBC/" itemprop="url" rel="index"><span itemprop="name">JDBC</span></a></span>
 
                 
                 
@@ -679,7 +696,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/02/Java SE/JDBCDateSource/" title="JDBC连接池">https://Water1127.github.io/2019/08/02/Java SE/JDBCDateSource/</a>
+    <a href="https://Water1127.github.io/2019/08/02/Java SE/JDBCDateSource/" title="Java数据库连接对象的容器：JDBC连接池">https://Water1127.github.io/2019/08/02/Java SE/JDBCDateSource/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -737,7 +754,7 @@
           
             <a href="/tags/JDBC/" rel="tag"># JDBC</a>
           
-            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+            <a href="/tags/DataSource/" rel="tag"># DataSource</a>
           
             <a href="/tags/C3P0/" rel="tag"># C3P0</a>
           
@@ -754,8 +771,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/02/SSM框架/MyBatis/2.实现MyBatis框架/" rel="next" title="自定义MyBatis相关的类和接口">
-                <i class="fa fa-chevron-left"></i> 自定义MyBatis相关的类和接口
+              <a href="/2019/08/02/SSM框架/MyBatis/2.实现MyBatis框架/" rel="next" title="MyBatis框架02 —— 自定义MyBatis相关的类和接口">
+                <i class="fa fa-chevron-left"></i> MyBatis框架02 —— 自定义MyBatis相关的类和接口
               </a>
             
           </div>
@@ -764,8 +781,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/02/Java SE/JdbcTemplate/" rel="prev" title="JdbcTemplate">
-                JdbcTemplate <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/02/Java SE/JdbcTemplate/" rel="prev" title="基于Spring框架的Java数据库连接对象：JdbcTemplate">
+                基于Spring框架的Java数据库连接对象：JdbcTemplate <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -841,7 +858,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -860,7 +877,47 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1101,7 +1158,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">673k</span>
+    <span title="站点总字数">678k</span>
   
 
   
@@ -1110,7 +1167,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">10:12</span>
+    <span title="站点阅读时长">10:16</span>
   
 </div>
 
