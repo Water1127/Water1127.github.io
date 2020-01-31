@@ -20,10 +20,10 @@
         <category>Spring整合</category>
       </categories>
       <tags>
-        <tag>MyBatis</tag>
         <tag>SSM整合</tag>
-        <tag>Spring</tag>
         <tag>SpringMVC</tag>
+        <tag>MyBatis</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -35,8 +35,8 @@
         <category>Spring整合</category>
       </categories>
       <tags>
-        <tag>MyBatis</tag>
         <tag>SSM整合</tag>
+        <tag>MyBatis</tag>
         <tag>Spring</tag>
       </tags>
   </entry>
@@ -49,8 +49,8 @@
         <category>Spring整合</category>
       </categories>
       <tags>
-        <tag>MyBatis</tag>
         <tag>SSM整合</tag>
+        <tag>MyBatis</tag>
       </tags>
   </entry>
   <entry>
@@ -63,8 +63,8 @@
       </categories>
       <tags>
         <tag>SSM整合</tag>
-        <tag>Spring</tag>
         <tag>SpringMVC</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
