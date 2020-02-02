@@ -22,8 +22,8 @@
       <tags>
         <tag>MyBatis</tag>
         <tag>SSM整合</tag>
-        <tag>Spring</tag>
         <tag>SpringMVC</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -63,8 +63,8 @@
       </categories>
       <tags>
         <tag>SSM整合</tag>
-        <tag>Spring</tag>
         <tag>SpringMVC</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -198,8 +198,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>事务管理</tag>
         <tag>Spring</tag>
+        <tag>事务管理</tag>
       </tags>
   </entry>
   <entry>
@@ -211,8 +211,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>事务管理</tag>
         <tag>Spring</tag>
+        <tag>事务管理</tag>
       </tags>
   </entry>
   <entry>
@@ -250,8 +250,8 @@
         <category>Spring</category>
       </categories>
       <tags>
-        <tag>事务管理</tag>
         <tag>Spring</tag>
+        <tag>事务管理</tag>
         <tag>AOP</tag>
       </tags>
   </entry>
