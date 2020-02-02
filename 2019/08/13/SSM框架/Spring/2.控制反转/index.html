@@ -109,16 +109,16 @@
   <meta name="description" content="简介 本文分为四部分 第一部分：介绍 内聚和耦合 的概念。 第二部分：介绍Spring框架中的 IoC控制反转 机制。 第三部分：介绍 ApplicationContext 和 BeanFactory 。 第四部分：比较 ApplicationContext 和 BeanFactory 。    内聚和耦合在介绍Spring IoC容器之前，我们先要了解一下软件设计好坏的评判标准：耦合和内聚。 耦">
 <meta name="keywords" content="Spring,IoC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring框架02 —— 控制反转（IoC）">
+<meta property="og:title" content="Spring框架（2） —— 控制反转（IoC）">
 <meta property="og:url" content="https://Water1127.github.io/2019/08/13/SSM框架/Spring/2.控制反转/index.html">
 <meta property="og:site_name" content="Water&#39;s Blog">
 <meta property="og:description" content="简介 本文分为四部分 第一部分：介绍 内聚和耦合 的概念。 第二部分：介绍Spring框架中的 IoC控制反转 机制。 第三部分：介绍 ApplicationContext 和 BeanFactory 。 第四部分：比较 ApplicationContext 和 BeanFactory 。    内聚和耦合在介绍Spring IoC容器之前，我们先要了解一下软件设计好坏的评判标准：耦合和内聚。 耦">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://water1127.github.io/2019/08/13/SSM框架/Spring/2.控制反转/2.%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%5C%E4%B8%BB%E5%8A%A8%E8%8E%B7%E5%8F%96%E8%B5%84%E6%BA%90%EF%BC%88new%EF%BC%89.png">
 <meta property="og:image" content="https://water1127.github.io/2019/08/13/SSM框架/Spring/2.控制反转/2.%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%5C%E8%A2%AB%E5%8A%A8%E8%8E%B7%E5%8F%96%E8%B5%84%E6%BA%90%EF%BC%88%E5%B7%A5%E5%8E%82%EF%BC%89.png">
-<meta property="og:updated_time" content="2020-01-30T06:17:53.005Z">
+<meta property="og:updated_time" content="2020-01-31T10:07:25.835Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring框架02 —— 控制反转（IoC）">
+<meta name="twitter:title" content="Spring框架（2） —— 控制反转（IoC）">
 <meta name="twitter:description" content="简介 本文分为四部分 第一部分：介绍 内聚和耦合 的概念。 第二部分：介绍Spring框架中的 IoC控制反转 机制。 第三部分：介绍 ApplicationContext 和 BeanFactory 。 第四部分：比较 ApplicationContext 和 BeanFactory 。    内聚和耦合在介绍Spring IoC容器之前，我们先要了解一下软件设计好坏的评判标准：耦合和内聚。 耦">
 <meta name="twitter:image" content="https://water1127.github.io/2019/08/13/SSM框架/Spring/2.控制反转/2.%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%5C%E4%B8%BB%E5%8A%A8%E8%8E%B7%E5%8F%96%E8%B5%84%E6%BA%90%EF%BC%88new%EF%BC%89.png">
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>Spring框架02 —— 控制反转（IoC） | Water's Blog</title>
+  <title>Spring框架（2） —— 控制反转（IoC） | Water's Blog</title>
   
 
 
@@ -390,7 +390,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spring框架02 —— 控制反转（IoC）
+          <h1 class="post-title" itemprop="name headline">Spring框架（2） —— 控制反转（IoC）
 
               
             
@@ -432,7 +432,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-30 14:17:53" itemprop="dateModified" datetime="2020-01-30T14:17:53+08:00">2020-01-30</time>
+                <time title="修改时间：2020-01-31 18:07:25" itemprop="dateModified" datetime="2020-01-31T18:07:25+08:00">2020-01-31</time>
               </span>
             
           
@@ -829,7 +829,7 @@
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
     
-    <a href="https://Water1127.github.io/2019/08/13/SSM框架/Spring/2.控制反转/" title="Spring框架02 —— 控制反转（IoC）">https://Water1127.github.io/2019/08/13/SSM框架/Spring/2.控制反转/</a>
+    <a href="https://Water1127.github.io/2019/08/13/SSM框架/Spring/2.控制反转/" title="Spring框架（2） —— 控制反转（IoC）">https://Water1127.github.io/2019/08/13/SSM框架/Spring/2.控制反转/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -900,8 +900,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/12/SSM框架/Spring/1.概述/" rel="next" title="Spring框架01 —— 概述">
-                <i class="fa fa-chevron-left"></i> Spring框架01 —— 概述
+              <a href="/2019/08/12/SSM框架/Spring/1.概述/" rel="next" title="Spring框架（1） —— 概述">
+                <i class="fa fa-chevron-left"></i> Spring框架（1） —— 概述
               </a>
             
           </div>
@@ -910,8 +910,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/14/SSM框架/Spring/3.Bean对象/" rel="prev" title="Spring框架03 —— Bean对象的配置方式">
-                Spring框架03 —— Bean对象的配置方式 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/14/SSM框架/Spring/3.Bean对象/" rel="prev" title="Spring框架（3） —— Bean对象的配置方式">
+                Spring框架（3） —— Bean对象的配置方式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1296,7 +1296,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">10:16</span>
+    <span title="站点阅读时长">10:17</span>
   
 </div>
 
