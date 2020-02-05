@@ -369,325 +369,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/10/SSM框架/MyBatis/13.注解 多表查询 延迟加载/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="water.">
-      <meta itemprop="description" content="Few words,many deeds.">
-      <meta itemprop="image" content="/images/header.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Water's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/10/SSM框架/MyBatis/13.注解 多表查询 延迟加载/" class="post-title-link" itemprop="url">Mybatis框架（13） —— 实现多表查询的延迟加载操作（基于注解）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-		  
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-10 17:22:14" itemprop="dateCreated datePublished" datetime="2019-08-10T17:22:14+08:00">2019-08-10</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-01-31 18:08:26" itemprop="dateModified" datetime="2020-01-31T18:08:26+08:00">2020-01-31</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/" itemprop="url" rel="index"><span itemprop="name"><b>Java</b></span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/MyBatis/" itemprop="url" rel="index"><span itemprop="name">MyBatis</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          <br>
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span title="本文字数">12k</span>
-            </span>
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span title="阅读时长">11 分钟</span>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="MyBatis中多表之间的关系"><a href="#MyBatis中多表之间的关系" class="headerlink" title="MyBatis中多表之间的关系"></a>MyBatis中多表之间的关系</h2><ul>
-<li>本次案例主要以最为简单的用户（User）、账户（Account）、角色（Role）的模型来分析Mybatis多表关系。<ul>
-<li>用户为User 表，账户为Account表。<ul>
-<li><strong>一对多关系</strong><ul>
-<li>一个用户（User）可以开设多个账户（Account）<ul>
-<li><strong>从查询 用户信息（User） 出发，关联查询 账户信息（Account）</strong>属于一对多查询</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>一对一关系（多对一）</strong><ul>
-<li>多个账户（Account）可以对应一个用户（User）</li>
-<li>单个账户（Account）只能属于一个用户（User）<ul>
-<li><strong>从查询 账户信息（Account） 出发，关联查询 用户信息（User）</strong>属于一对一查询</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>多对多关系</strong><ul>
-<li>一个用户（User）可以拥有多个角色（Role）</li>
-<li>一个角色（Role）可以赋予多个用户（User）<ul>
-<li><strong>多对多关系其实我们看成是双向的一对多关系。</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h1><ul>
-<li>src<ul>
-<li>main<ul>
-<li>java<ul>
-<li>cn.water.dao<ul>
-<li><strong>UserDao.java</strong>（一对多 持久层接口）</li>
-<li><strong>AccountDao.java</strong>（一对一 持久层接口）</li>
-</ul>
-</li>
-<li>cn.water.domain<ul>
-<li><strong>User.java</strong>（一对多 实体类）</li>
-<li><strong>Account.java</strong>（一对一 实体类）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>resources<ul>
-<li>cn.water.dao<ul>
-<li><strong>User.xml</strong>（一对多 映射配置文件）</li>
-<li><strong>Account.xml</strong>（一对一 映射配置文件）</li>
-</ul>
-</li>
-<li><strong>SqlMapConfig.xml</strong>（MyBatis主配置文件）</li>
-<li><strong>jdbcConfig.properties</strong>（数据库连接信息文件）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>test<ul>
-<li>java.cn.water<ul>
-<li><strong>MybatisTest.java</strong>（测试类）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="MyBatis主配置文件"><a href="#MyBatis主配置文件" class="headerlink" title="MyBatis主配置文件"></a>MyBatis主配置文件</h2><h3 id="jdbcConfig-properties"><a href="#jdbcConfig-properties" class="headerlink" title="jdbcConfig.properties"></a>jdbcConfig.properties</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver=com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url=jdbc:mysql://localhost:3306/mybatis</span><br><span class="line">jdbc.username=root</span><br><span class="line">jdbc.password=root</span><br></pre></td></tr></table></figure>
-
-<h3 id="SqlMapConfig-xml"><a href="#SqlMapConfig-xml" class="headerlink" title="SqlMapConfig.xml"></a>SqlMapConfig.xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- mybatis的主配置文件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">            <span class="comment">&lt;!-- 外部配置 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"jdbcConfig.properties"</span>&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 配置参数 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 开启 延迟加载 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"lazyLoadingEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"aggressiveLazyLoading"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 指定包：实体类--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.water.domain"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 配置环境 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"mysql"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!-- 配置连接数据库的4个基本信息 --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 指定包：持久层接口 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"cn.water.dao"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h2><h3 id="Account-java"><a href="#Account-java" class="headerlink" title="Account.java"></a>Account.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/13 - 15:10</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> Integer uid;</span><br><span class="line">    <span class="keyword">private</span> Double money;</span><br><span class="line">    <span class="keyword">private</span> User user;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Account&#123;"</span> +</span><br><span class="line">                <span class="string">"id="</span> + id +</span><br><span class="line">                <span class="string">", uid="</span> + uid +</span><br><span class="line">                <span class="string">", money="</span> + money +</span><br><span class="line">                <span class="string">", user="</span> + user +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getUid</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> uid;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUid</span><span class="params">(Integer uid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.uid = uid;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Double <span class="title">getMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMoney</span><span class="params">(Double money)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.money = money;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUser</span><span class="params">(User user)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.user = user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="User-java"><a href="#User-java" class="headerlink" title="User.java"></a>User.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/13 - 15:10</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line">    <span class="keyword">private</span> Date birthday;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line">    <span class="keyword">private</span> String address;</span><br><span class="line">    <span class="keyword">private</span> List&lt;Account&gt; accounts;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> +</span><br><span class="line">                <span class="string">"id="</span> + id +</span><br><span class="line">                <span class="string">", username='"</span> + username + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", birthday="</span> + birthday +</span><br><span class="line">                <span class="string">", sex='"</span> + sex + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", address='"</span> + address + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", accounts="</span> + accounts +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Date <span class="title">getBirthday</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBirthday</span><span class="params">(Date birthday)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.birthday = birthday;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSex</span><span class="params">(String sex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getAddress</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAddress</span><span class="params">(String address)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.address = address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;Account&gt; <span class="title">getAccounts</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> accounts;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAccounts</span><span class="params">(List&lt;Account&gt; accounts)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.accounts = accounts;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="持久层接口"><a href="#持久层接口" class="headerlink" title="持久层接口"></a>持久层接口</h2><h3 id="AccountDao-java"><a href="#AccountDao-java" class="headerlink" title="AccountDao.java"></a>AccountDao.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.domain.Account;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.One;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Result;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Results;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Select;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.mapping.FetchType;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/13 - 15:11</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span> 一对一查询 延迟查询</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AccountDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 一对一查询：查询所有账户信息和对应的用户信息 */</span></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"SELECT * FROM account"</span>)</span><br><span class="line">    <span class="meta">@Results</span>(id = <span class="string">"accountMap"</span>,</span><br><span class="line">            value = &#123;</span><br><span class="line">                <span class="meta">@Result</span>(id = <span class="keyword">true</span>,column = <span class="string">"id"</span>,property = <span class="string">"id"</span>),</span><br><span class="line">                <span class="meta">@Result</span>(column = <span class="string">"uid"</span>,property = <span class="string">"uid"</span>),</span><br><span class="line">                <span class="meta">@Result</span>(column = <span class="string">"money"</span>,property = <span class="string">"money"</span>),</span><br><span class="line">                <span class="comment">/* 传递值：uid，变量名：user  */</span></span><br><span class="line">                <span class="meta">@Result</span>(column = <span class="string">"uid"</span>,</span><br><span class="line">                        property = <span class="string">"user"</span>,</span><br><span class="line">                        one = <span class="meta">@One</span>(select = <span class="string">"cn.water.dao.UserDao.findById"</span>,</span><br><span class="line">                                    fetchType = FetchType.LAZY</span><br><span class="line">                        )</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">    <span class="function">List&lt;Account&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 一对多查询：根据id，查询账户信息 */</span></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"SELECT * FROM account WHERE uid = #&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function">Account <span class="title">findByUid</span><span class="params">(Integer id)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="UserDao-java"><a href="#UserDao-java" class="headerlink" title="UserDao.java"></a>UserDao.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.domain.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Many;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Result;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Results;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Select;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.mapping.FetchType;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/13 - 15:11</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span> 一对多查询 延迟查询</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 一对一查询：按照id，查询用户信息 */</span></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"SELECT * FROM user WHERE id = #&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function">User <span class="title">findById</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 一对多查询：查询所有的用户信息和对应的账户信息 */</span></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"SELECT * FROM user"</span>)</span><br><span class="line">    <span class="meta">@Results</span>(id = <span class="string">"userMap"</span>,value = &#123;</span><br><span class="line">            <span class="meta">@Result</span>(id = <span class="keyword">true</span>,column = <span class="string">"id"</span>,property = <span class="string">"id"</span>),</span><br><span class="line">            <span class="meta">@Result</span>(column = <span class="string">"username"</span>,property = <span class="string">"username"</span>),</span><br><span class="line">            <span class="meta">@Result</span>(column = <span class="string">"birthday"</span>,property = <span class="string">"birthday"</span>),</span><br><span class="line">            <span class="meta">@Result</span>(column = <span class="string">"sex"</span>,property = <span class="string">"sex"</span>),</span><br><span class="line">            <span class="meta">@Result</span>(column = <span class="string">"address"</span>,property = <span class="string">"address"</span>),</span><br><span class="line">            <span class="comment">/* 传递值：uid，变量名：accounts  */</span></span><br><span class="line">            <span class="meta">@Result</span>(column = <span class="string">"id"</span>,</span><br><span class="line">                    property = <span class="string">"accounts"</span>,</span><br><span class="line">                    many = <span class="meta">@Many</span>(select = <span class="string">"cn.water.dao.AccountDao.findByUid"</span>,</span><br><span class="line">                                fetchType = FetchType.LAZY</span><br><span class="line">                    )</span><br><span class="line">            )</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a>测试类</h2><h3 id="MyBatisTest-java"><a href="#MyBatisTest-java" class="headerlink" title="MyBatisTest.java"></a>MyBatisTest.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.water;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.water.dao.AccountDao;</span><br><span class="line"><span class="keyword">import</span> cn.water.dao.UserDao;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.Account;</span><br><span class="line"><span class="keyword">import</span> cn.water.domain.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Water</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2019/10/13 - 10:48</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> InputStream inputStream;</span><br><span class="line">    <span class="keyword">private</span> SqlSessionFactory factory;</span><br><span class="line">    <span class="keyword">private</span> SqlSession session;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        inputStream = Resources.getResourceAsStream(<span class="string">"SqlMapConfig.xml"</span>);</span><br><span class="line">        factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">        session = factory.openSession(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span> <span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        session.close();</span><br><span class="line">        inputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 一对一查询 */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">        AccountDao dao = session.getMapper(AccountDao.class);</span><br><span class="line">        <span class="keyword">for</span> (Account account : dao.findAll()) &#123;</span><br><span class="line">            System.out.println(account);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 一对多查询 */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">        UserDao dao = session.getMapper(UserDao.class);</span><br><span class="line">        <span class="keyword">for</span> (User user : dao.findAll()) &#123;</span><br><span class="line">            System.out.println(user);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="一对一查询（延迟）"><a href="#一对一查询（延迟）" class="headerlink" title="一对一查询（延迟）"></a>一对一查询（延迟）</h1><ul>
-<li><u>@One注解代替了&lt;assocation&gt;标签，是多表查询的关键，在注解中用来指定子查询返回单一对象。</u></li>
-<li>注解<ul>
-<li><strong>@One：实现一对一结果集封装</strong><ul>
-<li><strong>select：指定用来多表查询的sqlmapper</strong></li>
-<li><strong>fetchType：覆盖全局的配置参数（延迟加载：lazyLoadingEnabled）</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="账户类-持久层接口"><a href="#账户类-持久层接口" class="headerlink" title="账户类 持久层接口"></a>账户类 持久层接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select</span>(<span class="string">"SELECT * FROM account"</span>)</span><br><span class="line"><span class="meta">@Results</span>(id = <span class="string">"accountMap"</span>,</span><br><span class="line">        value = &#123;</span><br><span class="line">            <span class="meta">@Result</span>(id = <span class="keyword">true</span>,column = <span class="string">"id"</span>,property = <span class="string">"id"</span>),</span><br><span class="line">            <span class="meta">@Result</span>(column = <span class="string">"uid"</span>,property = <span class="string">"uid"</span>),</span><br><span class="line">            <span class="meta">@Result</span>(column = <span class="string">"money"</span>,property = <span class="string">"money"</span>),</span><br><span class="line">            <span class="comment">/* 传递值：uid，变量名：user  */</span></span><br><span class="line">            <span class="meta">@Result</span>(column = <span class="string">"uid"</span>,</span><br><span class="line">                    property = <span class="string">"user"</span>,</span><br><span class="line">                    one = <span class="meta">@One</span>(select = <span class="string">"cn.water.dao.UserDao.findById"</span>,</span><br><span class="line">                                fetchType = FetchType.LAZY</span><br><span class="line">                    )</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line"><span class="function">List&lt;Account&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="用户类-持久层接口"><a href="#用户类-持久层接口" class="headerlink" title="用户类 持久层接口"></a>用户类 持久层接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select</span>(<span class="string">"SELECT * FROM user WHERE id = #&#123;id&#125;"</span>)</span><br><span class="line"><span class="function">User <span class="title">findById</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="测试类-1"><a href="#测试类-1" class="headerlink" title="测试类"></a>测试类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">    AccountDao dao = session.getMapper(AccountDao.class);</span><br><span class="line">    <span class="keyword">for</span> (Account account : dao.findAll()) &#123;</span><br><span class="line">        System.out.println(account);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p>![](13.注解 多表查询 延迟加载\注解 一对一查询 延迟查询.png)</p>
-<h1 id="一对多查询（延迟）"><a href="#一对多查询（延迟）" class="headerlink" title="一对多查询（延迟）"></a>一对多查询（延迟）</h1><ul>
-<li><u>@Many注解代替了&lt;Collection&gt;标签,是是多表查询的关键，在注解中用来指定子查询返回对象集合。</u></li>
-<li>注解<ul>
-<li><strong>@Many：实现一对多结果集封装</strong><ul>
-<li><strong>select：指定用来多表查询的sqlmapper</strong></li>
-<li><strong>fetchType：覆盖全局的配置参数（延迟加载：lazyLoadingEnabled）</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="用户类-持久层接口-1"><a href="#用户类-持久层接口-1" class="headerlink" title="用户类 持久层接口"></a>用户类 持久层接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select</span>(<span class="string">"SELECT * FROM user"</span>)</span><br><span class="line"><span class="meta">@Results</span>(id = <span class="string">"userMap"</span>,value = &#123;</span><br><span class="line">        <span class="meta">@Result</span>(id = <span class="keyword">true</span>,column = <span class="string">"id"</span>,property = <span class="string">"id"</span>),</span><br><span class="line">        <span class="meta">@Result</span>(column = <span class="string">"username"</span>,property = <span class="string">"username"</span>),</span><br><span class="line">        <span class="meta">@Result</span>(column = <span class="string">"birthday"</span>,property = <span class="string">"birthday"</span>),</span><br><span class="line">        <span class="meta">@Result</span>(column = <span class="string">"sex"</span>,property = <span class="string">"sex"</span>),</span><br><span class="line">        <span class="meta">@Result</span>(column = <span class="string">"address"</span>,property = <span class="string">"address"</span>),</span><br><span class="line">        <span class="comment">/* 传递值：uid，变量名：accounts  */</span></span><br><span class="line">        <span class="meta">@Result</span>(column = <span class="string">"id"</span>,</span><br><span class="line">                property = <span class="string">"accounts"</span>,</span><br><span class="line">                many = <span class="meta">@Many</span>(select = <span class="string">"cn.water.dao.AccountDao.findByUid"</span>,</span><br><span class="line">                            fetchType = FetchType.LAZY</span><br><span class="line">                )</span><br><span class="line">        )</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function">List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="账户类-持久层接口-1"><a href="#账户类-持久层接口-1" class="headerlink" title="账户类 持久层接口"></a>账户类 持久层接口</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Select</span>(<span class="string">"SELECT * FROM account WHERE uid = #&#123;id&#125;"</span>)</span><br><span class="line"><span class="function">Account <span class="title">findByUid</span><span class="params">(Integer id)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="测试类-2"><a href="#测试类-2" class="headerlink" title="测试类"></a>测试类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">    UserDao dao = session.getMapper(UserDao.class);</span><br><span class="line">    <span class="keyword">for</span> (User user : dao.findAll()) &#123;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="运行结果-1"><a href="#运行结果-1" class="headerlink" title="运行结果"></a>运行结果</h2><p>![](13.注解 多表查询 延迟加载\注解 一对多查询 延迟查询.png)</p>
-
-          
-        
-      
-    </div>
-	
-	<div>
-	  
-	</div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-      
-    
-    
-		
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/10/SSM框架/MyBatis/12.注解 CRUD操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3527,6 +3208,235 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://Water1127.github.io/2019/08/02/Java SE/JdbcTemplate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="water.">
+      <meta itemprop="description" content="Few words,many deeds.">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Water's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/02/Java SE/JdbcTemplate/" class="post-title-link" itemprop="url">基于Spring框架的Java数据库连接对象：JdbcTemplate</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+		  
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-02 23:15:12" itemprop="dateCreated datePublished" datetime="2019-08-02T23:15:12+08:00">2019-08-02</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-01-30 13:57:58" itemprop="dateModified" datetime="2020-01-30T13:57:58+08:00">2020-01-30</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/" itemprop="url" rel="index"><span itemprop="name"><b>Java</b></span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/b-Java-b/JDBC/" itemprop="url" rel="index"><span itemprop="name">JDBC</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span title="本文字数">3.9k</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span title="阅读时长">4 分钟</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Spring-JDBC"><a href="#Spring-JDBC" class="headerlink" title="Spring JDBC"></a>Spring JDBC</h1><ul>
+<li>Spring框架对JDBC的简单封装，它提供了一个JDBCTemplate对象，简化JDBC的开发。</li>
+</ul>
+<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><ol>
+<li><p>导入jar包</p>
+</li>
+<li><p>创建JdbcTemplate对象，传递DataSource对象</p>
+<ul>
+<li>JdbcTemplate template = new JdbcTemplate(dataSource);</li>
+</ul>
+</li>
+<li><p>调用JdbcTemplate的方法，完成CRUD的操作</p>
+<ul>
+<li><strong>update</strong>()</li>
+<li><strong>queryForMap</strong>()</li>
+</ul>
+<ul>
+<li><strong>queryForList</strong>()</li>
+<li><strong>query</strong>()</li>
+<li><strong>queryForObject</strong>()</li>
+</ul>
+</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/08/02/Java SE/JdbcTemplate/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+	
+	<div>
+	  
+	</div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      
+    
+    
+		
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -3575,7 +3485,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">69</span>
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3858,7 +3768,7 @@
       <i class="fa fa-file-text-o"></i>
     </span>
     
-    <span title="站点总字数">678k</span>
+    <span title="站点总字数">658k</span>
   
 
   
@@ -3867,7 +3777,7 @@
       <i class="fa fa-clock-o"></i>
     </span>
     
-    <span title="站点阅读时长">10:17</span>
+    <span title="站点阅读时长">9:58</span>
   
 </div>
 
